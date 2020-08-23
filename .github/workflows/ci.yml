@@ -29,24 +29,3 @@ jobs:
           custom-command: "yarn storybook:percy"
         env:
           PERCY_TOKEN: ${{ secrets.REACT_PERCY_TOKEN }}
-      - name: Vue
-        uses: percy/storybook-action@v0.1.3
-        with:
-          working-directory: "tests/integration/storybook-for-vue"
-          custom-command: "yarn storybook:percy"
-        env:
-          PERCY_TOKEN: ${{ secrets.VUE_PERCY_TOKEN }}
-      - name: Angular
-        uses: percy/storybook-action@v0.1.3
-        with:
-          working-directory: "tests/integration/storybook-for-angular"
-          custom-command: "yarn storybook:percy"
-        env:
-          PERCY_TOKEN: ${{ secrets.ANGULAR_PERCY_TOKEN }}
-      - name: Ember
-        uses: percy/storybook-action@v0.1.3
-        with:
-          working-directory: "tests/integration/storybook-for-ember"
-          custom-command: "yarn storybook:percy"
-        env:
-          PERCY_TOKEN: ${{ secrets.EMBER_PERCY_TOKEN }}
