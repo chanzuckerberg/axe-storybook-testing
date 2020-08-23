@@ -19,7 +19,7 @@ const fetchStoriesFromWindow = `(async () => {
           id: story.id,
           name: story.name,
           kind: story.kind,
-          parameters: { percy: story.parameters ? story.parameters.percy : undefined },
+          parameters: { axe: story.parameters ? story.parameters.axe : undefined },
         }));
         resolve(reducedStories);
       } else if (timesCalled < 100) {

@@ -17,7 +17,7 @@ import createDebug from 'debug';
 
 import yargs from 'yargs';
 
-const debug = createDebug('percy-storybook');
+const debug = createDebug('axe-storybook');
 const VERSION = require('../package.json').version;
 
 export async function run(argv) {
@@ -57,13 +57,13 @@ export async function run(argv) {
   // Enable debug logging based on options.
   debug.enabled = options.debug;
 
-  if (process.env.PERCY_ENABLE === '0') {
+  if (process.env.AXE_ENABLE === '0') {
     if (options.outputFormat == 'text') {
       // eslint-disable-next-line no-console
-      console.log('The PERCY_ENABLE environment variable is set to 0. Exiting.');
+      console.log('The AXE_ENABLE environment variable is set to 0. Exiting.');
     } else if (options.outputFormat == 'json') {
       // eslint-disable-next-line no-console
-      console.log(`{'exitReason':'The PERCY_ENABLE environment variable is set to 0.'}`);
+      console.log(`{'exitReason':'The AXE_ENABLE environment variable is set to 0.'}`);
     }
     return;
   }
@@ -85,7 +85,7 @@ export async function run(argv) {
   debug('selectedStories %o', selectedStories);
 
   if (selectedStories.length === 0) {
-    const message = 'percy-storybook found no stories in the static storybook.';
+    const message = 'axe-storybook found no stories in the static storybook.';
     if (options.failOnEmpty) {
       throw new Error(message);
     }

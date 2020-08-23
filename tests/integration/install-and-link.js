@@ -7,6 +7,6 @@ readdirSync('./', { withFileTypes: true }).forEach(dirent => {
 
     console.log(`\n--- ${options.cwd} ---\n`);
     execSync('yarn', options);
-    execSync('yarn link @percy/storybook', options);
+    execSync('yarn link @chanzuckerberg/axe-storybook', options);
   }
 });

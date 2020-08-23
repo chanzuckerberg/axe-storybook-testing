@@ -1,6 +1,6 @@
-# @percy/storybook
-[![Package Status](https://img.shields.io/npm/v/@percy/storybook.svg)](https://www.npmjs.com/package/@percy/storybook) ![Tests](https://github.com/percy/percy-storybook/workflows/Tests/badge.svg)
+# @chanzuckerberg/axe-storybook
+[![Package Status](https://img.shields.io/npm/v/@chanzuckerberg/axe-storybook.svg)](https://www.npmjs.com/package/@chanzuckerberg/axe-storybook) ![Tests](https://github.com/chanzuckerberg/axe-storybook/workflows/Tests/badge.svg)
 
-**@percy/storybook** adds [Percy](https://percy.io) visual testing and reviews to your [**Storybook**](https://storybooks.js.org/).
+Run [axe-core](https://github.com/dequelabs/axe-core) on your [Storybook stories](https://storybook.js.org/docs/react/api/csf) and report the results.
 
-Docs here: https://docs.percy.io/docs/storybook
+Forked from [@percy/storybook](https://github.com/percy/percy-storybook).
