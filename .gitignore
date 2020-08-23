@@ -51,3 +51,6 @@ integration-tests/lib
 
 # Packed npm
 *.tgz
+
+# Storybook build directories in the integration testing app.
+storybook-static
