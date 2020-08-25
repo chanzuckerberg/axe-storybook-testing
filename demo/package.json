@@ -3,31 +3,26 @@
   "name": "storybook-for-react-integration-tests",
   "version": "3.1.0",
   "scripts": {
-    "storybook": "start-storybook -p 9001 -c storybook -s ./storybook/public",
-    "storybook:build": "build-storybook -c storybook -s ./storybook/public",
+    "build-storybook": "build-storybook",
+    "storybook": "start-storybook -p 6006",
+    "storybook:build": "build-storybook",
     "storybook:axe-debug": "axe-storybook --debug",
-    "storybook:axe": "build-storybook -c storybook -s ./storybook/public && axe-storybook",
+    "storybook:axe": "build-storybook && axe-storybook",
     "storybook:axe-no-build": "axe-storybook"
   },
   "dependencies": {
     "@babel/core": "^7.8.4",
     "babel-loader": "^8.0.6",
-    "faker": "^4.1.0",
-    "mockdate": "^2.0.1",
-    "prop-types": "^15.5.10",
     "react": "^16.3.2",
-    "react-dom": "^16.3.2",
-    "react-match-media": "^2.2.0"
+    "react-dom": "^16.3.2"
   },
   "devDependencies": {
     "@chanzuckerberg/axe-storybook": "../",
-    "@percy-io/in-percy": "^0.1.11",
-    "@storybook/addon-actions": "v5.3.14",
-    "@storybook/addon-info": "v5.3.14",
-    "@storybook/addon-knobs": "v5.3.14",
-    "@storybook/addon-links": "v5.3.14",
-    "@storybook/addon-options": "v5.3.14",
-    "@storybook/addons": "v5.3.14",
-    "@storybook/react": "v5.3.14"
+    "@storybook/addon-a11y": "^6.0.18",
+    "@storybook/addon-actions": "^6.0.18",
+    "@storybook/addon-essentials": "^6.0.18",
+    "@storybook/addon-links": "^6.0.18",
+    "@storybook/react": "^6.0.18",
+    "react-is": "^16.13.1"
   }
 }
