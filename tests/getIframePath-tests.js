@@ -13,8 +13,8 @@ it("raises an error if storybook doesn't exist in buildDir", () => {
 it('returns the iframe path when the storybook exists', () => {
   mock({
     '/tmp-test': {
-      'iframe.html': 'file content here'
-    }
+      'iframe.html': 'file content here',
+    },
   });
   try {
     if (process.platform === 'win32') {

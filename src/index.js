@@ -40,7 +40,7 @@ export async function run(argv) {
     debug: argv.debug || debug.enabled,
     buildDir: argv.build_dir,
     outputFormat: getOutputFormat(argv.output_format),
-    failOnEmpty: argv.fail_on_empty === 'true'
+    failOnEmpty: argv.fail_on_empty === 'true',
   };
 
   // Enable debug logging based on options.
@@ -52,7 +52,7 @@ export async function run(argv) {
       console.log('The AXE_ENABLE environment variable is set to 0. Exiting.');
     } else if (options.outputFormat == 'json') {
       // eslint-disable-next-line no-console
-      console.log(`{'exitReason':'The AXE_ENABLE environment variable is set to 0.'}`);
+      console.log('{\'exitReason\':\'The AXE_ENABLE environment variable is set to 0.\'}');
     }
     return;
   }

@@ -10,30 +10,30 @@ describe('selectStories', () => {
       { name: 'a', kind: 'ImagePost' },
       { name: 'b', kind: 'ImagePost' },
       { name: 'a', kind: 'LinkPost' },
-      { name: 'b', kind: 'LinkPost' }
+      { name: 'b', kind: 'LinkPost' },
     ];
 
     const expectedSelectedStories = [
       {
         encodedParams: 'selectedKind=ImagePost&selectedStory=a',
         name: 'ImagePost: a',
-        options: {}
+        options: {},
       },
       {
         encodedParams: 'selectedKind=ImagePost&selectedStory=b',
         name: 'ImagePost: b',
-        options: {}
+        options: {},
       },
       {
         encodedParams: 'selectedKind=LinkPost&selectedStory=a',
         name: 'LinkPost: a',
-        options: {}
+        options: {},
       },
       {
         encodedParams: 'selectedKind=LinkPost&selectedStory=b',
         name: 'LinkPost: b',
-        options: {}
-      }
+        options: {},
+      },
     ];
 
     expect(selectStories(stories)).toEqual(expectedSelectedStories);
@@ -44,15 +44,15 @@ describe('selectStories', () => {
       const parameters = { axe: { skip: true } };
       const stories = [
         { name: 'a', kind: 'ImagePost', parameters: parameters },
-        { name: 'b', kind: 'ImagePost' }
+        { name: 'b', kind: 'ImagePost' },
       ];
 
       const expectedSelectedStories = [
         {
           encodedParams: 'selectedKind=ImagePost&selectedStory=b',
           name: 'ImagePost: b',
-          options: {}
-        }
+          options: {},
+        },
       ];
 
       expect(selectStories(stories)).toEqual(expectedSelectedStories);
@@ -63,7 +63,7 @@ describe('selectStories', () => {
       const stories = [{ name: 'a', kind: 'ImagePost', parameters: parameters }];
 
       expect(() => selectStories(stories)).toThrow(
-        new Error("Given skip option 'yes please' is invalid")
+        new Error("Given skip option 'yes please' is invalid"),
       );
     });
   });

@@ -1,15 +1,15 @@
 module.exports = {
   env: {
     browser: true,
-    es6: true
+    es6: true,
   },
   extends: ['plugin:react/recommended'],
   settings: {
     react: {
-      version: "latest",
+      version: 'latest',
     },
   },
   rules: {
-    "react/prop-types": 0,
+    'react/prop-types': 0,
   },
 };
