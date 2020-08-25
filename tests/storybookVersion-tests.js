@@ -1,4 +1,4 @@
-import storybookVersion from '../../src/storybookVersion';
+import storybookVersion from '../src/storybookVersion';
 
 let existingReactStorybookVersion;
 let existingAngularStorybookVersion;

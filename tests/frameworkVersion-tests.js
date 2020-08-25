@@ -1,4 +1,4 @@
-import frameworkVersion from '../../src/frameworkVersion';
+import frameworkVersion from '../src/frameworkVersion';
 
 let existingReactVersion;
 let existingAngularVersion;

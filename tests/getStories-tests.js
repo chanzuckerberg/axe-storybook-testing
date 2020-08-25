@@ -1,4 +1,4 @@
-import getStories from '../../src/getStories';
+import getStories from '../src/getStories';
 
 let originalTimeout = 0;
 

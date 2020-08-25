@@ -1,4 +1,4 @@
-import getOutputFormat from '../../src/getOutputFormat';
+import getOutputFormat from '../src/getOutputFormat';
 
 it('returns text when passed text', () => {
   expect(getOutputFormat('TEXT')).toEqual('text');

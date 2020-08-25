@@ -1,4 +1,4 @@
-import getRtlRegex from '../../src/getRtlRegex';
+import getRtlRegex from '../src/getRtlRegex';
 
 it('returns null when rtl and rtl_regex not provided', () => {
   expect(getRtlRegex(null, null)).toEqual(null);

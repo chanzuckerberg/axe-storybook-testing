@@ -1,4 +1,4 @@
-import getIframePath from '../../src/getIframePath';
+import getIframePath from '../src/getIframePath';
 const mock = require('mock-fs');
 
 it('raises an error if called without a buildDir', () => {
