@@ -20,10 +20,9 @@ export async function run(argv) {
     .help()
     .alias('help', 'h')
     .options(args.options)
-    .epilogue(args.docs)
+
     .default('build_dir', 'storybook-static')
     .default('output_format', 'text')
-    .default('minimum_height', '800')
     .default('fail_on_empty', 'false').argv;
 
   if (argv.help) {

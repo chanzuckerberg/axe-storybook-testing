@@ -6,8 +6,8 @@
     "storybook": "start-storybook -p 9001 -c storybook -s ./storybook/public",
     "storybook:build": "build-storybook -c storybook -s ./storybook/public",
     "storybook:axe-debug": "axe-storybook --debug",
-    "storybook:axe": "build-storybook -c storybook -s ./storybook/public && axe-storybook --rtl_regex=Direction",
-    "storybook:axe-no-build": "axe-storybook --rtl_regex=Direction"
+    "storybook:axe": "build-storybook -c storybook -s ./storybook/public && axe-storybook",
+    "storybook:axe-no-build": "axe-storybook"
   },
   "dependencies": {
     "@babel/core": "^7.8.4",
