@@ -3,7 +3,6 @@ import * as args from './args';
 import getIframePath from './getIframePath';
 import getStories from './getStories';
 import getOutputFormat from './getOutputFormat';
-import getRtlRegex from './getRtlRegex';
 import selectStories from './selectStories';
 import storybookVersion from './storybookVersion';
 import frameworkVersion from './frameworkVersion';
@@ -37,8 +36,6 @@ export async function run(argv) {
     return;
   }
 
-  const rtlRegex = getRtlRegex(argv.rtl, argv.rtl_regex);
-
   const options = {
     // Configure debug logging if flag specified, or if it was already enabled via DEBUG env var
     debug: argv.debug || debug.enabled,
@@ -67,7 +64,7 @@ export async function run(argv) {
   const rawStories = await getStories(options);
   debug('rawStories %s', JSON.stringify(rawStories));
 
-  const selectedStories = selectStories(rawStories, rtlRegex);
+  const selectedStories = selectStories(rawStories);
   debug('selectedStories %o', selectedStories);
 
   if (selectedStories.length === 0) {
