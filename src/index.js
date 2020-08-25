@@ -2,17 +2,12 @@ import * as args from './args';
 
 import getIframePath from './getIframePath';
 import getStories from './getStories';
-import getStaticAssets from './getStaticAssets';
-import getWidths from './getWidths';
-import getMinimumHeight from './getMinimumHeight';
 import getOutputFormat from './getOutputFormat';
 import getRtlRegex from './getRtlRegex';
 import selectStories from './selectStories';
-import uploadStorybook from './uploadStorybook';
 import storybookVersion from './storybookVersion';
 import frameworkVersion from './frameworkVersion';
 
-import ApiClient from '@percy/react-percy-api-client';
 import createDebug from 'debug';
 
 import yargs from 'yargs';
@@ -42,8 +37,6 @@ export async function run(argv) {
     return;
   }
 
-  const widths = getWidths(argv.widths);
-  const minimumHeight = getMinimumHeight(argv.minimum_height);
   const rtlRegex = getRtlRegex(argv.rtl, argv.rtl_regex);
 
   const options = {
@@ -68,15 +61,8 @@ export async function run(argv) {
     return;
   }
 
-  if (!process.env.PERCY_TOKEN) {
-    throw new Error('The PERCY_TOKEN environment variable is missing.');
-  }
-
   // Not skipping, so get the iframe path and verify it exists
   options.iframePath = getIframePath(options);
-
-  const { storyHtml, assets } = getStaticAssets(options);
-  // debug('assets %o', assets);
 
   const rawStories = await getStories(options);
   debug('rawStories %s', JSON.stringify(rawStories));
@@ -99,12 +85,7 @@ export async function run(argv) {
     return;
   }
 
-  const client = new ApiClient(
-    process.env.PERCY_TOKEN,
-    process.env.PERCY_API,
-    `@percy/storybook/${VERSION}`,
-    `storybook/${storybookVersion()} ${frameworkVersion()}`
-  );
+  console.log('$$$', frameworkVersion(), storybookVersion(),  selectedStories);
 
-  return uploadStorybook(client, selectedStories, widths, minimumHeight, storyHtml, assets, options.outputFormat);
+  return Promise.resolve();
 }
