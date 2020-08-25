@@ -2,11 +2,7 @@
   "presets": [
     ["env", {
       "targets": {
-        "node": 4,
-        "browsers": [
-          "last 2 versions",
-          "Firefox >= 45"
-        ]
+        "node": 12
       }
     }]
   ],
