@@ -1,4 +1,4 @@
-import selectStories, { InvalidOptionError } from '../src/selectStories';
+import selectStories from '../src/selectStories';
 
 describe('selectStories', () => {
   it('returns empty array for an empty array', () => {

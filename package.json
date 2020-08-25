@@ -14,7 +14,7 @@
     "lib"
   ],
   "scripts": {
-    "lint": "eslint --ext .js src/",
+    "lint": "eslint --ext .js src/ tests/",
     "build": "babel src -d lib --ignore 'src/__tests__'",
     "prebuild": "rimraf ./lib",
     "prepublishOnly": "yarn build",
