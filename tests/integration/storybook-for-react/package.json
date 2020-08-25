@@ -20,6 +20,7 @@
     "react-match-media": "^2.2.0"
   },
   "devDependencies": {
+    "@chanzuckerberg/axe-storybook": "../../../",
     "@percy-io/in-percy": "^0.1.11",
     "@storybook/addon-actions": "v5.3.14",
     "@storybook/addon-info": "v5.3.14",
