@@ -3,15 +3,10 @@ module.exports = {
     node: true,
     es6: true
   },
-  extends: ['eslint:recommended', 'plugin:react/recommended'],
+  extends: ['eslint:recommended'],
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module'
-  },
-  settings: {
-    react: {
-      version: "latest",
-    },
   },
   rules: {}
 };
