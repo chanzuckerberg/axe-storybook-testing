@@ -14,7 +14,7 @@
     "lib"
   ],
   "scripts": {
-    "lint": "eslint --ext .js src/ tests/",
+    "lint": "eslint --ext=js,jsx .",
     "build": "babel src -d lib",
     "prebuild": "rimraf ./lib",
     "prepublishOnly": "yarn build",
@@ -26,6 +26,7 @@
     "@babel/eslint-parser": "^7.11.4",
     "@babel/eslint-plugin": "^7.11.3",
     "@babel/preset-env": "^7.11.0",
+    "@babel/preset-react": "^7.10.4",
     "babel-jest": "^26.3.0",
     "eslint": "^7.7.0",
     "eslint-plugin-import": "^2.22.0",
