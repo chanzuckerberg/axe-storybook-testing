@@ -3,9 +3,8 @@ import * as args from './args';
 import getIframePath from './getIframePath';
 import getStories from './getStories';
 import getOutputFormat from './getOutputFormat';
+import getResults from './getResults';
 import selectStories from './selectStories';
-import storybookVersion from './storybookVersion';
-import frameworkVersion from './frameworkVersion';
 
 import createDebug from 'debug';
 
@@ -81,7 +80,8 @@ export async function run(argv) {
     return;
   }
 
-  console.log('$$$', frameworkVersion(), storybookVersion(),  selectedStories);
+  const results = await getResults(selectedStories, options.iframePath);
+  console.log(results);
 
-  return Promise.resolve();
+  return Promise.resolve(results);
 }
