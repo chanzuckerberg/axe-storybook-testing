@@ -1,6 +1,5 @@
 import os from 'os';
 import puppeteer from 'puppeteer';
-import { storybookClientAPIKey } from './constants';
 
 export type AxeParameters = {
   skip?: unknown;
@@ -14,6 +13,8 @@ export type StoryInfo = {
     axe?: AxeParameters;
   };
 }
+
+const storybookClientAPIKey = '__STORYBOOK_CLIENT_API__';
 
 // The function below needs to be in a template string to prevent babel from transforming it.
 // If babel transformed it, puppeteer wouldn't be able to evaluate it properly.
