@@ -9,16 +9,13 @@ import * as args from './args';
 
 const debug = createDebug('axe-storybook');
 
-export async function run(argv) {
-  argv = yargs(argv)
+export async function run() {
+  const argv = yargs
+    .options(args.options)
     .usage(args.usage)
     .help()
     .alias('help', 'h')
-    .options(args.options)
-
-    .default('build_dir', 'storybook-static')
-    .default('output_format', 'text')
-    .default('fail_on_empty', 'false').argv;
+    .argv;
 
   if (argv.help) {
     yargs.showHelp();
@@ -30,14 +27,12 @@ export async function run(argv) {
     debug: argv.debug || debug.enabled,
     buildDir: argv.build_dir,
     outputFormat: getOutputFormat(argv.output_format),
-    failOnEmpty: argv.fail_on_empty === 'true',
+    failOnEmpty: !!argv.fail_on_empty,
+    iframePath: getIframePath(argv.build_dir),
   };
 
   // Enable debug logging based on options.
   debug.enabled = options.debug;
-
-  // Not skipping, so get the iframe path and verify it exists
-  options.iframePath = getIframePath(options);
 
   const rawStories = await getStories(options);
   debug('rawStories %s', JSON.stringify(rawStories));

@@ -1,26 +1,28 @@
 export const options = {
   fail_on_empty: {
     description: 'Fail when no stories are found',
-    requiresArg: true,
+    type: 'boolean' as const,
   },
   widths: {
     alias: 'w',
     description: 'Comma seperated lists of widths',
-    requiresArg: true,
+    type: 'string' as const,
   },
   debug: {
     alias: 'd',
     description: 'Debug mode',
-    requiresArg: false,
+    type: 'boolean' as const,
   },
   build_dir: {
     alias: 'b',
+    default: 'storybook-static',
     description: 'Directory to load the static storybook built by build-storybook from',
-    requiresArg: true,
+    type: 'string' as const,
   },
   output_format: {
+    default: 'text',
     description: 'Specify JSON to log the build parameters in JSON. Note: --debug outputs non-JSON',
-    requiresArg: true,
+    type: 'string' as const,
   },
 };
 

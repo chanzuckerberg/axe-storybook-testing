@@ -1,11 +1,11 @@
 import fs from 'fs';
 import path from 'path';
 
-// Get the path of the iframe.html file that buld-storybook creates, and confirm it exists
-export default function getIframePath(options = {}) {
-  if (!options.buildDir) throw new Error('buildDir option is missing');
-
-  const storybookStaticPath = path.resolve(options.buildDir);
+/**
+ * Get the path of the iframe.html file that buld-storybook creates, and confirm it exists
+ */
+export default function getIframePath(buildDir: string) {
+  const storybookStaticPath = path.resolve(buildDir);
   const iframePath = path.join(storybookStaticPath, 'iframe.html');
 
   if (!fs.existsSync(iframePath)) {
