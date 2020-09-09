@@ -1,9 +1,17 @@
 import puppeteer from 'puppeteer';
 import { AxePuppeteer } from 'axe-puppeteer';
+import type { AxeResults } from 'axe-core';
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { SelectedStory } from './selectStories';
 
-export default async function getResults(stories, iframePath) {
+type Result = {
+  name: string;
+  result: AxeResults;
+};
+
+export default async function getResults(stories: SelectedStory[], iframePath: string): Promise<Result[]> {
   const browser = await puppeteer.launch();
-  const results = [];
+  const results: Result[] = [];
 
   await Promise.all(
     stories.map(async (story) => {

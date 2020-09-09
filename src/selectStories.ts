@@ -1,4 +1,14 @@
-function assertSkip(skip) {
+// False positive for no-unused-vars. StoryInfo is used as a type.
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+import type { AxeParameters, StoryInfo } from './getStories';
+
+export type SelectedStory = {
+  name: string;
+  encodedParams: string;
+  options: AxeParameters;
+}
+
+function assertSkip(skip?: unknown): asserts skip is boolean {
   if (typeof skip === 'undefined') {
     return;
   }
@@ -7,11 +17,11 @@ function assertSkip(skip) {
   }
 }
 
-export default function selectStories(rawStories) {
-  let selectedStories = [];
+export default function selectStories(rawStories: StoryInfo[]) {
+  const selectedStories: SelectedStory[] = [];
 
   Object.values(rawStories).forEach(story => {
-    let options = {};
+    let options: AxeParameters = {};
 
     if (story.parameters && story.parameters.axe) {
       options = story.parameters.axe;

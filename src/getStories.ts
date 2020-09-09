@@ -2,6 +2,19 @@ import os from 'os';
 import puppeteer from 'puppeteer';
 import { storybookClientAPIKey } from './constants';
 
+export type AxeParameters = {
+  skip?: unknown;
+}
+
+export type StoryInfo = {
+  id?: string;
+  kind: string;
+  name: string;
+  parameters?: {
+    axe?: AxeParameters;
+  };
+}
+
 // The function below needs to be in a template string to prevent babel from transforming it.
 // If babel transformed it, puppeteer wouldn't be able to evaluate it properly.
 // See: https://github.com/GoogleChrome/puppeteer/issues/1665#issuecomment-354241717
@@ -38,8 +51,8 @@ const fetchStoriesFromWindow = `(async () => {
   });
 })()`;
 
-export default async function getStories(options = {}) {
-  let launchArgs = [];
+export default async function getStories(iframePath: string): Promise<StoryInfo[]> {
+  const launchArgs: string[] = [];
 
   // Some CI platforms including Travis requires Chrome to be launched without the sandbox
   // See https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-on-travis-ci
@@ -51,16 +64,16 @@ export default async function getStories(options = {}) {
   const browser = await puppeteer.launch({ headless: true, args: launchArgs });
   const page = await browser.newPage();
 
-  await page.goto('file://' + options.iframePath);
+  await page.goto('file://' + iframePath);
 
-  let stories;
+  let stories: StoryInfo[];
 
   try {
     // Debugging page.evaluate is easier if you:
     // 1: Launch puppeteer with headless: false above
     // 2: Comment out await browser.close() below
     // 3: Add console.log statements inside fetchStoriesFromWindow above.
-    stories = await page.evaluate(fetchStoriesFromWindow);
+    stories = await page.evaluate(fetchStoriesFromWindow) as StoryInfo[];
   } finally {
     await browser.close();
   }

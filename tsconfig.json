@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "esModuleInterop": true,
+    "forceConsistentCasingInFileNames": true,
+    "isolatedModules": true,
+    "module": "commonjs",
+    "noEmit": true,
+    "target": "es5",
+    "skipLibCheck": true,
+    "strict": true,
+  }
+}
