@@ -18,8 +18,9 @@
   },
   "scripts": {
     "build": "babel src -d lib",
+    "clean": "rimraf ./lib",
     "lint": "eslint --ext=js,jsx .",
-    "prebuild": "rimraf ./lib",
+    "prebuild": "yarn clean",
     "prepublishOnly": "yarn build",
     "test": "jest"
   },
