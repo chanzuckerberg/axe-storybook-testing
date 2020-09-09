@@ -34,7 +34,7 @@ export async function run() {
   // Enable debug logging based on options.
   debug.enabled = options.debug;
 
-  const rawStories = await getStories(options);
+  const rawStories = await getStories(options.iframePath);
   debug('rawStories %s', JSON.stringify(rawStories));
 
   const selectedStories = selectStories(rawStories);
