@@ -11,8 +11,6 @@ it('returns json when passed JSON', () => {
 });
 
 it('raises an error if called with an invalid value', () => {
-  expect(() => getOutputFormat()).toThrow();
   expect(() => getOutputFormat('xml')).toThrow();
-  expect(() => getOutputFormat(7)).toThrow();
   expect(() => getOutputFormat('')).toThrow();
 });
