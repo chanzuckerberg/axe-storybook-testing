@@ -2,15 +2,17 @@ import os from 'os';
 import puppeteer from 'puppeteer';
 import { storybookClientAPIKey } from './constants';
 
-type AxeParameters = {
-  skip?: boolean;
+export type AxeParameters = {
+  skip?: unknown;
 }
 
-type StoryInfo = {
-  id: string;
+export type StoryInfo = {
+  id?: string;
   kind: string;
   name: string;
-  parameters?: AxeParameters;
+  parameters?: {
+    axe?: AxeParameters;
+  };
 }
 
 // The function below needs to be in a template string to prevent babel from transforming it.
