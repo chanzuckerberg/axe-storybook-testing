@@ -1,14 +1,11 @@
-import * as args from './args';
-
+import createDebug from 'debug';
+import yargs from 'yargs';
 import getIframePath from './getIframePath';
-import getStories from './getStories';
 import getOutputFormat from './getOutputFormat';
 import getResults from './getResults';
+import getStories from './getStories';
 import selectStories from './selectStories';
-
-import createDebug from 'debug';
-
-import yargs from 'yargs';
+import * as args from './args';
 
 const debug = createDebug('axe-storybook');
 

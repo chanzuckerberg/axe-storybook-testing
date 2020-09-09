@@ -1,5 +1,5 @@
+import fs from 'fs';
 import path from 'path';
-const fs = require('fs');
 
 // Get the path of the iframe.html file that buld-storybook creates, and confirm it exists
 export default function getIframePath(options = {}) {

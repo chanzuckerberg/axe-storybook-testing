@@ -1,5 +1,5 @@
+import mockFs from 'mock-fs';
 import getIframePath from '../src/getIframePath';
-const mock = require('mock-fs');
 
 it('raises an error if called without a buildDir', () => {
   expect(() => getIframePath()).toThrow();
@@ -11,7 +11,7 @@ it("raises an error if storybook doesn't exist in buildDir", () => {
 });
 
 it('returns the iframe path when the storybook exists', () => {
-  mock({
+  mockFs({
     '/tmp-test': {
       'iframe.html': 'file content here',
     },
@@ -23,6 +23,6 @@ it('returns the iframe path when the storybook exists', () => {
       expect(getIframePath({ buildDir: '/tmp-test' })).toBe('/tmp-test/iframe.html');
     }
   } finally {
-    mock.restore();
+    mockFs.restore();
   }
 });

@@ -1,5 +1,5 @@
-const os = require('os');
-const puppeteer = require('puppeteer');
+import os from 'os';
+import puppeteer from 'puppeteer';
 import { storybookClientAPIKey } from './constants';
 
 // The function below needs to be in a template string to prevent babel from transforming it.
