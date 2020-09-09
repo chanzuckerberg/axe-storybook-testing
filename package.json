@@ -13,12 +13,21 @@
     "bin",
     "lib"
   ],
+  "publishConfig": {
+    "access": "public"
+  },
   "scripts": {
-    "lint": "eslint --ext=js,jsx .",
     "build": "babel src -d lib",
+    "lint": "eslint --ext=js,jsx .",
     "prebuild": "rimraf ./lib",
     "prepublishOnly": "yarn build",
     "test:unit": "jest"
+  },
+  "dependencies": {
+    "axe-puppeteer": "^1.1.0",
+    "debug": "^3.1.0",
+    "puppeteer": "^1.4.0",
+    "yargs": "^7.0.2"
   },
   "devDependencies": {
     "@babel/cli": "^7.10.5",
@@ -35,28 +44,5 @@
     "jest": "^26.4.2",
     "mock-fs": "^4.12.0",
     "rimraf": "^3.0.0"
-  },
-  "dependencies": {
-    "axe-puppeteer": "^1.1.0",
-    "debug": "^3.1.0",
-    "puppeteer": "^1.4.0",
-    "yargs": "^7.0.2"
-  },
-  "publishConfig": {
-    "access": "public"
-  },
-  "eslintConfig": {
-    "globals": {
-      "window": true
-    }
-  },
-  "jest": {
-    "testMatch": [
-      "**/tests/**-tests.js"
-    ],
-    "testEnvironment": "node",
-    "testPathIgnorePatterns": [
-      "/node_modules/"
-    ]
   }
 }
