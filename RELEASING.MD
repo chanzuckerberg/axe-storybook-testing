@@ -1,7 +1,7 @@
 # Releasing
 
 1. `git pull origin master`
-1. `yarn test:unit` & make sure the integration tests in CI are passing
+1. `yarn test` & make sure the integration tests in CI are passing
 1. Update the version number in the `package.json` & commit
 1. Create a tag: `git tag vx.x.x`
 1. Push it all up to GitHub
