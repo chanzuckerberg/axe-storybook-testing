@@ -14,6 +14,7 @@ module.exports = {
   ignorePatterns: ['storybook-static/', 'lib/'],
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
+    semi: ['error', 'always'],
     quotes: ['error', 'single', { avoidEscape: true }],
   },
 };

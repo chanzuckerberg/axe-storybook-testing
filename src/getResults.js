@@ -11,7 +11,7 @@ export default async function getResults(stories, iframePath) {
       await page.setBypassCSP(true);
 
       await page.goto(`file://${iframePath}?${story.encodedParams}`);
-      const axeBuilder = new AxePuppeteer(page).disableRules(['landmark-one-main', 'page-has-heading-one', 'region'])
+      const axeBuilder = new AxePuppeteer(page).disableRules(['landmark-one-main', 'page-has-heading-one', 'region']);
       const result = await axeBuilder.analyze();
 
       results.push({

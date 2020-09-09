@@ -14,7 +14,7 @@ export const Input1 = () => (
     Favorite coffee
     <Input />
   </label>
-)
+);
 Input1.storyName = 'Input with label (should pass)';
 
 export const Input2 = () => <Input placeholder="Favorite coffee" />;
