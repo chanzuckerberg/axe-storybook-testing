@@ -39,17 +39,6 @@ export async function run(argv) {
   // Enable debug logging based on options.
   debug.enabled = options.debug;
 
-  if (process.env.AXE_ENABLE === '0') {
-    if (options.outputFormat == 'text') {
-      // eslint-disable-next-line no-console
-      console.log('The AXE_ENABLE environment variable is set to 0. Exiting.');
-    } else if (options.outputFormat == 'json') {
-      // eslint-disable-next-line no-console
-      console.log('{\'exitReason\':\'The AXE_ENABLE environment variable is set to 0.\'}');
-    }
-    return;
-  }
-
   // Not skipping, so get the iframe path and verify it exists
   options.iframePath = getIframePath(options);
 
