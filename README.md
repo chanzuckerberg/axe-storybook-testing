@@ -14,3 +14,24 @@ Here are the goals of this project. They'll be used to determine development wor
 2. Be human readable on local machines (in other words, useful outside of a CI).
 3. Have reasonable performance. It doesn't have to maximize speed in every possible way, but needs to be fast enough that people will actually use it.
 4. Allow configuration of axe rules, so that people can fit the tool to their needs.
+
+## Installation
+
+First, install the package
+
+```sh
+# via npm
+npm install --save-dev @chanzuckerberg/axe-storybook
+
+# or, if using Yarn
+yarn add --dev @chanzuckerberg/axe-storybook
+```
+
+Second, add a script to your package.json that has Storybook create a static build, and then runs axe-storybook
+
+```json
+// In package.json
+"scripts": {
+  "storybook:axe": "build-storybook && axe-storybook"
+},
+```
