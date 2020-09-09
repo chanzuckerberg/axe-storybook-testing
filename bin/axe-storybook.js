@@ -1,6 +1,6 @@
 #!/usr/bin/env node
 
-require('../lib/index')
+require('../build/index')
   .run(process.argv.slice(2))
   .then(() => {
     process.on('exit', () => process.exit(0));

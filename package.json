@@ -8,17 +8,17 @@
   "bin": {
     "axe-storybook": "./bin/axe-storybook.js"
   },
-  "main": "lib/index.js",
+  "main": "build/index.js",
   "files": [
     "bin",
-    "lib"
+    "build"
   ],
   "publishConfig": {
     "access": "public"
   },
   "scripts": {
-    "build": "babel src -d lib",
-    "clean": "rimraf ./lib",
+    "build": "babel src -d build",
+    "clean": "rimraf ./build",
     "lint": "eslint --ext=js,jsx .",
     "prebuild": "yarn clean",
     "prepublishOnly": "yarn build",

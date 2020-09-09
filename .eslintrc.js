@@ -11,7 +11,7 @@ module.exports = {
     sourceType: 'module',
   },
   plugins: ['@babel'],
-  ignorePatterns: ['storybook-static/', 'lib/'],
+  ignorePatterns: ['storybook-static/', 'build/'],
   rules: {
     'comma-dangle': ['error', 'always-multiline'],
     semi: ['error', 'always'],
