@@ -2,7 +2,7 @@
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { AxeParameters, StoryInfo } from './getStories';
 
-type SelectedStory = {
+export type SelectedStory = {
   name: string;
   encodedParams: string;
   options: AxeParameters;

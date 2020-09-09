@@ -26,6 +26,7 @@
     "types": "tsc --noEmit"
   },
   "dependencies": {
+    "axe-core": "3.5.5",
     "axe-puppeteer": "^1.1.0",
     "debug": "^3.1.0",
     "puppeteer": "^1.4.0",
