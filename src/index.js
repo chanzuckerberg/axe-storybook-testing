@@ -11,7 +11,6 @@ import createDebug from 'debug';
 import yargs from 'yargs';
 
 const debug = createDebug('axe-storybook');
-const VERSION = require('../package.json').version;
 
 export async function run(argv) {
   argv = yargs(argv)
@@ -26,11 +25,6 @@ export async function run(argv) {
 
   if (argv.help) {
     yargs.showHelp();
-    return;
-  }
-
-  if (argv.version) {
-    process.stdout.write(`v${VERSION}\n`);
     return;
   }
 
