@@ -1,4 +1,4 @@
-export default function getOutputFormat(outputFormatString: string) {
+export default function getOutputFormat(outputFormatString: string): 'text' | 'json' {
   const normalizedOutputFormat = outputFormatString.toLowerCase();
 
   if (normalizedOutputFormat != 'text' && normalizedOutputFormat != 'json') {
