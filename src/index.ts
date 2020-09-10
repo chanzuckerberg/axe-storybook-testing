@@ -1,8 +1,8 @@
 import createDebug from 'debug';
 import getResults from './getResults';
-import getStories from './getStories';
 import selectStories from './selectStories';
 import { parse as parseOptions } from './Options';
+import { fromIframe as getRawStories } from './RawStory';
 
 const debug = createDebug('axe-storybook');
 
@@ -12,7 +12,7 @@ export async function run() {
   // Enable debug logging based on options.
   debug.enabled = options.debug;
 
-  const rawStories = await getStories(options.iframePath);
+  const rawStories = await getRawStories(options.iframePath);
   debug('rawStories %s', JSON.stringify(rawStories));
 
   const selectedStories = selectStories(rawStories);

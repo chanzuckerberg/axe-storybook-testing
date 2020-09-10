@@ -1,6 +1,6 @@
 // False positive for no-unused-vars. StoryInfo is used as a type.
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { StoryInfo } from './getStories';
+import type { RawStory } from './RawStory';
 
 export type SelectedStory = {
   name: string;
@@ -21,7 +21,7 @@ function getDisabled(disabled?: unknown): boolean {
 /**
  * Select the stories that are enabled for this integration.
  */
-export default function selectStories(rawStories: StoryInfo[]) {
+export default function selectStories(rawStories: RawStory[]) {
   const selectedStories: SelectedStory[] = [];
 
   Object.values(rawStories).forEach(story => {

@@ -1,16 +1,14 @@
 import os from 'os';
 import puppeteer from 'puppeteer';
 
-type AxeParameters = {
-  disabled?: unknown;
-}
-
-export type StoryInfo = {
+export type RawStory = {
   id?: string;
   kind: string;
   name: string;
   parameters?: {
-    axe?: AxeParameters;
+    axe?: {
+      disabled?: unknown;
+    };
   };
 }
 
@@ -57,7 +55,7 @@ const fetchStoriesFromWindow = `(async () => {
  *
  * Works by opening Storybook's iframe and reading data Storybook attaches to the window.
  */
-export default async function getStories(iframePath: string): Promise<StoryInfo[]> {
+export async function fromIframe(iframePath: string): Promise<RawStory[]> {
   const launchArgs: string[] = [];
 
   // Some CI platforms including Travis requires Chrome to be launched without the sandbox
@@ -72,23 +70,23 @@ export default async function getStories(iframePath: string): Promise<StoryInfo[
 
   await page.goto('file://' + iframePath);
 
-  let stories: StoryInfo[];
+  let rawStories: RawStory[];
 
   try {
     // Debugging page.evaluate is easier if you:
     // 1: Launch puppeteer with headless: false above
     // 2: Comment out await browser.close() below
     // 3: Add console.log statements inside fetchStoriesFromWindow above.
-    stories = await page.evaluate(fetchStoriesFromWindow) as StoryInfo[];
+    rawStories = await page.evaluate(fetchStoriesFromWindow) as RawStory[];
   } finally {
     await browser.close();
   }
 
-  if (!stories) {
+  if (!rawStories) {
     const message =
       'Storybook object not found on window. Open your storybook and check the console for errors.';
     throw new Error(message);
   }
 
-  return stories;
+  return rawStories;
 }
