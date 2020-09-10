@@ -3,7 +3,7 @@ import selectStories from './selectStories';
 import { parse as parseOptions } from './Options';
 import { fromRawStories as getProcessedStories } from './ProcessedStory';
 import { fromIframe as getRawStories } from './RawStory';
-import { fromStories as getResults } from './Result';
+import { check, fromStories as getResults } from './Result';
 
 const debug = createDebug('axe-storybook');
 
@@ -21,5 +21,5 @@ export async function run() {
   debug('selectedStories %o', selectedStories);
 
   const results = await getResults(selectedStories, options.iframePath);
-  console.log((results));
+  check(results);
 }

@@ -1,4 +1,6 @@
+import dedent from 'dedent';
 import puppeteer from 'puppeteer';
+import test from 'tape';
 import { AxePuppeteer } from 'axe-puppeteer';
 import type { Result as AxeResult } from 'axe-core';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -48,4 +50,29 @@ export async function fromStories(stories: ProcessedStory[], iframePath: string)
   } finally {
     await browser.close();
   }
+}
+
+export function check(results: Result[]) {
+  results.forEach((result) => {
+    test(`${result.name} passes a11y checks`, (t) => {
+      if (result.result.violations.length === 0) {
+        t.pass('✅');
+      } else {
+        const message = result.result.violations.map(formatViolation).join('\n\n');
+        t.fail(message);
+      }
+      t.end();
+    });
+  });
+}
+
+function formatViolation(violation: AxeResult): string {
+  return dedent`
+    ===================
+    id: ${violation.id}
+    description: ${violation.description}
+    helpUrl: ${violation.helpUrl}
+    help: ${violation.help}
+    nodes: ${violation.nodes.map((node) => node.html).join('\n')}
+  `;
 }
