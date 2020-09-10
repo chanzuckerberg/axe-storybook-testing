@@ -9,8 +9,6 @@ const debug = createDebug('axe-storybook');
 
 export async function run() {
   const options = parseOptions(debug.enabled);
-
-  // Enable debug logging based on options.
   debug.enabled = options.debug;
 
   const rawStories = await getRawStories(options.iframePath);
