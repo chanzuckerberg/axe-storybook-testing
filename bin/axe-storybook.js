@@ -6,7 +6,6 @@ require('../build/index')
   .then(() => {
     process.on('exit', () => process.exit(0));
   })
-  .catch(err => {
-    console.log('Error: ', err); // eslint-disable-line no-console
+  .catch(() => {
     process.on('exit', () => process.exit(1));
   });

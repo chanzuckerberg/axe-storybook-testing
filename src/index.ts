@@ -35,6 +35,4 @@ export async function run() {
 
   const results = await getResults(selectedStories, options.iframePath);
   console.log(results);
-
-  return Promise.resolve(results);
 }
