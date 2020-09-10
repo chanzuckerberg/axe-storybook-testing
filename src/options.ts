@@ -1,4 +1,8 @@
-export const options = {
+import yargs from 'yargs';
+import getIframePath from './getIframePath';
+import getOutputFormat from './getOutputFormat';
+
+const options = {
   fail_on_empty: {
     description: 'Fail when no stories are found',
     type: 'boolean' as const,
@@ -26,4 +30,14 @@ export const options = {
   },
 };
 
-export const usage = 'Usage: $0 --widths=320,1280 --debug';
+export function parse(debug: boolean) {
+  const argv = yargs.options(options).argv;
+
+  return {
+    debug: argv.debug || debug,
+    buildDir: argv.build_dir,
+    outputFormat: getOutputFormat(argv.output_format),
+    failOnEmpty: !!argv.fail_on_empty,
+    iframePath: getIframePath(argv.build_dir),
+  };
+}
