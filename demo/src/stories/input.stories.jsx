@@ -24,7 +24,7 @@ export const Input3 = () => <Input placeholder="Favorite coffee" />;
 Input3.storyName = 'Input without label but skipped (should pass)';
 Input3.parameters = {
   axe: {
-    skip: true,
+    disabled: true,
   },
 };
 

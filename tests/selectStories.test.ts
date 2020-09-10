@@ -17,22 +17,18 @@ describe('selectStories', () => {
       {
         encodedParams: 'selectedKind=ImagePost&selectedStory=a',
         name: 'ImagePost: a',
-        options: {},
       },
       {
         encodedParams: 'selectedKind=ImagePost&selectedStory=b',
         name: 'ImagePost: b',
-        options: {},
       },
       {
         encodedParams: 'selectedKind=LinkPost&selectedStory=a',
         name: 'LinkPost: a',
-        options: {},
       },
       {
         encodedParams: 'selectedKind=LinkPost&selectedStory=b',
         name: 'LinkPost: b',
-        options: {},
       },
     ];
 
@@ -41,7 +37,7 @@ describe('selectStories', () => {
 
   describe('skip option', () => {
     it('excludes story when enabled', () => {
-      const parameters = { axe: { skip: true } };
+      const parameters = { axe: { disabled: true } };
       const stories = [
         { name: 'a', kind: 'ImagePost', parameters: parameters },
         { name: 'b', kind: 'ImagePost' },
@@ -51,7 +47,6 @@ describe('selectStories', () => {
         {
           encodedParams: 'selectedKind=ImagePost&selectedStory=b',
           name: 'ImagePost: b',
-          options: {},
         },
       ];
 
@@ -59,11 +54,11 @@ describe('selectStories', () => {
     });
 
     it('rejects a non boolean value', () => {
-      const parameters = { axe: { skip: 'yes please' } };
+      const parameters = { axe: { disabled: 'yes please' } };
       const stories = [{ name: 'a', kind: 'ImagePost', parameters: parameters }];
 
       expect(() => selectStories(stories)).toThrow(
-        new Error("Given skip option 'yes please' is invalid"),
+        new Error("Given disabled option 'yes please' is invalid"),
       );
     });
   });

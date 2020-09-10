@@ -25,6 +25,6 @@ export const Button5 = () => <Button style={{ backgroundColor: 'red', color: 'ho
 Button5.storyName = 'Button with insufficient color contrast but skipped (should pass)';
 Button5.parameters = {
   axe: {
-    skip: true,
+    disabled: true,
   },
 };

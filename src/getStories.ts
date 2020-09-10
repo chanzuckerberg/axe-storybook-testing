@@ -1,8 +1,8 @@
 import os from 'os';
 import puppeteer from 'puppeteer';
 
-export type AxeParameters = {
-  skip?: unknown;
+type AxeParameters = {
+  disabled?: unknown;
 }
 
 export type StoryInfo = {
