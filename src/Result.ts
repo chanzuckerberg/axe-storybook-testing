@@ -10,6 +10,12 @@ type Result = {
 };
 
 /**
+ * These rules aren't useful/helpful in the context of Storybook stories, and we disable them when
+ * running Axe.
+ */
+const defaultDisabledRules = ['landmark-one-main', 'page-has-heading-one', 'region'];
+
+/**
  * Run Axe on a browser page for each story.
  */
 export async function fromStories(stories: ProcessedStory[], iframePath: string): Promise<Result[]> {
@@ -24,7 +30,7 @@ export async function fromStories(stories: ProcessedStory[], iframePath: string)
           await page.setBypassCSP(true);
 
           await page.goto(`file://${iframePath}?${story.uriParams}`);
-          const axeBuilder = new AxePuppeteer(page).disableRules(['landmark-one-main', 'page-has-heading-one', 'region']);
+          const axeBuilder = new AxePuppeteer(page).disableRules(defaultDisabledRules);
           const result = await axeBuilder.analyze();
 
           return {
