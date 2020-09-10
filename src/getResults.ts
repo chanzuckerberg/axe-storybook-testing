@@ -12,27 +12,30 @@ type Result = {
 export default async function getResults(stories: SelectedStory[], iframePath: string): Promise<Result[]> {
   const browser = await puppeteer.launch();
 
-  const results = await Promise.all(
-    stories.map(async (story) => {
-      const page = await browser.newPage();
+  try {
+    const results = await Promise.all(
+      stories.map(async (story) => {
+        const page = await browser.newPage();
 
-      try {
-        await page.setBypassCSP(true);
+        try {
+          await page.setBypassCSP(true);
 
-        await page.goto(`file://${iframePath}?${story.encodedParams}`);
-        const axeBuilder = new AxePuppeteer(page).disableRules(['landmark-one-main', 'page-has-heading-one', 'region']);
-        const result = await axeBuilder.analyze();
+          await page.goto(`file://${iframePath}?${story.encodedParams}`);
+          const axeBuilder = new AxePuppeteer(page).disableRules(['landmark-one-main', 'page-has-heading-one', 'region']);
+          const result = await axeBuilder.analyze();
 
-        return {
-          name: story.name,
-          result,
-        };
-      } finally {
-        await page.close();
-      }
-    }),
-  );
+          return {
+            name: story.name,
+            result,
+          };
+        } finally {
+          await page.close();
+        }
+      }),
+    );
 
-  await browser.close();
-  return results;
+    return results;
+  } finally {
+    await browser.close();
+  }
 }
