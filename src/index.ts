@@ -1,9 +1,9 @@
 import createDebug from 'debug';
-import getResults from './getResults';
 import selectStories from './selectStories';
 import { parse as parseOptions } from './Options';
 import { fromRawStories as getProcessedStories } from './ProcessedStory';
 import { fromIframe as getRawStories } from './RawStory';
+import { fromStories as getResults } from './Result';
 
 const debug = createDebug('axe-storybook');
 
