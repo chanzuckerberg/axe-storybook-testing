@@ -7,11 +7,6 @@ const options = {
     description: 'Fail when no stories are found',
     type: 'boolean' as const,
   },
-  widths: {
-    alias: 'w',
-    description: 'Comma seperated lists of widths',
-    type: 'string' as const,
-  },
   debug: {
     alias: 'd',
     description: 'Debug mode',
