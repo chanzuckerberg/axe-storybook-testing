@@ -17,7 +17,6 @@ const storybookClientAPIKey = '__STORYBOOK_CLIENT_API__';
 // The function below needs to be in a template string to prevent babel from transforming it.
 // If babel transformed it, puppeteer wouldn't be able to evaluate it properly.
 // See: https://github.com/GoogleChrome/puppeteer/issues/1665#issuecomment-354241717
-// Also see comment below about Debugging page.evaluate
 const fetchStoriesFromWindow = `(async () => {
   return await new Promise((resolve, reject) => {
     const storybookClientAPIKey = '${storybookClientAPIKey}';
@@ -67,10 +66,6 @@ export async function fromIframe(iframePath: string): Promise<RawStory[]> {
   let rawStories: RawStory[];
 
   try {
-    // Debugging page.evaluate is easier if you:
-    // 1: Launch puppeteer with headless: false above
-    // 2: Comment out await browser.close() below
-    // 3: Add console.log statements inside fetchStoriesFromWindow above.
     rawStories = await page.evaluate(fetchStoriesFromWindow) as RawStory[];
   } finally {
     await browser.close();
