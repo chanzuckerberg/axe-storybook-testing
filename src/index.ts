@@ -2,7 +2,7 @@ import createDebug from 'debug';
 import getResults from './getResults';
 import getStories from './getStories';
 import selectStories from './selectStories';
-import { parse as parseOptions } from './options';
+import { parse as parseOptions } from './Options';
 
 const debug = createDebug('axe-storybook');
 
