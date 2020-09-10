@@ -30,3 +30,11 @@ Input3.parameters = {
 
 export const Input4 = () => <Input placeholder="Favorite coffee" role="wut-the-wut" />;
 Input4.storyName = 'Input without label and invalid role (should fail)';
+
+export const Input5 = () => <Input placeholder="Favorite coffee" />;
+Input5.storyName = 'Input without label but "label" rule is disabled (should pass)';
+Input5.parameters = {
+  axe: {
+    disabledRules: ['label'],
+  },
+};

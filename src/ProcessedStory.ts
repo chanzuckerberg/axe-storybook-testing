@@ -7,6 +7,7 @@ export type ProcessedStory = {
   parameters: {
     axe: {
       disabled: boolean;
+      disabledRules: string[];
     },
   };
 }
@@ -29,6 +30,7 @@ export function fromRawStory(rawStory: RawStory): ProcessedStory {
     parameters: {
       axe: {
         disabled: getDisabled(rawStory.parameters?.axe?.disabled),
+        disabledRules: getDisabledRules(rawStory.parameters?.axe?.disabledRules),
       },
     },
   };
@@ -43,4 +45,14 @@ function getDisabled(disabled?: unknown): boolean {
   }
 
   return disabled;
+}
+
+function getDisabledRules(disabledRules?: unknown): string[] {
+  if (typeof disabledRules === 'undefined') {
+    return [];
+  }
+  if (!Array.isArray(disabledRules)) {
+    throw new Error(`Given disabledRules option '${JSON.stringify(disabledRules)}' is invalid`);
+  }
+  return disabledRules.map(String);
 }

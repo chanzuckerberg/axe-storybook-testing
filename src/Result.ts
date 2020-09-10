@@ -28,9 +28,10 @@ export async function fromStories(stories: ProcessedStory[], iframePath: string)
 
         try {
           await page.setBypassCSP(true);
-
           await page.goto(`file://${iframePath}?${story.uriParams}`);
-          const axeBuilder = new AxePuppeteer(page).disableRules(defaultDisabledRules);
+
+          const disabledRules = defaultDisabledRules.concat(story.parameters.axe.disabledRules);
+          const axeBuilder = new AxePuppeteer(page).disableRules(disabledRules);
           const result = await axeBuilder.analyze();
 
           return {

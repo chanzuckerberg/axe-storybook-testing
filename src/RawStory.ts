@@ -8,6 +8,7 @@ export type RawStory = {
   parameters?: {
     axe?: {
       disabled?: unknown;
+      disabledRules?: unknown;
     };
   };
 }

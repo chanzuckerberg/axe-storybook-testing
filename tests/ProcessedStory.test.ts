@@ -13,6 +13,7 @@ describe('fromRawStories', () => {
         parameters: {
           axe: {
             disabled: false,
+            disabledRules: [],
           },
         },
         uriParams: 'selectedKind=button&selectedStory=a',
@@ -22,6 +23,7 @@ describe('fromRawStories', () => {
         parameters: {
           axe: {
             disabled: false,
+            disabledRules: [],
           },
         },
         uriParams: 'selectedKind=button&selectedStory=b',
@@ -56,6 +58,7 @@ describe('fromRawStory', () => {
       expect(processedStory.parameters).toEqual({
         axe: {
           disabled: false,
+          disabledRules: [],
         },
       });
     });
@@ -67,6 +70,7 @@ describe('fromRawStory', () => {
         parameters: {
           axe: {
             disabled: true,
+            disabledRules: ['label'],
           },
         },
       };
@@ -76,6 +80,7 @@ describe('fromRawStory', () => {
       expect(processedStory.parameters).toEqual({
         axe: {
           disabled: true,
+          disabledRules: ['label'],
         },
       });
     });
@@ -87,6 +92,7 @@ describe('fromRawStory', () => {
         parameters: {
           axe: {
             disabled: 'wut',
+            disabledRules: [],
           },
         },
       };
