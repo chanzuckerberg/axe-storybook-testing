@@ -2,7 +2,7 @@ import puppeteer from 'puppeteer';
 import { AxePuppeteer } from 'axe-puppeteer';
 import type { AxeResults } from 'axe-core';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
-import type { SelectedStory } from './selectStories';
+import type { ProcessedStory } from './ProcessedStory';
 
 type Result = {
   name: string;
@@ -12,7 +12,7 @@ type Result = {
 /**
  * Run Axe on a browser page for each story.
  */
-export default async function getResults(stories: SelectedStory[], iframePath: string): Promise<Result[]> {
+export default async function getResults(stories: ProcessedStory[], iframePath: string): Promise<Result[]> {
   const browser = await puppeteer.launch();
 
   try {
@@ -23,7 +23,7 @@ export default async function getResults(stories: SelectedStory[], iframePath: s
         try {
           await page.setBypassCSP(true);
 
-          await page.goto(`file://${iframePath}?${story.encodedParams}`);
+          await page.goto(`file://${iframePath}?${story.uriParams}`);
           const axeBuilder = new AxePuppeteer(page).disableRules(['landmark-one-main', 'page-has-heading-one', 'region']);
           const result = await axeBuilder.analyze();
 
