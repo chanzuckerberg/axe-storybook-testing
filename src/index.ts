@@ -20,21 +20,6 @@ export async function run() {
   const selectedStories = selectStories(processedStories);
   debug('selectedStories %o', selectedStories);
 
-  if (selectedStories.length === 0) {
-    const message = 'axe-storybook found no stories in the static storybook.';
-    if (options.failOnEmpty) {
-      throw new Error(message);
-    }
-    if (options.outputFormat == 'text') {
-      // eslint-disable-next-line no-console
-      console.log(message);
-    } else if (options.outputFormat == 'json') {
-      // eslint-disable-next-line no-console
-      console.log(JSON.stringify({ exitReason: message }));
-    }
-    return;
-  }
-
   const results = await getResults(selectedStories, options.iframePath);
   console.log(results);
 }
