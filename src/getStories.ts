@@ -52,6 +52,11 @@ const fetchStoriesFromWindow = `(async () => {
   });
 })()`;
 
+/**
+ * Get the list of stories from a static storybook build.
+ *
+ * Works by opening Storybook's iframe and reading data Storybook attaches to the window.
+ */
 export default async function getStories(iframePath: string): Promise<StoryInfo[]> {
   const launchArgs: string[] = [];
 

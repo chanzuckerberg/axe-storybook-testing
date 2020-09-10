@@ -25,6 +25,9 @@ const options = {
   },
 };
 
+/**
+ * Parse and normalize command line arguments passed to the script.
+ */
 export function parse(debug: boolean) {
   const argv = yargs.options(options).argv;
 

@@ -17,6 +17,9 @@ function assertSkip(skip?: unknown): asserts skip is boolean {
   }
 }
 
+/**
+ * Select the stories that are enabled for this integration.
+ */
 export default function selectStories(rawStories: StoryInfo[]) {
   const selectedStories: SelectedStory[] = [];
 

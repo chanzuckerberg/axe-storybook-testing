@@ -9,6 +9,9 @@ type Result = {
   result: AxeResults;
 };
 
+/**
+ * Run Axe on a browser page for each story.
+ */
 export default async function getResults(stories: SelectedStory[], iframePath: string): Promise<Result[]> {
   const browser = await puppeteer.launch();
 

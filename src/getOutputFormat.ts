@@ -1,3 +1,6 @@
+/**
+ * Normalize the output_format option.
+ */
 export default function getOutputFormat(outputFormatString: string): 'text' | 'json' {
   const normalizedOutputFormat = outputFormatString.toLowerCase();
 
