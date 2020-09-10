@@ -1,16 +1,14 @@
 import os from 'os';
 import puppeteer from 'puppeteer';
 
-type AxeParameters = {
-  disabled?: unknown;
-}
-
 export type StoryInfo = {
   id?: string;
   kind: string;
   name: string;
-  parameters?: {
-    axe?: AxeParameters;
+  parameters: {
+    axe: {
+      disabled?: unknown;
+    };
   };
 }
 
@@ -33,7 +31,7 @@ const fetchStoriesFromWindow = `(async () => {
           id: story.id,
           name: story.name,
           kind: story.kind,
-          parameters: { axe: story.parameters ? story.parameters.axe : undefined },
+          parameters: { axe: (story.parameters && story.parameters.axe ? story.parameters.axe : {}) },
         }));
         resolve(reducedStories);
       } else if (timesCalled < 100) {

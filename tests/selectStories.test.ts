@@ -7,10 +7,10 @@ describe('selectStories', () => {
 
   it('returns expected selected stories for a stories array', () => {
     const stories = [
-      { name: 'a', kind: 'ImagePost' },
-      { name: 'b', kind: 'ImagePost' },
-      { name: 'a', kind: 'LinkPost' },
-      { name: 'b', kind: 'LinkPost' },
+      { name: 'a', kind: 'ImagePost', parameters: { axe: {} } },
+      { name: 'b', kind: 'ImagePost', parameters: { axe: {} } },
+      { name: 'a', kind: 'LinkPost', parameters: { axe: {} } },
+      { name: 'b', kind: 'LinkPost', parameters: { axe: {} } },
     ];
 
     const expectedSelectedStories = [
@@ -37,10 +37,9 @@ describe('selectStories', () => {
 
   describe('skip option', () => {
     it('excludes story when enabled', () => {
-      const parameters = { axe: { disabled: true } };
       const stories = [
-        { name: 'a', kind: 'ImagePost', parameters: parameters },
-        { name: 'b', kind: 'ImagePost' },
+        { name: 'a', kind: 'ImagePost', parameters: { axe: { disabled: true } } },
+        { name: 'b', kind: 'ImagePost', parameters: { axe: {} } },
       ];
 
       const expectedSelectedStories = [
