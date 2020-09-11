@@ -35,3 +35,31 @@ Second, add a script to your package.json that has Storybook create a static bui
   "storybook:axe": "build-storybook && axe-storybook"
 },
 ```
+
+## Configuring stories
+
+Stories can use parameters to configure how axe-storybook handles them.
+
+### disabled
+
+Prevent axe-storybook from running a story by using the `disabled` parameter.
+
+```jsx
+SomeStory.parameters = {
+  axe: {
+    disabled: true,
+  },
+};
+```
+
+### disabledRules
+
+Prevent axe-storybook from running specific Axe rules on a story by using the `disabledRules` parameter.
+
+```jsx
+SomeStory.parameters = {
+  axe: {
+    disabledRules: ['select-name'],
+  },
+};
+```
