@@ -25,7 +25,7 @@ export async function run() {
 
   // Visit each selected story and run Axe on them.
   const results = await getResults(selectedStories, options.iframePath);
-  debug('results %o', results);
+  debug('results %o', JSON.stringify(results));
 
   // Print the results in a human-readable way.
   display(results);

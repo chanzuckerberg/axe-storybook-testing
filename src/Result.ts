@@ -1,3 +1,4 @@
+import dedent from 'ts-dedent';
 import { AxePuppeteer } from 'axe-puppeteer';
 import type { Result as AxeResult } from 'axe-core';
 import type { Browser } from 'puppeteer';
@@ -45,4 +46,24 @@ export async function fromStory(story: ProcessedStory, browser: Browser, iframeP
  */
 export function isPassing(result: Result): boolean {
   return result.violations.length === 0;
+}
+
+/**
+ * Pretty-print the violations of a result.
+ */
+export function format(result: Result): string {
+  if (isPassing(result)) { return ''; }
+
+  const border = '━'.repeat(result.name.length).substring(0, 80);
+
+  return dedent`
+    ${border}
+    ${result.name}
+
+    ${result.violations.map((violation) => dedent`
+      - ruleId: ${violation.id}
+        description: ${violation.help}
+        helpUrl: ${violation.helpUrl}
+    `).join('\n\n')}
+  `;
 }

@@ -1,5 +1,5 @@
 import puppeteer from 'puppeteer';
-import { Result, fromStory, isPassing as resultIsPassing } from './Result';
+import { Result, format as formatResult, fromStory, isPassing as resultIsPassing } from './Result';
 import type { ProcessedStory } from './ProcessedStory';
 
 /**
@@ -42,9 +42,19 @@ export function display(suite: Suite): void {
     console.log(result.name, resultIsPassing(result) ? '✅' : '❌');
   });
 
-  if (!isPassing(suite)) {
+  if (isPassing(suite)) {
+    console.log('\nNo accessibility violations detected! ❤️\n');
+  } else {
     const failingResults = suite.filter((result) => !resultIsPassing(result));
     const violations = failingResults.flatMap((result) => result.violations);
     console.log('\nFound', violations.length, 'violations in', failingResults.length, 'stories!\n');
+    console.log(format(failingResults), '\n');
   }
+}
+
+/**
+ * Pretty-print the violations of a suite.
+ */
+export function format(suite: Suite): string {
+  return suite.map(formatResult).filter(output => output).join('\n\n');
 }
