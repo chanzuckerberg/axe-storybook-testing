@@ -21,5 +21,5 @@ export async function run() {
   debug('selectedStories %o', selectedStories);
 
   const results = await getResults(selectedStories, options.iframePath);
-  console.log(results);
+  console.log((results));
 }

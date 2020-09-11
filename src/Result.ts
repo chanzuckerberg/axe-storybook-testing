@@ -1,12 +1,12 @@
 import puppeteer from 'puppeteer';
 import { AxePuppeteer } from 'axe-puppeteer';
-import type { AxeResults } from 'axe-core';
+import type { Result as AxeResult } from 'axe-core';
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { ProcessedStory } from './ProcessedStory';
 
 type Result = {
   name: string;
-  result: AxeResults;
+  violations: AxeResult[];
 };
 
 /**
@@ -36,7 +36,7 @@ export async function fromStories(stories: ProcessedStory[], iframePath: string)
 
           return {
             name: story.name,
-            result,
+            violations: result.violations,
           };
         } finally {
           await page.close();
