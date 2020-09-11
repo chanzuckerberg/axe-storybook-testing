@@ -3,7 +3,7 @@ import selectStories from './selectStories';
 import { parse as parseOptions } from './Options';
 import { fromRawStories as getProcessedStories } from './ProcessedStory';
 import { fromIframe as getRawStories } from './RawStory';
-import { fromStories as getResults, isPassing  } from './Suite';
+import { display, fromStories as getResults, isPassing  } from './Suite';
 
 const debug = createDebug('axe-storybook');
 
@@ -22,6 +22,8 @@ export async function run() {
 
   const results = await getResults(selectedStories, options.iframePath);
   debug('results %o', results);
+
+  display(results);
 
   return isPassing(results) ? Promise.resolve() : Promise.reject();
 }

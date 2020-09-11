@@ -30,3 +30,20 @@ export async function fromStories(stories: ProcessedStory[], iframePath: string)
 export function isPassing(suite: Suite): boolean {
   return suite.every(resultIsPassing);
 }
+
+/**
+ * Display a suite in a human-readable format.
+ */
+export function display(suite: Suite): void {
+  console.log('Test results\n');
+
+  // List each story that we got a result for.
+  suite.forEach((result) => {
+    console.log(result.name, resultIsPassing(result) ? '✅' : '❌');
+  });
+
+  if (!isPassing(suite)) {
+    const failures = suite.filter((result) => !resultIsPassing(result));
+    console.log('\nFound', failures.length, 'stories with accessibility violations!\n');
+  }
+}
