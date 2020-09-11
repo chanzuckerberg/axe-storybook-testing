@@ -43,7 +43,8 @@ export function display(suite: Suite): void {
   });
 
   if (!isPassing(suite)) {
-    const failures = suite.filter((result) => !resultIsPassing(result));
-    console.log('\nFound', failures.length, 'stories with accessibility violations!\n');
+    const failingResults = suite.filter((result) => !resultIsPassing(result));
+    const violations = failingResults.flatMap((result) => result.violations);
+    console.log('\nFound', violations.length, 'violations in', failingResults.length, 'stories!\n');
   }
 }
