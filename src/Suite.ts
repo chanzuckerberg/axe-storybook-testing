@@ -38,18 +38,34 @@ export function display(suite: Suite): void {
   console.log('Test results\n');
 
   // List each story that we got a result for.
-  suite.forEach((result) => {
-    console.log(result.name, Result.isPassing(result) ? '✅' : '❌');
-  });
+  console.log(formatTestNames(suite));
 
   if (isPassing(suite)) {
     console.log('\nNo accessibility violations detected! ❤️\n');
   } else {
     const failingResults = suite.filter((result) => !Result.isPassing(result));
-    const violations = failingResults.flatMap((result) => result.violations);
-    console.log('\nFound', violations.length, 'violations in', failingResults.length, 'stories!\n');
+    console.log('\n' + formatSummary(suite) + '\n');
     console.log(formatViolations(failingResults), '\n');
   }
+}
+
+/**
+ * Pretty-print a summary of the test run.
+ */
+export function formatSummary(suite: Suite): string {
+  const failingResults = suite.filter((result) => !Result.isPassing(result));
+  const violations = failingResults.flatMap((result) => result.violations);
+  return `Found ${violations.length} violations in ${failingResults.length} stories!`;
+}
+
+/**
+ * Pretty-print the names of each story that was tested, along with their status.
+ */
+export function formatTestNames(suite: Suite): string {
+  return suite.map((result) => {
+    const status = Result.isPassing(result) ? '✅' : '❌';
+    return result.name + ' ' + status;
+  }).join('\n');
 }
 
 /**

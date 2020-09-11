@@ -1,5 +1,11 @@
 import dedent from 'ts-dedent';
-import { formatViolations, isPassing, Suite } from '../src/Suite';
+import {
+  formatSummary,
+  formatTestNames,
+  formatViolations,
+  isPassing,
+  Suite ,
+} from '../src/Suite';
 
 describe('isPassing', () => {
   it('returns true when there are no results', () => {
@@ -37,6 +43,79 @@ describe('isPassing', () => {
     ];
 
     expect(isPassing(suite)).toEqual(false);
+  });
+});
+
+describe('formatSummary', () => {
+  it('pretty prints a summary', () => {
+    const suite: Suite = [
+      {
+        name: 'story 1',
+        violations: [
+          {
+            description: 'Ensure form elements have labels',
+            help: 'Form elements must have labels',
+            helpUrl: 'https://dequeuniversity.com/rules/axe/3.5/label',
+            id: 'label',
+            tags: ['wcag2a', 'section508'],
+            nodes: [],
+          },
+        ],
+      },
+      {
+        name: 'story 2',
+        violations: [
+          {
+            description: 'Ensures buttons have discernible text',
+            help: 'Buttons must have discernible text',
+            helpUrl: 'https://dequeuniversity.com/rules/axe/3.5/button-name',
+            id: 'button-name',
+            tags: ['wcag2a', 'section508'],
+            nodes: [],
+          },
+          {
+            description: 'Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds',
+            help: 'Elements must have sufficient color contrast',
+            helpUrl: 'https://dequeuniversity.com/rules/axe/3.5/color-contrast',
+            id: 'color-contrast',
+            tags: ['wcag2aa'],
+            nodes: [],
+          },
+        ],
+      },
+      { name: 'story 3', violations: [] },
+    ];
+
+    expect(formatSummary(suite)).toEqual('Found 3 violations in 2 stories!');
+  });
+});
+
+describe('formatTestNames', () => {
+  it('pretty prints a list of "test" names and their status', () => {
+    const suite: Suite = [
+      { name: 'story a', violations: [] },
+      {
+        name: 'story b',
+        violations: [
+          {
+            description: 'Ensures buttons have discernible text',
+            help: 'Buttons must have discernible text',
+            helpUrl: 'https://dequeuniversity.com/rules/axe/3.5/button-name',
+            id: 'button-name',
+            tags: ['wcag2a', 'section508'],
+            nodes: [],
+          },
+        ],
+      },
+      { name: 'story c', violations: [] },
+    ];
+
+    const output = formatTestNames(suite);
+    expect(output.split('\n')).toEqual([
+      'story a ✅',
+      'story b ❌',
+      'story c ✅',
+    ]);
   });
 });
 
