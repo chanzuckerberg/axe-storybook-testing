@@ -4,14 +4,14 @@ This app can be used test axe-storybook.
 
 ## Storybook
 
-See this app's storybook by running `yarn storybook` in the demo app's directory.
+Run this demo app's storybook by
+
+1. Install dependencies - run `yarn demo:install` from the project's root directory, or `yarn install` from this directory.
+1. Run storybook - run `yarn demo:storybook` from the project's root directory, or `yarn storybook` from this directory.
 
 ## axe-storybook
 
-axe-storybook can be ran on this demo app.
+Run axe-storybook on this demo app by
 
-1. Run `yarn link` from the project root.
-1. Run `yarn link @chanzuckerberg/axe-storybook` from the demo app's directory.
-1. Make any necessary changes to axe-storybook.
-1. Run `yarn build` from the project root. This will need to be done any time you want to try out changes to axe-storybook in the demo app.
-1. Run `yarn storybook:axe` from the demo app.
+1. Link axe-storybook - run `yarn demo:link` from the project's root directory.
+1. Run axe-storybook - run `yarn demo` from the project's root directory.
