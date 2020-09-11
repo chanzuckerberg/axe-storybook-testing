@@ -1,6 +1,9 @@
 import os from 'os';
 import puppeteer from 'puppeteer';
 
+/**
+ * Storybook's internal representation of a story. Has only the properties we need.
+ */
 export type RawStory = {
   id?: string;
   kind: string;

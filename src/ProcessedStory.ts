@@ -1,5 +1,8 @@
 import type { RawStory } from './RawStory';
 
+/**
+ * Story with normalized and custom properties needed by axe-storybook.
+ */
 export type ProcessedStory = {
   name: string;
   uriParams: string;

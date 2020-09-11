@@ -2,6 +2,9 @@ import puppeteer from 'puppeteer';
 import { Result, fromStory, isPassing as resultIsPassing } from './Result';
 import type { ProcessedStory } from './ProcessedStory';
 
+/**
+ * Axe violations reported for a list of stories.
+ */
 export type Suite = Result[];
 
 /**
