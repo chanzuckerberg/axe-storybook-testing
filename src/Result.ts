@@ -1,9 +1,9 @@
-import puppeteer from 'puppeteer';
 import { AxePuppeteer } from 'axe-puppeteer';
 import type { Result as AxeResult } from 'axe-core';
+import type { Browser } from 'puppeteer';
 import type { ProcessedStory } from './ProcessedStory';
 
-type Result = {
+export type Result = {
   name: string;
   violations: AxeResult[];
 };
@@ -15,36 +15,24 @@ type Result = {
 const defaultDisabledRules = ['landmark-one-main', 'page-has-heading-one', 'region'];
 
 /**
- * Run Axe on a browser page for each story.
+ * Run Axe on a browser page for a story.
  */
-export async function fromStories(stories: ProcessedStory[], iframePath: string): Promise<Result[]> {
-  const browser = await puppeteer.launch();
+export async function fromStory(story: ProcessedStory, browser: Browser, iframePath: string): Promise<Result> {
+  const page = await browser.newPage();
 
   try {
-    const results = await Promise.all(
-      stories.map(async (story) => {
-        const page = await browser.newPage();
+    await page.setBypassCSP(true);
+    await page.goto(`file://${iframePath}?${story.uriParams}`);
 
-        try {
-          await page.setBypassCSP(true);
-          await page.goto(`file://${iframePath}?${story.uriParams}`);
+    const disabledRules = defaultDisabledRules.concat(story.parameters.axe.disabledRules);
+    const axeBuilder = new AxePuppeteer(page).disableRules(disabledRules);
+    const result = await axeBuilder.analyze();
 
-          const disabledRules = defaultDisabledRules.concat(story.parameters.axe.disabledRules);
-          const axeBuilder = new AxePuppeteer(page).disableRules(disabledRules);
-          const result = await axeBuilder.analyze();
-
-          return {
-            name: story.name,
-            violations: result.violations,
-          };
-        } finally {
-          await page.close();
-        }
-      }),
-    );
-
-    return results;
+    return {
+      name: story.name,
+      violations: result.violations,
+    };
   } finally {
-    await browser.close();
+    await page.close();
   }
 }

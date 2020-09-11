@@ -3,7 +3,7 @@ import selectStories from './selectStories';
 import { parse as parseOptions } from './Options';
 import { fromRawStories as getProcessedStories } from './ProcessedStory';
 import { fromIframe as getRawStories } from './RawStory';
-import { fromStories as getResults } from './Result';
+import { fromStories as getResults  } from './Suite';
 
 const debug = createDebug('axe-storybook');
 
