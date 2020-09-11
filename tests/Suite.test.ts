@@ -99,4 +99,35 @@ describe('formatViolations', () => {
         helpUrl: https://dequeuniversity.com/rules/axe/3.5/color-contrast
     `);
   });
+
+  it('ignores results without violations', () => {
+    const suite: Suite = [
+      {
+        name: 'Some story name',
+        violations: [
+          {
+            description: 'Ensure form elements have labels',
+            help: 'Form elements must have labels',
+            helpUrl: 'https://dequeuniversity.com/rules/axe/3.5/label',
+            id: 'label',
+            tags: ['wcag2a', 'section508'],
+            nodes: [],
+          },
+        ],
+      },
+      {
+        name: 'A story name that is even longer',
+        violations: [],
+      },
+    ];
+
+    expect(formatViolations(suite)).toEqual(dedent`
+      ━━━━━━━━━━━━━━━
+      Some story name
+
+      - ruleId: label
+        description: Form elements must have labels
+        helpUrl: https://dequeuniversity.com/rules/axe/3.5/label
+    `);
+  });
 });
