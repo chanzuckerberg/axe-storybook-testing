@@ -36,3 +36,10 @@ export async function fromStory(story: ProcessedStory, browser: Browser, iframeP
     await page.close();
   }
 }
+
+/**
+ * Determine if a result is passing or not. A result is passing if it has no violations.
+ */
+export function isPassing(result: Result): boolean {
+  return result.violations.length === 0;
+}

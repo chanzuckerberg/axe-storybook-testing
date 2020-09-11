@@ -1,8 +1,8 @@
 import puppeteer from 'puppeteer';
-import { Result, fromStory } from './Result';
+import { Result, fromStory, isPassing as resultIsPassing } from './Result';
 import type { ProcessedStory } from './ProcessedStory';
 
-type Suite = Result[];
+export type Suite = Result[];
 
 /**
  * Run Axe on a browser page for a list of stories.
@@ -18,4 +18,12 @@ export async function fromStories(stories: ProcessedStory[], iframePath: string)
   } finally {
     await browser.close();
   }
+}
+
+/**
+ * Determine if a suite is passing or not. A suite is passing if none of its results have
+ * any violations.
+ */
+export function isPassing(suite: Suite): boolean {
+  return suite.every(resultIsPassing);
 }
