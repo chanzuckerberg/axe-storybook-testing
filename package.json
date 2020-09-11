@@ -20,6 +20,7 @@
     "build": "babel --extensions '.js,.ts' src -d build",
     "clean": "rimraf ./build",
     "demo": "yarn build && yarn --cwd demo storybook:axe",
+    "demo:storybook": "yarn --cwd demo storybook",
     "lint": "eslint --ext=js,jsx,ts,tsx .",
     "prebuild": "yarn clean",
     "prepublishOnly": "yarn build",
