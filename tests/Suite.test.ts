@@ -1,5 +1,5 @@
 import dedent from 'ts-dedent';
-import { format, isPassing, Suite } from '../src/Suite';
+import { formatViolations, isPassing, Suite } from '../src/Suite';
 
 describe('isPassing', () => {
   it('returns true when there are no results', () => {
@@ -40,7 +40,7 @@ describe('isPassing', () => {
   });
 });
 
-describe('format', () => {
+describe('formatViolations', () => {
   it('pretty prints violations', () => {
     const suite: Suite = [
       {
@@ -79,7 +79,7 @@ describe('format', () => {
       },
     ];
 
-    expect(format(suite)).toEqual(dedent`
+    expect(formatViolations(suite)).toEqual(dedent`
       ━━━━━━━━━━━━━━━
       Some story name
 

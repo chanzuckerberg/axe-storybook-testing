@@ -1,5 +1,5 @@
 import dedent from 'ts-dedent';
-import { format, isPassing, Result } from '../src/Result';
+import { formatViolations, isPassing, Result } from '../src/Result';
 
 describe('isPassing', () => {
   it('returns true when there are no violations', () => {
@@ -30,14 +30,14 @@ describe('isPassing', () => {
   });
 });
 
-describe('format', () => {
+describe('formatViolations', () => {
   it('returns an empty string when there are no violations', () => {
     const result: Result = {
       name: 'passing',
       violations: [],
     };
 
-    expect(format(result)).toEqual('');
+    expect(formatViolations(result)).toEqual('');
   });
 
   it('pretty prints violations', () => {
@@ -63,7 +63,7 @@ describe('format', () => {
       ],
     };
 
-    expect(format(result)).toEqual(dedent`
+    expect(formatViolations(result)).toEqual(dedent`
       ━━━━━━━━━━━━━━━
       Some story name
 

@@ -48,13 +48,13 @@ export function display(suite: Suite): void {
     const failingResults = suite.filter((result) => !Result.isPassing(result));
     const violations = failingResults.flatMap((result) => result.violations);
     console.log('\nFound', violations.length, 'violations in', failingResults.length, 'stories!\n');
-    console.log(format(failingResults), '\n');
+    console.log(formatViolations(failingResults), '\n');
   }
 }
 
 /**
  * Pretty-print the violations of a suite.
  */
-export function format(suite: Suite): string {
-  return suite.map(Result.format).filter(output => output).join('\n\n');
+export function formatViolations(suite: Suite): string {
+  return suite.map(Result.formatViolations).filter(output => output).join('\n\n');
 }

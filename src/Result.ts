@@ -51,7 +51,7 @@ export function isPassing(result: Result): boolean {
 /**
  * Pretty-print the violations of a result.
  */
-export function format(result: Result): string {
+export function formatViolations(result: Result): string {
   if (isPassing(result)) { return ''; }
 
   const border = '━'.repeat(result.name.length).substring(0, 80);
