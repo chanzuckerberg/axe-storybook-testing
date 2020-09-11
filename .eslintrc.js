@@ -5,12 +5,12 @@ module.exports = {
     es6: true,
   },
   extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
-  parser: '@babel/eslint-parser',
+  parser: '@typescript-eslint/parser',
   parserOptions: {
     ecmaVersion: 2018,
     sourceType: 'module',
   },
-  plugins: ['@babel'],
+  plugins: ['@typescript-eslint'],
   ignorePatterns: ['storybook-static/', 'build/'],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 'off',

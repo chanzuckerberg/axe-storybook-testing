@@ -1,7 +1,6 @@
 import puppeteer from 'puppeteer';
 import { AxePuppeteer } from 'axe-puppeteer';
 import type { Result as AxeResult } from 'axe-core';
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
 import type { ProcessedStory } from './ProcessedStory';
 
 type Result = {
