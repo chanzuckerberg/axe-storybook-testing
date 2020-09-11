@@ -1,11 +1,11 @@
 import puppeteer from 'puppeteer';
-import { Result, format as formatResult, fromStory, isPassing as resultIsPassing } from './Result';
+import * as Result from './Result';
 import type { ProcessedStory } from './ProcessedStory';
 
 /**
  * Axe violations reported for a list of stories.
  */
-export type Suite = Result[];
+export type Suite = Result.Result[];
 
 /**
  * Run Axe on a browser page for a list of stories.
@@ -15,7 +15,7 @@ export async function fromStories(stories: ProcessedStory[], iframePath: string)
 
   try {
     const results = await Promise.all(
-      stories.map((story) => fromStory(story, browser, iframePath)),
+      stories.map((story) => Result.fromStory(story, browser, iframePath)),
     );
     return results;
   } finally {
@@ -28,7 +28,7 @@ export async function fromStories(stories: ProcessedStory[], iframePath: string)
  * any violations.
  */
 export function isPassing(suite: Suite): boolean {
-  return suite.every(resultIsPassing);
+  return suite.every(Result.isPassing);
 }
 
 /**
@@ -39,13 +39,13 @@ export function display(suite: Suite): void {
 
   // List each story that we got a result for.
   suite.forEach((result) => {
-    console.log(result.name, resultIsPassing(result) ? '✅' : '❌');
+    console.log(result.name, Result.isPassing(result) ? '✅' : '❌');
   });
 
   if (isPassing(suite)) {
     console.log('\nNo accessibility violations detected! ❤️\n');
   } else {
-    const failingResults = suite.filter((result) => !resultIsPassing(result));
+    const failingResults = suite.filter((result) => !Result.isPassing(result));
     const violations = failingResults.flatMap((result) => result.violations);
     console.log('\nFound', violations.length, 'violations in', failingResults.length, 'stories!\n');
     console.log(format(failingResults), '\n');
@@ -56,5 +56,5 @@ export function display(suite: Suite): void {
  * Pretty-print the violations of a suite.
  */
 export function format(suite: Suite): string {
-  return suite.map(formatResult).filter(output => output).join('\n\n');
+  return suite.map(Result.format).filter(output => output).join('\n\n');
 }

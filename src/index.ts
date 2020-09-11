@@ -1,22 +1,22 @@
 import createDebug from 'debug';
 import selectStories from './selectStories';
-import { parse as parseOptions } from './Options';
-import { fromRawStories as getProcessedStories } from './ProcessedStory';
-import { fromIframe as getRawStories } from './RawStory';
-import { display, fromStories as getResults, isPassing  } from './Suite';
+import * as Options from './Options';
+import * as ProcessedStory from './ProcessedStory';
+import * as RawStory from './RawStory';
+import * as Suite from './Suite';
 
 const debug = createDebug('axe-storybook');
 
 export async function run() {
-  const options = parseOptions(debug.enabled);
+  const options = Options.parse(debug.enabled);
   debug.enabled = options.debug;
 
   // Get Storybook's representation of stories from its static iframe.
-  const rawStories = await getRawStories(options.iframePath);
+  const rawStories = await RawStory.fromIframe(options.iframePath);
   debug('rawStories %s', JSON.stringify(rawStories));
 
   // Process each story into a format that's more useful for us.
-  const processedStories = getProcessedStories(rawStories);
+  const processedStories = ProcessedStory.fromRawStories(rawStories);
   debug('processedStories %o', processedStories);
 
   // Filter out stories that have disabled our integration.
@@ -24,11 +24,11 @@ export async function run() {
   debug('selectedStories %o', selectedStories);
 
   // Visit each selected story and run Axe on them.
-  const results = await getResults(selectedStories, options.iframePath);
+  const results = await Suite.fromStories(selectedStories, options.iframePath);
   debug('results %o', JSON.stringify(results));
 
   // Print the results in a human-readable way.
-  display(results);
+  Suite.display(results);
 
-  return isPassing(results) ? Promise.resolve() : Promise.reject();
+  return Suite.isPassing(results) ? Promise.resolve() : Promise.reject();
 }
