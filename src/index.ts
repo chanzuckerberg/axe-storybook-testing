@@ -24,11 +24,17 @@ export async function run() {
   debug('selectedStories %o', selectedStories);
 
   // Visit each selected story and run Axe on them.
-  const results = await Suite.fromStories(selectedStories, options.iframePath);
-  debug('results %o', JSON.stringify(results));
+  const suite = await Suite.fromStories(selectedStories, options.iframePath);
+  debug('suite %o', JSON.stringify(suite));
 
-  // Print the results in a human-readable way.
-  Suite.display(results);
+  console.log('Test results\n');
+  console.log(Suite.formatTestNames(suite));
 
-  return Suite.isPassing(results) ? Promise.resolve() : Promise.reject();
+  if (Suite.isPassing(suite)) {
+    console.log('\nNo accessibility violations detected! ❤️\n');
+    return Promise.resolve();
+  } else {
+    console.log('\n' + Suite.formatFailures(suite) + '\n');
+    return Promise.reject();
+  }
 }
