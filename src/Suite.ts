@@ -1,5 +1,5 @@
 import dedent from 'ts-dedent';
-import puppeteer from 'puppeteer';
+import playwright from 'playwright';
 import * as Result from './Result';
 import type { ProcessedStory } from './ProcessedStory';
 
@@ -12,11 +12,12 @@ export type Suite = Result.Result[];
  * Run Axe on a browser page for a list of stories.
  */
 export async function fromStories(stories: ProcessedStory[], iframePath: string): Promise<Suite> {
-  const browser = await puppeteer.launch();
+  const browser = await playwright.chromium.launch({ headless: true });
+  const context = await browser.newContext({ bypassCSP: true });
 
   try {
     const results = await Promise.all(
-      stories.map((story) => Result.fromStory(story, browser, iframePath)),
+      stories.map((story) => Result.fromStory(story, context, iframePath)),
     );
     return results;
   } finally {

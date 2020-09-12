@@ -1,11 +1,11 @@
 import axe, { AxeResults } from 'axe-core';
-import puppeteer, { JSONObject } from 'puppeteer';
+import playwright from 'playwright';
 
-export default class AxePuppeteer {
-  frame: puppeteer.Frame;
+export default class AxePlaywright {
+  frame: playwright.Frame;
   options?: axe.RunOptions;
 
-  constructor(page: puppeteer.Page, options?: axe.RunOptions) {
+  constructor(page: playwright.Page, options?: axe.RunOptions) {
     this.frame = page.mainFrame();
     this.options = options;
   }
@@ -14,7 +14,7 @@ export default class AxePuppeteer {
     await ensureFrameReady(this.frame);
     await injectAxeModule(this.frame);
 
-    const results = await this.frame.evaluate(runAxe, this.options as JSONObject);
+    const results = await this.frame.evaluate(runAxe, this.options);
     return results;
   }
 
@@ -40,7 +40,7 @@ export default class AxePuppeteer {
   }
 }
 
-async function ensureFrameReady(frame: puppeteer.Frame) {
+async function ensureFrameReady(frame: playwright.Frame) {
   // Wait so that we know there is an execution context.
   // Assume that if we have an html node we have an execution context.
   await frame.waitForSelector('html');
@@ -53,7 +53,7 @@ async function ensureFrameReady(frame: puppeteer.Frame) {
   }
 }
 
-function injectAxeModule(frame: puppeteer.Frame): Promise<void> {
+function injectAxeModule(frame: playwright.Frame): Promise<unknown> {
   return frame.addScriptTag({
     path: require.resolve('axe-core'),
   });
