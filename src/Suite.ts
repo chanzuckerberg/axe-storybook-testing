@@ -1,6 +1,7 @@
 import dedent from 'ts-dedent';
 import playwright from 'playwright';
 import * as Result from './Result';
+import type { Options } from './Options';
 import type { ProcessedStory } from './ProcessedStory';
 
 /**
@@ -11,13 +12,13 @@ export type Suite = Result.Result[];
 /**
  * Run Axe on a browser page for a list of stories.
  */
-export async function fromStories(stories: ProcessedStory[], iframePath: string): Promise<Suite> {
-  const browser = await playwright.chromium.launch({ headless: true });
+export async function fromStories(stories: ProcessedStory[], options: Options): Promise<Suite> {
+  const browser = await playwright.chromium.launch({ headless: !options.nonHeadless });
   const context = await browser.newContext({ bypassCSP: true });
 
   try {
     const results = await Promise.all(
-      stories.map((story) => Result.fromStory(story, context, iframePath)),
+      stories.map((story) => Result.fromStory(story, context, options.iframePath)),
     );
     return results;
   } finally {

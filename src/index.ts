@@ -24,7 +24,7 @@ export async function run() {
   debug('selectedStories %o', selectedStories);
 
   // Visit each selected story and run Axe on them.
-  const suite = await Suite.fromStories(selectedStories, options.iframePath);
+  const suite = await Suite.fromStories(selectedStories, options);
   debug('suite %o', JSON.stringify(suite));
 
   console.log('Test results\n');
