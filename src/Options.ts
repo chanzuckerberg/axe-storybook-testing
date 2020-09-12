@@ -1,7 +1,14 @@
 import yargs from 'yargs';
+import getBrowserOption from './getBrowserOption';
 import getIframePath from './getIframePath';
 
 const options = {
+  browser: {
+    alias: 'B',
+    default: 'chromium',
+    description: 'Which browser to run in. Should be one of: chromium, webkit, firefox',
+    type: 'string' as const,
+  },
   build_dir: {
     alias: 'b',
     default: 'storybook-static',
@@ -30,6 +37,7 @@ export function parse(debug: boolean) {
   const argv = yargs.options(options).argv;
 
   return {
+    browser: getBrowserOption(argv.browser),
     debug: argv.debug || debug,
     iframePath: getIframePath(argv.build_dir),
     nonHeadless: argv.non_headless,

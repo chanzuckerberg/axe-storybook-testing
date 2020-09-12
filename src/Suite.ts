@@ -13,7 +13,7 @@ export type Suite = Result.Result[];
  * Run Axe on a browser page for a list of stories.
  */
 export async function fromStories(stories: ProcessedStory[], options: Options): Promise<Suite> {
-  const browser = await playwright.chromium.launch({ headless: !options.nonHeadless });
+  const browser = await playwright[options.browser].launch({ headless: !options.nonHeadless });
   const context = await browser.newContext({ bypassCSP: true });
 
   try {
