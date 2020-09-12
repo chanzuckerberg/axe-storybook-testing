@@ -14,6 +14,7 @@ module.exports = {
   ignorePatterns: ['storybook-static/', 'build/'],
   rules: {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
+    '@typescript-eslint/no-empty-function': 'off',
     'comma-dangle': ['error', 'always-multiline'],
     semi: ['error', 'always'],
     quotes: ['error', 'single', { avoidEscape: true }],

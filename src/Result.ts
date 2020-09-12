@@ -1,5 +1,5 @@
 import dedent from 'ts-dedent';
-import { AxePuppeteer } from 'axe-puppeteer';
+import AxePuppeteer from './AxePuppeteer';
 import type { Result as AxeResult } from 'axe-core';
 import type { Browser } from 'puppeteer';
 import type { ProcessedStory } from './ProcessedStory';
