@@ -1,5 +1,5 @@
 import os from 'os';
-import puppeteer from 'puppeteer';
+import playwright from 'playwright';
 
 /**
  * Storybook's internal representation of a story. Has only the properties we need.
@@ -68,8 +68,9 @@ export async function fromIframe(iframePath: string): Promise<RawStory[]> {
     launchArgs.push('--no-sandbox');
   }
 
-  const browser = await puppeteer.launch({ headless: true, args: launchArgs });
-  const page = await browser.newPage();
+  const browser = await playwright.chromium.launch({ headless: true, args: launchArgs });
+  const context = await browser.newContext();
+  const page = await context.newPage();
 
   await page.goto('file://' + iframePath);
 
