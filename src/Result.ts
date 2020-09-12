@@ -1,7 +1,7 @@
 import dedent from 'ts-dedent';
-import { AxePuppeteer } from 'axe-puppeteer';
+import AxePlaywright from './AxePlaywright';
 import type { Result as AxeResult } from 'axe-core';
-import type { Browser } from 'puppeteer';
+import type { BrowserContext } from 'playwright';
 import type { ProcessedStory } from './ProcessedStory';
 
 /**
@@ -21,15 +21,14 @@ const defaultDisabledRules = ['landmark-one-main', 'page-has-heading-one', 'regi
 /**
  * Run Axe on a browser page for a story.
  */
-export async function fromStory(story: ProcessedStory, browser: Browser, iframePath: string): Promise<Result> {
-  const page = await browser.newPage();
+export async function fromStory(story: ProcessedStory, context: BrowserContext, iframePath: string): Promise<Result> {
+  const page = await context.newPage();
 
   try {
-    await page.setBypassCSP(true);
     await page.goto(`file://${iframePath}?${story.uriParams}`);
 
     const disabledRules = defaultDisabledRules.concat(story.parameters.axe.disabledRules);
-    const axeBuilder = new AxePuppeteer(page).disableRules(disabledRules);
+    const axeBuilder = new AxePlaywright(page).disableRules(disabledRules);
     const result = await axeBuilder.analyze();
 
     return {

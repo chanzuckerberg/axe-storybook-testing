@@ -32,9 +32,8 @@
   },
   "dependencies": {
     "axe-core": "3.5.5",
-    "axe-puppeteer": "^1.1.0",
     "debug": "^4.1.1",
-    "puppeteer": "^1.4.0",
+    "playwright": "^1.4.0",
     "ts-dedent": "^1.1.1",
     "yargs": "^16.0.3"
   },
@@ -48,7 +47,6 @@
     "@types/jest": "^26.0.13",
     "@types/mock-fs": "^4.10.0",
     "@types/node": "^14.10.0",
-    "@types/puppeteer": "^3.0.2",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.1.0",
     "babel-jest": "^26.3.0",
