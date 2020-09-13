@@ -7,6 +7,8 @@ require('../build/index')
     process.on('exit', () => process.exit(0));
   })
   .catch((error) => {
-    console.log(error);
+    if (error) {
+      console.log(error);
+    }
     process.on('exit', () => process.exit(1));
   });
