@@ -1,4 +1,4 @@
-import axe, { AxeResults } from 'axe-core';
+import axe from 'axe-core';
 import playwright from 'playwright';
 
 export default class AxePlaywright {
@@ -63,7 +63,7 @@ function pageIsReady() {
   return document.readyState === 'complete';
 }
 
-function runAxe(options: axe.RunOptions): Promise<AxeResults> {
+function runAxe(options: axe.RunOptions): Promise<axe.AxeResults> {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore This function executes in a browser context.
   return window.axe.run(document, options);
