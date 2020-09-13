@@ -3,11 +3,11 @@ import playwright from 'playwright';
 
 export default class AxePlaywright {
   frame: playwright.Frame;
-  options?: axe.RunOptions;
+  options: axe.RunOptions;
 
   constructor(page: playwright.Page, options?: axe.RunOptions) {
     this.frame = page.mainFrame();
-    this.options = options;
+    this.options = options || {};
   }
 
   async analyze(): Promise<axe.AxeResults> {
@@ -19,15 +19,13 @@ export default class AxePlaywright {
   }
 
   disableRules(rules: string[]): this {
-    this.options = this.options || {};
-
     type RuleObject = {
       [ruleId: string]: {
         enabled: boolean;
       };
     }
 
-    const newRules: RuleObject = {};
+    const newRules: RuleObject = this.options.rules || {};
 
     for (const rule of rules) {
       newRules[rule] = {
@@ -65,8 +63,8 @@ function pageIsReady() {
   return document.readyState === 'complete';
 }
 
-function runAxe(options?: axe.RunOptions): Promise<AxeResults> {
+function runAxe(options: axe.RunOptions): Promise<AxeResults> {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore This function executes in a browser context.
-  return window.axe.run(document, options || {});
+  return window.axe.run(document, options);
 }
