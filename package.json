@@ -32,7 +32,6 @@
   },
   "dependencies": {
     "axe-core": "4.0.2",
-    "debug": "^4.1.1",
     "playwright": "^1.4.0",
     "ts-dedent": "^1.1.1",
     "yargs": "^16.0.3"

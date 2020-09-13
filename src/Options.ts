@@ -15,11 +15,6 @@ const options = {
     description: 'Directory to load the static storybook built by build-storybook from',
     type: 'string' as const,
   },
-  debug: {
-    alias: 'd',
-    description: 'Debug mode',
-    type: 'boolean' as const,
-  },
   non_headless: {
     alias: 'H',
     default: false,
@@ -33,12 +28,11 @@ export type Options = ReturnType<typeof parse>;
 /**
  * Parse and normalize command line arguments passed to the script.
  */
-export function parse(debug: boolean) {
+export function parse() {
   const argv = yargs.options(options).argv;
 
   return {
     browser: getBrowserOption(argv.browser),
-    debug: argv.debug || debug,
     iframePath: getIframePath(argv.build_dir),
     nonHeadless: argv.non_headless,
   };
