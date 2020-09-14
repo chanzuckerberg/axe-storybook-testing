@@ -15,11 +15,6 @@ const options = {
     description: 'Directory to load the static storybook built by build-storybook from',
     type: 'string' as const,
   },
-  concurrency: {
-    default: 10,
-    description: 'How many browser pages to open at a time',
-    type: 'number' as const,
-  },
   non_headless: {
     alias: 'H',
     default: false,
@@ -38,17 +33,9 @@ export function parse() {
 
   return {
     browser: getBrowser(argv.browser),
-    concurrency: getConcurrency(argv.concurrency),
     iframePath: getIframePath(argv.build_dir),
     nonHeadless: argv.non_headless,
   };
-}
-
-function getConcurrency(concurrency: number) {
-  if (concurrency <= 0) {
-    throw new Error(`Invalid concurrency option: "${concurrency}"`);
-  }
-  return concurrency;
 }
 
 function getBrowser(browser: string) {

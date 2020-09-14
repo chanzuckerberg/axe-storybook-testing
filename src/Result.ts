@@ -1,7 +1,7 @@
 import dedent from 'ts-dedent';
 import AxePlaywright from './AxePlaywright';
 import type { Result as AxeResult } from 'axe-core';
-import type { BrowserContext } from 'playwright';
+import type { Page } from 'playwright';
 import type { ProcessedStory } from './ProcessedStory';
 
 /**
@@ -21,23 +21,17 @@ const defaultDisabledRules = ['landmark-one-main', 'page-has-heading-one', 'regi
 /**
  * Run Axe on a browser page for a story.
  */
-export async function fromStory(story: ProcessedStory, context: BrowserContext, iframePath: string): Promise<Result> {
-  const page = await context.newPage();
+export async function fromStory(story: ProcessedStory, page: Page, iframePath: string): Promise<Result> {
+  await page.goto(`file://${iframePath}?${story.uriParams}`);
 
-  try {
-    await page.goto(`file://${iframePath}?${story.uriParams}`);
+  const disabledRules = defaultDisabledRules.concat(story.parameters.axe.disabledRules);
+  const axeBuilder = new AxePlaywright(page).disableRules(disabledRules);
+  const result = await axeBuilder.analyze();
 
-    const disabledRules = defaultDisabledRules.concat(story.parameters.axe.disabledRules);
-    const axeBuilder = new AxePlaywright(page).disableRules(disabledRules);
-    const result = await axeBuilder.analyze();
-
-    return {
-      name: story.name,
-      violations: result.violations,
-    };
-  } finally {
-    await page.close();
-  }
+  return {
+    name: story.name,
+    violations: result.violations,
+  };
 }
 
 /**

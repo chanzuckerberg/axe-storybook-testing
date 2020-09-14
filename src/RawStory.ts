@@ -1,4 +1,3 @@
-import os from 'os';
 import playwright from 'playwright';
 
 /**
@@ -21,34 +20,13 @@ export type RawStory = {
  *
  * Works by opening Storybook's iframe and reading data Storybook attaches to the window.
  */
-export async function fromIframe(iframePath: string): Promise<RawStory[]> {
-  const launchArgs: string[] = [];
-
-  // Some CI platforms including Travis requires Chrome to be launched without the sandbox
-  // See https://github.com/GoogleChrome/puppeteer/blob/master/docs/troubleshooting.md#running-puppeteer-on-travis-ci
-  // See https://docs.travis-ci.com/user/chrome#Sandboxing
-  if (os.platform() === 'linux') {
-    launchArgs.push('--no-sandbox');
-  }
-
-  const browser = await playwright.chromium.launch({ headless: true, args: launchArgs });
-  const context = await browser.newContext();
-  const page = await context.newPage();
-
+export async function fromIframe(iframePath: string, page: playwright.Page): Promise<RawStory[]> {
   await page.goto('file://' + iframePath);
 
-  let rawStories: RawStory[];
-
-  try {
-    rawStories = await page.evaluate(fetchStoriesFromWindow) as RawStory[];
-  } finally {
-    await browser.close();
-  }
+  const rawStories = await page.evaluate(fetchStoriesFromWindow) as RawStory[];
 
   if (!rawStories) {
-    const message =
-      'Storybook object not found on window. Open your storybook and check the console for errors.';
-    throw new Error(message);
+    throw new Error('Storybook object not found on window. Open your storybook and check the console for errors.');
   }
 
   return rawStories;

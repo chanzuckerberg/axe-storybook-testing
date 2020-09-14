@@ -38,6 +38,10 @@ export function fromRawStory(rawStory: RawStory): ProcessedStory {
   };
 }
 
+export function isEnabled(story: ProcessedStory): boolean {
+  return !story.parameters.axe.disabled;
+}
+
 function getDisabled(disabled?: unknown): boolean {
   if (typeof disabled === 'undefined') {
     return false;
@@ -45,7 +49,6 @@ function getDisabled(disabled?: unknown): boolean {
   if (typeof disabled !== 'boolean') {
     throw new Error(`Given disabled option '${disabled}' is invalid`);
   }
-
   return disabled;
 }
 
