@@ -17,10 +17,10 @@ export async function run() {
   const selectedStories = selectStories(processedStories);
 
   // Visit each selected story and run Axe on them.
-  const suite = await Suite.fromStories(selectedStories, options);
-
-  console.log('Test results\n');
-  console.log(Suite.formatTestNames(suite));
+  const suite = await Suite.fromStories(selectedStories, options, (result, isPassing) => {
+    const status = isPassing ? '✅' : '❌';
+    console.log(result.name, status);
+  });
 
   if (Suite.isPassing(suite)) {
     console.log('\nNo accessibility violations detected! ❤️\n');

@@ -13,14 +13,18 @@ export type Suite = Result.Result[];
 /**
  * Run Axe on a browser page for a list of stories.
  */
-export async function fromStories(stories: ProcessedStory[], options: Options): Promise<Suite> {
+export async function fromStories(
+  stories: ProcessedStory[],
+  options: Options,
+  onResult?: (result: Result.Result, isPassing: boolean) => void,
+): Promise<Suite> {
   const browser = await playwright[options.browser].launch({ headless: !options.nonHeadless });
   const context = await browser.newContext({ bypassCSP: true });
 
   try {
     const results = await mapPromisesWithConcurrencyLimit(
       stories,
-      (story) => Result.fromStory(story, context, options.iframePath),
+      (story) => Result.fromStory(story, context, options.iframePath, onResult),
       { concurrency: options.concurrency },
     );
     return results;
