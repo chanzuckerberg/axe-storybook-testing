@@ -1,7 +1,6 @@
+import fs from 'fs';
+import path from 'path';
 import yargs from 'yargs';
-import getBrowserOption from './getBrowserOption';
-import getConcurrencyOption from './getConcurrencyOption';
-import getIframePath from './getIframePath';
 
 const options = {
   browser: {
@@ -38,7 +37,7 @@ export function parse() {
   const argv = yargs.options(options).argv;
 
   return {
-    browser: getBrowserOption(argv.browser),
+    browser: getBrowser(argv.browser),
     concurrency: getConcurrency(argv.concurrency),
     iframePath: getIframePath(argv.build_dir),
     nonHeadless: argv.non_headless,
@@ -50,4 +49,26 @@ function getConcurrency(concurrency: number) {
     throw new Error(`Invalid concurrency option: "${concurrency}"`);
   }
   return concurrency;
+}
+
+function getBrowser(browser: string) {
+  switch (browser) {
+    case 'chromium':
+    case 'firefox':
+    case 'webkit':
+      return browser;
+    default:
+      throw new Error(`Invalid browser option: "${browser}"`);
+  }
+}
+
+function getIframePath(buildDir: string) {
+  const storybookStaticPath = path.resolve(buildDir);
+  const iframePath = path.join(storybookStaticPath, 'iframe.html');
+
+  if (!fs.existsSync(iframePath)) {
+    throw new Error(`Static Storybook not found at ${storybookStaticPath}. Have you called build-storybook first?`);
+  }
+
+  return iframePath;
 }
