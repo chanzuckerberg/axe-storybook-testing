@@ -21,12 +21,7 @@ const defaultDisabledRules = ['landmark-one-main', 'page-has-heading-one', 'regi
 /**
  * Run Axe on a browser page for a story.
  */
-export async function fromStory(
-  story: ProcessedStory,
-  context: BrowserContext,
-  iframePath: string,
-  onResult: ((result: Result, isPassing: boolean) => void) = () => {},
-): Promise<Result> {
+export async function fromStory(story: ProcessedStory, context: BrowserContext, iframePath: string): Promise<Result> {
   const page = await context.newPage();
 
   try {
@@ -34,15 +29,12 @@ export async function fromStory(
 
     const disabledRules = defaultDisabledRules.concat(story.parameters.axe.disabledRules);
     const axeBuilder = new AxePlaywright(page).disableRules(disabledRules);
-    const axeResult = await axeBuilder.analyze();
-    const result = {
+    const result = await axeBuilder.analyze();
+
+    return {
       name: story.name,
-      violations: axeResult.violations,
+      violations: result.violations,
     };
-
-    onResult(result, isPassing(result));
-
-    return result;
   } finally {
     await page.close();
   }
