@@ -15,9 +15,9 @@ const options = {
     description: 'Directory to load the static storybook built by build-storybook from',
     type: 'string' as const,
   },
-  non_headless: {
-    alias: 'H',
-    default: false,
+  headless: {
+    alias: 'h',
+    default: true,
     description: 'Wether the browser should be ran "headfully" (non-headlessly)',
     type: 'boolean' as const,
   },
@@ -34,7 +34,7 @@ export function parse() {
   return {
     browser: getBrowser(argv.browser),
     iframePath: getIframePath(argv.build_dir),
-    nonHeadless: argv.non_headless,
+    headless: argv.headless,
   };
 }
 

@@ -9,7 +9,7 @@ import * as Result from './Result';
 const options = Options.parse();
 
 describe(`[${options.browser}] accessibility tests`, async function () {
-  const browser = await playwright[options.browser].launch({ headless: !options.nonHeadless });
+  const browser = await playwright[options.browser].launch({ headless: options.headless });
   const context = await browser.newContext({ bypassCSP: true });
   const page = await context.newPage();
   const rawStories = await RawStory.fromIframe(options.iframePath, page);
