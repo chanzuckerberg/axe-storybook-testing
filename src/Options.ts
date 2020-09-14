@@ -1,5 +1,6 @@
 import yargs from 'yargs';
 import getBrowserOption from './getBrowserOption';
+import getConcurrencyOption from './getConcurrencyOption';
 import getIframePath from './getIframePath';
 
 const options = {
@@ -14,6 +15,11 @@ const options = {
     default: 'storybook-static',
     description: 'Directory to load the static storybook built by build-storybook from',
     type: 'string' as const,
+  },
+  concurrency: {
+    default: 10,
+    description: 'How many browser pages to open at a time',
+    type: 'number' as const,
   },
   non_headless: {
     alias: 'H',
@@ -33,7 +39,15 @@ export function parse() {
 
   return {
     browser: getBrowserOption(argv.browser),
+    concurrency: getConcurrency(argv.concurrency),
     iframePath: getIframePath(argv.build_dir),
     nonHeadless: argv.non_headless,
   };
+}
+
+function getConcurrency(concurrency: number) {
+  if (concurrency <= 0) {
+    throw new Error(`Invalid concurrency option: "${concurrency}"`);
+  }
+  return concurrency;
 }

@@ -1,4 +1,5 @@
 import dedent from 'ts-dedent';
+import mapPromisesWithConcurrencyLimit from 'p-map';
 import playwright from 'playwright';
 import * as Result from './Result';
 import type { Options } from './Options';
@@ -17,8 +18,10 @@ export async function fromStories(stories: ProcessedStory[], options: Options): 
   const context = await browser.newContext({ bypassCSP: true });
 
   try {
-    const results = await Promise.all(
-      stories.map((story) => Result.fromStory(story, context, options.iframePath)),
+    const results = await mapPromisesWithConcurrencyLimit(
+      stories,
+      (story) => Result.fromStory(story, context, options.iframePath),
+      { concurrency: options.concurrency },
     );
     return results;
   } finally {
