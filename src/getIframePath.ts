@@ -9,10 +9,8 @@ export default function getIframePath(buildDir: string) {
   const iframePath = path.join(storybookStaticPath, 'iframe.html');
 
   if (!fs.existsSync(iframePath)) {
-    throw new Error(
-      `Static Storybook not found at ${storybookStaticPath}.` +
-        'Have you called build-storybook first?',
-    );
+    throw new Error(`Static Storybook not found at ${storybookStaticPath}. Have you called build-storybook first?`);
   }
+
   return iframePath;
 }
