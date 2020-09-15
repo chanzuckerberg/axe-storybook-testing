@@ -4,6 +4,7 @@ import type { RawStory } from './RawStory';
  * Story with normalized and custom properties needed by axe-storybook.
  */
 export type ProcessedStory = {
+  componentTitle: string;
   name: string;
   uriParams: string;
   parameters: {
@@ -19,15 +20,14 @@ export function fromRawStories(rawStories: RawStory[]): ProcessedStory[] {
 }
 
 export function fromRawStory(rawStory: RawStory): ProcessedStory {
-  const name = `${rawStory.kind}: ${rawStory.name}`;
-
   const uriParams = rawStory.id
     ? `id=${encodeURIComponent(rawStory.id)}`
     : `selectedKind=${encodeURIComponent(rawStory.kind)}` +
       `&selectedStory=${encodeURIComponent(rawStory.name)}`;
 
   return {
-    name,
+    componentTitle: rawStory.kind,
+    name: rawStory.name,
     uriParams,
     parameters: {
       axe: {

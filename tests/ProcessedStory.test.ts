@@ -9,7 +9,8 @@ describe('fromRawStories', () => {
 
     expect(fromRawStories(rawStories)).toEqual([
       {
-        name: 'button: a',
+        componentTitle: 'button',
+        name: 'a',
         parameters: {
           axe: {
             disabled: false,
@@ -19,7 +20,8 @@ describe('fromRawStories', () => {
         uriParams: 'selectedKind=button&selectedStory=a',
       },
       {
-        name: 'button: b',
+        componentTitle: 'button',
+        name: 'b',
         parameters: {
           axe: {
             disabled: false,
@@ -33,12 +35,6 @@ describe('fromRawStories', () => {
 });
 
 describe('fromRawStory', () => {
-  it('combines the name and kind of the story', () => {
-    const rawStory = { name: 'a', kind: 'button' };
-    const processedStory = fromRawStory(rawStory);
-    expect(processedStory.name).toEqual('button: a');
-  });
-
   it('uses the id for the uri params if present', () => {
     const rawStory = { id: 'some-button', name: 'a', kind: 'button' };
     const processedStory = fromRawStory(rawStory);
