@@ -53,10 +53,14 @@ export function formatViolations(result: Result): string {
     ${border}
     ${result.name}
 
-    ${result.violations.map((violation) => dedent`
-      - ruleId: ${violation.id}
-        description: ${violation.help}
-        helpUrl: ${violation.helpUrl}
-    `).join('\n\n')}
+    ${result.violations.map(formatViolation).join('\n\n')}
+  `;
+}
+
+function formatViolation(violation: AxeResult) {
+  return dedent`
+    - ruleId: ${violation.id}
+      description: ${violation.help}
+      helpUrl: ${violation.helpUrl}
   `;
 }
