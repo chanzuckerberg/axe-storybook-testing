@@ -62,5 +62,6 @@ function formatViolation(violation: AxeResult) {
     - ruleId: ${violation.id}
       description: ${violation.help}
       helpUrl: ${violation.helpUrl}
+      html: ${violation.nodes.map((node) => node.html).join(', ')}
   `;
 }

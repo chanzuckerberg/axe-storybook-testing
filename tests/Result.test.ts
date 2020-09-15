@@ -50,7 +50,15 @@ describe('formatViolations', () => {
           helpUrl: 'https://dequeuniversity.com/rules/axe/3.5/button-name',
           id: 'button-name',
           tags: ['wcag2a', 'section508'],
-          nodes: [],
+          nodes: [
+            {
+              html: '<button></button>',
+              target: [],
+              any: [],
+              all: [],
+              none: [],
+            },
+          ],
         },
         {
           description: 'Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds',
@@ -58,7 +66,22 @@ describe('formatViolations', () => {
           helpUrl: 'https://dequeuniversity.com/rules/axe/3.5/color-contrast',
           id: 'color-contrast',
           tags: ['wcag2aa'],
-          nodes: [],
+          nodes: [
+            {
+              html: '<p>hello</p>',
+              target: [],
+              any: [],
+              all: [],
+              none: [],
+            },
+            {
+              html: '<p>goodbye</p>',
+              target: [],
+              any: [],
+              all: [],
+              none: [],
+            },
+          ],
         },
       ],
     };
@@ -70,10 +93,12 @@ describe('formatViolations', () => {
       - ruleId: button-name
         description: Buttons must have discernible text
         helpUrl: https://dequeuniversity.com/rules/axe/3.5/button-name
+        html: <button></button>
 
       - ruleId: color-contrast
         description: Elements must have sufficient color contrast
         helpUrl: https://dequeuniversity.com/rules/axe/3.5/color-contrast
+        html: <p>hello</p>, <p>goodbye</p>
     `);
   });
 });
