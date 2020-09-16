@@ -1,5 +1,5 @@
 import { AxeResults, RuleObject, RunOptions } from 'axe-core';
-import { Frame, Page } from 'playwright';
+import { Page } from 'playwright';
 
 /**
  * Wrapper around a Playwright page that has axe-core injected into it. By using a single instance
@@ -7,25 +7,23 @@ import { Frame, Page } from 'playwright';
  */
 export default class AxePage {
   initialized = false;
-  frame: Frame;
   page: Page;
 
   constructor(page: Page) {
     this.page = page;
-    this.frame = page.mainFrame();
   }
 
   async initialize() {
     this.initialized = true;
     await this.page.waitForLoadState();
-    await this.frame.addScriptTag({ path: require.resolve('axe-core') });
+    await this.page.addScriptTag({ path: require.resolve('axe-core') });
   }
 
   analyze(disabledRules: string[] = []): Promise<AxeResults> {
     if (!this.initialized) {
       return this.initialize().then(() => this.analyze(disabledRules));
     }
-    return this.frame.evaluate(runAxe, getOptions({}, disabledRules));
+    return this.page.evaluate(runAxe, getOptions({}, disabledRules));
   }
 
   goto(path: string) {
