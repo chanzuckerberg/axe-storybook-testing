@@ -1,5 +1,5 @@
-import { AxeResults, RuleObject, RunOptions } from 'axe-core';
-import { Page } from 'playwright';
+import type { AxeResults, RuleObject, RunOptions } from 'axe-core';
+import type { Page } from 'playwright';
 
 /**
  * Wrapper around a Playwright page that has axe-core injected into it. By using a single instance
