@@ -11,17 +11,17 @@
     "storybook:axe-no-build": "axe-storybook"
   },
   "dependencies": {
-    "@babel/core": "^7.8.4",
+    "@babel/core": "^7.11.6",
     "babel-loader": "^8.0.6",
     "react": "^16.3.2",
     "react-dom": "^16.3.2"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^6.0.18",
-    "@storybook/addon-actions": "^6.0.18",
-    "@storybook/addon-essentials": "^6.0.18",
-    "@storybook/addon-links": "^6.0.18",
-    "@storybook/react": "^6.0.18",
+    "@storybook/addon-a11y": "^6.0.21",
+    "@storybook/addon-actions": "^6.0.21",
+    "@storybook/addon-essentials": "^6.0.21",
+    "@storybook/addon-links": "^6.0.21",
+    "@storybook/react": "^6.0.21",
     "react-is": "^16.13.1"
   }
 }
