@@ -28,3 +28,11 @@ Button5.parameters = {
     disabled: true,
   },
 };
+
+export const Button6 = () => (
+  <>
+    <Button style={{ backgroundColor: 'limegreen', color: 'hotpink' }}>Click me!</Button>
+    <Button style={{ backgroundColor: 'hotpink', color: 'limegreen' }}>Click me!</Button>
+  </>
+);
+Button6.storyName = 'Multiple buttons with insufficient color contrast (should fail)';

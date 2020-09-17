@@ -73,6 +73,7 @@ describe('formatViolations', () => {
               any: [],
               all: [],
               none: [],
+              failureSummary: 'You done messed up',
             },
             {
               html: '<p>goodbye</p>',
@@ -80,25 +81,36 @@ describe('formatViolations', () => {
               any: [],
               all: [],
               none: [],
+              failureSummary: 'Nope, still wrong\n\tAnd this has multiple lines!',
             },
           ],
         },
       ],
     };
 
-    expect(formatViolations(result)).toEqual(dedent`
-      ━━━━━━━━━━━━━━━
-      Some story name
+    expect(formatViolations(result).trimEnd()).toEqual(dedent`
+      Detected the following accessibility violations!
 
-      - ruleId: button-name
-        description: Buttons must have discernible text
-        helpUrl: https://dequeuniversity.com/rules/axe/3.5/button-name
-        html: <button></button>
+      1. button-name (Buttons must have discernible text)
 
-      - ruleId: color-contrast
-        description: Elements must have sufficient color contrast
-        helpUrl: https://dequeuniversity.com/rules/axe/3.5/color-contrast
-        html: <p>hello</p>, <p>goodbye</p>
+         For more info, visit https://dequeuniversity.com/rules/axe/3.5/button-name.
+
+         Check these nodes:
+
+         - html: <button></button>
+
+      2. color-contrast (Elements must have sufficient color contrast)
+
+         For more info, visit https://dequeuniversity.com/rules/axe/3.5/color-contrast.
+
+         Check these nodes:
+
+         - html: <p>hello</p>
+           summary: You done messed up
+
+         - html: <p>goodbye</p>
+           summary: Nope, still wrong
+                    ${'\t'}And this has multiple lines!
     `);
   });
 });
