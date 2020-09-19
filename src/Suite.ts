@@ -3,7 +3,7 @@ import assert from 'assert';
 import each from 'lodash/each';
 import groupBy from 'lodash/groupBy';
 import playwright from 'playwright';
-import AxePage from './AxePage';
+import * as AxePage from './AxePage';
 import * as Options from './Options';
 import * as ProcessedStory from './ProcessedStory';
 import * as RawStory from './RawStory';
@@ -15,10 +15,13 @@ async function writeTests() {
   const browser = await playwright[options.browser].launch({ headless: options.headless });
   const context = await browser.newContext({ bypassCSP: true });
   const page = await context.newPage();
-  const axePage = new AxePage(page);
-  const rawStories = await RawStory.fromIframe(options.iframePath, page);
+  await page.goto('file://' + options.iframePath);
+
+  const rawStories = await RawStory.fromPage(page);
   const processedStories = ProcessedStory.fromRawStories(rawStories);
   const storiesByComponent = groupBy(processedStories, 'componentTitle');
+
+  await AxePage.prepare(page);
 
   describe(`[${options.browser}] accessibility`, function () {
     after(async function () {
@@ -31,7 +34,7 @@ async function writeTests() {
           const testFn = ProcessedStory.isEnabled(story) ? it : it.skip;
 
           testFn(story.name, async function () {
-            const result = await Result.fromStory(story, axePage, options.iframePath);
+            const result = await Result.fromPage(page, story);
 
             if (result.violations.length === 0) {
               assert.ok('Nice');

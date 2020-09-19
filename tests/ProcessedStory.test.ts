@@ -3,8 +3,8 @@ import { fromRawStories, fromRawStory } from '../src/ProcessedStory';
 describe('fromRawStories', () => {
   it('converts an array of raw stories', () => {
     const rawStories = [
-      { name: 'a', kind: 'button' },
-      { name: 'b', kind: 'button' },
+      { name: 'a', kind: 'button', id: 'button--a' },
+      { name: 'b', kind: 'button', id: 'button--b' },
     ];
 
     expect(fromRawStories(rawStories)).toEqual([
@@ -17,7 +17,7 @@ describe('fromRawStories', () => {
             disabledRules: [],
           },
         },
-        uriParams: 'selectedKind=button&selectedStory=a',
+        storybookId: 'button--a',
       },
       {
         componentTitle: 'button',
@@ -28,23 +28,25 @@ describe('fromRawStories', () => {
             disabledRules: [],
           },
         },
-        uriParams: 'selectedKind=button&selectedStory=b',
+        storybookId: 'button--b',
       },
     ]);
   });
 });
 
 describe('fromRawStory', () => {
-  it('uses the id for the uri params if present', () => {
-    const rawStory = { id: 'some-button', name: 'a', kind: 'button' };
-    const processedStory = fromRawStory(rawStory);
-    expect(processedStory.uriParams).toEqual('id=some-button');
-  });
+  describe('storybookId', () => {
+    it('uses the existing id if present', () => {
+      const rawStory = { name: 'a', kind: 'button', id: '666' };
+      const processedStory = fromRawStory(rawStory);
+      expect(processedStory.storybookId).toEqual('666');
+    });
 
-  it('uses the kind and name of the story for the uri params if id is NOT present', () => {
-    const rawStory = { name: 'a', kind: 'button' };
-    const processedStory = fromRawStory(rawStory);
-    expect(processedStory.uriParams).toEqual('selectedKind=button&selectedStory=a');
+    it('constructs an id if not present', () => {
+      const rawStory = { name: 'a', kind: 'button' };
+      const processedStory = fromRawStory(rawStory);
+      expect(processedStory.storybookId).toEqual('button--a');
+    });
   });
 
   describe('parameters', () => {

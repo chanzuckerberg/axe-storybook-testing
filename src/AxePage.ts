@@ -2,33 +2,18 @@ import type { AxeResults, RuleObject, RunOptions } from 'axe-core';
 import type { Page } from 'playwright';
 
 /**
- * Wrapper around a Playwright page that has axe-core injected into it. By using a single instance
- * of this for all tests, we only have to wait to inject axe-core once.
+ * Prepare a page for running axe on it.
  */
-export default class AxePage {
-  initialized = false;
-  page: Page;
+export async function prepare(page: Page): Promise<void> {
+  await page.waitForLoadState();
+  await page.addScriptTag({ path: require.resolve('axe-core') });
+}
 
-  constructor(page: Page) {
-    this.page = page;
-  }
-
-  async initialize() {
-    this.initialized = true;
-    await this.page.waitForLoadState();
-    await this.page.addScriptTag({ path: require.resolve('axe-core') });
-  }
-
-  analyze(disabledRules: string[] = []): Promise<AxeResults> {
-    if (!this.initialized) {
-      return this.initialize().then(() => this.analyze(disabledRules));
-    }
-    return this.page.evaluate(runAxe, getOptions({}, disabledRules));
-  }
-
-  goto(path: string) {
-    return this.page.goto(path);
-  }
+/**
+ * Run axe-core on a page and return the results.
+ */
+export function analyze(page: Page, disabledRules: string[] = []): Promise<AxeResults> {
+  return page.evaluate(runAxe, getOptions({}, disabledRules));
 }
 
 function runAxe(options: RunOptions): Promise<AxeResults> {

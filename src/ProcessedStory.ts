@@ -1,3 +1,4 @@
+import { toId } from '@storybook/csf';
 import type { RawStory } from './RawStory';
 
 /**
@@ -6,13 +7,13 @@ import type { RawStory } from './RawStory';
 export type ProcessedStory = {
   componentTitle: string;
   name: string;
-  uriParams: string;
   parameters: {
     axe: {
       disabled: boolean;
       disabledRules: string[];
     },
   };
+  storybookId: string;
 }
 
 export function fromRawStories(rawStories: RawStory[]): ProcessedStory[] {
@@ -20,21 +21,16 @@ export function fromRawStories(rawStories: RawStory[]): ProcessedStory[] {
 }
 
 export function fromRawStory(rawStory: RawStory): ProcessedStory {
-  const uriParams = rawStory.id
-    ? `id=${encodeURIComponent(rawStory.id)}`
-    : `selectedKind=${encodeURIComponent(rawStory.kind)}` +
-      `&selectedStory=${encodeURIComponent(rawStory.name)}`;
-
   return {
     componentTitle: rawStory.kind,
     name: rawStory.name,
-    uriParams,
     parameters: {
       axe: {
         disabled: getDisabled(rawStory.parameters?.axe?.disabled),
         disabledRules: getDisabledRules(rawStory.parameters?.axe?.disabledRules),
       },
     },
+    storybookId: rawStory.id || toId(rawStory.kind, rawStory.name),
   };
 }
 
