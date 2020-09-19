@@ -16,7 +16,7 @@ export type Result = {
  * These rules aren't useful/helpful in the context of Storybook stories, and we disable them when
  * running Axe.
  */
-const defaultDisabledRules = ['landmark-one-main', 'page-has-heading-one', 'region'];
+const defaultDisabledRules = ['bypass', 'landmark-one-main', 'page-has-heading-one', 'region'];
 
 /**
  * Run Axe on a browser page for a story.
