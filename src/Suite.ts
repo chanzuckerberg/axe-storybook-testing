@@ -12,15 +12,18 @@ import * as Result from './Result';
 const options = Options.parse();
 
 async function writeTests() {
+  // Get a browser page and navigate to Storybook's static iframe.
   const browser = await playwright[options.browser].launch({ headless: options.headless });
   const context = await browser.newContext({ bypassCSP: true });
   const page = await context.newPage();
   await page.goto('file://' + options.iframePath);
 
+  // Load the stories from Storybook's static iframe. Then process and organize them.
   const rawStories = await RawStory.fromPage(page);
   const processedStories = ProcessedStory.fromRawStories(rawStories);
   const storiesByComponent = groupBy(processedStories, 'componentTitle');
 
+  // Get the page ready for running axe on it.
   await AxePage.prepare(page);
 
   describe(`[${options.browser}] accessibility`, function () {
