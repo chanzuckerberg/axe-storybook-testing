@@ -12,5 +12,5 @@ describe('fromIframe', () => {
       { kind: "this is the story's kind", name: "this is the story's name", parameters: {} },
     ]);
     await browser.close();
-  });
+  }, 60000);
 });
