@@ -20,7 +20,7 @@ const defaultDisabledRules = ['landmark-one-main', 'page-has-heading-one', 'regi
 /**
  * Run Axe on a browser page for a story.
  */
-export async function fromStory(story: ProcessedStory, page: Page, iframePath: string): Promise<Result> {
+export async function fromPage(page: Page, story: ProcessedStory, iframePath: string): Promise<Result> {
   await page.goto(`file://${iframePath}?${story.uriParams}`);
 
   const disabledRules = defaultDisabledRules.concat(story.parameters.axe.disabledRules);
