@@ -31,6 +31,7 @@
     "types": "tsc --noEmit"
   },
   "dependencies": {
+    "@storybook/csf": "^0.0.1",
     "axe-core": "4.0.2",
     "lodash": "^4.17.20",
     "mocha": "^8.1.3",

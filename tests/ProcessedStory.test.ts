@@ -10,7 +10,6 @@ describe('fromRawStories', () => {
     expect(fromRawStories(rawStories)).toEqual([
       {
         componentTitle: 'button',
-        id: 'button--a',
         name: 'a',
         parameters: {
           axe: {
@@ -18,10 +17,10 @@ describe('fromRawStories', () => {
             disabledRules: [],
           },
         },
+        storybookId: 'button--a',
       },
       {
         componentTitle: 'button',
-        id: 'button--b',
         name: 'b',
         parameters: {
           axe: {
@@ -29,12 +28,27 @@ describe('fromRawStories', () => {
             disabledRules: [],
           },
         },
+        storybookId: 'button--b',
       },
     ]);
   });
 });
 
 describe('fromRawStory', () => {
+  describe('storybookId', () => {
+    it('uses the existing id if present', () => {
+      const rawStory = { name: 'a', kind: 'button', id: '666' };
+      const processedStory = fromRawStory(rawStory);
+      expect(processedStory.storybookId).toEqual('666');
+    });
+
+    it('constructs an id if not present', () => {
+      const rawStory = { name: 'a', kind: 'button' };
+      const processedStory = fromRawStory(rawStory);
+      expect(processedStory.storybookId).toEqual('button--a');
+    });
+  });
+
   describe('parameters', () => {
     it('adds fallback parameters if none are present', () => {
       const rawStory = { name: 'a', kind: 'button' };
