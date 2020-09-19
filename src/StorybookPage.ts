@@ -3,6 +3,9 @@ import type { ProcessedStory } from './ProcessedStory';
 
 /**
  * Abuse Storybook's internal APIs to render a story without requiring a page reload.
+ *
+ * Doing so is brittle, and updates to Storybook could break this. The trade off is that we don't
+ * have to figure out how to process stories with Webpack - Storybook handles that for us.
  */
 export async function showStory(page: Page, story: ProcessedStory): Promise<void> {
   await page.evaluate((id: string) => {
