@@ -1,4 +1,5 @@
 import { analyze } from './AxePage';
+import { showStory } from './StorybookPage';
 import type { Result as AxeResult, NodeResult } from 'axe-core';
 import type { Page } from 'playwright';
 import type { ProcessedStory } from './ProcessedStory';
@@ -20,8 +21,8 @@ const defaultDisabledRules = ['landmark-one-main', 'page-has-heading-one', 'regi
 /**
  * Run Axe on a browser page for a story.
  */
-export async function fromPage(page: Page, story: ProcessedStory, iframePath: string): Promise<Result> {
-  await page.goto(`file://${iframePath}?${story.uriParams}`);
+export async function fromPage(page: Page, story: ProcessedStory): Promise<Result> {
+  await showStory(page, story);
 
   const disabledRules = defaultDisabledRules.concat(story.parameters.axe.disabledRules);
   const result = await analyze(page, disabledRules);

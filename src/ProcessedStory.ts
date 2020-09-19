@@ -5,8 +5,8 @@ import type { RawStory } from './RawStory';
  */
 export type ProcessedStory = {
   componentTitle: string;
+  id?: string;
   name: string;
-  uriParams: string;
   parameters: {
     axe: {
       disabled: boolean;
@@ -20,15 +20,10 @@ export function fromRawStories(rawStories: RawStory[]): ProcessedStory[] {
 }
 
 export function fromRawStory(rawStory: RawStory): ProcessedStory {
-  const uriParams = rawStory.id
-    ? `id=${encodeURIComponent(rawStory.id)}`
-    : `selectedKind=${encodeURIComponent(rawStory.kind)}` +
-      `&selectedStory=${encodeURIComponent(rawStory.name)}`;
-
   return {
     componentTitle: rawStory.kind,
+    id: rawStory.id,
     name: rawStory.name,
-    uriParams,
     parameters: {
       axe: {
         disabled: getDisabled(rawStory.parameters?.axe?.disabled),

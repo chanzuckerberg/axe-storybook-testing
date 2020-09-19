@@ -3,13 +3,14 @@ import { fromRawStories, fromRawStory } from '../src/ProcessedStory';
 describe('fromRawStories', () => {
   it('converts an array of raw stories', () => {
     const rawStories = [
-      { name: 'a', kind: 'button' },
-      { name: 'b', kind: 'button' },
+      { name: 'a', kind: 'button', id: 'button--a' },
+      { name: 'b', kind: 'button', id: 'button--b' },
     ];
 
     expect(fromRawStories(rawStories)).toEqual([
       {
         componentTitle: 'button',
+        id: 'button--a',
         name: 'a',
         parameters: {
           axe: {
@@ -17,10 +18,10 @@ describe('fromRawStories', () => {
             disabledRules: [],
           },
         },
-        uriParams: 'selectedKind=button&selectedStory=a',
       },
       {
         componentTitle: 'button',
+        id: 'button--b',
         name: 'b',
         parameters: {
           axe: {
@@ -28,25 +29,12 @@ describe('fromRawStories', () => {
             disabledRules: [],
           },
         },
-        uriParams: 'selectedKind=button&selectedStory=b',
       },
     ]);
   });
 });
 
 describe('fromRawStory', () => {
-  it('uses the id for the uri params if present', () => {
-    const rawStory = { id: 'some-button', name: 'a', kind: 'button' };
-    const processedStory = fromRawStory(rawStory);
-    expect(processedStory.uriParams).toEqual('id=some-button');
-  });
-
-  it('uses the kind and name of the story for the uri params if id is NOT present', () => {
-    const rawStory = { name: 'a', kind: 'button' };
-    const processedStory = fromRawStory(rawStory);
-    expect(processedStory.uriParams).toEqual('selectedKind=button&selectedStory=a');
-  });
-
   describe('parameters', () => {
     it('adds fallback parameters if none are present', () => {
       const rawStory = { name: 'a', kind: 'button' };

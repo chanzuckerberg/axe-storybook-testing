@@ -34,7 +34,7 @@ async function writeTests() {
           const testFn = ProcessedStory.isEnabled(story) ? it : it.skip;
 
           testFn(story.name, async function () {
-            const result = await Result.fromPage(page, story, options.iframePath);
+            const result = await Result.fromPage(page, story);
 
             if (result.violations.length === 0) {
               assert.ok('Nice');
