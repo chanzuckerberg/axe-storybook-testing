@@ -1,7 +1,7 @@
 import playwright from 'playwright';
 import { fromPage } from '../src/RawStory';
 
-describe('fromIframe', () => {
+describe('fromPage', () => {
   it('returns the stories from the window', async () => {
     const browser = await playwright.chromium.launch();
     const context = await browser.newContext();
