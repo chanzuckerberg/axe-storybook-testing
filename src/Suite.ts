@@ -15,10 +15,12 @@ async function writeTests() {
   const browser = await playwright[options.browser].launch({ headless: options.headless });
   const context = await browser.newContext({ bypassCSP: true });
   const page = await context.newPage();
-  const axePage = new AxePage(page);
-  const rawStories = await RawStory.fromIframe(options.iframePath, page);
+  await page.goto('file://' + options.iframePath);
+
+  const rawStories = await RawStory.fromPage(page);
   const processedStories = ProcessedStory.fromRawStories(rawStories);
   const storiesByComponent = groupBy(processedStories, 'componentTitle');
+  const axePage = new AxePage(page);
 
   describe(`[${options.browser}] accessibility`, function () {
     after(async function () {

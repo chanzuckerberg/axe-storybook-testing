@@ -1,4 +1,4 @@
-import playwright from 'playwright';
+import type { Page } from 'playwright';
 
 /**
  * Storybook's internal representation of a story. Has only the properties we need.
@@ -20,9 +20,7 @@ export type RawStory = {
  *
  * Works by opening Storybook's iframe and reading data Storybook attaches to the window.
  */
-export async function fromIframe(iframePath: string, page: playwright.Page): Promise<RawStory[]> {
-  await page.goto('file://' + iframePath);
-
+export async function fromPage(page: Page): Promise<RawStory[]> {
   const rawStories = await page.evaluate(fetchStoriesFromWindow) as RawStory[];
 
   if (!rawStories) {
