@@ -12,5 +12,9 @@ describe('fromPage', () => {
       { kind: "this is the story's kind", name: "this is the story's name", parameters: {} },
     ]);
     await browser.close();
+
+  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+  // @ts-ignore TypeScript thinks these tests are Mocha, not Jest. Until we can figure out how to
+  // get nested tsconfigs working with tsc, I'm manually ignoring the error.
   }, 60000);
 });
