@@ -28,6 +28,7 @@
     "lint": "eslint --ext=js,jsx,ts,tsx .",
     "prebuild": "yarn clean",
     "prepublishOnly": "yarn build",
+    "pretest:integration": "yarn build",
     "test": "jest tests/unit",
     "test:integration": "jest tests/integration",
     "types": "tsc --noEmit"
