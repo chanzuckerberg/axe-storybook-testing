@@ -30,7 +30,8 @@
     "prepublishOnly": "yarn build",
     "pretest:integration": "yarn build",
     "test": "jest tests/unit",
-    "test:integration": "jest tests/integration",
+    "test:integration": "yarn test:integrationOnly",
+    "test:integrationOnly": "jest tests/integration",
     "types": "tsc --noEmit"
   },
   "dependencies": {
