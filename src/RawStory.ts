@@ -21,7 +21,7 @@ export type RawStory = {
  * Works by opening Storybook's iframe and reading data Storybook attaches to the window.
  */
 export async function fromPage(page: Page): Promise<RawStory[]> {
-  const rawStories = await page.evaluate(fetchStoriesFromWindow) as RawStory[];
+  const rawStories = await page.evaluate(fetchStoriesFromWindow);
 
   if (!rawStories) {
     throw new Error('Storybook object not found on window. Open your storybook and check the console for errors.');
@@ -30,7 +30,7 @@ export async function fromPage(page: Page): Promise<RawStory[]> {
   return rawStories;
 }
 
-function fetchStoriesFromWindow() {
+function fetchStoriesFromWindow(): Promise<RawStory[]> {
   return new Promise((resolve, reject) => {
     const storybookClientAPIKey = '__STORYBOOK_CLIENT_API__';
 
