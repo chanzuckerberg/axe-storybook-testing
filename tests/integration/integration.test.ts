@@ -12,8 +12,9 @@ it('outputs accessibility violation information for the demo app', (done) => {
   expect.assertions(2);
 
   exec('yarn --cwd demo storybook:axe-no-build', function (error, stdout) {
+    const normalizedStdout = normalize(stdout);
     expect(error!.code).toEqual(1);
-    expect(stdout).toMatchSnapshot();
+    expect(normalizedStdout).toMatchSnapshot();
     done();
   });
 
@@ -21,3 +22,16 @@ it('outputs accessibility violation information for the demo app', (done) => {
   // @ts-ignore TypeScript thinks these tests are Mocha, not Jest. Until we can figure out how to
   // get nested tsconfigs working with tsc, I'm manually ignoring the error.
 }, 120000);
+
+/**
+ * Remove items from a string that are specific to a test run or environment, such as timing
+ * information and file-system paths. That way, we can snapshot test effectively.
+ */
+function normalize(input: string) {
+  const specTimePattern = /\(\d+ms\)/g;
+  const cwdPattern = new RegExp(process.cwd(), 'g');
+
+  return input
+    .replace(specTimePattern, '(666ms)')
+    .replace(cwdPattern, '');
+}

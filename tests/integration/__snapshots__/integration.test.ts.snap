@@ -6,21 +6,21 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
 
   [chromium] accessibility
     button
-      ✓ Button with text (should pass) (86ms)
-      ✓ Button with emoji and label (should pass) (67ms)
+      ✓ Button with text (should pass) (666ms)
+      ✓ Button with emoji and label (should pass) (666ms)
       1) Button with no discernible text (should fail)
       2) Button with insufficient color contrast (should fail)
       - Button with insufficient color contrast but skipped (should pass)
       3) Multiple buttons with insufficient color contrast (should fail)
     input
-      ✓ Input with label (should pass) (55ms)
+      ✓ Input with label (should pass) (666ms)
       4) Input without label (should fail)
       - Input without label but skipped (should pass)
       5) Input without label and invalid role (should fail)
-      ✓ Input without label but \\"label\\" rule is disabled (should pass) (46ms)
+      ✓ Input without label but \\"label\\" rule is disabled (should pass) (666ms)
 
 
-  4 passing (524ms)
+  4 passing (666ms)
   2 pending
   5 failing
 
@@ -45,7 +45,7 @@ Detected the following accessibility violations!
                 Element's default semantics were not overridden with role=\\"none\\"
                 Element has no title attribute or the title attribute is empty
 
-      at Context.<anonymous> (/Users/ahuth/workspace/axe-storybook/build/Suite.js:60:31)
+      at Context.<anonymous> (/build/Suite.js:60:31)
 
   2) [chromium] accessibility
        button
@@ -63,7 +63,7 @@ Detected the following accessibility violations!
      summary: Fix any of the following:
                 Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
 
-      at Context.<anonymous> (/Users/ahuth/workspace/axe-storybook/build/Suite.js:60:31)
+      at Context.<anonymous> (/build/Suite.js:60:31)
 
   3) [chromium] accessibility
        button
@@ -85,7 +85,7 @@ Detected the following accessibility violations!
      summary: Fix any of the following:
                 Element has insufficient color contrast of 1.24 (foreground color: #32cd32, background color: #ff69b4, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
 
-      at Context.<anonymous> (/Users/ahuth/workspace/axe-storybook/build/Suite.js:60:31)
+      at Context.<anonymous> (/build/Suite.js:60:31)
 
   4) [chromium] accessibility
        input
@@ -109,7 +109,7 @@ Detected the following accessibility violations!
                 Element's default semantics were not overridden with role=\\"none\\"
                 Element's default semantics were not overridden with role=\\"presentation\\"
 
-      at Context.<anonymous> (/Users/ahuth/workspace/axe-storybook/build/Suite.js:60:31)
+      at Context.<anonymous> (/build/Suite.js:60:31)
 
   5) [chromium] accessibility
        input
@@ -143,7 +143,7 @@ Detected the following accessibility violations!
                 Element's default semantics were not overridden with role=\\"none\\"
                 Element's default semantics were not overridden with role=\\"presentation\\"
 
-      at Context.<anonymous> (/Users/ahuth/workspace/axe-storybook/build/Suite.js:60:31)
+      at Context.<anonymous> (/build/Suite.js:60:31)
 
 
 
