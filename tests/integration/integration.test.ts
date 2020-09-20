@@ -28,15 +28,15 @@ it('outputs accessibility violation information for the demo app', (done) => {
  * information and file-system paths. That way, we can snapshot test effectively.
  */
 function normalize(input: string) {
-  /** Test times reported by Mocha. For example, `(520ms)` */
-  const specTimePattern = /\(\d+ms\)/g;
+  /** Test times reported by Mocha. For example, `(520ms)` or `(3s)` */
+  const specTimePattern = /\(\d+m?s\)/g;
   /** File system paths. For example, `/path/to/some/file */
   const cwdPattern = new RegExp(process.cwd(), 'g');
   /** Line numbers from stack trace paths. For example, `.js:20:55` */
   const lineNumbersPattern = /\.js:\d+:\d+/g;
 
   return input
-    .replace(specTimePattern, '(666ms)')
+    .replace(specTimePattern, '')
     .replace(cwdPattern, '')
     .replace(lineNumbersPattern, '.js');
 }

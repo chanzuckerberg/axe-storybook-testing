@@ -6,21 +6,21 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
 
   [chromium] accessibility
     button
-      ✓ Button with text (should pass) (666ms)
-      ✓ Button with emoji and label (should pass) (666ms)
+      ✓ Button with text (should pass) 
+      ✓ Button with emoji and label (should pass) 
       1) Button with no discernible text (should fail)
       2) Button with insufficient color contrast (should fail)
       - Button with insufficient color contrast but skipped (should pass)
       3) Multiple buttons with insufficient color contrast (should fail)
     input
-      ✓ Input with label (should pass) (666ms)
+      ✓ Input with label (should pass) 
       4) Input without label (should fail)
       - Input without label but skipped (should pass)
       5) Input without label and invalid role (should fail)
-      ✓ Input without label but \\"label\\" rule is disabled (should pass) (666ms)
+      ✓ Input without label but \\"label\\" rule is disabled (should pass) 
 
 
-  4 passing (666ms)
+  4 passing 
   2 pending
   5 failing
 
