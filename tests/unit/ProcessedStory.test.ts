@@ -1,4 +1,4 @@
-import { fromRawStories, fromRawStory } from '../src/ProcessedStory';
+import { fromRawStories, fromRawStory } from '../../src/ProcessedStory';
 
 describe('fromRawStories', () => {
   it('converts an array of raw stories', () => {
