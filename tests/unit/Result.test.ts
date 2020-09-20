@@ -1,5 +1,5 @@
 import dedent from 'ts-dedent';
-import { formatViolations, isPassing, Result } from '../src/Result';
+import { formatViolations, isPassing, Result } from '../../src/Result';
 
 describe('isPassing', () => {
   it('returns true when there are no violations', () => {

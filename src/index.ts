@@ -3,7 +3,7 @@ import Mocha from 'mocha';
 export async function run() {
   const mocha = new Mocha({
     delay: true,
-    reporter: 'list',
+    reporter: 'spec',
   });
 
   mocha.addFile(require.resolve('./Suite'));

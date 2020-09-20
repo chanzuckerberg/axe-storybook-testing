@@ -1,5 +1,5 @@
 import playwright from 'playwright';
-import { fromPage } from '../src/RawStory';
+import { fromPage } from '../../src/RawStory';
 
 describe('fromPage', () => {
   it('returns the stories from the window', async () => {

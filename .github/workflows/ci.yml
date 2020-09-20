@@ -1,11 +1,11 @@
 name: Tests
-on: [push, pull_request]
+on: [push]
 jobs:
   build:
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
-        os: [ubuntu-18.04, windows-2019, macos-10.15]
+        os: [ubuntu-18.04, macos-10.15]
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -22,3 +22,7 @@ jobs:
         run: yarn types
       - name: Unit Tests
         run: yarn test
+      - name: Prepare for Integration Tests
+        run: yarn demo:install && yarn demo:link && yarn demo:build
+      - name: Integration Tests
+        run: yarn test:integrationOnly
