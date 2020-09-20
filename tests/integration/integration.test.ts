@@ -30,8 +30,10 @@ it('outputs accessibility violation information for the demo app', (done) => {
 function normalize(input: string) {
   const specTimePattern = /\(\d+ms\)/g;
   const cwdPattern = new RegExp(process.cwd(), 'g');
+  const lineNumbersPattern = /\.js:\d+:\d+/g;
 
   return input
     .replace(specTimePattern, '(666ms)')
-    .replace(cwdPattern, '');
+    .replace(cwdPattern, '')
+    .replace(lineNumbersPattern, '.js');
 }

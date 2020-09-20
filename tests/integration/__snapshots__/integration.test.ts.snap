@@ -45,7 +45,7 @@ Detected the following accessibility violations!
                 Element's default semantics were not overridden with role=\\"none\\"
                 Element has no title attribute or the title attribute is empty
 
-      at Context.<anonymous> (/build/Suite.js:60:31)
+      at Context.<anonymous> (/build/Suite.js)
 
   2) [chromium] accessibility
        button
@@ -63,7 +63,7 @@ Detected the following accessibility violations!
      summary: Fix any of the following:
                 Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
 
-      at Context.<anonymous> (/build/Suite.js:60:31)
+      at Context.<anonymous> (/build/Suite.js)
 
   3) [chromium] accessibility
        button
@@ -85,7 +85,7 @@ Detected the following accessibility violations!
      summary: Fix any of the following:
                 Element has insufficient color contrast of 1.24 (foreground color: #32cd32, background color: #ff69b4, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
 
-      at Context.<anonymous> (/build/Suite.js:60:31)
+      at Context.<anonymous> (/build/Suite.js)
 
   4) [chromium] accessibility
        input
@@ -109,7 +109,7 @@ Detected the following accessibility violations!
                 Element's default semantics were not overridden with role=\\"none\\"
                 Element's default semantics were not overridden with role=\\"presentation\\"
 
-      at Context.<anonymous> (/build/Suite.js:60:31)
+      at Context.<anonymous> (/build/Suite.js)
 
   5) [chromium] accessibility
        input
@@ -143,7 +143,7 @@ Detected the following accessibility violations!
                 Element's default semantics were not overridden with role=\\"none\\"
                 Element's default semantics were not overridden with role=\\"presentation\\"
 
-      at Context.<anonymous> (/build/Suite.js:60:31)
+      at Context.<anonymous> (/build/Suite.js)
 
 
 
