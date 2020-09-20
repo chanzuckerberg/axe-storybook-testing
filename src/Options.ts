@@ -9,7 +9,7 @@ const options = {
     description: 'Which browser to run in. Should be one of: chromium, webkit, firefox',
     type: 'string' as const,
   },
-  build_dir: {
+  'build-dir': {
     alias: 'b',
     default: 'storybook-static',
     description: 'Directory to load the static storybook built by build-storybook from',
@@ -33,7 +33,7 @@ export function parse() {
 
   return {
     browser: getBrowser(argv.browser),
-    iframePath: getIframePath(argv.build_dir),
+    iframePath: getIframePath(argv['build-dir']),
     headless: argv.headless,
   };
 }
