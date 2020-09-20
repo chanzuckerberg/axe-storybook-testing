@@ -22,3 +22,7 @@ jobs:
         run: yarn types
       - name: Unit Tests
         run: yarn test
+      - name: Prepare for Integration Tests
+        run: yarn demo:install && yarn demo:link && yarn demo:build
+      - name: Integration Tests
+        run: yarn test:integration

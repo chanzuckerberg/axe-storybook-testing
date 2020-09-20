@@ -6,8 +6,9 @@ const exec = promisify(childProcess.exec);
 // Before running these integration tests, the following steps must be completed:
 //
 // 1. yarn build
-// 2. yarn demo:link
-// 3. yarn demo:build
+// 2. yarn demo:install
+// 3. yarn demo:link
+// 4. yarn demo:build
 
 it('outputs accessibility violation information for the demo app', () => {
   expect.assertions(1);
