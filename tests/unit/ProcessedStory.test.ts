@@ -1,13 +1,13 @@
-import { fromRawStories, fromRawStory } from '../../src/ProcessedStory';
+import { fromStories, fromStory } from '../../src/ProcessedStory';
 
-describe('fromRawStories', () => {
+describe('fromStories', () => {
   it('converts an array of raw stories', () => {
     const rawStories = [
-      { name: 'a', kind: 'button', id: 'button--a' },
-      { name: 'b', kind: 'button', id: 'button--b' },
+      { name: 'a', kind: 'button', id: 'button--a', parameters: {} },
+      { name: 'b', kind: 'button', id: 'button--b', parameters: {} },
     ];
 
-    expect(fromRawStories(rawStories)).toEqual([
+    expect(fromStories(rawStories)).toEqual([
       {
         componentTitle: 'button',
         name: 'a',
@@ -34,25 +34,11 @@ describe('fromRawStories', () => {
   });
 });
 
-describe('fromRawStory', () => {
-  describe('storybookId', () => {
-    it('uses the existing id if present', () => {
-      const rawStory = { name: 'a', kind: 'button', id: '666' };
-      const processedStory = fromRawStory(rawStory);
-      expect(processedStory.storybookId).toEqual('666');
-    });
-
-    it('constructs an id if not present', () => {
-      const rawStory = { name: 'a', kind: 'button' };
-      const processedStory = fromRawStory(rawStory);
-      expect(processedStory.storybookId).toEqual('button--a');
-    });
-  });
-
+describe('fromStory', () => {
   describe('parameters', () => {
     it('adds fallback parameters if none are present', () => {
-      const rawStory = { name: 'a', kind: 'button' };
-      const processedStory = fromRawStory(rawStory);
+      const rawStory = { id: 'button--a', kind: 'button', name: 'a', parameters: {} };
+      const processedStory = fromStory(rawStory);
       expect(processedStory.parameters).toEqual({
         axe: {
           disabled: false,
@@ -63,8 +49,9 @@ describe('fromRawStory', () => {
 
     it('it uses axe parameters present on the story', () => {
       const rawStory = {
-        name: 'a',
+        id: 'button--a',
         kind: 'button',
+        name: 'a',
         parameters: {
           axe: {
             disabled: true,
@@ -73,7 +60,7 @@ describe('fromRawStory', () => {
         },
       };
 
-      const processedStory = fromRawStory(rawStory);
+      const processedStory = fromStory(rawStory);
 
       expect(processedStory.parameters).toEqual({
         axe: {
@@ -85,8 +72,9 @@ describe('fromRawStory', () => {
 
     it('throws an error if the axe parameters are invalid', () => {
       const rawStory = {
-        name: 'a',
+        id: 'button--a',
         kind: 'button',
+        name: 'a',
         parameters: {
           axe: {
             disabled: 'wut',
@@ -95,7 +83,7 @@ describe('fromRawStory', () => {
         },
       };
 
-      expect(() => fromRawStory(rawStory)).toThrow("Given disabled option 'wut' is invalid");
+      expect(() => fromStory(rawStory)).toThrow("Given disabled option 'wut' is invalid");
     });
   });
 });

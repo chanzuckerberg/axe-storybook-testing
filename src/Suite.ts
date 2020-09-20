@@ -6,8 +6,8 @@ import playwright from 'playwright';
 import * as AxePage from './AxePage';
 import * as Options from './Options';
 import * as ProcessedStory from './ProcessedStory';
-import * as RawStory from './RawStory';
 import * as Result from './Result';
+import * as StorybookPage from './StorybookPage';
 
 const options = Options.parse();
 
@@ -19,8 +19,8 @@ async function writeTests() {
   await page.goto('file://' + options.iframePath);
 
   // Load the stories from Storybook's static iframe. Then process and organize them.
-  const rawStories = await RawStory.fromPage(page);
-  const processedStories = ProcessedStory.fromRawStories(rawStories);
+  const rawStories = await StorybookPage.getStories(page);
+  const processedStories = ProcessedStory.fromStories(rawStories);
   const storiesByComponent = groupBy(processedStories, 'componentTitle');
 
   // Get the page ready for running axe on it.

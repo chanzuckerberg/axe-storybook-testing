@@ -1,11 +1,62 @@
 import type { Page } from 'playwright';
 import type { ProcessedStory } from './ProcessedStory';
+import type { ClientApi, StoreItem } from '@storybook/client-api';
+
+/**
+ * Storybook's internal representation of a story.
+ */
+export type StorybookStory = Pick<StoreItem, 'id' | 'kind' | 'name' | 'parameters'>;
+
+/**
+ * Get the list of stories from a static storybook build.
+ */
+export async function getStories(page: Page): Promise<StorybookStory[]> {
+  const rawStories = await page.evaluate(fetchStoriesFromWindow);
+
+  if (!rawStories) {
+    throw new Error('Storybook object not found on window. Open your storybook and check the console for errors.');
+  }
+
+  return rawStories;
+}
 
 /**
  * Render a story on a Storybook page.
  */
 export async function showStory(page: Page, story: ProcessedStory): Promise<void> {
   await page.evaluate(emitSetCurrentStory, story.storybookId);
+}
+
+/**
+ * Get a list of stories from Storybook's internal API.
+ */
+function fetchStoriesFromWindow(): Promise<StoreItem[]> {
+  return new Promise((resolve, reject) => {
+    // Check if the window has stories every 100ms for up to 10 seconds.
+    // This allows 10 seconds for any async pre-tasks (like fetch) to complete.
+    // Usually stories will be found on the first loop.
+    function checkStories(timesCalled: number) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore This function executes in a browser context.
+      const storybookClientApi = window.__STORYBOOK_CLIENT_API__ as ClientApi;
+
+      if (storybookClientApi) {
+        resolve(storybookClientApi.raw());
+      } else if (timesCalled < 100) {
+        // Stories not found yet, try again 100ms from now
+        setTimeout(() => {
+          checkStories(timesCalled + 1);
+        }, 100);
+      } else {
+        reject(new Error(
+          'Storybook object not found on window. ' +
+          'Open your storybook and check the console for errors.',
+        ));
+      }
+    }
+
+    checkStories(0);
+  });
 }
 
 /**
@@ -18,7 +69,7 @@ export async function showStory(page: Page, story: ProcessedStory): Promise<void
 function emitSetCurrentStory(id: string) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore This function executes in a browser context.
-  const storybookClientApi = window.__STORYBOOK_CLIENT_API__;
+  const storybookClientApi = window.__STORYBOOK_CLIENT_API__ as ClientApi;
 
   if (!storybookClientApi) {
     return Promise.reject(new Error("Storybook doesn't seem to be running on the page"));

@@ -1,8 +1,7 @@
-import { toId } from '@storybook/csf';
-import type { RawStory } from './RawStory';
+import type { StorybookStory } from './StorybookPage';
 
 /**
- * Story with normalized and custom properties needed by axe-storybook.
+ * Story with normalized and custom properties needed by this project.
  */
 export type ProcessedStory = {
   componentTitle: string;
@@ -16,11 +15,11 @@ export type ProcessedStory = {
   storybookId: string;
 }
 
-export function fromRawStories(rawStories: RawStory[]): ProcessedStory[] {
-  return rawStories.map(fromRawStory);
+export function fromStories(rawStories: StorybookStory[]): ProcessedStory[] {
+  return rawStories.map(fromStory);
 }
 
-export function fromRawStory(rawStory: RawStory): ProcessedStory {
+export function fromStory(rawStory: StorybookStory): ProcessedStory {
   return {
     componentTitle: rawStory.kind,
     name: rawStory.name,
@@ -30,7 +29,7 @@ export function fromRawStory(rawStory: RawStory): ProcessedStory {
         disabledRules: getDisabledRules(rawStory.parameters?.axe?.disabledRules),
       },
     },
-    storybookId: rawStory.id || toId(rawStory.kind, rawStory.name),
+    storybookId: rawStory.id,
   };
 }
 
