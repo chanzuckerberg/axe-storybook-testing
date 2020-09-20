@@ -9,12 +9,14 @@ import { exec } from 'child_process';
 // 4. yarn demo:build
 
 it('outputs accessibility violation information for the demo app', (done) => {
-  expect.assertions(2);
+  expect.assertions(3);
 
-  exec('yarn --cwd demo storybook:axe-no-build', function (error, stdout) {
+  exec('yarn --cwd demo storybook:axe-no-build', function (error, stdout, stderr) {
     const normalizedStdout = normalize(stdout);
+    const normalizedStderr = normalize(stderr);
     expect(error!.code).toEqual(1);
     expect(normalizedStdout).toMatchSnapshot();
+    expect(normalizedStderr).toMatchSnapshot();
     done();
   });
 
