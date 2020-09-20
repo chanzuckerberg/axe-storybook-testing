@@ -1,26 +1,26 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`outputs accessibility violation information 1`] = `
+exports[`outputs accessibility violation information for the demo app 1`] = `
 "$ axe-storybook
 
 
   [chromium] accessibility
     button
-      ✓ Button with text (should pass) (98ms)
-      ✓ Button with emoji and label (should pass) (77ms)
+      ✓ Button with text (should pass) (86ms)
+      ✓ Button with emoji and label (should pass) (67ms)
       1) Button with no discernible text (should fail)
       2) Button with insufficient color contrast (should fail)
       - Button with insufficient color contrast but skipped (should pass)
       3) Multiple buttons with insufficient color contrast (should fail)
     input
-      ✓ Input with label (should pass) (56ms)
+      ✓ Input with label (should pass) (55ms)
       4) Input without label (should fail)
       - Input without label but skipped (should pass)
       5) Input without label and invalid role (should fail)
-      ✓ Input without label but \\"label\\" rule is disabled (should pass) (57ms)
+      ✓ Input without label but \\"label\\" rule is disabled (should pass) (46ms)
 
 
-  4 passing (570ms)
+  4 passing (524ms)
   2 pending
   5 failing
 

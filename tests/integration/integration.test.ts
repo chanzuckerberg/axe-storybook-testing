@@ -1,7 +1,5 @@
-import childProcess from 'child_process';
-import { promisify } from 'util';
-
-const exec = promisify(childProcess.exec);
+/* eslint-disable @typescript-eslint/no-non-null-assertion */
+import { exec } from 'child_process';
 
 // Before running these integration tests, the following steps must be completed:
 //
@@ -10,11 +8,13 @@ const exec = promisify(childProcess.exec);
 // 3. yarn demo:link
 // 4. yarn demo:build
 
-it('outputs accessibility violation information for the demo app', () => {
-  expect.assertions(1);
+it('outputs accessibility violation information for the demo app', (done) => {
+  expect.assertions(2);
 
-  return exec('yarn --cwd demo storybook:axe-no-build').catch((output) => {
-    expect(output.stdout).toMatchSnapshot();
+  exec('yarn --cwd demo storybook:axe-no-build', function (error, stdout) {
+    expect(error!.code).toEqual(1);
+    expect(stdout).toMatchSnapshot();
+    done();
   });
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
