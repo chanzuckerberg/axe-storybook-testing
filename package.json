@@ -1,5 +1,5 @@
 {
-  "name": "@chanzuckerberg/axe-storybook",
+  "name": "@chanzuckerberg/axe-storybook-testing",
   "version": "1.1.0",
   "license": "MIT",
   "engines": {
@@ -22,9 +22,9 @@
     "demo": "yarn build && yarn --cwd demo storybook:axe",
     "demo:build": "yarn --cwd demo build-storybook",
     "demo:install": "yarn --cwd demo install",
-    "demo:link": "yarn link && yarn --cwd demo link @chanzuckerberg/axe-storybook",
+    "demo:link": "yarn link && yarn --cwd demo link @chanzuckerberg/axe-storybook-testing",
     "demo:storybook": "yarn --cwd demo storybook",
-    "demo:unlink": "yarn --cwd demo unlink @chanzuckerberg/axe-storybook && yarn unlink",
+    "demo:unlink": "yarn --cwd demo unlink @chanzuckerberg/axe-storybook-testing && yarn unlink",
     "lint": "eslint --ext=js,jsx,ts,tsx .",
     "prebuild": "yarn clean",
     "prepublishOnly": "yarn build",

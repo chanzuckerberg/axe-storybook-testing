@@ -1,6 +1,6 @@
-# @chanzuckerberg/axe-storybook
+# @chanzuckerberg/axe-storybook-testing
 
-[![Package Status](https://img.shields.io/npm/v/@chanzuckerberg/axe-storybook.svg)](https://www.npmjs.com/package/@chanzuckerberg/axe-storybook) ![Tests](https://github.com/chanzuckerberg/axe-storybook/workflows/Tests/badge.svg)
+[![Package Status](https://img.shields.io/npm/v/@chanzuckerberg/axe-storybook-testing.svg)](https://www.npmjs.com/package/@chanzuckerberg/axe-storybook-testing) ![Tests](https://github.com/chanzuckerberg/axe-storybook-testing/workflows/Tests/badge.svg)
 
 Command-line interface for running accessibility checks via [axe-core](https://github.com/dequelabs/axe-core) on your [Storybook stories](https://storybook.js.org/docs/react/api/csf).
 
@@ -23,13 +23,13 @@ First, install the package
 
 ```sh
 # via npm
-npm install --save-dev @chanzuckerberg/axe-storybook
+npm install --save-dev @chanzuckerberg/axe-storybook-testing
 
 # or, if using Yarn
-yarn add --dev @chanzuckerberg/axe-storybook
+yarn add --dev @chanzuckerberg/axe-storybook-testing
 ```
 
-Second, add a script to your package.json that executes Storybook's `build-storybook` command and runs axe-storybook
+Second, add a script to your package.json that executes Storybook's `build-storybook` command and runs axe-storybook-testing's `axe-storybook` command
 
 ```json
 // In package.json
@@ -72,11 +72,11 @@ yarn storybook:axe --headless false --browser firefox
 
 ## Configuring stories
 
-Stories can use parameters to configure how axe-storybook handles them.
+Stories can use parameters to configure how axe-storybook-testing handles them.
 
 ### disabled
 
-Prevent axe-storybook from running a story by using the `disabled` parameter.
+Prevent axe-storybook-testing from running a story by using the `disabled` parameter.
 
 ```jsx
 SomeStory.parameters = {
@@ -88,7 +88,7 @@ SomeStory.parameters = {
 
 ### disabledRules
 
-Prevent axe-storybook from running specific Axe rules on a story by using the `disabledRules` parameter.
+Prevent axe-storybook-testing from running specific Axe rules on a story by using the `disabledRules` parameter.
 
 ```jsx
 SomeStory.parameters = {
