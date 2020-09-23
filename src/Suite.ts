@@ -13,7 +13,15 @@ const options = Options.parse();
 
 async function writeTests() {
   // Get a browser page and navigate to Storybook's static iframe.
-  const browser = await playwright[options.browser].launch({ headless: options.headless });
+  const browser = await playwright[options.browser].launch({
+    headless: options.headless,
+    args: [
+      // Force the `prefers-reduced-motion` media query to be true in Chromium. This will prevent
+      // animations (that respect the media query) from causing flaky or failing tests due to the
+      // animation. Only works in Chromium, currently.
+      '--force-prefers-reduced-motion',
+    ],
+  });
   const context = await browser.newContext({ bypassCSP: true });
   const page = await context.newPage();
   await page.goto('file://' + options.iframePath);
