@@ -78,14 +78,12 @@ function addPromiseQueue() {
 
       this.working = true;
       nextPromise.promiseCreator()
-        .then((value) => {
+        .then(
+          nextPromise.resolve,
+          nextPromise.reject,
+        )
+        .finally(() => {
           this.working = false;
-          nextPromise.resolve(value);
-          this.dequeue();
-        })
-        .catch((reason) => {
-          this.working = false;
-          nextPromise.reject(reason);
           this.dequeue();
         });
     }
