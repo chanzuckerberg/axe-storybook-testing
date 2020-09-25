@@ -2,24 +2,21 @@
 
 [![Package Status](https://img.shields.io/npm/v/@chanzuckerberg/axe-storybook-testing.svg)](https://www.npmjs.com/package/@chanzuckerberg/axe-storybook-testing) ![Tests](https://github.com/chanzuckerberg/axe-storybook-testing/workflows/Tests/badge.svg)
 
-Command-line interface for running accessibility checks via [axe-core](https://github.com/dequelabs/axe-core) on your [Storybook stories](https://storybook.js.org/docs/react/api/csf).
+Command line interface for running accessibility tests (using [axe-core](https://github.com/dequelabs/axe-core)) on your [Storybook stories](https://storybook.js.org/docs/react/api/csf).
 
-If there are any violations, information about them will be printed and the command will exit with a non-zero exit code. That way, you can use this as automated accessibility tests on CI.
-
-Originally based on [@percy/storybook](https://github.com/percy/percy-storybook).
+If there are any violations, information about them will be printed, and the command will exit with a non-zero exit code. That way, you can use this as automated accessibility tests on CI.
 
 ## Project goals
 
 These will be used to determine development work and direction, and triage bugs and pull requests.
 
 1. Run axe-core on Storybook stories written in [Component Story Format](https://storybook.js.org/docs/react/api/csf).
-2. Be human readable on local machines (in other words, useful outside of a CI).
-3. Have reasonable performance. It doesn't have to maximize speed in every possible way, but needs to be fast enough that people will actually use it.
-4. Allow configuration of axe rules, so that people can fit the tool to their needs.
+2. Run on CI as automated accessibility tests.
+3. Also be useful for humans to run on local machines.
+3. Have reasonable performance. It doesn't have to maximize speed, but needs to be fast enough that people will actually use it.
+4. Allow people to adopt incrementally. For example, by allowing rules to be disabled.
 
 ## Installation
-
-First, install the package
 
 ```sh
 # via npm
@@ -29,7 +26,11 @@ npm install --save-dev @chanzuckerberg/axe-storybook-testing
 yarn add --dev @chanzuckerberg/axe-storybook-testing
 ```
 
-Second, add a script to your package.json that executes Storybook's `build-storybook` command and runs axe-storybook-testing's `axe-storybook` command
+## Usage
+
+This package works by analyzing the static files that Storybook produces. Therefore, Storybook's build command must be ran first.
+
+To make this as easy as possible to use, we recommend adding a script to your package.json that builds Storybook and then executes the `axe-storybook` command.
 
 ```json
 // In package.json
@@ -38,9 +39,7 @@ Second, add a script to your package.json that executes Storybook's `build-story
 },
 ```
 
-## Usage
-
-Assuming you've added the script in the install section above, you'll run this application with
+Then you can run the tests with
 
 ```sh
 # If using npm
@@ -56,9 +55,9 @@ The command-line interface has the following options.
 
 Option|Default|Type|Description
 -|-|-|-
-`--browser`|`chromium`|chromium, firefox, or webkit|Which browser to run the tests in.
-`--build-dir`|`storybook-static`|string|Storybook static build directory.
-`--headless`|`true`|boolean|Whether to run headlessly or not.
+`--browser`|`chromium`|chromium, firefox, or webkit|Which browser to run the tests in
+`--build-dir`|`storybook-static`|string|Storybook static build directory
+`--headless`|`true`|boolean|Whether to run headlessly or not
 
 For example, to run non-headlessly on Firefox, you would run
 
@@ -97,3 +96,7 @@ SomeStory.parameters = {
   },
 };
 ```
+
+## Inspiration
+
+This project was originally based on [@percy/storybook](https://github.com/percy/percy-storybook).
