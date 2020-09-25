@@ -23,6 +23,6 @@ jobs:
       - name: Unit Tests
         run: yarn test:unit
       - name: Prepare for Integration Tests
-        run: yarn demo:install && yarn demo:link && yarn demo:build
+        run: yarn demo:setup
       - name: Integration Tests
         run: yarn test:integrationOnly

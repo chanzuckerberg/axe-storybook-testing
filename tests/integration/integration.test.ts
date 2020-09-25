@@ -3,10 +3,9 @@ import { exec } from 'child_process';
 
 // Before running these integration tests, the following steps must be completed:
 //
-// 1. yarn build
-// 2. yarn demo:install
-// 3. yarn demo:link
-// 4. yarn demo:build
+// 1. `yarn demo:setup` - only needs to be ran when initially setting up the repo, or when changing
+//                        the demo app.
+// 2. `yarn build` - automatically ran by the pretest:integration step.
 
 it('outputs accessibility violation information for the demo app', (done) => {
   expect.assertions(3);
