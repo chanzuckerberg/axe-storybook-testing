@@ -21,7 +21,7 @@ jobs:
       - name: Typecheck
         run: yarn types
       - name: Unit Tests
-        run: yarn test
+        run: yarn test:unit
       - name: Prepare for Integration Tests
         run: yarn demo:install && yarn demo:link && yarn demo:build
       - name: Integration Tests
