@@ -47,8 +47,8 @@ async function writeTests() {
           testFn(story.name, async function () {
             const result = await Result.fromPage(page, story);
 
-            if (result.violations.length === 0) {
-              assert.ok('Nice');
+            if (Result.isPassing(result)) {
+              assert.ok(true);
             } else {
               assert.fail('\n' + Result.formatViolations(result));
             }
