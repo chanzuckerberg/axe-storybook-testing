@@ -2,7 +2,7 @@ import { analyze } from './AxePage';
 import { showStory } from './StorybookPage';
 import type { Result as AxeResult, NodeResult } from 'axe-core';
 import type { Page } from 'playwright';
-import type { ProcessedStory } from './ProcessedStory';
+import { getDisabledRules, ProcessedStory } from './ProcessedStory';
 
 /**
  * Violations reported by Axe for a story.
@@ -24,7 +24,8 @@ const defaultDisabledRules = ['bypass', 'landmark-one-main', 'page-has-heading-o
 export async function fromPage(page: Page, story: ProcessedStory): Promise<Result> {
   await showStory(page, story);
 
-  const disabledRules = defaultDisabledRules.concat(story.parameters.axe.disabledRules);
+  const storyDisabledRules = getDisabledRules(story);
+  const disabledRules = [...defaultDisabledRules, ...storyDisabledRules];
   const result = await analyze(page, disabledRules);
 
   return {
