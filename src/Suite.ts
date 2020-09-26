@@ -31,10 +31,11 @@ async function writeTests() {
   const processedStories = ProcessedStory.fromStories(rawStories);
   const storiesByComponent = groupBy(processedStories, 'componentTitle');
 
-  // Get the page ready for running axe on it.
-  await AxePage.prepare(page);
-
   describe(`[${options.browser}] accessibility`, function () {
+    before(async function () {
+      await AxePage.prepare(page);
+    });
+
     after(async function () {
       await browser.close();
     });
