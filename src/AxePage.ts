@@ -39,13 +39,14 @@ function getOptions(options: RunOptions, disabledRules: string[] = []) {
 /**
  * Add a Queue implementation for promises, forcing a single promise to run at a time.
  *
- * We won't intentionally run multiple axe.run calls at the same time. But a component throwing an
- * error during its lifecycle can result in a "test" finishing and proceeding to the next one, but
- * the previous axe.run call is still "running" when the next one starts. This results in an error
- * (see https://github.com/dequelabs/axe-core/issues/1041).
+ * This will be used to ensure that we only run one `axe.run` call at a time. We will never
+ * intentionally run multiple at a time. However, a component throwing an error during its
+ * lifecycle can result in a test finishing and proceeding to the next one, but the previous
+ * `axe.run` call still "running" when the next one starts. This results in an error (see
+ * https://github.com/dequelabs/axe-core/issues/1041).
  *
- * We avoid that by forcing one axe.run call to finish before the next one can start. Got the idea
- * from https://github.com/dequelabs/agnostic-axe/pull/6.
+ * We avoid that by forcing one `axe.run` call to finish before the next one can start. Got the
+ * idea from https://github.com/dequelabs/agnostic-axe/pull/6.
  */
 function addPromiseQueue() {
   type QueuedPromise<T> = {

@@ -29,6 +29,8 @@ export async function showStory(page: Page, story: ProcessedStory): Promise<void
 
 /**
  * Get a list of stories from Storybook's internal API.
+ *
+ * Executes in a browser context.
  */
 function fetchStoriesFromWindow(): Promise<StoreItem[]> {
   return new Promise((resolve, reject) => {
@@ -65,6 +67,8 @@ function fetchStoriesFromWindow(): Promise<StoreItem[]> {
  *
  * Doing so is brittle, and updates to Storybook could break this. The trade off is that we don't
  * have to figure out how to process stories with Webpack - Storybook handles that for us.
+ *
+ * Executes in a browser context.
  */
 function emitSetCurrentStory(id: string) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
