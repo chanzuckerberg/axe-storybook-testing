@@ -26,7 +26,7 @@ export function fromStory(rawStory: StorybookStory): ProcessedStory {
     parameters: {
       axe: {
         disabled: normalizeDisabled(rawStory.parameters?.axe?.disabled),
-        disabledRules: normalizedDisabledRules(rawStory.parameters?.axe?.disabledRules),
+        disabledRules: normalizeDisabledRules(rawStory.parameters?.axe?.disabledRules),
       },
     },
     storybookId: rawStory.id,
@@ -51,7 +51,7 @@ function normalizeDisabled(disabled?: unknown): boolean {
   return disabled;
 }
 
-function normalizedDisabledRules(disabledRules?: unknown): string[] {
+function normalizeDisabledRules(disabledRules?: unknown): string[] {
   if (typeof disabledRules === 'undefined') {
     return [];
   }
