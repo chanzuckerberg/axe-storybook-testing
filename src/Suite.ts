@@ -5,7 +5,6 @@ import groupBy from 'lodash/groupBy';
 import * as Options from './Options';
 import * as ProcessedStory from './ProcessedStory';
 import * as Result from './Result';
-import * as StorybookPage from './StorybookPage';
 import * as TestBrowser from './TestBrowser';
 
 const options = Options.parse();
@@ -16,11 +15,8 @@ const options = Options.parse();
 async function writeTests() {
   const [browser, context] = await TestBrowser.create(options);
   const page = await TestBrowser.createPage(context, options);
-
-  // Load the stories from Storybook's static iframe. Then process and organize them.
-  const rawStories = await StorybookPage.getStories(page);
-  const processedStories = ProcessedStory.fromStories(rawStories);
-  const storiesByComponent = groupBy(processedStories, 'componentTitle');
+  const stories = await TestBrowser.getStories(page);
+  const storiesByComponent = groupBy(stories, 'componentTitle');
 
   describe(`[${options.browser}] accessibility`, function () {
     after(async function () {

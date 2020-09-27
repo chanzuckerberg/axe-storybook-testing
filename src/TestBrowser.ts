@@ -1,5 +1,7 @@
 import playwright, { Browser, BrowserContext, Page } from 'playwright';
 import * as AxePage from './AxePage';
+import * as ProcessedStory from './ProcessedStory';
+import * as StorybookPage from './StorybookPage';
 import type { Options } from './Options';
 
 /**
@@ -29,4 +31,12 @@ export async function createPage(context: BrowserContext, options: Options): Pro
   await page.goto('file://' + options.iframePath);
   await AxePage.prepare(page);
   return page;
+}
+
+/**
+ * Get the Storybook stories from a prepared browser page.
+ */
+export async function getStories(page: Page): Promise<ProcessedStory.ProcessedStory[]> {
+  const rawStories = await StorybookPage.getStories(page);
+  return ProcessedStory.fromStories(rawStories);
 }
