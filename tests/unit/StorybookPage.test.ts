@@ -15,6 +15,6 @@ describe('getStories', () => {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore TypeScript thinks these tests are Mocha, not Jest. Until we can figure out how to
-  // get nested tsconfigs working with tsc, I'm manually ignoring the error.
+  // deconflict the global Mocha and Jest types, we'll manually ignore the error.
   }, 60000);
 });
