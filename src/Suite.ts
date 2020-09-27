@@ -11,6 +11,9 @@ import * as StorybookPage from './StorybookPage';
 
 const options = Options.parse();
 
+/**
+ * Find Storybook stories and generate a test for each one.
+ */
 async function writeTests() {
   // Get a browser page and navigate to Storybook's static iframe.
   const browser = await playwright[options.browser].launch({

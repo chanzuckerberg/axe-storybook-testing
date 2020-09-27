@@ -15,10 +15,16 @@ export type ProcessedStory = {
   storybookId: string;
 }
 
+/**
+ * Convert a list of Storybook stories into a normalized format.
+ */
 export function fromStories(rawStories: StorybookStory[]): ProcessedStory[] {
   return rawStories.map(fromStory);
 }
 
+/**
+ * Convert a raw Storybook story into a normalized format with no optional properties.
+ */
 export function fromStory(rawStory: StorybookStory): ProcessedStory {
   return {
     componentTitle: rawStory.kind,
@@ -33,10 +39,16 @@ export function fromStory(rawStory: StorybookStory): ProcessedStory {
   };
 }
 
+/**
+ * Determine if a story is enabled or not.
+ */
 export function isEnabled(story: ProcessedStory): boolean {
   return !story.parameters.axe.disabled;
 }
 
+/**
+ * Get the Axe rules that a story has disabled.
+ */
 export function getDisabledRules(story: ProcessedStory): string[] {
   return story.parameters.axe.disabledRules;
 }

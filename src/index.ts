@@ -1,5 +1,9 @@
 import Mocha from 'mocha';
 
+/**
+ * Run the accessibility tests and return a promise that is resolved or rejected based on whether
+ * any violations were detected.
+ */
 export function run() {
   const mocha = new Mocha({
     delay: true,
