@@ -91,5 +91,5 @@ function addPromiseQueue() {
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore This function executes in a browser context.
-  window.axeQueue = new PromiseQueue<AxeResults>();
+  window.axeQueue = new PromiseQueue();
 }
