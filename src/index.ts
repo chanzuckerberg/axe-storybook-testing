@@ -1,6 +1,6 @@
 import Mocha from 'mocha';
 
-export async function run() {
+export function run() {
   const mocha = new Mocha({
     delay: true,
     reporter: 'spec',
