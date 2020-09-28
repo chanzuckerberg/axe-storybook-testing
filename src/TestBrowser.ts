@@ -7,7 +7,7 @@ import type { Options } from './Options';
 /**
  * Create new Browser and BrowserContext instances in the specified browser.
  */
-export async function create(options: Options): Promise<[browser: Browser, context: BrowserContext]> {
+export async function create(options: Options): Promise<[Browser, BrowserContext]> {
   const browser = await playwright[options.browser].launch({
     headless: options.headless,
     args: [
