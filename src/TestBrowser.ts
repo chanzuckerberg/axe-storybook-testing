@@ -4,10 +4,15 @@ import * as ProcessedStory from './ProcessedStory';
 import * as StorybookPage from './StorybookPage';
 import type { Options } from './Options';
 
+type TestBrowser = {
+  browser: Browser;
+  context: BrowserContext;
+}
+
 /**
  * Create new Browser and BrowserContext instances in the specified browser.
  */
-export async function create(options: Options): Promise<[Browser, BrowserContext]> {
+export async function create(options: Options): Promise<TestBrowser> {
   const browser = await playwright[options.browser].launch({
     headless: options.headless,
     args: [
@@ -20,17 +25,21 @@ export async function create(options: Options): Promise<[Browser, BrowserContext
 
   const context = await browser.newContext({ bypassCSP: true });
 
-  return [browser, context];
+  return { browser, context };
 }
 
 /**
  * Create a new page at Storybook's static iframe and with axe-core setup and ready to run.
  */
-export async function createPage(context: BrowserContext, options: Options): Promise<Page> {
-  const page = await context.newPage();
+export async function createPage(testBrowser: TestBrowser, options: Options): Promise<Page> {
+  const page = await testBrowser.context.newPage();
   await page.goto('file://' + options.iframePath);
   await AxePage.prepare(page);
   return page;
+}
+
+export function close(testBrowser: TestBrowser): Promise<void> {
+  return testBrowser.browser.close();
 }
 
 /**

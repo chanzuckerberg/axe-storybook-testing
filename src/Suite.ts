@@ -13,14 +13,14 @@ const options = Options.parse();
  * Find Storybook stories and generate a test for each one.
  */
 async function writeTests() {
-  const [browser, context] = await TestBrowser.create(options);
-  const page = await TestBrowser.createPage(context, options);
+  const testBrowser = await TestBrowser.create(options);
+  const page = await TestBrowser.createPage(testBrowser, options);
   const stories = await TestBrowser.getStories(page);
   const storiesByComponent = groupBy(stories, 'componentTitle');
 
   describe(`[${options.browser}] accessibility`, function () {
     after(async function () {
-      await browser.close();
+      await TestBrowser.close(testBrowser);
     });
 
     each(storiesByComponent, (stories, componentTitle) => {
