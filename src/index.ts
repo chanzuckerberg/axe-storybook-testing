@@ -1,4 +1,7 @@
 import Mocha from 'mocha';
+import * as Options from './Options';
+
+const options = Options.parse();
 
 /**
  * Run the accessibility tests and return a promise that is resolved or rejected based on whether
@@ -8,6 +11,7 @@ export function run() {
   const mocha = new Mocha({
     delay: true,
     reporter: 'spec',
+    timeout: options.timeout,
   });
 
   mocha.addFile(require.resolve('./Suite'));

@@ -21,6 +21,12 @@ const options = {
     description: 'Wether the browser should be ran "headfully" (non-headlessly)',
     type: 'boolean' as const,
   },
+  timeout: {
+    alias: 't',
+    default: 2000,
+    description: 'Timeout for each test (in milliseconds)',
+    type: 'number' as const,
+  },
 };
 
 export type Options = ReturnType<typeof parse>;
@@ -35,6 +41,7 @@ export function parse() {
     browser: getBrowser(argv.browser),
     iframePath: getIframePath(argv['build-dir']),
     headless: argv.headless,
+    timeout: argv.timeout,
   };
 }
 

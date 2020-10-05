@@ -58,6 +58,7 @@ Option|Default|Type|Description
 `--browser`|`chromium`|chromium, firefox, or webkit|Which browser to run the tests in
 `--build-dir`|`storybook-static`|string|Storybook static build directory
 `--headless`|`true`|boolean|Whether to run headlessly or not
+`--timeout`|2000|number|Timeout (in milliseconds) for each test
 
 For example, to run non-headlessly on Firefox, you would run
 
