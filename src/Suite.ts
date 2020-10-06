@@ -2,12 +2,10 @@
 import assert from 'assert';
 import each from 'lodash/each';
 import groupBy from 'lodash/groupBy';
-import * as Options from './Options';
+import options from './Options';
 import * as ProcessedStory from './ProcessedStory';
 import * as Result from './Result';
 import * as TestBrowser from './TestBrowser';
-
-const options = Options.parse();
 
 /**
  * Find Storybook stories and generate a test for each one.

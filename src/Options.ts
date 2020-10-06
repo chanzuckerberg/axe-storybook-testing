@@ -34,7 +34,7 @@ export type Options = ReturnType<typeof parse>;
 /**
  * Parse and normalize command line arguments passed to the script.
  */
-export function parse() {
+function parse() {
   const argv = yargs.options(options).argv;
 
   return {
@@ -66,3 +66,10 @@ function getIframePath(buildDir: string) {
 
   return iframePath;
 }
+
+/**
+ * Command line options that were passed in to the command.
+ */
+const parsedOptions = parse();
+
+export default parsedOptions;

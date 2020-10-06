@@ -1,7 +1,5 @@
 import Mocha from 'mocha';
-import * as Options from './Options';
-
-const options = Options.parse();
+import options from './Options';
 
 /**
  * Run the accessibility tests and return a promise that is resolved or rejected based on whether
