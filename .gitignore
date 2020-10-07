@@ -53,3 +53,6 @@ packages/*/yarn.lock
 
 # Storybook build directories in the integration testing app.
 storybook-static
+
+# Non-Yarn lockfiles
+package-lock.json
