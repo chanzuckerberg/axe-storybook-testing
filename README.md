@@ -6,6 +6,18 @@ Command line interface for running accessibility tests (using [axe-core](https:/
 
 If there are any violations, information about them will be printed, and the command will exit with a non-zero exit code. That way, you can use this as automated accessibility tests on CI.
 
+## Table of contents
+
+- [Project goals](#project-goals)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Options](#options)
+- [Configuring stories](#configuring-stories)
+  - [disabled](#disabled)
+  - [disabledRules](#disabledrules)
+- [Developing](#developing)
+- [Inspiration](#inspiration)
+
 ## Project goals
 
 These will be used to determine development work and direction, and triage bugs and pull requests.
