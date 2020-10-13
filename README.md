@@ -98,6 +98,10 @@ SomeStory.parameters = {
 };
 ```
 
+## Developing
+
+If you want to work on this project or contribute back to it, see our [wiki entry on Development setup](https://github.com/chanzuckerberg/axe-storybook-testing/wiki/Development-setup).
+
 ## Inspiration
 
 This project was originally based on [@percy/storybook](https://github.com/percy/percy-storybook).
