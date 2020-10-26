@@ -47,7 +47,7 @@ function parse() {
     browser: getBrowser(argv.browser),
     iframePath: getIframePath(argv['build-dir']),
     headless: argv.headless,
-    pattern: argv.pattern,
+    pattern: new RegExp(argv.pattern),
     timeout: argv.timeout,
   };
 }

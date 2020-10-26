@@ -15,7 +15,6 @@ async function writeTests() {
   const page = await TestBrowser.createPage(testBrowser, options);
   const stories = await TestBrowser.getStories(page);
   const storiesByComponent = groupBy(stories, 'componentTitle');
-  const patternRegex = new RegExp(options.pattern);
 
   describe(`[${options.browser}] accessibility`, function () {
     after(async function () {
@@ -23,11 +22,11 @@ async function writeTests() {
     });
 
     each(storiesByComponent, (stories, componentTitle) => {
-      const nameMatches = patternRegex.test(componentTitle);
+      const nameMatches = options.pattern.test(componentTitle);
       const describeFn = nameMatches ? describe : describe.skip;
-      const testName = nameMatches ? componentTitle : `[skipped] ${componentTitle}`;
+      const describeName = nameMatches ? componentTitle : `[skipped] ${componentTitle}`;
 
-      describeFn(testName, () => {
+      describeFn(describeName, () => {
         stories.forEach((story) => {
           const testFn = ProcessedStory.isEnabled(story) ? it : it.skip;
 
