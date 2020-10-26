@@ -22,7 +22,11 @@ async function writeTests() {
     });
 
     each(storiesByComponent, (stories, componentTitle) => {
-      describe(componentTitle, () => {
+      const nameMatches = options.pattern.test(componentTitle);
+      const describeFn = nameMatches ? describe : describe.skip;
+      const describeName = nameMatches ? componentTitle : `[skipped] ${componentTitle}`;
+
+      describeFn(describeName, () => {
         stories.forEach((story) => {
           const testFn = ProcessedStory.isEnabled(story) ? it : it.skip;
 
