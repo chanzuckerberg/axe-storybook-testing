@@ -18,8 +18,14 @@ const options = {
   headless: {
     alias: 'h',
     default: true,
-    description: 'Wether the browser should be ran "headfully" (non-headlessly)',
+    description: 'Whether the browser should be ran "headfully" (non-headlessly)',
     type: 'boolean' as const,
+  },
+  pattern: {
+    alias: 'p',
+    default: /[\s\S]*/,
+    description: 'Filter by a component name regex pattern',
+    type: 'string' as const,
   },
   timeout: {
     alias: 't',
@@ -41,6 +47,7 @@ function parse() {
     browser: getBrowser(argv.browser),
     iframePath: getIframePath(argv['build-dir']),
     headless: argv.headless,
+    pattern: argv.pattern,
     timeout: argv.timeout,
   };
 }
