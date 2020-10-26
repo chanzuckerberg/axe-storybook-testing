@@ -70,7 +70,7 @@ Option|Default|Type|Description
 `--browser`|`chromium`|chromium, firefox, or webkit|Which browser to run the tests in
 `--build-dir`|`storybook-static`|string|Storybook static build directory
 `--headless`|`true`|boolean|Whether to run headlessly or not
-`--pattern`|`[\s\S]*`|regex string|Only run tests that match a component name pattern
+`--pattern`|`.*`|string regex|Only run tests that match a component name pattern
 `--timeout`|2000|number|Timeout (in milliseconds) for each test
 
 For example, to run non-headlessly on Firefox, you would run

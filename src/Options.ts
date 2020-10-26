@@ -23,7 +23,7 @@ const options = {
   },
   pattern: {
     alias: 'p',
-    default: /[\s\S]*/,
+    default: '.*',
     description: 'Filter by a component name regex pattern',
     type: 'string' as const,
   },
