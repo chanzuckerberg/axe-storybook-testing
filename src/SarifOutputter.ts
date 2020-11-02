@@ -5,7 +5,7 @@ import * as path from 'path';
 import { promisify } from 'util';
 
 /**
- * Outputs results from axe to a file in the Sarif format
+ * Outputs results from axe to a file in the SARIF format
  * @param sarifFileName the name of the file that will contain axeResults
  * @param axeResults results to output
  */

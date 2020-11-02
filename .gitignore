@@ -56,3 +56,6 @@ storybook-static
 
 # Non-Yarn lockfiles
 package-lock.json
+
+# SARIF outputer default directory
+sarif-test-results
