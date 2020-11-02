@@ -27,7 +27,7 @@ const options = {
     description: 'Filter by a component name regex pattern',
     type: 'string' as const,
   },
-  'sarif-files': {
+  'output-sarif-files': {
     default: false,
     description: 'Should Sarif files be outputted',
     type: 'boolean' as const,
@@ -58,7 +58,7 @@ function parse() {
     iframePath: getIframePath(argv['build-dir']),
     headless: argv.headless,
     pattern: new RegExp(argv.pattern),
-    outputSarifFiles: argv['sarif-files'],
+    outputSarifFiles: argv['output-sarif-files'],
     sarifOutputDir: argv['sarif-output-dir'],
     timeout: argv.timeout,
   };
