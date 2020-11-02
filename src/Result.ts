@@ -3,6 +3,7 @@ import { showStory } from './StorybookPage';
 import type { Result as AxeResult, NodeResult } from 'axe-core';
 import type { Page } from 'playwright';
 import { getDisabledRules, ProcessedStory } from './ProcessedStory';
+import { exportAxeAsSarifTestResult } from './SarifOutputter';
 
 /**
  * Violations reported by Axe for a story.
@@ -27,6 +28,9 @@ export async function fromPage(page: Page, story: ProcessedStory): Promise<Resul
   const storyDisabledRules = getDisabledRules(story);
   const disabledRules = [...defaultDisabledRules, ...storyDisabledRules];
   const result = await analyze(page, disabledRules);
+
+  const sarifFileName = `${story.storybookId}.sarif`;
+  await exportAxeAsSarifTestResult(sarifFileName, result);
 
   return {
     name: story.name,
