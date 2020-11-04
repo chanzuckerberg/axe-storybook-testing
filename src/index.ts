@@ -5,7 +5,7 @@ import options from './Options';
  * Run the accessibility tests and return a promise that is resolved or rejected based on whether
  * any violations were detected.
  */
-export function run() {
+export function run(): Promise<void> {
   const mocha = new Mocha({
     delay: true,
     reporter: 'spec',
