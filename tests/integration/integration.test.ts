@@ -10,7 +10,7 @@ import { exec } from 'child_process';
 it('outputs accessibility violation information for the demo app', (done) => {
   expect.assertions(3);
 
-  exec('yarn --cwd demo storybook:axe-no-build', function (error, stdout, stderr) {
+  exec('yarn --cwd demo storybook:axe-no-build:sarif', function (error, stdout, stderr) {
     const normalizedStdout = normalize(stdout);
     const normalizedStderr = normalize(stderr);
     expect(error!.code).toEqual(1);

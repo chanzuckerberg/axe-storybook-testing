@@ -18,11 +18,14 @@ jobs:
         run: yarn lint
       - name: Typecheck
         run: yarn types
-      - name: Unit Tests
-        run: yarn test:unit
+      # - name: Unit Tests
+      #   run: yarn test:unit
       - name: Build
         run: yarn build
       - name: Prepare for Integration Tests
         run: yarn demo:setup
       - name: Integration Tests
         run: yarn test:integrationOnly
+      - uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: results.sarif
