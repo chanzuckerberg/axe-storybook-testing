@@ -24,6 +24,7 @@ jobs:
       - name: Initialize CodeQL
         uses: github/codeql-action/init@v1
         with:
+          languages: ${{ matrix.language }}
       - name: Build
         run: yarn build
       - name: Prepare for Integration Tests
@@ -34,6 +35,5 @@ jobs:
         uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: demo/sarif-test-results
-          languages: ${{ matrix.language }}
       - name: Perform CodeQL Analysis
         uses: github/codeql-action/analyze@v1
