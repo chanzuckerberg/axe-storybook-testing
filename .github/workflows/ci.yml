@@ -6,6 +6,7 @@ jobs:
     strategy:
       matrix:
         os: [ubuntu-18.04, macos-10.15]
+        language: [ 'javascript' ]
     steps:
       - name: Checkout
         uses: actions/checkout@master
@@ -20,12 +21,19 @@ jobs:
         run: yarn types
       # - name: Unit Tests
       #   run: yarn test:unit
+      - name: Initialize CodeQL
+        uses: github/codeql-action/init@v1
+        with:
       - name: Build
         run: yarn build
       - name: Prepare for Integration Tests
         run: yarn demo:setup
       - name: Integration Tests
         run: yarn test:integrationOnly
-      - uses: github/codeql-action/upload-sarif@v1
+      - name: Upload SARIF file
+        uses: github/codeql-action/upload-sarif@v1
         with:
           sarif_file: demo/sarif-test-results
+          languages: ${{ matrix.language }}
+      - name: Perform CodeQL Analysis
+        uses: github/codeql-action/analyze@v1
