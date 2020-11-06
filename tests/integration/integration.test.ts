@@ -18,10 +18,6 @@ it('outputs accessibility violation information for the demo app', (done) => {
     expect(normalizedStderr).toMatchSnapshot();
     done();
   });
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore TypeScript thinks these tests are Mocha, not Jest. Until we can figure out how to
-  // deconflict the global Mocha and Jest types, we'll manually ignore the error.
 }, 120000);
 
 /**

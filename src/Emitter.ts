@@ -5,7 +5,7 @@ type EventMap = {
   [name: string]: (...args: any[]) => void;
 }
 
-interface Emitter<Events extends EventMap> {
+export interface Emitter<Events extends EventMap> {
   on<Name extends keyof Events>(event: Name, listener: Events[Name]): void;
   emit<Name extends keyof Events>(event: Name, ...args: Parameters<Events[Name]>): void;
 }

@@ -1,52 +1,86 @@
 /* eslint-env node, mocha */
-import assert from 'assert';
-import each from 'lodash/each';
+import defer from 'lodash/defer';
 import groupBy from 'lodash/groupBy';
-import options from './Options';
+import { createEmitter, Emitter } from './Emitter';
+import { Options } from './Options';
 import * as ProcessedStory from './ProcessedStory';
 import * as Result from './Result';
 import * as TestBrowser from './TestBrowser';
 
-/**
- * Find Storybook stories and generate a test for each one.
- */
-async function writeTests() {
-  const testBrowser = await TestBrowser.create(options);
-  const page = await TestBrowser.createPage(testBrowser, options);
-  const stories = await TestBrowser.getStories(page);
-  const storiesByComponent = groupBy(stories, 'componentTitle');
-
-  describe(`[${options.browser}] accessibility`, function () {
-    after(async function () {
-      await TestBrowser.close(testBrowser);
-    });
-
-    each(storiesByComponent, (stories, componentTitle) => {
-      const nameMatches = options.pattern.test(componentTitle);
-      const describeFn = nameMatches ? describe : describe.skip;
-      const describeName = nameMatches ? componentTitle : `[skipped] ${componentTitle}`;
-
-      describeFn(describeName, () => {
-        stories.forEach((story) => {
-          const testFn = ProcessedStory.isEnabled(story) ? it : it.skip;
-
-          testFn(story.name, async function () {
-            const result = await Result.fromPage(page, story);
-
-            if (Result.isPassing(result)) {
-              assert.ok(true);
-            } else {
-              assert.fail('\n' + Result.formatViolations(result));
-            }
-          });
-        });
-      });
-    });
-  });
-
-  // Magic function injected by Mocha, signalling that the tests have been defined and are ready to
-  // be ran. Only works because `delay: true` is passed to the Mocha constructor in index.ts.
-  run();
+type SuiteEvents = {
+  suiteStart: (browser: string) => void;
+  componentStart: (componentName: string) => void;
+  componentSkip: (componentName: string) => void;
+  storyStart: (storyName: string) => void;
+  storyPass: (result: Result.Result, elapsedTime: number) => void;
+  storyFail: (result: Result.Result, elapsedTime: number) => void;
+  storySkip: () => void;
+  suiteFinish: (numPass: number, numFail: number, numSkip: number, elapsedTime: number) => void;
 }
 
-writeTests();
+/**
+ * Find Storybook stories and run Axe on each one. Returns an event emitter that emits events when
+ * components and stories are processed.
+ */
+export function run(options: Options): Emitter<SuiteEvents> {
+  const emitter = createEmitter<SuiteEvents>();
+
+  defer(async () => {
+    const suiteStartTime = Date.now();
+    let numPass = 0;
+    let numFail = 0;
+    let numSkip = 0;
+
+    emitter.emit('suiteStart', options.browser);
+
+    const testBrowser = await TestBrowser.create(options);
+    const page = await TestBrowser.createPage(testBrowser, options);
+    const stories = await TestBrowser.getStories(page);
+    const storiesByComponent = groupBy(stories, 'componentTitle');
+    const storiesAndComponents = Object.entries(storiesByComponent);
+
+    try {
+      for (const [componentTitle, stories] of storiesAndComponents) {
+        const nameMatches = options.pattern.test(componentTitle);
+
+        if (!nameMatches) {
+          emitter.emit('componentSkip', componentTitle);
+          continue;
+        }
+
+        emitter.emit('componentStart', componentTitle);
+
+        for (const story of stories) {
+          const storyStartTime = Date.now();
+
+          if (!ProcessedStory.isEnabled(story)) {
+            numSkip += 1;
+            emitter.emit('storySkip');
+            continue;
+          }
+
+          emitter.emit('storyStart', story.name);
+
+          const result = await Result.fromPage(page, story);
+          const storyEndTime = Date.now();
+          const storyElapsedTime = storyEndTime - storyStartTime;
+
+          if (Result.isPassing(result)) {
+            numPass += 1;
+            emitter.emit('storyPass', result, storyElapsedTime);
+          } else {
+            numFail += 1;
+            emitter.emit('storyFail', result, storyElapsedTime);
+          }
+        }
+      }
+    } finally {
+      const suiteEndTime = Date.now();
+      const suiteElapsedTime = suiteEndTime - suiteStartTime;
+      emitter.emit('suiteFinish', numPass, numFail, numSkip, suiteElapsedTime);
+      await TestBrowser.close(testBrowser);
+    }
+  });
+
+  return emitter;
+}
