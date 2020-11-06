@@ -58,7 +58,7 @@ function normalize(input: string) {
   /** Line numbers from stack trace paths. For example, `.js:20:55` */
   const lineNumbersPattern = /\.js:\d+:\d+/g;
   /** build/Suite.js is a path that is contained in the snapshot. Windows uses an absolute path. */
-  const stackFilePathPattern = /(at Context\.<anonymous> \()([a-zA-Z0-9\/\\\-\.:]*?)([\/\\]{1,4}build[\/\\]{1,4}Suite\.js\))/g;
+  const stackFilePathPattern = /(at Context\.<anonymous> \()([a-zA-Z0-9/\\\-.:]*?)([/\\]{1,4}build[/\\]{1,4}Suite.js\))/g;
   /** Ticks differ betwen Windows and other platforms */
   const tickPattern = /√/g;
 
@@ -75,25 +75,25 @@ function normalize(input: string) {
  */
 function compareSarifFilesToSnapshot() {
   const fileNames : string[] = [
-    "button--button-1.sarif",
-    "button--button-2.sarif",
-    "button--button-3.sarif",
-    "button--button-4.sarif",
-    "button--button-6.sarif",
-    "input--input-1.sarif",
-    "input--input-2.sarif",
-    "input--input-4.sarif",
-    "input--input-5.sarif"
+    'button--button-1.sarif',
+    'button--button-2.sarif',
+    'button--button-3.sarif',
+    'button--button-4.sarif',
+    'button--button-6.sarif',
+    'input--input-1.sarif',
+    'input--input-2.sarif',
+    'input--input-4.sarif',
+    'input--input-5.sarif',
   ];
   
   fileNames.forEach(fileName => {
-    var sarifFileContents : string = fs.readFileSync(
+    let sarifFileContents : string = fs.readFileSync(
       path.join('./demo/sarif-test-results/', fileName),
       'utf8',
     );
     sarifFileContents = normalizeSarif(sarifFileContents);
 
-    var sarifSnapshotFileContents : string = fs.readFileSync(
+    let sarifSnapshotFileContents : string = fs.readFileSync(
       path.join('./tests/integration/sarif-test-results-snapshots/', fileName),
       'utf8',
     );
@@ -108,5 +108,5 @@ function compareSarifFilesToSnapshot() {
  */
 function normalizeSarif(sarifContents : string) :string {
   const isoDateTimePattern =/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/g;
-  return sarifContents.replace(isoDateTimePattern, "1970-01-01T00:00:00.0Z");
+  return sarifContents.replace(isoDateTimePattern, '1970-01-01T00:00:00.0Z');
 }
