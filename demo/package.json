@@ -6,8 +6,8 @@
     "build-storybook": "build-storybook",
     "storybook": "start-storybook -p 6006",
     "storybook:axe": "build-storybook && axe-storybook",
-    "storybook:axe-no-build": "axe-storybook",
-    "storybook:axe-no-build:sarif": "axe-storybook --output-sarif-files"
+    "storybook:axe-no-build": "axe-storybook --build-dir 'storybook-static'",
+    "storybook:axe-no-build:sarif": "axe-storybook --build-dir 'storybook-static' --output-sarif-files"
   },
   "dependencies": {
     "@babel/core": "^7.11.6",

@@ -25,5 +25,6 @@ export async function exportAxeAsSarifTestResult(sarifFileName: string, axeResul
 
 async function makeDirectory(directory: string) : Promise<string>{
   const outputDirectory = path.join('.', directory);
-  return promisify(fs.mkdir)(outputDirectory, { recursive: true });
+  promisify(fs.mkdir)(outputDirectory, { recursive: true });
+  return outputDirectory;
 }
