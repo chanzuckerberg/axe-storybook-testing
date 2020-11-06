@@ -59,6 +59,10 @@ function normalize(input: string) {
   const lineNumbersPattern = /\.js:\d+:\d+/g;
   /** build/Suite.js is a path that is contained in the snapshot. Windows uses an absolute path. */
   const stackFilePathPattern = /(at Context\.<anonymous> \()([a-zA-Z0-9/\\\-.:]*?)([/\\]{1,4}build[/\\]{1,4}Suite.js\))/g;
+  /** Stripping environment specific filepath */
+  const environmentFilePath = /: ".*?(\/axe-storybook-testing\/)/g;
+  /** ISO DateTime. For example, `1970-01-01T00:00:00.0Z` */
+  const isoDateTimePattern =/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/g;
   /** Ticks differ betwen Windows and other platforms */
   const tickPattern = /√/g;
 
@@ -67,7 +71,9 @@ function normalize(input: string) {
     .replace(cwdPattern, '')
     .replace(lineNumbersPattern, '.js')
     .replace(stackFilePathPattern, 'at Context.<anonymous> (/build/Suite.js)')
-    .replace(tickPattern, '✓');
+    .replace(environmentFilePath, ': "$1')
+    .replace(tickPattern, '✓')
+    .replace(isoDateTimePattern, '1970-01-01T00:00:00.0Z');
 }
 
 /**
@@ -91,22 +97,14 @@ function compareSarifFilesToSnapshot() {
       path.join('./demo/sarif-test-results/', fileName),
       'utf8',
     );
-    sarifFileContents = normalizeSarif(sarifFileContents);
+    sarifFileContents = normalize(sarifFileContents);
 
     let sarifSnapshotFileContents : string = fs.readFileSync(
       path.join('./tests/integration/sarif-test-results-snapshots/', fileName),
       'utf8',
     );
-    sarifSnapshotFileContents = normalizeSarif(sarifSnapshotFileContents);
+    sarifSnapshotFileContents = normalize(sarifSnapshotFileContents);
 
     expect(sarifFileContents).toEqual(sarifSnapshotFileContents);
   });
-}
-
-/**
- * Normalize DateTimes in Sarif files
- */
-function normalizeSarif(sarifContents : string) :string {
-  const isoDateTimePattern =/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/g;
-  return sarifContents.replace(isoDateTimePattern, '1970-01-01T00:00:00.0Z');
 }
