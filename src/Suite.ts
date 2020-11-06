@@ -76,10 +76,11 @@ export function run(options: Options): SuiteEmitter {
           }
         }
       }
-    } finally {
+
       const suiteEndTime = Date.now();
       const suiteElapsedTime = suiteEndTime - suiteStartTime;
       emitter.emit('suiteFinish', numPass, numFail, numSkip, suiteElapsedTime);
+    } finally {
       await TestBrowser.close(testBrowser);
     }
   });
