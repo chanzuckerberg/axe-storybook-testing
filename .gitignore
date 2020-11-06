@@ -59,3 +59,4 @@ package-lock.json
 
 # SARIF files if the relevant switch is enabled
 *.sarif
+!tests/integration/sarif-test-results-snapshots/*.sarif

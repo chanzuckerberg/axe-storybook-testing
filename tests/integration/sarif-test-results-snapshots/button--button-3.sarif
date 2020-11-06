@@ -1,0 +1,3526 @@
+{
+  "version": "2.1.0",
+  "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+  "runs": [
+    {
+      "conversion": {
+        "tool": {
+          "driver": {
+            "name": "axe-sarif-converter",
+            "fullName": "axe-sarif-converter v2.6.0",
+            "version": "2.6.0",
+            "semanticVersion": "2.6.0",
+            "informationUri": "https://github.com/microsoft/axe-sarif-converter/releases/tag/v2.6.0",
+            "downloadUri": "https://www.npmjs.com/package/axe-sarif-converter/v/2.6.0"
+          }
+        }
+      },
+      "tool": {
+        "driver": {
+          "name": "axe-core",
+          "fullName": "axe for Web v4.0.2",
+          "shortDescription": {
+            "text": "An open source accessibility rules library for automated testing."
+          },
+          "version": "4.0.2",
+          "semanticVersion": "4.0.2",
+          "informationUri": "https://www.deque.com/axe/axe-for-web/",
+          "downloadUri": "https://www.npmjs.com/package/axe-core/v/4.0.2",
+          "properties": {
+            "microsoft/qualityDomain": "Accessibility"
+          },
+          "supportedTaxonomies": [
+            {
+              "name": "WCAG",
+              "index": 0,
+              "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+            }
+          ],
+          "rules": [
+            {
+              "id": "accesskeys",
+              "name": "accesskey attribute value must be unique",
+              "fullDescription": {
+                "text": "Ensures every accesskey attribute value is unique."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/accesskeys?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "area-alt",
+              "name": "Active <area> elements must have alternate text",
+              "fullDescription": {
+                "text": "Ensures <area> elements of image maps have alternate text."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/area-alt?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag111",
+                    "index": 1,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                },
+                {
+                  "target": {
+                    "id": "wcag244",
+                    "index": 47,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                },
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "aria-allowed-attr",
+              "name": "Elements must only use allowed ARIA attributes",
+              "fullDescription": {
+                "text": "Ensures ARIA attributes are allowed for an element's role."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/aria-allowed-attr?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "aria-allowed-role",
+              "name": "ARIA role must be appropriate for the element",
+              "fullDescription": {
+                "text": "Ensures role attribute has an appropriate value for the element."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/aria-allowed-role?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "aria-hidden-body",
+              "name": "aria-hidden='true' must not be present on the document body",
+              "fullDescription": {
+                "text": "Ensures aria-hidden='true' is not present on the document body.."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/aria-hidden-body?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "aria-hidden-focus",
+              "name": "ARIA hidden element must not contain focusable elements",
+              "fullDescription": {
+                "text": "Ensures aria-hidden elements do not contain focusable elements."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/aria-hidden-focus?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                },
+                {
+                  "target": {
+                    "id": "wcag131",
+                    "index": 11,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "aria-input-field-name",
+              "name": "ARIA input fields must have an accessible name",
+              "fullDescription": {
+                "text": "Ensures every ARIA input field has an accessible name."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/aria-input-field-name?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "aria-required-attr",
+              "name": "Required ARIA attributes must be provided",
+              "fullDescription": {
+                "text": "Ensures elements with ARIA roles have all required ARIA attributes."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/aria-required-attr?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "aria-required-children",
+              "name": "Certain ARIA roles must contain particular children",
+              "fullDescription": {
+                "text": "Ensures elements with an ARIA role that require child roles contain them."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/aria-required-children?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag131",
+                    "index": 11,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "aria-required-parent",
+              "name": "Certain ARIA roles must be contained by particular parents",
+              "fullDescription": {
+                "text": "Ensures elements with an ARIA role that require parent roles are contained by them."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/aria-required-parent?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag131",
+                    "index": 11,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "aria-roledescription",
+              "name": "Use aria-roledescription on elements with a semantic role",
+              "fullDescription": {
+                "text": "Ensure aria-roledescription is only used on elements with an implicit or explicit role."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/aria-roledescription?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "aria-roles",
+              "name": "ARIA roles used must conform to valid values",
+              "fullDescription": {
+                "text": "Ensures all elements with a role attribute use a valid value."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/aria-roles?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "aria-toggle-field-name",
+              "name": "ARIA toggle fields have an accessible name",
+              "fullDescription": {
+                "text": "Ensures every ARIA toggle field has an accessible name."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/aria-toggle-field-name?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "aria-valid-attr",
+              "name": "ARIA attributes must conform to valid names",
+              "fullDescription": {
+                "text": "Ensures attributes that begin with aria- are valid ARIA attributes."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/aria-valid-attr?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "aria-valid-attr-value",
+              "name": "ARIA attributes must conform to valid values",
+              "fullDescription": {
+                "text": "Ensures all ARIA attributes have valid values."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/aria-valid-attr-value?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "autocomplete-valid",
+              "name": "autocomplete attribute must be used correctly",
+              "fullDescription": {
+                "text": "Ensure the autocomplete attribute is correct and suitable for the form field."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/autocomplete-valid?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag135",
+                    "index": 15,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "avoid-inline-spacing",
+              "name": "Inline text spacing must be adjustable with custom stylesheets",
+              "fullDescription": {
+                "text": "Ensure that text spacing set through style attributes can be adjusted with custom stylesheets."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/avoid-inline-spacing?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag1412",
+                    "index": 20,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "blink",
+              "name": "<blink> elements are deprecated and must not be used",
+              "fullDescription": {
+                "text": "Ensures <blink> elements are not used."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/blink?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag222",
+                    "index": 35,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "button-name",
+              "name": "Buttons must have discernible text",
+              "fullDescription": {
+                "text": "Ensures buttons have discernible text."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/button-name?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "color-contrast",
+              "name": "Elements must have sufficient color contrast",
+              "fullDescription": {
+                "text": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/color-contrast?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag143",
+                    "index": 23,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "definition-list",
+              "name": "<dl> elements must only directly contain properly-ordered <dt> and <dd> groups, <script>, <template> or <div> elements",
+              "fullDescription": {
+                "text": "Ensures <dl> elements are structured correctly."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/definition-list?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag131",
+                    "index": 11,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "dlitem",
+              "name": "<dt> and <dd> elements must be contained by a <dl>",
+              "fullDescription": {
+                "text": "Ensures <dt> and <dd> elements are contained by a <dl>."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/dlitem?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag131",
+                    "index": 11,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "document-title",
+              "name": "Documents must have <title> element to aid in navigation",
+              "fullDescription": {
+                "text": "Ensures each HTML document contains a non-empty <title> element."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/document-title?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag242",
+                    "index": 45,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "duplicate-id",
+              "name": "id attribute value must be unique",
+              "fullDescription": {
+                "text": "Ensures every id attribute value is unique."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/duplicate-id?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag411",
+                    "index": 76,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "duplicate-id-active",
+              "name": "IDs of active elements must be unique",
+              "fullDescription": {
+                "text": "Ensures every id attribute value of active elements is unique."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/duplicate-id-active?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag411",
+                    "index": 76,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "duplicate-id-aria",
+              "name": "IDs used in ARIA and labels must be unique",
+              "fullDescription": {
+                "text": "Ensures every id attribute value used in ARIA and in labels is unique."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/duplicate-id-aria?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag411",
+                    "index": 76,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "empty-heading",
+              "name": "Headings must not be empty",
+              "fullDescription": {
+                "text": "Ensures headings have discernible text."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/empty-heading?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "form-field-multiple-labels",
+              "name": "Form field should not have multiple label elements",
+              "fullDescription": {
+                "text": "Ensures form field does not have multiple label elements."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/form-field-multiple-labels?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag332",
+                    "index": 71,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "frame-tested",
+              "name": "Frames must be tested with axe-core",
+              "fullDescription": {
+                "text": "Ensures <iframe> and <frame> elements contain the axe-core script."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/frame-tested?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "frame-title",
+              "name": "Frames must have title attribute",
+              "fullDescription": {
+                "text": "Ensures <iframe> and <frame> elements contain a non-empty title attribute."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/frame-title?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag241",
+                    "index": 43,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                },
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "frame-title-unique",
+              "name": "Frames must have a unique title attribute",
+              "fullDescription": {
+                "text": "Ensures <iframe> and <frame> elements contain a unique title attribute."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/frame-title-unique?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "heading-order",
+              "name": "Heading levels should only increase by one",
+              "fullDescription": {
+                "text": "Ensures the order of headings is semantically correct."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/heading-order?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "html-has-lang",
+              "name": "<html> element must have a lang attribute",
+              "fullDescription": {
+                "text": "Ensures every HTML document has a lang attribute."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/html-has-lang?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag311",
+                    "index": 59,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "html-lang-valid",
+              "name": "<html> element must have a valid value for the lang attribute",
+              "fullDescription": {
+                "text": "Ensures the lang attribute of the <html> element has a valid value."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/html-lang-valid?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag311",
+                    "index": 59,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "html-xml-lang-mismatch",
+              "name": "HTML elements with lang and xml:lang must have the same base language",
+              "fullDescription": {
+                "text": "Ensure that HTML elements with both valid lang and xml:lang attributes agree on the base language of the page."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/html-xml-lang-mismatch?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag311",
+                    "index": 59,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "identical-links-same-purpose",
+              "name": "Links with the same name have a similar purpose",
+              "fullDescription": {
+                "text": "Ensure that links with the same accessible name serve a similar purpose."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/identical-links-same-purpose?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag249",
+                    "index": 52,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                },
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "image-alt",
+              "name": "Images must have alternate text",
+              "fullDescription": {
+                "text": "Ensures <img> elements have alternate text or a role of none or presentation."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/image-alt?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag111",
+                    "index": 1,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "image-redundant-alt",
+              "name": "Alternative text of images should not be repeated as text",
+              "fullDescription": {
+                "text": "Ensure image alternative is not repeated as text."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/image-redundant-alt?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "input-button-name",
+              "name": "Input buttons must have discernible text",
+              "fullDescription": {
+                "text": "Ensures input buttons have discernible text."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/input-button-name?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "input-image-alt",
+              "name": "Image buttons must have alternate text",
+              "fullDescription": {
+                "text": "Ensures <input type=\"image\"> elements have alternate text."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/input-image-alt?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag111",
+                    "index": 1,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "label",
+              "name": "Form elements must have labels",
+              "fullDescription": {
+                "text": "Ensures every form element has a label."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/label?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                },
+                {
+                  "target": {
+                    "id": "wcag131",
+                    "index": 11,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "label-title-only",
+              "name": "Form elements should have a visible label",
+              "fullDescription": {
+                "text": "Ensures that every form element is not solely labeled using the title or aria-describedby attributes."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/label-title-only?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "landmark-banner-is-top-level",
+              "name": "Banner landmark must not be contained in another landmark",
+              "fullDescription": {
+                "text": "Ensures the banner landmark is at top level."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/landmark-banner-is-top-level?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "landmark-complementary-is-top-level",
+              "name": "Aside must not be contained in another landmark",
+              "fullDescription": {
+                "text": "Ensures the complementary landmark or aside is at top level."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/landmark-complementary-is-top-level?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "landmark-contentinfo-is-top-level",
+              "name": "Contentinfo landmark must not be contained in another landmark",
+              "fullDescription": {
+                "text": "Ensures the contentinfo landmark is at top level."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/landmark-contentinfo-is-top-level?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "landmark-main-is-top-level",
+              "name": "Main landmark must not be contained in another landmark",
+              "fullDescription": {
+                "text": "Ensures the main landmark is at top level."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/landmark-main-is-top-level?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "landmark-no-duplicate-banner",
+              "name": "Document must not have more than one banner landmark",
+              "fullDescription": {
+                "text": "Ensures the document has at most one banner landmark."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/landmark-no-duplicate-banner?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "landmark-no-duplicate-contentinfo",
+              "name": "Document must not have more than one contentinfo landmark",
+              "fullDescription": {
+                "text": "Ensures the document has at most one contentinfo landmark."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/landmark-no-duplicate-contentinfo?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "landmark-no-duplicate-main",
+              "name": "Document must not have more than one main landmark",
+              "fullDescription": {
+                "text": "Ensures the document has at most one main landmark."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/landmark-no-duplicate-main?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "landmark-unique",
+              "name": "Ensures landmarks are unique",
+              "fullDescription": {
+                "text": "Landmarks must have a unique role or role/label/title (i.e. accessible name) combination."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/landmark-unique?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "link-name",
+              "name": "Links must have discernible text",
+              "fullDescription": {
+                "text": "Ensures links have discernible text."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/link-name?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag412",
+                    "index": 77,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                },
+                {
+                  "target": {
+                    "id": "wcag244",
+                    "index": 47,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "list",
+              "name": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+              "fullDescription": {
+                "text": "Ensures that lists are structured correctly."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/list?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag131",
+                    "index": 11,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "listitem",
+              "name": "<li> elements must be contained in a <ul> or <ol>",
+              "fullDescription": {
+                "text": "Ensures <li> elements are used semantically."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/listitem?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag131",
+                    "index": 11,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "marquee",
+              "name": "<marquee> elements are deprecated and must not be used",
+              "fullDescription": {
+                "text": "Ensures <marquee> elements are not used."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/marquee?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag222",
+                    "index": 35,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "meta-refresh",
+              "name": "Timed refresh must not exist",
+              "fullDescription": {
+                "text": "Ensures <meta http-equiv=\"refresh\"> is not used."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/meta-refresh?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag221",
+                    "index": 34,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                },
+                {
+                  "target": {
+                    "id": "wcag224",
+                    "index": 37,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                },
+                {
+                  "target": {
+                    "id": "wcag325",
+                    "index": 69,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "meta-viewport",
+              "name": "Zooming and scaling must not be disabled",
+              "fullDescription": {
+                "text": "Ensures <meta name=\"viewport\"> does not disable text scaling and zooming."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/meta-viewport?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "meta-viewport-large",
+              "name": "Users should be able to zoom and scale the text up to 500%",
+              "fullDescription": {
+                "text": "Ensures <meta name=\"viewport\"> can scale a significant amount."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/meta-viewport-large?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "object-alt",
+              "name": "<object> elements must have alternate text",
+              "fullDescription": {
+                "text": "Ensures <object> elements have alternate text."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/object-alt?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag111",
+                    "index": 1,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "role-img-alt",
+              "name": "[role='img'] elements have an alternative text",
+              "fullDescription": {
+                "text": "Ensures [role='img'] elements have alternate text."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/role-img-alt?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag111",
+                    "index": 1,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "scope-attr-valid",
+              "name": "scope attribute should be used correctly",
+              "fullDescription": {
+                "text": "Ensures the scope attribute is used correctly on tables."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/scope-attr-valid?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "scrollable-region-focusable",
+              "name": "Ensure that scrollable region has keyboard access",
+              "fullDescription": {
+                "text": "Elements that have scrollable content should be accessible by keyboard."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/scrollable-region-focusable?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag211",
+                    "index": 30,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "server-side-image-map",
+              "name": "Server-side image maps must not be used",
+              "fullDescription": {
+                "text": "Ensures that server-side image maps are not used."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/server-side-image-map?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag211",
+                    "index": 30,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "skip-link",
+              "name": "The skip-link target should exist and be focusable",
+              "fullDescription": {
+                "text": "Ensure all skip links have a focusable target."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/skip-link?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "svg-img-alt",
+              "name": "svg elements with an img role have an alternative text",
+              "fullDescription": {
+                "text": "Ensures svg elements with an img, graphics-document or graphics-symbol role have an accessible text."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/svg-img-alt?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag111",
+                    "index": 1,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "tabindex",
+              "name": "Elements should not have tabindex greater than zero",
+              "fullDescription": {
+                "text": "Ensures tabindex attribute values are not greater than 0."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/tabindex?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "table-duplicate-name",
+              "name": "The <caption> element should not contain the same text as the summary attribute",
+              "fullDescription": {
+                "text": "Ensure that tables do not have the same summary and caption."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/table-duplicate-name?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "best-practice",
+                    "index": 0,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "td-headers-attr",
+              "name": "All cells in a table element that use the headers attribute must only refer to other cells of that same table",
+              "fullDescription": {
+                "text": "Ensure that each cell in a table using the headers refers to another cell in that table."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/td-headers-attr?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag131",
+                    "index": 11,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "th-has-data-cells",
+              "name": "All th elements and elements with role=columnheader/rowheader must have data cells they describe",
+              "fullDescription": {
+                "text": "Ensure that each table header in a data table refers to data cells."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/th-has-data-cells?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag131",
+                    "index": 11,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "valid-lang",
+              "name": "lang attribute must have a valid value",
+              "fullDescription": {
+                "text": "Ensures lang attributes have valid values."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/valid-lang?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag312",
+                    "index": 60,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            },
+            {
+              "id": "video-caption",
+              "name": "<video> elements must have captions",
+              "fullDescription": {
+                "text": "Ensures <video> elements have captions."
+              },
+              "helpUri": "https://dequeuniversity.com/rules/axe/4.0/video-caption?application=axeAPI",
+              "relationships": [
+                {
+                  "target": {
+                    "id": "wcag122",
+                    "index": 3,
+                    "toolComponent": {
+                      "name": "WCAG",
+                      "index": 0,
+                      "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18"
+                    }
+                  },
+                  "kinds": [
+                    "superset"
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      },
+      "invocations": [
+        {
+          "startTimeUtc": "2020-11-06T17:46:08.529Z",
+          "endTimeUtc": "2020-11-06T17:46:08.529Z",
+          "executionSuccessful": true
+        }
+      ],
+      "artifacts": [
+        {
+          "location": {
+            "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+            "index": 0
+          },
+          "sourceLanguage": "html",
+          "roles": [
+            "analysisTarget"
+          ]
+        }
+      ],
+      "results": [
+        {
+          "ruleId": "button-name",
+          "ruleIndex": 18,
+          "kind": "fail",
+          "level": "error",
+          "message": {
+            "text": "Fix any of the following: Element does not have inner text that is visible to screen readers. aria-label attribute does not exist or is empty. aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty. Element's default semantics were not overridden with role=\"presentation\". Element's default semantics were not overridden with role=\"none\". Element has no title attribute or the title attribute is empty.",
+            "markdown": "Fix any of the following:\n- Element does not have inner text that is visible to screen readers.\n- aria-label attribute does not exist or is empty.\n- aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty.\n- Element's default semantics were not overridden with role=\"presentation\".\n- Element's default semantics were not overridden with role=\"none\".\n- Element has no title attribute or the title attribute is empty."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+                  "index": 0
+                },
+                "region": {
+                  "snippet": {
+                    "text": "<button style=\"height: 25px; width: 50px;\"></button>"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "button",
+                  "kind": "element"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "aria-hidden-body",
+          "ruleIndex": 4,
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "The following tests passed: No aria-hidden attribute is present on document body.",
+            "markdown": "The following tests passed:\n- No aria-hidden attribute is present on document body."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+                  "index": 0
+                },
+                "region": {
+                  "snippet": {
+                    "text": "<body class=\"sb-show-main\" style=\"margin: 0px; padding: 1rem; display: block; justify-content: initial; align-items: initial; min-height: initial;\">"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "body",
+                  "kind": "element"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "avoid-inline-spacing",
+          "ruleIndex": 16,
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "The following tests passed: No inline styles with '!important' that affect text spacing has been specified.",
+            "markdown": "The following tests passed:\n- No inline styles with '!important' that affect text spacing has been specified."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+                  "index": 0
+                },
+                "region": {
+                  "snippet": {
+                    "text": "<body class=\"sb-show-main\" style=\"margin: 0px; padding: 1rem; display: block; justify-content: initial; align-items: initial; min-height: initial;\">"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "body",
+                  "kind": "element"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "avoid-inline-spacing",
+          "ruleIndex": 16,
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "The following tests passed: No inline styles with '!important' that affect text spacing has been specified.",
+            "markdown": "The following tests passed:\n- No inline styles with '!important' that affect text spacing has been specified."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+                  "index": 0
+                },
+                "region": {
+                  "snippet": {
+                    "text": "<button style=\"height: 25px; width: 50px;\"></button>"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "button",
+                  "kind": "element"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "document-title",
+          "ruleIndex": 22,
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "The following tests passed: Document has a non-empty <title> element.",
+            "markdown": "The following tests passed:\n- Document has a non-empty &lt;title> element."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+                  "index": 0
+                },
+                "region": {
+                  "snippet": {
+                    "text": "<html lang=\"en\">"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "html",
+                  "kind": "element"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "duplicate-id",
+          "ruleIndex": 23,
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "The following tests passed: Document has no static elements that share the same id attribute.",
+            "markdown": "The following tests passed:\n- Document has no static elements that share the same id attribute."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+                  "index": 0
+                },
+                "region": {
+                  "snippet": {
+                    "text": "<pre id=\"error-message\" class=\"sb-heading\"></pre>"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "#error-message",
+                  "kind": "element"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "duplicate-id",
+          "ruleIndex": 23,
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "The following tests passed: Document has no static elements that share the same id attribute.",
+            "markdown": "The following tests passed:\n- Document has no static elements that share the same id attribute."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+                  "index": 0
+                },
+                "region": {
+                  "snippet": {
+                    "text": "<code id=\"error-stack\"></code>"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "#error-stack",
+                  "kind": "element"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "duplicate-id",
+          "ruleIndex": 23,
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "The following tests passed: Document has no static elements that share the same id attribute.",
+            "markdown": "The following tests passed:\n- Document has no static elements that share the same id attribute."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+                  "index": 0
+                },
+                "region": {
+                  "snippet": {
+                    "text": "<div id=\"root\"><button style=\"height: 25px; width: 50px;\"></button></div>"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "#root",
+                  "kind": "element"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "duplicate-id",
+          "ruleIndex": 23,
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "The following tests passed: Document has no static elements that share the same id attribute.",
+            "markdown": "The following tests passed:\n- Document has no static elements that share the same id attribute."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+                  "index": 0
+                },
+                "region": {
+                  "snippet": {
+                    "text": "<div id=\"docs-root\" hidden=\"true\"></div>"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "#docs-root",
+                  "kind": "element"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "html-has-lang",
+          "ruleIndex": 32,
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "The following tests passed: The <html> element has a lang attribute.",
+            "markdown": "The following tests passed:\n- The &lt;html> element has a lang attribute."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+                  "index": 0
+                },
+                "region": {
+                  "snippet": {
+                    "text": "<html lang=\"en\">"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "html",
+                  "kind": "element"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "html-lang-valid",
+          "ruleIndex": 33,
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "The following tests passed: Value of lang attribute is included in the list of valid languages.",
+            "markdown": "The following tests passed:\n- Value of lang attribute is included in the list of valid languages."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+                  "index": 0
+                },
+                "region": {
+                  "snippet": {
+                    "text": "<html lang=\"en\">"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "html",
+                  "kind": "element"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "meta-viewport-large",
+          "ruleIndex": 56,
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "The following tests passed: <meta> tag does not prevent significant zooming on mobile devices.",
+            "markdown": "The following tests passed:\n- &lt;meta> tag does not prevent significant zooming on mobile devices."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+                  "index": 0
+                },
+                "region": {
+                  "snippet": {
+                    "text": "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "meta[name=\"viewport\"]",
+                  "kind": "element"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "meta-viewport",
+          "ruleIndex": 55,
+          "kind": "pass",
+          "level": "none",
+          "message": {
+            "text": "The following tests passed: <meta> tag does not disable zooming on mobile devices.",
+            "markdown": "The following tests passed:\n- &lt;meta> tag does not disable zooming on mobile devices."
+          },
+          "locations": [
+            {
+              "physicalLocation": {
+                "artifactLocation": {
+                  "uri": "file:///D:/gitrepos/OpenSource/axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-3&viewMode=story",
+                  "index": 0
+                },
+                "region": {
+                  "snippet": {
+                    "text": "<meta name=\"viewport\" content=\"width=device-width,initial-scale=1\">"
+                  }
+                }
+              },
+              "logicalLocations": [
+                {
+                  "fullyQualifiedName": "meta[name=\"viewport\"]",
+                  "kind": "element"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "ruleId": "accesskeys",
+          "ruleIndex": 0,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures every accesskey attribute value is unique."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "area-alt",
+          "ruleIndex": 1,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <area> elements of image maps have alternate text."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "aria-allowed-attr",
+          "ruleIndex": 2,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures ARIA attributes are allowed for an element's role."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "aria-allowed-role",
+          "ruleIndex": 3,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures role attribute has an appropriate value for the element."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "aria-hidden-focus",
+          "ruleIndex": 5,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures aria-hidden elements do not contain focusable elements."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "aria-input-field-name",
+          "ruleIndex": 6,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures every ARIA input field has an accessible name."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "aria-required-attr",
+          "ruleIndex": 7,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures elements with ARIA roles have all required ARIA attributes."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "aria-required-children",
+          "ruleIndex": 8,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures elements with an ARIA role that require child roles contain them."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "aria-required-parent",
+          "ruleIndex": 9,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures elements with an ARIA role that require parent roles are contained by them."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "aria-roledescription",
+          "ruleIndex": 10,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensure aria-roledescription is only used on elements with an implicit or explicit role."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "aria-roles",
+          "ruleIndex": 11,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures all elements with a role attribute use a valid value."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "aria-toggle-field-name",
+          "ruleIndex": 12,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures every ARIA toggle field has an accessible name."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "aria-valid-attr-value",
+          "ruleIndex": 14,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures all ARIA attributes have valid values."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "aria-valid-attr",
+          "ruleIndex": 13,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures attributes that begin with aria- are valid ARIA attributes."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "autocomplete-valid",
+          "ruleIndex": 15,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensure the autocomplete attribute is correct and suitable for the form field."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "blink",
+          "ruleIndex": 17,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <blink> elements are not used."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "color-contrast",
+          "ruleIndex": 19,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures the contrast between foreground and background colors meets WCAG 2 AA contrast ratio thresholds."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "definition-list",
+          "ruleIndex": 20,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <dl> elements are structured correctly."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "dlitem",
+          "ruleIndex": 21,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <dt> and <dd> elements are contained by a <dl>."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "duplicate-id-active",
+          "ruleIndex": 24,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures every id attribute value of active elements is unique."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "duplicate-id-aria",
+          "ruleIndex": 25,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures every id attribute value used in ARIA and in labels is unique."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "empty-heading",
+          "ruleIndex": 26,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures headings have discernible text."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "form-field-multiple-labels",
+          "ruleIndex": 27,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures form field does not have multiple label elements."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "frame-tested",
+          "ruleIndex": 28,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <iframe> and <frame> elements contain the axe-core script."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "frame-title-unique",
+          "ruleIndex": 30,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <iframe> and <frame> elements contain a unique title attribute."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "frame-title",
+          "ruleIndex": 29,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <iframe> and <frame> elements contain a non-empty title attribute."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "heading-order",
+          "ruleIndex": 31,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures the order of headings is semantically correct."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "html-xml-lang-mismatch",
+          "ruleIndex": 34,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensure that HTML elements with both valid lang and xml:lang attributes agree on the base language of the page."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "identical-links-same-purpose",
+          "ruleIndex": 35,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensure that links with the same accessible name serve a similar purpose."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "image-alt",
+          "ruleIndex": 36,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <img> elements have alternate text or a role of none or presentation."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "image-redundant-alt",
+          "ruleIndex": 37,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensure image alternative is not repeated as text."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "input-button-name",
+          "ruleIndex": 38,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures input buttons have discernible text."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "input-image-alt",
+          "ruleIndex": 39,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <input type=\"image\"> elements have alternate text."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "label-title-only",
+          "ruleIndex": 41,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures that every form element is not solely labeled using the title or aria-describedby attributes."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "label",
+          "ruleIndex": 40,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures every form element has a label."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "landmark-banner-is-top-level",
+          "ruleIndex": 42,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures the banner landmark is at top level."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "landmark-complementary-is-top-level",
+          "ruleIndex": 43,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures the complementary landmark or aside is at top level."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "landmark-contentinfo-is-top-level",
+          "ruleIndex": 44,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures the contentinfo landmark is at top level."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "landmark-main-is-top-level",
+          "ruleIndex": 45,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures the main landmark is at top level."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "landmark-no-duplicate-banner",
+          "ruleIndex": 46,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures the document has at most one banner landmark."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "landmark-no-duplicate-contentinfo",
+          "ruleIndex": 47,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures the document has at most one contentinfo landmark."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "landmark-no-duplicate-main",
+          "ruleIndex": 48,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures the document has at most one main landmark."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "landmark-unique",
+          "ruleIndex": 49,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Landmarks must have a unique role or role/label/title (i.e. accessible name) combination."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "link-name",
+          "ruleIndex": 50,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures links have discernible text."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "list",
+          "ruleIndex": 51,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures that lists are structured correctly."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "listitem",
+          "ruleIndex": 52,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <li> elements are used semantically."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "marquee",
+          "ruleIndex": 53,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <marquee> elements are not used."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "meta-refresh",
+          "ruleIndex": 54,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <meta http-equiv=\"refresh\"> is not used."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "object-alt",
+          "ruleIndex": 57,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <object> elements have alternate text."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "role-img-alt",
+          "ruleIndex": 58,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures [role='img'] elements have alternate text."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "scope-attr-valid",
+          "ruleIndex": 59,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures the scope attribute is used correctly on tables."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "scrollable-region-focusable",
+          "ruleIndex": 60,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Elements that have scrollable content should be accessible by keyboard."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "server-side-image-map",
+          "ruleIndex": 61,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures that server-side image maps are not used."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "skip-link",
+          "ruleIndex": 62,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensure all skip links have a focusable target."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "svg-img-alt",
+          "ruleIndex": 63,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures svg elements with an img, graphics-document or graphics-symbol role have an accessible text."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "tabindex",
+          "ruleIndex": 64,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures tabindex attribute values are not greater than 0."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "table-duplicate-name",
+          "ruleIndex": 65,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensure that tables do not have the same summary and caption."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "td-headers-attr",
+          "ruleIndex": 66,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensure that each cell in a table using the headers refers to another cell in that table."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "th-has-data-cells",
+          "ruleIndex": 67,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensure that each table header in a data table refers to data cells."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "valid-lang",
+          "ruleIndex": 68,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures lang attributes have valid values."
+          },
+          "locations": []
+        },
+        {
+          "ruleId": "video-caption",
+          "ruleIndex": 69,
+          "kind": "notApplicable",
+          "level": "none",
+          "message": {
+            "text": "Ensures <video> elements have captions."
+          },
+          "locations": []
+        }
+      ],
+      "taxonomies": [
+        {
+          "name": "WCAG",
+          "fullName": "Web Content Accessibility Guidelines (WCAG) 2.1",
+          "organization": "W3C",
+          "informationUri": "https://www.w3.org/TR/WCAG21",
+          "version": "2.1",
+          "guid": "ca34e0e1-5faf-4f55-a989-cdae42a98f18",
+          "isComprehensive": true,
+          "taxa": [
+            {
+              "id": "best-practice",
+              "name": "Best Practice"
+            },
+            {
+              "id": "wcag111",
+              "name": "WCAG 1.1.1",
+              "shortDescription": {
+                "text": "Non-text Content"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/non-text-content"
+            },
+            {
+              "id": "wcag121",
+              "name": "WCAG 1.2.1",
+              "shortDescription": {
+                "text": "Audio-only and Video-only (Prerecorded)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/audio-only-and-video-only-prerecorded"
+            },
+            {
+              "id": "wcag122",
+              "name": "WCAG 1.2.2",
+              "shortDescription": {
+                "text": "Captions (Prerecorded)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/captions-prerecorded"
+            },
+            {
+              "id": "wcag123",
+              "name": "WCAG 1.2.3",
+              "shortDescription": {
+                "text": "Audio Description or Media Alternative (Prerecorded)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/audio-description-or-media-alternative-prerecorded"
+            },
+            {
+              "id": "wcag124",
+              "name": "WCAG 1.2.4",
+              "shortDescription": {
+                "text": "Captions (Live)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/captions-live"
+            },
+            {
+              "id": "wcag125",
+              "name": "WCAG 1.2.5",
+              "shortDescription": {
+                "text": "Audio Description (Prerecorded)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/audio-description-prerecorded"
+            },
+            {
+              "id": "wcag126",
+              "name": "WCAG 1.2.6",
+              "shortDescription": {
+                "text": "Sign Language (Prerecorded)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/sign-language-prerecorded"
+            },
+            {
+              "id": "wcag127",
+              "name": "WCAG 1.2.7",
+              "shortDescription": {
+                "text": "Extended Audio Description (Prerecorded)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/extended-audio-description-prerecorded"
+            },
+            {
+              "id": "wcag128",
+              "name": "WCAG 1.2.8",
+              "shortDescription": {
+                "text": "Media Alternative (Prerecorded)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/media-alternative-prerecorded"
+            },
+            {
+              "id": "wcag129",
+              "name": "WCAG 1.2.9",
+              "shortDescription": {
+                "text": "Audio-only (Live)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/audio-only-live"
+            },
+            {
+              "id": "wcag131",
+              "name": "WCAG 1.3.1",
+              "shortDescription": {
+                "text": "Info and Relationships"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/info-and-relationships"
+            },
+            {
+              "id": "wcag132",
+              "name": "WCAG 1.3.2",
+              "shortDescription": {
+                "text": "Meaningful Sequence"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/meaningful-sequence"
+            },
+            {
+              "id": "wcag133",
+              "name": "WCAG 1.3.3",
+              "shortDescription": {
+                "text": "Sensory Characteristics"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/sensory-characteristics"
+            },
+            {
+              "id": "wcag134",
+              "name": "WCAG 1.3.4",
+              "shortDescription": {
+                "text": "Orientation"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/orientation"
+            },
+            {
+              "id": "wcag135",
+              "name": "WCAG 1.3.5",
+              "shortDescription": {
+                "text": "Identify Input Purpose"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/identify-input-purpose"
+            },
+            {
+              "id": "wcag136",
+              "name": "WCAG 1.3.6",
+              "shortDescription": {
+                "text": "Identify Purpose"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/identify-purpose"
+            },
+            {
+              "id": "wcag141",
+              "name": "WCAG 1.4.1",
+              "shortDescription": {
+                "text": "Use of Color"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/use-of-color"
+            },
+            {
+              "id": "wcag1410",
+              "name": "WCAG 1.4.10",
+              "shortDescription": {
+                "text": "Reflow"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/reflow"
+            },
+            {
+              "id": "wcag1411",
+              "name": "WCAG 1.4.11",
+              "shortDescription": {
+                "text": "Non-text Contrast"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/non-text-contrast"
+            },
+            {
+              "id": "wcag1412",
+              "name": "WCAG 1.4.12",
+              "shortDescription": {
+                "text": "Text Spacing"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/text-spacing"
+            },
+            {
+              "id": "wcag1413",
+              "name": "WCAG 1.4.13",
+              "shortDescription": {
+                "text": "Content on Hover or Focus"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/content-on-hover-or-focus"
+            },
+            {
+              "id": "wcag142",
+              "name": "WCAG 1.4.2",
+              "shortDescription": {
+                "text": "Audio Control"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/audio-control"
+            },
+            {
+              "id": "wcag143",
+              "name": "WCAG 1.4.3",
+              "shortDescription": {
+                "text": "Contrast (Minimum)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum"
+            },
+            {
+              "id": "wcag144",
+              "name": "WCAG 1.4.4",
+              "shortDescription": {
+                "text": "Resize text"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/resize-text"
+            },
+            {
+              "id": "wcag145",
+              "name": "WCAG 1.4.5",
+              "shortDescription": {
+                "text": "Images of Text"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/images-of-text"
+            },
+            {
+              "id": "wcag146",
+              "name": "WCAG 1.4.6",
+              "shortDescription": {
+                "text": "Contrast (Enhanced)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/contrast-enhanced"
+            },
+            {
+              "id": "wcag147",
+              "name": "WCAG 1.4.7",
+              "shortDescription": {
+                "text": "Low or No Background Audio"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/low-or-no-background-audio"
+            },
+            {
+              "id": "wcag148",
+              "name": "WCAG 1.4.8",
+              "shortDescription": {
+                "text": "Visual Presentation"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/visual-presentation"
+            },
+            {
+              "id": "wcag149",
+              "name": "WCAG 1.4.9",
+              "shortDescription": {
+                "text": "Images of Text (No Exception)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/images-of-text-no-exception"
+            },
+            {
+              "id": "wcag211",
+              "name": "WCAG 2.1.1",
+              "shortDescription": {
+                "text": "Keyboard"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard"
+            },
+            {
+              "id": "wcag212",
+              "name": "WCAG 2.1.2",
+              "shortDescription": {
+                "text": "No Keyboard Trap"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/no-keyboard-trap"
+            },
+            {
+              "id": "wcag213",
+              "name": "WCAG 2.1.3",
+              "shortDescription": {
+                "text": "Keyboard (No Exception)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/keyboard-no-exception"
+            },
+            {
+              "id": "wcag214",
+              "name": "WCAG 2.1.4",
+              "shortDescription": {
+                "text": "Character Key Shortcuts"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/character-key-shortcuts"
+            },
+            {
+              "id": "wcag221",
+              "name": "WCAG 2.2.1",
+              "shortDescription": {
+                "text": "Timing Adjustable"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/timing-adjustable"
+            },
+            {
+              "id": "wcag222",
+              "name": "WCAG 2.2.2",
+              "shortDescription": {
+                "text": "Pause, Stop, Hide"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/pause-stop-hide"
+            },
+            {
+              "id": "wcag223",
+              "name": "WCAG 2.2.3",
+              "shortDescription": {
+                "text": "No Timing"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/no-timing"
+            },
+            {
+              "id": "wcag224",
+              "name": "WCAG 2.2.4",
+              "shortDescription": {
+                "text": "Interruptions"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/interruptions"
+            },
+            {
+              "id": "wcag225",
+              "name": "WCAG 2.2.5",
+              "shortDescription": {
+                "text": "Re-authenticating"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/re-authenticating"
+            },
+            {
+              "id": "wcag226",
+              "name": "WCAG 2.2.6",
+              "shortDescription": {
+                "text": "Timeouts"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/timeouts"
+            },
+            {
+              "id": "wcag231",
+              "name": "WCAG 2.3.1",
+              "shortDescription": {
+                "text": "Three Flashes or Below Threshold"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/three-flashes-or-below-threshold"
+            },
+            {
+              "id": "wcag232",
+              "name": "WCAG 2.3.2",
+              "shortDescription": {
+                "text": "Three Flashes"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/three-flashes"
+            },
+            {
+              "id": "wcag233",
+              "name": "WCAG 2.3.3",
+              "shortDescription": {
+                "text": "Animation from Interactions"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/animation-from-interactions"
+            },
+            {
+              "id": "wcag241",
+              "name": "WCAG 2.4.1",
+              "shortDescription": {
+                "text": "Bypass Blocks"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/bypass-blocks"
+            },
+            {
+              "id": "wcag2410",
+              "name": "WCAG 2.4.10",
+              "shortDescription": {
+                "text": "Section Headings"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/section-headings"
+            },
+            {
+              "id": "wcag242",
+              "name": "WCAG 2.4.2",
+              "shortDescription": {
+                "text": "Page Titled"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/page-titled"
+            },
+            {
+              "id": "wcag243",
+              "name": "WCAG 2.4.3",
+              "shortDescription": {
+                "text": "Focus Order"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/focus-order"
+            },
+            {
+              "id": "wcag244",
+              "name": "WCAG 2.4.4",
+              "shortDescription": {
+                "text": "Link Purpose (In Context)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-in-context"
+            },
+            {
+              "id": "wcag245",
+              "name": "WCAG 2.4.5",
+              "shortDescription": {
+                "text": "Multiple Ways"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/multiple-ways"
+            },
+            {
+              "id": "wcag246",
+              "name": "WCAG 2.4.6",
+              "shortDescription": {
+                "text": "Headings and Labels"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/headings-and-labels"
+            },
+            {
+              "id": "wcag247",
+              "name": "WCAG 2.4.7",
+              "shortDescription": {
+                "text": "Focus Visible"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/focus-visible"
+            },
+            {
+              "id": "wcag248",
+              "name": "WCAG 2.4.8",
+              "shortDescription": {
+                "text": "Location"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/location"
+            },
+            {
+              "id": "wcag249",
+              "name": "WCAG 2.4.9",
+              "shortDescription": {
+                "text": "Link Purpose (Link Only)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/link-purpose-link-only"
+            },
+            {
+              "id": "wcag251",
+              "name": "WCAG 2.5.1",
+              "shortDescription": {
+                "text": "Pointer Gestures"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/pointer-gestures"
+            },
+            {
+              "id": "wcag252",
+              "name": "WCAG 2.5.2",
+              "shortDescription": {
+                "text": "Pointer Cancellation"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/pointer-cancellation"
+            },
+            {
+              "id": "wcag253",
+              "name": "WCAG 2.5.3",
+              "shortDescription": {
+                "text": "Label in Name"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/label-in-name"
+            },
+            {
+              "id": "wcag254",
+              "name": "WCAG 2.5.4",
+              "shortDescription": {
+                "text": "Motion Actuation"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/motion-actuation"
+            },
+            {
+              "id": "wcag255",
+              "name": "WCAG 2.5.5",
+              "shortDescription": {
+                "text": "Target Size"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/target-size"
+            },
+            {
+              "id": "wcag256",
+              "name": "WCAG 2.5.6",
+              "shortDescription": {
+                "text": "Concurrent Input Mechanisms"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/concurrent-input-mechanisms"
+            },
+            {
+              "id": "wcag311",
+              "name": "WCAG 3.1.1",
+              "shortDescription": {
+                "text": "Language of Page"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/language-of-page"
+            },
+            {
+              "id": "wcag312",
+              "name": "WCAG 3.1.2",
+              "shortDescription": {
+                "text": "Language of Parts"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/language-of-parts"
+            },
+            {
+              "id": "wcag313",
+              "name": "WCAG 3.1.3",
+              "shortDescription": {
+                "text": "Unusual Words"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/unusual-words"
+            },
+            {
+              "id": "wcag314",
+              "name": "WCAG 3.1.4",
+              "shortDescription": {
+                "text": "Abbreviations"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/abbreviations"
+            },
+            {
+              "id": "wcag315",
+              "name": "WCAG 3.1.5",
+              "shortDescription": {
+                "text": "Reading Level"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/reading-level"
+            },
+            {
+              "id": "wcag316",
+              "name": "WCAG 3.1.6",
+              "shortDescription": {
+                "text": "Pronunciation"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/pronunciation"
+            },
+            {
+              "id": "wcag321",
+              "name": "WCAG 3.2.1",
+              "shortDescription": {
+                "text": "On Focus"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/on-focus"
+            },
+            {
+              "id": "wcag322",
+              "name": "WCAG 3.2.2",
+              "shortDescription": {
+                "text": "On Input"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/on-input"
+            },
+            {
+              "id": "wcag323",
+              "name": "WCAG 3.2.3",
+              "shortDescription": {
+                "text": "Consistent Navigation"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/consistent-navigation"
+            },
+            {
+              "id": "wcag324",
+              "name": "WCAG 3.2.4",
+              "shortDescription": {
+                "text": "Consistent Identification"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/consistent-identification"
+            },
+            {
+              "id": "wcag325",
+              "name": "WCAG 3.2.5",
+              "shortDescription": {
+                "text": "Change on Request"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/change-on-request"
+            },
+            {
+              "id": "wcag331",
+              "name": "WCAG 3.3.1",
+              "shortDescription": {
+                "text": "Error Identification"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/error-identification"
+            },
+            {
+              "id": "wcag332",
+              "name": "WCAG 3.3.2",
+              "shortDescription": {
+                "text": "Labels or Instructions"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/labels-or-instructions"
+            },
+            {
+              "id": "wcag333",
+              "name": "WCAG 3.3.3",
+              "shortDescription": {
+                "text": "Error Suggestion"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/error-suggestion"
+            },
+            {
+              "id": "wcag334",
+              "name": "WCAG 3.3.4",
+              "shortDescription": {
+                "text": "Error Prevention (Legal, Financial, Data)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/error-prevention-legal-financial-data"
+            },
+            {
+              "id": "wcag335",
+              "name": "WCAG 3.3.5",
+              "shortDescription": {
+                "text": "Help"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/help"
+            },
+            {
+              "id": "wcag336",
+              "name": "WCAG 3.3.6",
+              "shortDescription": {
+                "text": "Error Prevention (All)"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/error-prevention-all"
+            },
+            {
+              "id": "wcag411",
+              "name": "WCAG 4.1.1",
+              "shortDescription": {
+                "text": "Parsing"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/parsing"
+            },
+            {
+              "id": "wcag412",
+              "name": "WCAG 4.1.2",
+              "shortDescription": {
+                "text": "Name, Role, Value"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/name-role-value"
+            },
+            {
+              "id": "wcag413",
+              "name": "WCAG 4.1.3",
+              "shortDescription": {
+                "text": "Status Messages"
+              },
+              "helpUri": "https://www.w3.org/WAI/WCAG21/Understanding/status-messages"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
