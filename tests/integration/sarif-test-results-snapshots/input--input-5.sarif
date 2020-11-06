@@ -1818,7 +1818,7 @@
       "artifacts": [
         {
           "location": {
-            "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+            "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
             "index": 0
           },
           "sourceLanguage": "html",
@@ -1841,7 +1841,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -1872,7 +1872,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -1903,7 +1903,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -1934,7 +1934,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -1965,7 +1965,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -1996,7 +1996,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2027,7 +2027,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2058,7 +2058,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2089,7 +2089,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2120,7 +2120,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2151,7 +2151,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2182,7 +2182,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2213,7 +2213,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2244,7 +2244,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "/axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
+                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=input--input-5&viewMode=story",
                   "index": 0
                 },
                 "region": {
