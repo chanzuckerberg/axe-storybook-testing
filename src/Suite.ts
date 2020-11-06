@@ -7,7 +7,7 @@ import * as ProcessedStory from './ProcessedStory';
 import * as Result from './Result';
 import * as TestBrowser from './TestBrowser';
 
-type SuiteEvents = {
+export type SuiteEvents = {
   suiteStart: (browser: string) => void;
   componentStart: (componentName: string) => void;
   componentSkip: (componentName: string) => void;

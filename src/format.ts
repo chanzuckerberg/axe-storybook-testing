@@ -1,57 +1,60 @@
 import type { Result as AxeResult, NodeResult } from 'axe-core';
 import indent from 'indent-string';
+import dedent from 'ts-dedent';
 import { Result } from './Result';
 import { SuiteEmitter } from './Suite';
 
-export default function format(emitter: SuiteEmitter): void {
+export default function format(emitter: SuiteEmitter, print = console.log): void {
   const failingResults: Result[] = [];
   let failure = 0;
   let suiteBrowser = '';
 
   emitter.on('suiteStart', (browser) => {
     suiteBrowser = browser;
-    console.log(`[${browser}] accessibility`);
+    print(`[${browser}] accessibility`);
   });
 
   emitter.on('componentStart', (componentName) => {
-    console.log(indent(componentName, 2));
+    print(indent(componentName, 2));
   });
 
   emitter.on('componentSkip', (componentName) => {
-    console.log(indent(`[skipped] ${componentName}`, 2));
+    print(indent(`[skipped] ${componentName}`, 2));
   });
 
   emitter.on('storyPass', (storyName, _result, elapsedTime) => {
-    console.log(indent(`✓ ${storyName} (${elapsedTime}ms)`, 4));
+    print(indent(`✓ ${storyName} (${elapsedTime}ms)`, 4));
   });
 
   emitter.on('storyFail', (storyName, result, elapsedTime) => {
     failingResults.push(result);
     failure += 1;
-    console.log(indent(`${failure}) ${storyName} (${elapsedTime}ms)`, 4));
+    print(indent(`${failure}) ${storyName} (${elapsedTime}ms)`, 4));
   });
 
   emitter.on('storySkip', (storyName) => {
-    console.log(indent(`- ${storyName}`, 4));
+    print(indent(`- ${storyName}`, 4));
   });
 
   emitter.on('suiteFinish', (numPass, numFail, numSkip) => {
-    console.log('');
-    console.log(`${numPass} passing`);
-    console.log(`${numFail} failing`);
-    console.log(`${numSkip} pending`);
+    print('');
+    print(dedent`
+      ${numPass} passing
+      ${numFail} failing
+      ${numSkip} pending
+    `);
 
     failingResults.forEach((result, index) => {
-      console.log('');
-      console.log(`${index + 1}) [${suiteBrowser}] accessibility`);
-      console.log(indent(result.component, 5));
-      console.log(indent(result.name, 7));
+      print('');
+      print(`${index + 1}) [${suiteBrowser}] accessibility`);
+      print(indent(result.component, 5));
+      print(indent(result.name, 7));
 
-      console.log('');
-      console.log(indent(formatViolations(result), 7));
+      print('');
+      print(indent(formatViolations(result), 7));
     });
 
-    console.log('');
+    print('');
   });
 }
 
