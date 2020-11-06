@@ -60,7 +60,7 @@ function normalize(input: string) {
   /** build/Suite.js is a path that is contained in the snapshot. Windows uses an absolute path. */
   const stackFilePathPattern = /(at Context\.<anonymous> \()([a-zA-Z0-9/\\\-.:]*?)([/\\]{1,4}build[/\\]{1,4}Suite.js\))/g;
   /** Stripping environment specific filepath */
-  const environmentFilePath = /: "file:\/\/.*?(\/axe-storybook-testing\/)/g;
+  // const environmentFilePath = /: "file:\/\/\/.*?(\/axe-storybook-testing\/)/g;
   /** ISO DateTime. For example, `1970-01-01T00:00:00.0Z` */
   const isoDateTimePattern =/\d{4}-[01]\d-[0-3]\dT[0-2]\d:[0-5]\d:[0-5]\d\.\d+([+-][0-2]\d:[0-5]\d|Z)/g;
   /** Ticks differ betwen Windows and other platforms */
@@ -71,7 +71,7 @@ function normalize(input: string) {
     .replace(cwdPattern, '')
     .replace(lineNumbersPattern, '.js')
     .replace(stackFilePathPattern, 'at Context.<anonymous> (/build/Suite.js)')
-    .replace(environmentFilePath, ': "file://..$1')
+    // .replace(environmentFilePath, ': "file:///..$1')
     .replace(tickPattern, '✓')
     .replace(isoDateTimePattern, '1970-01-01T00:00:00.0Z');
 }
