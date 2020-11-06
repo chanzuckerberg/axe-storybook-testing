@@ -11,7 +11,7 @@ const options = {
   },
   'build-dir': {
     alias: 'b',
-    default: 'storybook-static',
+    default: process.env.NODE_ENV == 'test' ? 'tests/unit' : 'storybook-static',
     description: 'Directory to load the static storybook built by build-storybook from',
     type: 'string' as const,
   },

@@ -14,13 +14,16 @@ export async function exportAxeAsSarifTestResult(sarifFileName: string, axeResul
   if(options.outputSarifFiles)
   {
     const sarifResults = convertAxeToSarif(axeResults);
-
-    const testResultsDirectory = path.join('.', options.sarifOutputDir);
-    await promisify(fs.mkdir)(testResultsDirectory, { recursive: true });
+    const testResultsDirectory = await makeDirectory(options.sarifOutputDir);
 
     const sarifResultFile = path.join(testResultsDirectory, sarifFileName);
     await promisify(fs.writeFile)(
       sarifResultFile,
       JSON.stringify(sarifResults, null, 2));
   }
+}
+
+async function makeDirectory(directory: string) : Promise<string>{
+  const outputDirectory = path.join('.', directory);
+  return promisify(fs.mkdir)(outputDirectory, { recursive: true });
 }
