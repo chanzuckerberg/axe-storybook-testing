@@ -1856,7 +1856,7 @@
       "artifacts": [
         {
           "location": {
-            "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+            "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
             "index": 0
           },
           "sourceLanguage": "html",
@@ -1879,7 +1879,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -1910,7 +1910,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -1941,7 +1941,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -1972,7 +1972,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2003,7 +2003,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2034,7 +2034,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2065,7 +2065,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2096,7 +2096,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2127,7 +2127,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2158,7 +2158,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2189,7 +2189,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2220,7 +2220,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2251,7 +2251,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2282,7 +2282,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2313,7 +2313,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2344,7 +2344,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
@@ -2375,7 +2375,7 @@
             {
               "physicalLocation": {
                 "artifactLocation": {
-                  "uri": "file://../axe-storybook-testing/demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
+                  "uri": "file:///demo/storybook-static/iframe.html?id=button--button-6&viewMode=story",
                   "index": 0
                 },
                 "region": {
