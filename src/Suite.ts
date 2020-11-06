@@ -12,9 +12,9 @@ type SuiteEvents = {
   componentStart: (componentName: string) => void;
   componentSkip: (componentName: string) => void;
   storyStart: (storyName: string) => void;
-  storyPass: (result: Result.Result, elapsedTime: number) => void;
-  storyFail: (result: Result.Result, elapsedTime: number) => void;
-  storySkip: () => void;
+  storyPass: (storyName: string, result: Result.Result, elapsedTime: number) => void;
+  storyFail: (storyName: string, result: Result.Result, elapsedTime: number) => void;
+  storySkip: (storyName: string) => void;
   suiteFinish: (numPass: number, numFail: number, numSkip: number, elapsedTime: number) => void;
 }
 
@@ -57,7 +57,7 @@ export function run(options: Options): SuiteEmitter {
 
           if (!ProcessedStory.isEnabled(story)) {
             numSkip += 1;
-            emitter.emit('storySkip');
+            emitter.emit('storySkip', story.name);
             continue;
           }
 
@@ -69,10 +69,10 @@ export function run(options: Options): SuiteEmitter {
 
           if (Result.isPassing(result)) {
             numPass += 1;
-            emitter.emit('storyPass', result, storyElapsedTime);
+            emitter.emit('storyPass', story.name, result, storyElapsedTime);
           } else {
             numFail += 1;
-            emitter.emit('storyFail', result, storyElapsedTime);
+            emitter.emit('storyFail', story.name, result, storyElapsedTime);
           }
         }
       }
