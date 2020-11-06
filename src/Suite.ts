@@ -18,11 +18,13 @@ type SuiteEvents = {
   suiteFinish: (numPass: number, numFail: number, numSkip: number, elapsedTime: number) => void;
 }
 
+export type SuiteEmitter = Emitter<SuiteEvents>;
+
 /**
  * Find Storybook stories and run Axe on each one. Returns an event emitter that emits events when
  * components and stories are processed.
  */
-export function run(options: Options): Emitter<SuiteEvents> {
+export function run(options: Options): SuiteEmitter {
   const emitter = createEmitter<SuiteEvents>();
 
   defer(async () => {
