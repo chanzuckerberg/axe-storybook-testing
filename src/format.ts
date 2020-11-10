@@ -5,7 +5,7 @@ import dedent from 'ts-dedent';
 import { Result } from './Result';
 import { SuiteEmitter } from './Suite';
 
-export default function format(emitter: SuiteEmitter, print = console.log): void {
+export default function format(emitter: SuiteEmitter, print = console.log, colors = new chalk.Instance()): void {
   const failingResults: Result[] = [];
   let failure = 0;
   let suiteBrowser = 'unknown';
@@ -24,45 +24,45 @@ export default function format(emitter: SuiteEmitter, print = console.log): void
   });
 
   emitter.on('storyPass', (storyName, _result, elapsedTime) => {
-    print(indent(`${chalk.green('✓')} ${chalk.gray(storyName)} ${chalk.yellow(`(${elapsedTime}ms)`)}`, 4));
+    print(indent(`${colors.green('✓')} ${colors.gray(storyName)} ${colors.yellow(`(${elapsedTime}ms)`)}`, 4));
   });
 
   emitter.on('storyFail', (storyName, result, elapsedTime) => {
     failingResults.push(result);
     failure += 1;
-    print(indent(chalk.red(`${failure}) ${storyName} (${elapsedTime}ms)`), 4));
+    print(indent(colors.red(`${failure}) ${storyName} (${elapsedTime}ms)`), 4));
   });
 
   emitter.on('storySkip', (storyName) => {
-    print(indent(chalk.cyan(`- ${storyName}`), 4));
+    print(indent(colors.cyan(`- ${storyName}`), 4));
   });
 
   emitter.on('suiteFinish', (numPass, numFail, numSkip) => {
     print('');
     print(dedent`
-      ${chalk.green(numPass + ' passing')}
-      ${chalk.red(numFail + ' failing')}
-      ${chalk.cyan(numSkip + ' pending')}
+      ${colors.green(numPass + ' passing')}
+      ${colors.red(numFail + ' failing')}
+      ${colors.cyan(numSkip + ' pending')}
     `);
 
     failingResults.forEach((result, index) => {
       print('');
-      print(formatResult(result, suiteBrowser, index));
+      print(formatResult(result, suiteBrowser, index, colors));
     });
 
     print('');
   });
 }
 
-function formatResult(result: Result, browser: string, index: number): string {
+function formatResult(result: Result, browser: string, index: number, colors: chalk.Chalk): string {
   return dedent`
     ${index + 1}) [${browser}] accessibility
          ${result.component}
            ${result.name}
 
-           ${chalk.red('Detected the following accessibility violations!')}
+           ${colors.red('Detected the following accessibility violations!')}
 
-    ${indent(chalk.red(formatViolations(result.violations)), 7)}
+    ${indent(colors.red(formatViolations(result.violations)), 7)}
   `;
 }
 
