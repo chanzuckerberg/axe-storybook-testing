@@ -4,11 +4,13 @@ import { createEmitter } from '../../../src/Emitter';
 import { format } from '../../../src/formats/spec';
 import { SuiteEvents } from '../../../src/Suite';
 
+const noColors = new chalk.Instance({ level: 0 });
+
 test('suiteStart', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
-  format(emitter, print, new chalk.Instance({ level: 0 }));
+  format(emitter, print, noColors);
   expect(print).not.toHaveBeenCalled();
 
   emitter.emit('suiteStart', 'mosaic');
@@ -19,7 +21,7 @@ test('componentStart', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
-  format(emitter, print, new chalk.Instance({ level: 0 }));
+  format(emitter, print, noColors);
   expect(print).not.toHaveBeenCalled();
 
   emitter.emit('componentStart', 'button');
@@ -30,7 +32,7 @@ test('componentSkip', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
-  format(emitter, print, new chalk.Instance({ level: 0 }));
+  format(emitter, print, noColors);
   expect(print).not.toHaveBeenCalled();
 
   emitter.emit('componentSkip', 'button');
@@ -41,7 +43,7 @@ test('storyPass', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
-  format(emitter, print, new chalk.Instance({ level: 0 }));
+  format(emitter, print, noColors);
   expect(print).not.toHaveBeenCalled();
 
   const result = {
@@ -58,7 +60,7 @@ test('storyFail', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
-  format(emitter, print, new chalk.Instance({ level: 0 }));
+  format(emitter, print, noColors);
   expect(print).not.toHaveBeenCalled();
 
   const result = {
@@ -78,7 +80,7 @@ test('storySkip', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
-  format(emitter, print, new chalk.Instance({ level: 0 }));
+  format(emitter, print, noColors);
   expect(print).not.toHaveBeenCalled();
 
   emitter.emit('storySkip', 'some story');
@@ -89,7 +91,7 @@ test('suiteFinish', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
-  format(emitter, print, new chalk.Instance({ level: 0 }));
+  format(emitter, print, noColors);
   expect(print).not.toHaveBeenCalled();
 
   const result = {
