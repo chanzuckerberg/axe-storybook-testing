@@ -98,9 +98,9 @@ test('suiteFinish', () => {
       {
         description: 'Ensures buttons have discernible text',
         help: 'Buttons must have discernible text',
-        helpUrl: 'https://dequeuniversity.com/rules/axe/3.5/button-name',
+        helpUrl: 'https://dequeuniversity.com/rules/axe/4.0/button-name',
         id: 'button-name',
-        tags: ['wcag2a', 'section508'],
+        tags: [],
         nodes: [
           {
             html: '<button></button>',
@@ -108,6 +108,7 @@ test('suiteFinish', () => {
             any: [],
             all: [],
             none: [],
+            failureSummary: "Nope, that is not right, because\nIt's not",
           },
         ],
       },
@@ -122,5 +123,23 @@ test('suiteFinish', () => {
     0 passing
     1 failing
     0 pending
+  `);
+
+  expect(print).toHaveBeenCalledWith(dedent`
+    1) [ie6] accessibility
+         Some component name
+           Some story name
+
+           Detected the following accessibility violations!
+
+           1. button-name (Buttons must have discernible text)
+
+              For more info, visit https://dequeuniversity.com/rules/axe/4.0/button-name.
+
+              Check these nodes:
+
+              - html: <button></button>
+                summary: Nope, that is not right, because
+                         It's not
   `);
 });

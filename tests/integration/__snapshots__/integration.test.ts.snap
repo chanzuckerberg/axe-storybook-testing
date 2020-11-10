@@ -42,7 +42,6 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
                        Element's default semantics were not overridden with role=\\"none\\"
                        Element has no title attribute or the title attribute is empty
 
-
 2) [chromium] accessibility
      button
        Button with insufficient color contrast (should fail)
@@ -59,7 +58,6 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
             summary: Fix any of the following:
                        Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
 
-
 3) [chromium] accessibility
      button
        Multiple buttons with insufficient color contrast (should fail)
@@ -75,11 +73,9 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
           - html: <button style=\\"background-color: limegreen; color: hotpink;\\">Click me!</button>
             summary: Fix any of the following:
                        Element has insufficient color contrast of 1.24 (foreground color: #ff69b4, background color: #32cd32, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
-
           - html: <button style=\\"background-color: hotpink; color: limegreen;\\">Click me!</button>
             summary: Fix any of the following:
                        Element has insufficient color contrast of 1.24 (foreground color: #32cd32, background color: #ff69b4, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
-
 
 4) [chromium] accessibility
      input
@@ -103,7 +99,6 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
                        Element's default semantics were not overridden with role=\\"none\\"
                        Element's default semantics were not overridden with role=\\"presentation\\"
 
-
 5) [chromium] accessibility
      input
        Input without label and invalid role (should fail)
@@ -119,7 +114,6 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
           - html: <input placeholder=\\"Favorite coffee\\" role=\\"wut-the-wut\\">
             summary: Fix all of the following:
                        Role must be one of the valid ARIA roles: wut-the-wut
-
        2. label (Form elements must have labels)
 
           For more info, visit https://dequeuniversity.com/rules/axe/4.0/label?application=axeAPI.
@@ -135,7 +129,6 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
                        Element has no title attribute or the title attribute is empty
                        Element's default semantics were not overridden with role=\\"none\\"
                        Element's default semantics were not overridden with role=\\"presentation\\"
-
 
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 "
