@@ -5,6 +5,9 @@ import dedent from 'ts-dedent';
 import { Result } from './Result';
 import { SuiteEmitter } from './Suite';
 
+/**
+ * Output information from a test suite run as they come in.
+ */
 export default function format(emitter: SuiteEmitter, print = console.log, colors = new chalk.Instance()): void {
   const failingResults: Result[] = [];
   let failure = 0;

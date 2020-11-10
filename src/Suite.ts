@@ -7,6 +7,9 @@ import * as ProcessedStory from './ProcessedStory';
 import * as Result from './Result';
 import * as TestBrowser from './TestBrowser';
 
+/**
+ * Mapping of event names to handlers for the test suite.
+ */
 export type SuiteEvents = {
   suiteStart: (browser: string) => void;
   componentStart: (componentName: string) => void;
@@ -18,6 +21,9 @@ export type SuiteEvents = {
   suiteFinish: (numPass: number, numFail: number, numSkip: number, elapsedTime: number) => void;
 }
 
+/**
+ * Event emitter representing a run of the test suite.
+ */
 export type SuiteEmitter = Emitter<SuiteEvents>;
 
 /**
@@ -35,6 +41,7 @@ export function run(options: Options): SuiteEmitter {
 
     emitter.emit('suiteStart', options.browser);
 
+    // Get the Storybook stories.
     const testBrowser = await TestBrowser.create(options);
     const page = await TestBrowser.createPage(testBrowser, options);
     const stories = await TestBrowser.getStories(page);
@@ -42,16 +49,18 @@ export function run(options: Options): SuiteEmitter {
     const storiesAndComponents = Object.entries(storiesByComponent);
 
     try {
+      // Iterate each component.
       for (const [componentTitle, stories] of storiesAndComponents) {
-        const nameMatches = options.pattern.test(componentTitle);
+        const shouldComponentRun = options.pattern.test(componentTitle);
 
-        if (!nameMatches) {
+        if (!shouldComponentRun) {
           emitter.emit('componentSkip', componentTitle);
           continue;
         }
 
         emitter.emit('componentStart', componentTitle);
 
+        // Iterate each story in this component.
         for (const story of stories) {
           const storyStartTime = Date.now();
 
@@ -63,6 +72,7 @@ export function run(options: Options): SuiteEmitter {
 
           emitter.emit('storyStart', story.name);
 
+          // Detect any Axe violations for this story.
           const result = await Result.fromPage(page, story);
           const storyEndTime = Date.now();
           const storyElapsedTime = storyEndTime - storyStartTime;
