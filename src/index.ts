@@ -1,5 +1,5 @@
 import format from './format';
-import options from './Options';
+import { parseOptions } from './Options';
 import * as Suite from './Suite';
 
 /**
@@ -8,6 +8,7 @@ import * as Suite from './Suite';
  */
 export function run(): Promise<void> {
   return new Promise((resolve, reject) => {
+    const options = parseOptions();
     const emitter = Suite.run(options);
 
     emitter.on('suiteFinish', (_numPass, numFail) => {
