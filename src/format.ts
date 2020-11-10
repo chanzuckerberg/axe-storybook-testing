@@ -1,4 +1,5 @@
 import type { Result as AxeResult, NodeResult } from 'axe-core';
+import chalk from 'chalk';
 import indent from 'indent-string';
 import dedent from 'ts-dedent';
 import { Result } from './Result';
@@ -23,25 +24,25 @@ export default function format(emitter: SuiteEmitter, print = console.log): void
   });
 
   emitter.on('storyPass', (storyName, _result, elapsedTime) => {
-    print(indent(`✓ ${storyName} (${elapsedTime}ms)`, 4));
+    print(indent(`${chalk.green('✓')} ${chalk.gray(storyName)} ${chalk.yellow(`(${elapsedTime}ms)`)}`, 4));
   });
 
   emitter.on('storyFail', (storyName, result, elapsedTime) => {
     failingResults.push(result);
     failure += 1;
-    print(indent(`${failure}) ${storyName} (${elapsedTime}ms)`, 4));
+    print(indent(chalk.red(`${failure}) ${storyName} (${elapsedTime}ms)`), 4));
   });
 
   emitter.on('storySkip', (storyName) => {
-    print(indent(`- ${storyName}`, 4));
+    print(indent(chalk.cyan(`- ${storyName}`), 4));
   });
 
   emitter.on('suiteFinish', (numPass, numFail, numSkip) => {
     print('');
     print(dedent`
-      ${numPass} passing
-      ${numFail} failing
-      ${numSkip} pending
+      ${chalk.green(numPass + ' passing')}
+      ${chalk.red(numFail + ' failing')}
+      ${chalk.cyan(numSkip + ' pending')}
     `);
 
     failingResults.forEach((result, index) => {
@@ -59,9 +60,9 @@ function formatResult(result: Result, browser: string, index: number): string {
          ${result.component}
            ${result.name}
 
-           Detected the following accessibility violations!
+           ${chalk.red('Detected the following accessibility violations!')}
 
-    ${indent(formatViolations(result.violations), 7)}
+    ${indent(chalk.red(formatViolations(result.violations)), 7)}
   `;
 }
 
