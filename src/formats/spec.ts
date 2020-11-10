@@ -2,13 +2,13 @@ import type { Result as AxeResult, NodeResult } from 'axe-core';
 import chalk from 'chalk';
 import indent from 'indent-string';
 import dedent from 'ts-dedent';
-import { Result } from './Result';
-import { SuiteEmitter } from './Suite';
+import { Result } from '../Result';
+import { SuiteEmitter } from '../Suite';
 
 /**
- * Output information from a test suite run as they come in.
+ * Output test suite information similarly to Mocha's "spec" formatter.
  */
-export default function format(emitter: SuiteEmitter, print = console.log, colors = new chalk.Instance()): void {
+export function format(emitter: SuiteEmitter, print = console.log, colors = new chalk.Instance()): void {
   const failingResults: Result[] = [];
   let failure = 0;
   let suiteBrowser = 'unknown';

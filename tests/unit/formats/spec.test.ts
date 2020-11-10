@@ -1,8 +1,8 @@
 import chalk from 'chalk';
 import dedent from 'ts-dedent';
-import { createEmitter } from '../../src/Emitter';
-import format from '../../src/format';
-import { SuiteEvents } from '../../src/Suite';
+import { createEmitter } from '../../../src/Emitter';
+import { format } from '../../../src/formats/spec';
+import { SuiteEvents } from '../../../src/Suite';
 
 test('suiteStart', () => {
   const emitter = createEmitter<SuiteEvents>();

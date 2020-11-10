@@ -1,4 +1,4 @@
-import format from './format';
+import * as SpecFormat from './formats/spec';
 import { parseOptions } from './Options';
 import * as Suite from './Suite';
 
@@ -15,6 +15,6 @@ export function run(): Promise<void> {
       return numFail > 0 ? reject() : resolve();
     });
 
-    format(emitter);
+    SpecFormat.format(emitter);
   });
 }
