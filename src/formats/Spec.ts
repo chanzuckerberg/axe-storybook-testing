@@ -103,8 +103,8 @@ function formatNode(node: NodeResult) {
  * Pretty print a node's failure summary.
  *
  * The summary is a string with newlines. We want to split the line up so the first line can be
- * placed on the same line as "summary: ", and all the other lines are on their own lines, but
- * indented far enough to be lined up with the first line.
+ * placed on the same line as "summary: ", and all the others are indented far enough to be lined
+ * up with the first.
  *
  * @example
  *
