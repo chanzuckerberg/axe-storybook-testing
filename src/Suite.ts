@@ -53,18 +53,17 @@ export function run(options: Options): SuiteEmitter {
       for (const [componentTitle, stories] of storiesAndComponents) {
         const shouldComponentRun = options.pattern.test(componentTitle);
 
-        if (!shouldComponentRun) {
+        if (shouldComponentRun) {
+          emitter.emit('componentStart', componentTitle);
+        } else {
           emitter.emit('componentSkip', componentTitle);
-          continue;
         }
-
-        emitter.emit('componentStart', componentTitle);
 
         // Iterate each story in this component.
         for (const story of stories) {
           const storyStartTime = Date.now();
 
-          if (!ProcessedStory.isEnabled(story)) {
+          if (!shouldComponentRun || !ProcessedStory.isEnabled(story)) {
             numSkip += 1;
             emitter.emit('storySkip', story.name);
             continue;
