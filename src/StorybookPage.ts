@@ -1,6 +1,6 @@
+import type { ClientApi, StoreItem } from '@storybook/client-api';
 import type { Page } from 'playwright';
 import type { ProcessedStory } from './ProcessedStory';
-import type { ClientApi, StoreItem } from '@storybook/client-api';
 
 /**
  * Storybook's internal representation of a story.

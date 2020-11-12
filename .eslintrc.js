@@ -24,6 +24,7 @@ module.exports = {
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-empty-function': 'off',
     'comma-dangle': ['error', 'always-multiline'],
+    'import/order': ['error', { alphabetize: { order: 'asc' } }],
     semi: ['error', 'always'],
     quotes: ['error', 'single', { avoidEscape: true }],
   },

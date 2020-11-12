@@ -1,8 +1,8 @@
-import { analyze } from './AxePage';
-import { showStory } from './StorybookPage';
 import type { Result as AxeResult, NodeResult } from 'axe-core';
 import type { Page } from 'playwright';
+import { analyze } from './AxePage';
 import { getDisabledRules, ProcessedStory } from './ProcessedStory';
+import { showStory } from './StorybookPage';
 
 /**
  * Violations reported by Axe for a story.

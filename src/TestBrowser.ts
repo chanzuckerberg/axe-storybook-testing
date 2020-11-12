@@ -1,8 +1,8 @@
 import playwright, { Browser, BrowserContext, Page } from 'playwright';
 import * as AxePage from './AxePage';
+import type { Options } from './Options';
 import * as ProcessedStory from './ProcessedStory';
 import * as StorybookPage from './StorybookPage';
-import type { Options } from './Options';
 
 type TestBrowser = {
   browser: Browser;
