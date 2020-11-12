@@ -4,18 +4,18 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
 "$ axe-storybook
 [chromium] accessibility
   button
-    ✓ Button with text (should pass) 
-    ✓ Button with emoji and label (should pass) 
-    1) Button with no discernible text (should fail) 
-    2) Button with insufficient color contrast (should fail) 
+    ✓ Button with text (should pass)
+    ✓ Button with emoji and label (should pass)
+    1) Button with no discernible text (should fail)
+    2) Button with insufficient color contrast (should fail)
     - Button with insufficient color contrast but skipped (should pass)
-    3) Multiple buttons with insufficient color contrast (should fail) 
+    3) Multiple buttons with insufficient color contrast (should fail)
   input
-    ✓ Input with label (should pass) 
-    4) Input without label (should fail) 
+    ✓ Input with label (should pass)
+    4) Input without label (should fail)
     - Input without label but skipped (should pass)
-    5) Input without label and invalid role (should fail) 
-    ✓ Input without label but \\"label\\" rule is disabled (should pass) 
+    5) Input without label and invalid role (should fail)
+    ✓ Input without label but \\"label\\" rule is disabled (should pass)
 
 4 passing
 5 failing

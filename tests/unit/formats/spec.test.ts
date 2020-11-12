@@ -123,7 +123,7 @@ test('suiteFinish', () => {
   emitter.emit('suiteFinish', 0, 1, 0, 666 );
 
   expect(print).toHaveBeenCalledWith(dedent`
-    0 passing
+    0 passing (666ms)
     1 failing
     0 pending
   `);

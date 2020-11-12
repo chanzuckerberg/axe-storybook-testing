@@ -40,10 +40,10 @@ export function format(emitter: SuiteEmitter, print = console.log, colors = new 
     print(indent(colors.cyan(`- ${storyName}`), 4));
   });
 
-  emitter.on('suiteFinish', (numPass, numFail, numSkip) => {
+  emitter.on('suiteFinish', (numPass, numFail, numSkip, elapsedTime) => {
     print('');
     print(dedent`
-      ${colors.green(numPass + ' passing')}
+      ${colors.green(numPass + ` passing (${elapsedTime}ms)`)}
       ${colors.red(numFail + ' failing')}
       ${colors.cyan(numSkip + ' pending')}
     `);
