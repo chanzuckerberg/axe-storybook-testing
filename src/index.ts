@@ -1,4 +1,4 @@
-import * as SpecFormat from './formats/spec';
+import * as SpecFormat from './formats/Spec';
 import { parseOptions } from './Options';
 import * as Suite from './Suite';
 
