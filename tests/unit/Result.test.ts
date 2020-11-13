@@ -3,8 +3,6 @@ import { isPassing, Result } from '../../src/Result';
 describe('isPassing', () => {
   it('returns true when there are no violations', () => {
     const result: Result = {
-      component: 'Some component name',
-      name: 'x',
       violations: [],
     };
 
@@ -13,8 +11,6 @@ describe('isPassing', () => {
 
   it('returns false when there are violations', () => {
     const result: Result = {
-      component: 'Some component name',
-      name: 'x',
       violations: [
         {
           description: 'Ensures buttons have discernible text',

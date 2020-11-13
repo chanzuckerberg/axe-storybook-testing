@@ -8,8 +8,6 @@ import { showStory } from './StorybookPage';
  * Violations reported by Axe for a story.
  */
 export type Result = {
-  component: string,
-  name: string;
   violations: AxeResult[];
 };
 
@@ -30,8 +28,6 @@ export async function fromPage(page: Page, story: ProcessedStory): Promise<Resul
   const result = await analyze(page, disabledRules);
 
   return {
-    component: story.componentTitle,
-    name: story.name,
     violations: result.violations,
   };
 }

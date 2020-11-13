@@ -14,11 +14,11 @@ export type SuiteEvents = {
   suiteStart: (browser: string) => void;
   componentStart: (componentName: string) => void;
   componentSkip: (componentName: string) => void;
-  storyStart: (storyName: string) => void;
-  storyPass: (storyName: string, result: Result.Result, elapsedTime: number) => void;
-  storyFail: (storyName: string, result: Result.Result, elapsedTime: number) => void;
-  storySkip: (storyName: string) => void;
-  suiteFinish: (numPass: number, numFail: number, numSkip: number, elapsedTime: number) => void;
+  storyStart: (storyName: string, componentName: string) => void;
+  storyPass: (storyName: string, componentName: string, result: Result.Result, elapsedTime: number) => void;
+  storyFail: (storyName: string, componentName: string, result: Result.Result, elapsedTime: number) => void;
+  storySkip: (storyName: string, componentName: string) => void;
+  suiteFinish: (browser: string, numPass: number, numFail: number, numSkip: number, elapsedTime: number) => void;
 }
 
 /**
@@ -45,18 +45,18 @@ export function run(options: Options): SuiteEmitter {
     const testBrowser = await TestBrowser.create(options);
     const page = await TestBrowser.createPage(testBrowser, options);
     const stories = await TestBrowser.getStories(page);
-    const storiesByComponent = groupBy(stories, 'componentTitle');
+    const storiesByComponent = groupBy(stories, 'componentName');
     const storiesAndComponents = Object.entries(storiesByComponent);
 
     try {
       // Iterate each component.
-      for (const [componentTitle, stories] of storiesAndComponents) {
-        const shouldComponentRun = options.pattern.test(componentTitle);
+      for (const [componentName, stories] of storiesAndComponents) {
+        const shouldComponentRun = options.pattern.test(componentName);
 
         if (shouldComponentRun) {
-          emitter.emit('componentStart', componentTitle);
+          emitter.emit('componentStart', componentName);
         } else {
-          emitter.emit('componentSkip', componentTitle);
+          emitter.emit('componentSkip', componentName);
         }
 
         // Iterate each story in this component.
@@ -65,11 +65,11 @@ export function run(options: Options): SuiteEmitter {
 
           if (!shouldComponentRun || !ProcessedStory.isEnabled(story)) {
             numSkip += 1;
-            emitter.emit('storySkip', story.name);
+            emitter.emit('storySkip', story.name, componentName);
             continue;
           }
 
-          emitter.emit('storyStart', story.name);
+          emitter.emit('storyStart', story.name, componentName);
 
           // Detect any Axe violations for this story.
           const result = await Result.fromPage(page, story);
@@ -78,17 +78,17 @@ export function run(options: Options): SuiteEmitter {
 
           if (Result.isPassing(result)) {
             numPass += 1;
-            emitter.emit('storyPass', story.name, result, storyElapsedTime);
+            emitter.emit('storyPass', story.name, componentName, result, storyElapsedTime);
           } else {
             numFail += 1;
-            emitter.emit('storyFail', story.name, result, storyElapsedTime);
+            emitter.emit('storyFail', story.name, componentName, result, storyElapsedTime);
           }
         }
       }
 
       const suiteEndTime = Date.now();
       const suiteElapsedTime = suiteEndTime - suiteStartTime;
-      emitter.emit('suiteFinish', numPass, numFail, numSkip, suiteElapsedTime);
+      emitter.emit('suiteFinish', options.browser, numPass, numFail, numSkip, suiteElapsedTime);
     } finally {
       await TestBrowser.close(testBrowser);
     }

@@ -9,7 +9,7 @@ describe('fromStories', () => {
 
     expect(fromStories(rawStories)).toEqual([
       {
-        componentTitle: 'button',
+        componentName: 'button',
         name: 'a',
         parameters: {
           axe: {
@@ -20,7 +20,7 @@ describe('fromStories', () => {
         storybookId: 'button--a',
       },
       {
-        componentTitle: 'button',
+        componentName: 'button',
         name: 'b',
         parameters: {
           axe: {

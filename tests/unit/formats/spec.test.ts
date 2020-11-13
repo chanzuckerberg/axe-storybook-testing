@@ -1,6 +1,7 @@
 import chalk from 'chalk';
 import dedent from 'ts-dedent';
 import { createEmitter } from '../../../src/Emitter';
+import { Result } from '../../../src/Result';
 import { SuiteEvents } from '../../../src/Suite';
 import { format } from '../../../src/formats/Spec';
 
@@ -46,13 +47,11 @@ test('storyPass', () => {
   format(emitter, print, noColors);
   expect(print).not.toHaveBeenCalled();
 
-  const result = {
-    component: 'some component',
-    name: 'some story',
+  const result: Result = {
     violations: [],
   };
 
-  emitter.emit('storyPass', 'some story', result, 666);
+  emitter.emit('storyPass', 'some story', 'some component', result, 666);
   expect(print).toHaveBeenCalledWith('    ✓ some story (666ms)');
 });
 
@@ -63,16 +62,14 @@ test('storyFail', () => {
   format(emitter, print, noColors);
   expect(print).not.toHaveBeenCalled();
 
-  const result = {
-    component: 'some component',
-    name: 'some story',
+  const result: Result = {
     violations: [],
   };
 
-  emitter.emit('storyFail', 'some story 1', result, 666);
+  emitter.emit('storyFail', 'some story 1', 'some component', result, 666);
   expect(print).toHaveBeenCalledWith('    1) some story 1 (666ms)');
 
-  emitter.emit('storyFail', 'some story 2', result, 666);
+  emitter.emit('storyFail', 'some story 2', 'some component', result, 666);
   expect(print).toHaveBeenCalledWith('    2) some story 2 (666ms)');
 });
 
@@ -83,7 +80,7 @@ test('storySkip', () => {
   format(emitter, print, noColors);
   expect(print).not.toHaveBeenCalled();
 
-  emitter.emit('storySkip', 'some story');
+  emitter.emit('storySkip', 'some story', 'some component');
   expect(print).toHaveBeenCalledWith('    - some story');
 });
 
@@ -94,9 +91,7 @@ test('suiteFinish', () => {
   format(emitter, print, noColors);
   expect(print).not.toHaveBeenCalled();
 
-  const result = {
-    component: 'Some component name',
-    name: 'Some story name',
+  const result: Result = {
     violations: [
       {
         description: 'Ensures buttons have discernible text',
@@ -118,9 +113,8 @@ test('suiteFinish', () => {
     ],
   };
 
-  emitter.emit('suiteStart', 'ie6');
-  emitter.emit('storyFail', 'some story 1', result, 666);
-  emitter.emit('suiteFinish', 0, 1, 0, 666 );
+  emitter.emit('storyFail', 'some story 1', 'some component', result, 666);
+  emitter.emit('suiteFinish', 'ie6', 0, 1, 0, 666 );
 
   expect(print).toHaveBeenCalledWith(dedent`
     0 passing (666ms)
@@ -130,8 +124,8 @@ test('suiteFinish', () => {
 
   expect(print).toHaveBeenCalledWith(dedent`
     1) [ie6] accessibility
-         Some component name
-           Some story name
+         some component
+           some story 1
 
            Detected the following accessibility violations!
 

@@ -5,16 +5,20 @@ import dedent from 'ts-dedent';
 import { Result } from '../Result';
 import { SuiteEmitter } from '../Suite';
 
+type Failure = {
+  componentName: string;
+  result: Result;
+  storyName: string;
+}
+
 /**
  * Output test suite information similarly to Mocha's "spec" formatter.
  */
 export function format(emitter: SuiteEmitter, print = console.log, colors = new chalk.Instance()): void {
-  const failingResults: Result[] = [];
-  let failure = 0;
-  let suiteBrowser = 'unknown';
+  const failures: Failure[] = [];
+  let failureIndex = 0;
 
   emitter.on('suiteStart', (browser) => {
-    suiteBrowser = browser;
     print(`[${browser}] accessibility`);
   });
 
@@ -26,21 +30,21 @@ export function format(emitter: SuiteEmitter, print = console.log, colors = new 
     print(indent(`[skipped] ${componentName}`, 2));
   });
 
-  emitter.on('storyPass', (storyName, _result, elapsedTime) => {
+  emitter.on('storyPass', (storyName, _componentName, _result, elapsedTime) => {
     print(indent(`${colors.green('✓')} ${colors.gray(storyName)} ${colors.yellow(`(${elapsedTime}ms)`)}`, 4));
   });
 
-  emitter.on('storyFail', (storyName, result, elapsedTime) => {
-    failingResults.push(result);
-    failure += 1;
-    print(indent(colors.red(`${failure}) ${storyName} (${elapsedTime}ms)`), 4));
+  emitter.on('storyFail', (storyName, componentName, result, elapsedTime) => {
+    failures.push({ componentName, result, storyName });
+    failureIndex += 1;
+    print(indent(colors.red(`${failureIndex}) ${storyName} (${elapsedTime}ms)`), 4));
   });
 
   emitter.on('storySkip', (storyName) => {
     print(indent(colors.cyan(`- ${storyName}`), 4));
   });
 
-  emitter.on('suiteFinish', (numPass, numFail, numSkip, elapsedTime) => {
+  emitter.on('suiteFinish', (browser, numPass, numFail, numSkip, elapsedTime) => {
     print('');
     print(dedent`
       ${colors.green(numPass + ` passing (${elapsedTime}ms)`)}
@@ -48,24 +52,24 @@ export function format(emitter: SuiteEmitter, print = console.log, colors = new 
       ${colors.cyan(numSkip + ' pending')}
     `);
 
-    failingResults.forEach((result, index) => {
+    failures.forEach((result, index) => {
       print('');
-      print(formatResult(result, suiteBrowser, index, colors));
+      print(formatFailure(result, browser, index, colors));
     });
 
     print('');
   });
 }
 
-function formatResult(result: Result, browser: string, index: number, colors: chalk.Chalk): string {
+function formatFailure(failure: Failure, browser: string, index: number, colors: chalk.Chalk): string {
   return dedent`
     ${index + 1}) [${browser}] accessibility
-         ${result.component}
-           ${result.name}
+         ${failure.componentName}
+           ${failure.storyName}
 
            ${colors.red('Detected the following accessibility violations!')}
 
-    ${indent(colors.red(formatViolations(result.violations)), 7)}
+    ${indent(colors.red(formatViolations(failure.result.violations)), 7)}
   `;
 }
 
