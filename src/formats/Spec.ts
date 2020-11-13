@@ -73,8 +73,6 @@ function formatFailure(failure: Failure, browser: string, index: number, colors:
          ${failure.componentName}
            ${failure.storyName}
 
-           ${colors.red('Detected the following accessibility violations!')}
-
     ${indent(colors.red(formatFailureResult(failure)), 7)}
   `;
 }
@@ -83,7 +81,12 @@ function formatFailureResult(failure: Failure) {
   if (failure.result instanceof Error) {
     return String(failure.result);
   }
-  return formatViolations(failure.result.violations);
+
+  return dedent`
+    Detected the following accessibility violations!
+
+    ${formatViolations(failure.result.violations)}
+  `;
 }
 
 function formatViolations(violations: AxeResult[]) {

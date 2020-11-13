@@ -157,8 +157,6 @@ test('an error', () => {
          an errored component
            an errored story
 
-           Detected the following accessibility violations!
-
            Error: wut the wut
   `);
 });
