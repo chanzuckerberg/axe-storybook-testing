@@ -4,6 +4,7 @@ import indent from 'indent-string';
 import dedent from 'ts-dedent';
 import { Result } from '../Result';
 import { SuiteEmitter } from '../Suite';
+import humanizeDuration from './humanizeDuration';
 
 type Failure = {
   componentName: string;
@@ -31,13 +32,13 @@ export function format(emitter: SuiteEmitter, print = console.log, colors = new 
   });
 
   emitter.on('storyPass', (storyName, _componentName, _result, elapsedTime) => {
-    print(indent(`${colors.green('✓')} ${colors.gray(storyName)} ${colors.yellow(`(${elapsedTime}ms)`)}`, 4));
+    print(indent(`${colors.green('✓')} ${colors.gray(storyName)} ${colors.yellow(`(${humanizeDuration(elapsedTime)})`)}`, 4));
   });
 
   emitter.on('storyFail', (storyName, componentName, result, elapsedTime) => {
     failures.push({ componentName, result, storyName });
     failureIndex += 1;
-    print(indent(colors.red(`${failureIndex}) ${storyName} (${elapsedTime}ms)`), 4));
+    print(indent(colors.red(`${failureIndex}) ${storyName} (${humanizeDuration(elapsedTime)})`), 4));
   });
 
   emitter.on('storySkip', (storyName) => {
@@ -53,7 +54,7 @@ export function format(emitter: SuiteEmitter, print = console.log, colors = new 
   emitter.on('suiteFinish', (browser, numPass, numFail, numSkip, elapsedTime) => {
     print('');
     print(dedent`
-      ${colors.green(numPass + ` passing (${elapsedTime}ms)`)}
+      ${colors.green(numPass + ` passing (${humanizeDuration(elapsedTime)})`)}
       ${colors.red(numFail + ' failing')}
       ${colors.cyan(numSkip + ' pending')}
     `);

@@ -26,7 +26,7 @@ it('outputs accessibility violation information for the demo app', (done) => {
  */
 function normalize(input: string) {
   /** Test times reported by Mocha. For example, `(520ms)` or `(3s)` */
-  const specTimePattern = /\s*\(\d+m?s\)/g;
+  const specTimePattern = /\s*\([\d.]+m?s\)/g;
   /** File system paths. For example, `/path/to/some/file */
   const cwdPattern = new RegExp(process.cwd(), 'g');
   /** Line numbers from stack trace paths. For example, `.js:20:55` */
