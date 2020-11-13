@@ -73,6 +73,7 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
           - html: <button style=\\"background-color: limegreen; color: hotpink;\\">Click me!</button>
             summary: Fix any of the following:
                        Element has insufficient color contrast of 1.24 (foreground color: #ff69b4, background color: #32cd32, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+
           - html: <button style=\\"background-color: hotpink; color: limegreen;\\">Click me!</button>
             summary: Fix any of the following:
                        Element has insufficient color contrast of 1.24 (foreground color: #32cd32, background color: #ff69b4, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
@@ -114,6 +115,7 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
           - html: <input placeholder=\\"Favorite coffee\\" role=\\"wut-the-wut\\">
             summary: Fix all of the following:
                        Role must be one of the valid ARIA roles: wut-the-wut
+
        2. label (Form elements must have labels)
 
           For more info, visit https://dequeuniversity.com/rules/axe/4.0/label?application=axeAPI.

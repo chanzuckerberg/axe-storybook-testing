@@ -74,7 +74,7 @@ function formatFailure(failure: Failure, browser: string, index: number, colors:
 }
 
 function formatViolations(violations: AxeResult[]) {
-  return violations.map(formatViolation).join('\n');
+  return violations.map(formatViolation).join('\n\n');
 }
 
 function formatViolation(violation: AxeResult, index: number) {
@@ -90,7 +90,7 @@ function formatViolation(violation: AxeResult, index: number) {
 }
 
 function formatNodes(nodes: NodeResult[]) {
-  return nodes.map(formatNode).join('\n');
+  return nodes.map(formatNode).join('\n\n');
 }
 
 function formatNode(node: NodeResult) {
