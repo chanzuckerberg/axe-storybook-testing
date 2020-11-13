@@ -1,6 +1,7 @@
 /* eslint-env node, mocha */
 import defer from 'lodash/defer';
 import groupBy from 'lodash/groupBy';
+import pTimeout from 'p-timeout';
 import { createEmitter, Emitter } from './Emitter';
 import { Options } from './Options';
 import * as ProcessedStory from './ProcessedStory';
@@ -18,6 +19,7 @@ export type SuiteEvents = {
   storyPass: (storyName: string, componentName: string, result: Result.Result, elapsedTime: number) => void;
   storyFail: (storyName: string, componentName: string, result: Result.Result, elapsedTime: number) => void;
   storySkip: (storyName: string, componentName: string) => void;
+  storyError: (storyName: string, componentName: string, error: Error) => void;
   suiteFinish: (browser: string, numPass: number, numFail: number, numSkip: number, elapsedTime: number) => void;
 }
 
@@ -71,17 +73,23 @@ export function run(options: Options): SuiteEmitter {
 
           emitter.emit('storyStart', story.name, componentName);
 
-          // Detect any Axe violations for this story.
-          const result = await Result.fromPage(page, story);
-          const storyEndTime = Date.now();
-          const storyElapsedTime = storyEndTime - storyStartTime;
+          try {
+            // Detect any Axe violations for this story.
+            const result = await pTimeout(Result.fromPage(page, story), options.timeout);
+            const storyEndTime = Date.now();
+            const storyElapsedTime = storyEndTime - storyStartTime;
 
-          if (Result.isPassing(result)) {
-            numPass += 1;
-            emitter.emit('storyPass', story.name, componentName, result, storyElapsedTime);
-          } else {
+            if (Result.isPassing(result)) {
+              numPass += 1;
+              emitter.emit('storyPass', story.name, componentName, result, storyElapsedTime);
+            } else {
+              numFail += 1;
+              emitter.emit('storyFail', story.name, componentName, result, storyElapsedTime);
+            }
+          } catch (message) {
             numFail += 1;
-            emitter.emit('storyFail', story.name, componentName, result, storyElapsedTime);
+            const error = message instanceof Error ? message : new Error(message);
+            emitter.emit('storyError', story.name, componentName, error);
           }
         }
       }

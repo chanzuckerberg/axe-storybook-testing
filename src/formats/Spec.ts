@@ -7,7 +7,7 @@ import { SuiteEmitter } from '../Suite';
 
 type Failure = {
   componentName: string;
-  result: Result;
+  result: Result | Error;
   storyName: string;
 }
 
@@ -44,6 +44,12 @@ export function format(emitter: SuiteEmitter, print = console.log, colors = new 
     print(indent(colors.cyan(`- ${storyName}`), 4));
   });
 
+  emitter.on('storyError', (storyName, componentName, error) => {
+    failures.push({ componentName, result: error, storyName });
+    failureIndex += 1;
+    print(indent(colors.red(`${failureIndex}) ${storyName}`), 4));
+  });
+
   emitter.on('suiteFinish', (browser, numPass, numFail, numSkip, elapsedTime) => {
     print('');
     print(dedent`
@@ -69,8 +75,15 @@ function formatFailure(failure: Failure, browser: string, index: number, colors:
 
            ${colors.red('Detected the following accessibility violations!')}
 
-    ${indent(colors.red(formatViolations(failure.result.violations)), 7)}
+    ${indent(colors.red(formatFailureResult(failure)), 7)}
   `;
+}
+
+function formatFailureResult(failure: Failure) {
+  if (failure.result instanceof Error) {
+    return String(failure.result);
+  }
+  return formatViolations(failure.result.violations);
 }
 
 function formatViolations(violations: AxeResult[]) {

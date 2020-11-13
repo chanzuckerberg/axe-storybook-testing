@@ -140,3 +140,25 @@ test('suiteFinish', () => {
                          It's not
   `);
 });
+
+test('an error', () => {
+  const emitter = createEmitter<SuiteEvents>();
+  const print = jest.fn();
+
+  format(emitter, print, noColors);
+  expect(print).not.toHaveBeenCalled();
+
+  emitter.emit('storyError', 'an errored story', 'an errored component', new Error('wut the wut'));
+  expect(print).toHaveBeenCalledWith('    1) an errored story');
+
+  emitter.emit('suiteFinish', 'netscape navigator', 0, 0, 1, 666);
+  expect(print).toHaveBeenCalledWith(dedent`
+    1) [netscape navigator] accessibility
+         an errored component
+           an errored story
+
+           Detected the following accessibility violations!
+
+           Error: wut the wut
+  `);
+});
