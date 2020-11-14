@@ -11,7 +11,7 @@ export function run(): Promise<void> {
     const options = parseOptions();
     const emitter = Suite.run(options);
 
-    emitter.on('suiteFinish', (_numPass, numFail) => {
+    emitter.on('suiteFinish', (_browser, _numPass, numFail) => {
       return numFail > 0 ? reject() : resolve();
     });
 
