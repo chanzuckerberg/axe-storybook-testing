@@ -20,6 +20,19 @@ it('outputs accessibility violation information for the demo app', (done) => {
   });
 }, 120000);
 
+it('can filter the components to run', (done) => {
+  expect.assertions(3);
+
+  exec('yarn --cwd demo storybook:axe-no-build --pattern button', function (error, stdout, stderr) {
+    const normalizedStdout = normalize(stdout);
+    const normalizedStderr = normalize(stderr);
+    expect(error!.code).toEqual(1);
+    expect(normalizedStdout).toMatchSnapshot();
+    expect(normalizedStderr).toMatchSnapshot();
+    done();
+  });
+}, 120000);
+
 /**
  * Remove items from a string that are specific to a test run or environment, such as timing
  * information and file-system paths. That way, we can snapshot test effectively.
