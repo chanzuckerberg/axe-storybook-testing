@@ -1,4 +1,4 @@
-import type { StorybookStory } from './StorybookPage';
+import type { StorybookStory } from './browser/StorybookPage';
 
 /**
  * Story with normalized and custom properties needed by this project.

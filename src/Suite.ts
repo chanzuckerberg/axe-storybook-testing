@@ -6,7 +6,7 @@ import { createEmitter, Emitter } from './Emitter';
 import { Options } from './Options';
 import * as ProcessedStory from './ProcessedStory';
 import * as Result from './Result';
-import * as TestBrowser from './TestBrowser';
+import * as Browser from './browser';
 
 /**
  * Mapping of event names to handlers for the test suite.
@@ -44,9 +44,9 @@ export function run(options: Options): SuiteEmitter {
     emitter.emit('suiteStart', options.browser);
 
     // Get the Storybook stories.
-    const testBrowser = await TestBrowser.create(options);
-    const page = await TestBrowser.createPage(testBrowser, options);
-    const stories = await TestBrowser.getStories(page);
+    const testBrowser = await Browser.create(options);
+    const page = await Browser.createPage(testBrowser, options);
+    const stories = await Browser.getStories(page);
     const storiesByComponent = groupBy(stories, 'componentName');
     const storiesAndComponents = Object.entries(storiesByComponent);
 
@@ -98,7 +98,7 @@ export function run(options: Options): SuiteEmitter {
       const suiteElapsedTime = suiteEndTime - suiteStartTime;
       emitter.emit('suiteFinish', options.browser, numPass, numFail, numSkip, suiteElapsedTime);
     } finally {
-      await TestBrowser.close(testBrowser);
+      await Browser.close(testBrowser);
     }
   });
 

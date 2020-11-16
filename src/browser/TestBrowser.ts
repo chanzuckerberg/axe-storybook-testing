@@ -1,7 +1,7 @@
 import playwright, { Browser, BrowserContext, Page } from 'playwright';
+import type { Options } from '../Options';
+import * as ProcessedStory from '../ProcessedStory';
 import * as AxePage from './AxePage';
-import type { Options } from './Options';
-import * as ProcessedStory from './ProcessedStory';
 import * as StorybookPage from './StorybookPage';
 
 type TestBrowser = {
@@ -38,6 +38,9 @@ export async function createPage(testBrowser: TestBrowser, options: Options): Pr
   return page;
 }
 
+/**
+ * Close the browser.
+ */
 export function close(testBrowser: TestBrowser): Promise<void> {
   return testBrowser.browser.close();
 }
