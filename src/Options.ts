@@ -15,6 +15,12 @@ const options = {
     description: 'Directory to load the static storybook built by build-storybook from',
     type: 'string' as const,
   },
+  format: {
+    alias: 'f',
+    default: 'spec',
+    description: 'The format to display the test run in',
+    type: 'string' as const,
+  },
   headless: {
     alias: 'h',
     default: true,
@@ -45,8 +51,9 @@ export function parseOptions() {
 
   return {
     browser: getBrowser(argv.browser),
-    iframePath: getIframePath(argv['build-dir']),
+    format: getFormat(argv.format),
     headless: argv.headless,
+    iframePath: getIframePath(argv['build-dir']),
     pattern: new RegExp(argv.pattern),
     timeout: argv.timeout,
   };
@@ -72,4 +79,13 @@ function getIframePath(buildDir: string) {
   }
 
   return iframePath;
+}
+
+function getFormat(format: string) {
+  switch (format) {
+    case 'spec':
+      return format;
+    default:
+      throw new Error(`Invalid format option: "${format}"`);
+  }
 }
