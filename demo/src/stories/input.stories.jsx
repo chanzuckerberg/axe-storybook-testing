@@ -17,10 +17,10 @@ export const Input1 = () => (
 );
 Input1.storyName = 'Input with label (should pass)';
 
-export const Input2 = () => <Input placeholder="Favorite coffee" />;
+export const Input2 = () => <Input />;
 Input2.storyName = 'Input without label (should fail)';
 
-export const Input3 = () => <Input placeholder="Favorite coffee" />;
+export const Input3 = () => <Input />;
 Input3.storyName = 'Input without label but skipped (should pass)';
 Input3.parameters = {
   axe: {
@@ -28,10 +28,10 @@ Input3.parameters = {
   },
 };
 
-export const Input4 = () => <Input placeholder="Favorite coffee" role="wut-the-wut" />;
+export const Input4 = () => <Input role="wut-the-wut" />;
 Input4.storyName = 'Input without label and invalid role (should fail)';
 
-export const Input5 = () => <Input placeholder="Favorite coffee" />;
+export const Input5 = () => <Input />;
 Input5.storyName = 'Input without label but "label" rule is disabled (should pass)';
 Input5.parameters = {
   axe: {
