@@ -1,151 +1,223 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`can filter the components to run 1`] = `
+"$ axe-storybook --pattern button
+[chromium] accessibility
+  button
+    ✓ Button with text (should pass)
+    ✓ Button with emoji and label (should pass)
+    1) Button with no discernible text (should fail)
+    2) Button with insufficient color contrast (should fail)
+    - Button with insufficient color contrast but skipped (should pass)
+    3) Multiple buttons with insufficient color contrast (should fail)
+  [skipped] input
+    - Input with label (should pass)
+    - Input without label (should fail)
+    - Input without label but skipped (should pass)
+    - Input without label and invalid role (should fail)
+    - Input without label but \\"label\\" rule is disabled (should pass)
+
+2 passing
+3 failing
+6 pending
+
+1) [chromium] accessibility
+     button
+       Button with no discernible text (should fail)
+
+       Detected the following accessibility violations!
+
+       1. button-name (Buttons must have discernible text)
+
+          For more info, visit https://dequeuniversity.com/rules/axe/4.0/button-name?application=axeAPI.
+
+          Check these nodes:
+
+          - html: <button style=\\"height: 25px; width: 50px;\\"></button>
+            summary: Fix any of the following:
+                       Element does not have inner text that is visible to screen readers
+                       aria-label attribute does not exist or is empty
+                       aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                       Element's default semantics were not overridden with role=\\"presentation\\"
+                       Element's default semantics were not overridden with role=\\"none\\"
+                       Element has no title attribute or the title attribute is empty
+
+2) [chromium] accessibility
+     button
+       Button with insufficient color contrast (should fail)
+
+       Detected the following accessibility violations!
+
+       1. color-contrast (Elements must have sufficient color contrast)
+
+          For more info, visit https://dequeuniversity.com/rules/axe/4.0/color-contrast?application=axeAPI.
+
+          Check these nodes:
+
+          - html: <button style=\\"background-color: red; color: hotpink;\\">Click me!</button>
+            summary: Fix any of the following:
+                       Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+
+3) [chromium] accessibility
+     button
+       Multiple buttons with insufficient color contrast (should fail)
+
+       Detected the following accessibility violations!
+
+       1. color-contrast (Elements must have sufficient color contrast)
+
+          For more info, visit https://dequeuniversity.com/rules/axe/4.0/color-contrast?application=axeAPI.
+
+          Check these nodes:
+
+          - html: <button style=\\"background-color: limegreen; color: hotpink;\\">Click me!</button>
+            summary: Fix any of the following:
+                       Element has insufficient color contrast of 1.24 (foreground color: #ff69b4, background color: #32cd32, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+
+          - html: <button style=\\"background-color: hotpink; color: limegreen;\\">Click me!</button>
+            summary: Fix any of the following:
+                       Element has insufficient color contrast of 1.24 (foreground color: #32cd32, background color: #ff69b4, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+
+info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
+"
+`;
+
+exports[`can filter the components to run 2`] = `
+"error Command failed with exit code 1.
+"
+`;
+
 exports[`outputs accessibility violation information for the demo app 1`] = `
 "$ axe-storybook
+[chromium] accessibility
+  button
+    ✓ Button with text (should pass)
+    ✓ Button with emoji and label (should pass)
+    1) Button with no discernible text (should fail)
+    2) Button with insufficient color contrast (should fail)
+    - Button with insufficient color contrast but skipped (should pass)
+    3) Multiple buttons with insufficient color contrast (should fail)
+  input
+    ✓ Input with label (should pass)
+    4) Input without label (should fail)
+    - Input without label but skipped (should pass)
+    5) Input without label and invalid role (should fail)
+    ✓ Input without label but \\"label\\" rule is disabled (should pass)
 
+4 passing
+5 failing
+2 pending
 
-  [chromium] accessibility
-    button
-      ✓ Button with text (should pass) 
-      ✓ Button with emoji and label (should pass) 
-      1) Button with no discernible text (should fail)
-      2) Button with insufficient color contrast (should fail)
-      - Button with insufficient color contrast but skipped (should pass)
-      3) Multiple buttons with insufficient color contrast (should fail)
-    input
-      ✓ Input with label (should pass) 
-      4) Input without label (should fail)
-      - Input without label but skipped (should pass)
-      5) Input without label and invalid role (should fail)
-      ✓ Input without label but \\"label\\" rule is disabled (should pass) 
+1) [chromium] accessibility
+     button
+       Button with no discernible text (should fail)
 
+       Detected the following accessibility violations!
 
-  4 passing 
-  2 pending
-  5 failing
+       1. button-name (Buttons must have discernible text)
 
-  1) [chromium] accessibility
-       button
-         Button with no discernible text (should fail):
-     AssertionError [ERR_ASSERTION]: 
-Detected the following accessibility violations!
+          For more info, visit https://dequeuniversity.com/rules/axe/4.0/button-name?application=axeAPI.
 
-1. button-name (Buttons must have discernible text)
+          Check these nodes:
 
-   For more info, visit https://dequeuniversity.com/rules/axe/4.0/button-name?application=axeAPI.
+          - html: <button style=\\"height: 25px; width: 50px;\\"></button>
+            summary: Fix any of the following:
+                       Element does not have inner text that is visible to screen readers
+                       aria-label attribute does not exist or is empty
+                       aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                       Element's default semantics were not overridden with role=\\"presentation\\"
+                       Element's default semantics were not overridden with role=\\"none\\"
+                       Element has no title attribute or the title attribute is empty
 
-   Check these nodes:
+2) [chromium] accessibility
+     button
+       Button with insufficient color contrast (should fail)
 
-   - html: <button style=\\"height: 25px; width: 50px;\\"></button>
-     summary: Fix any of the following:
-                Element does not have inner text that is visible to screen readers
-                aria-label attribute does not exist or is empty
-                aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                Element's default semantics were not overridden with role=\\"presentation\\"
-                Element's default semantics were not overridden with role=\\"none\\"
-                Element has no title attribute or the title attribute is empty
+       Detected the following accessibility violations!
 
-      at Context.<anonymous> (/build/Suite.js)
+       1. color-contrast (Elements must have sufficient color contrast)
 
-  2) [chromium] accessibility
-       button
-         Button with insufficient color contrast (should fail):
-     AssertionError [ERR_ASSERTION]: 
-Detected the following accessibility violations!
+          For more info, visit https://dequeuniversity.com/rules/axe/4.0/color-contrast?application=axeAPI.
 
-1. color-contrast (Elements must have sufficient color contrast)
+          Check these nodes:
 
-   For more info, visit https://dequeuniversity.com/rules/axe/4.0/color-contrast?application=axeAPI.
+          - html: <button style=\\"background-color: red; color: hotpink;\\">Click me!</button>
+            summary: Fix any of the following:
+                       Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
 
-   Check these nodes:
+3) [chromium] accessibility
+     button
+       Multiple buttons with insufficient color contrast (should fail)
 
-   - html: <button style=\\"background-color: red; color: hotpink;\\">Click me!</button>
-     summary: Fix any of the following:
-                Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+       Detected the following accessibility violations!
 
-      at Context.<anonymous> (/build/Suite.js)
+       1. color-contrast (Elements must have sufficient color contrast)
 
-  3) [chromium] accessibility
-       button
-         Multiple buttons with insufficient color contrast (should fail):
-     AssertionError [ERR_ASSERTION]: 
-Detected the following accessibility violations!
+          For more info, visit https://dequeuniversity.com/rules/axe/4.0/color-contrast?application=axeAPI.
 
-1. color-contrast (Elements must have sufficient color contrast)
+          Check these nodes:
 
-   For more info, visit https://dequeuniversity.com/rules/axe/4.0/color-contrast?application=axeAPI.
+          - html: <button style=\\"background-color: limegreen; color: hotpink;\\">Click me!</button>
+            summary: Fix any of the following:
+                       Element has insufficient color contrast of 1.24 (foreground color: #ff69b4, background color: #32cd32, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
 
-   Check these nodes:
+          - html: <button style=\\"background-color: hotpink; color: limegreen;\\">Click me!</button>
+            summary: Fix any of the following:
+                       Element has insufficient color contrast of 1.24 (foreground color: #32cd32, background color: #ff69b4, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
 
-   - html: <button style=\\"background-color: limegreen; color: hotpink;\\">Click me!</button>
-     summary: Fix any of the following:
-                Element has insufficient color contrast of 1.24 (foreground color: #ff69b4, background color: #32cd32, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+4) [chromium] accessibility
+     input
+       Input without label (should fail)
 
-   - html: <button style=\\"background-color: hotpink; color: limegreen;\\">Click me!</button>
-     summary: Fix any of the following:
-                Element has insufficient color contrast of 1.24 (foreground color: #32cd32, background color: #ff69b4, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+       Detected the following accessibility violations!
 
-      at Context.<anonymous> (/build/Suite.js)
+       1. label (Form elements must have labels)
 
-  4) [chromium] accessibility
-       input
-         Input without label (should fail):
-     AssertionError [ERR_ASSERTION]: 
-Detected the following accessibility violations!
+          For more info, visit https://dequeuniversity.com/rules/axe/4.0/label?application=axeAPI.
 
-1. label (Form elements must have labels)
+          Check these nodes:
 
-   For more info, visit https://dequeuniversity.com/rules/axe/4.0/label?application=axeAPI.
+          - html: <input placeholder=\\"Favorite coffee\\">
+            summary: Fix any of the following:
+                       aria-label attribute does not exist or is empty
+                       aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                       Form element does not have an implicit (wrapped) <label>
+                       Form element does not have an explicit <label>
+                       Element has no title attribute or the title attribute is empty
+                       Element's default semantics were not overridden with role=\\"none\\"
+                       Element's default semantics were not overridden with role=\\"presentation\\"
 
-   Check these nodes:
+5) [chromium] accessibility
+     input
+       Input without label and invalid role (should fail)
 
-   - html: <input placeholder=\\"Favorite coffee\\">
-     summary: Fix any of the following:
-                aria-label attribute does not exist or is empty
-                aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                Form element does not have an implicit (wrapped) <label>
-                Form element does not have an explicit <label>
-                Element has no title attribute or the title attribute is empty
-                Element's default semantics were not overridden with role=\\"none\\"
-                Element's default semantics were not overridden with role=\\"presentation\\"
+       Detected the following accessibility violations!
 
-      at Context.<anonymous> (/build/Suite.js)
+       1. aria-roles (ARIA roles used must conform to valid values)
 
-  5) [chromium] accessibility
-       input
-         Input without label and invalid role (should fail):
-     AssertionError [ERR_ASSERTION]: 
-Detected the following accessibility violations!
+          For more info, visit https://dequeuniversity.com/rules/axe/4.0/aria-roles?application=axeAPI.
 
-1. aria-roles (ARIA roles used must conform to valid values)
+          Check these nodes:
 
-   For more info, visit https://dequeuniversity.com/rules/axe/4.0/aria-roles?application=axeAPI.
+          - html: <input placeholder=\\"Favorite coffee\\" role=\\"wut-the-wut\\">
+            summary: Fix all of the following:
+                       Role must be one of the valid ARIA roles: wut-the-wut
 
-   Check these nodes:
+       2. label (Form elements must have labels)
 
-   - html: <input placeholder=\\"Favorite coffee\\" role=\\"wut-the-wut\\">
-     summary: Fix all of the following:
-                Role must be one of the valid ARIA roles: wut-the-wut
+          For more info, visit https://dequeuniversity.com/rules/axe/4.0/label?application=axeAPI.
 
-2. label (Form elements must have labels)
+          Check these nodes:
 
-   For more info, visit https://dequeuniversity.com/rules/axe/4.0/label?application=axeAPI.
-
-   Check these nodes:
-
-   - html: <input placeholder=\\"Favorite coffee\\" role=\\"wut-the-wut\\">
-     summary: Fix any of the following:
-                aria-label attribute does not exist or is empty
-                aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                Form element does not have an implicit (wrapped) <label>
-                Form element does not have an explicit <label>
-                Element has no title attribute or the title attribute is empty
-                Element's default semantics were not overridden with role=\\"none\\"
-                Element's default semantics were not overridden with role=\\"presentation\\"
-
-      at Context.<anonymous> (/build/Suite.js)
-
-
+          - html: <input placeholder=\\"Favorite coffee\\" role=\\"wut-the-wut\\">
+            summary: Fix any of the following:
+                       aria-label attribute does not exist or is empty
+                       aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                       Form element does not have an implicit (wrapped) <label>
+                       Form element does not have an explicit <label>
+                       Element has no title attribute or the title attribute is empty
+                       Element's default semantics were not overridden with role=\\"none\\"
+                       Element's default semantics were not overridden with role=\\"presentation\\"
 
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 "

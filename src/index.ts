@@ -1,22 +1,20 @@
-import Mocha from 'mocha';
-import options from './Options';
+import { parseOptions } from './Options';
+import * as Suite from './Suite';
+import * as SpecFormat from './formats/Spec';
 
 /**
  * Run the accessibility tests and return a promise that is resolved or rejected based on whether
  * any violations were detected.
  */
-export function run() {
-  const mocha = new Mocha({
-    delay: true,
-    reporter: 'spec',
-    timeout: options.timeout,
-  });
-
-  mocha.addFile(require.resolve('./Suite'));
-
+export function run(): Promise<void> {
   return new Promise((resolve, reject) => {
-    mocha.run((failures) => {
-      return failures === 0 ? resolve() : reject();
+    const options = parseOptions();
+    const emitter = Suite.run(options);
+
+    emitter.on('suiteFinish', (_browser, _numPass, numFail) => {
+      return numFail > 0 ? reject() : resolve();
     });
+
+    SpecFormat.format(emitter);
   });
 }

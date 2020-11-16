@@ -4,7 +4,7 @@ import type { StorybookStory } from './StorybookPage';
  * Story with normalized and custom properties needed by this project.
  */
 export type ProcessedStory = {
-  componentTitle: string;
+  componentName: string;
   name: string;
   parameters: {
     axe: {
@@ -27,7 +27,7 @@ export function fromStories(rawStories: StorybookStory[]): ProcessedStory[] {
  */
 export function fromStory(rawStory: StorybookStory): ProcessedStory {
   return {
-    componentTitle: rawStory.kind,
+    componentName: rawStory.kind,
     name: rawStory.name,
     parameters: {
       axe: {

@@ -18,10 +18,19 @@ it('outputs accessibility violation information for the demo app', (done) => {
     expect(normalizedStderr).toMatchSnapshot();
     done();
   });
+}, 120000);
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore TypeScript thinks these tests are Mocha, not Jest. Until we can figure out how to
-  // deconflict the global Mocha and Jest types, we'll manually ignore the error.
+it('can filter the components to run', (done) => {
+  expect.assertions(3);
+
+  exec('yarn --cwd demo storybook:axe-no-build --pattern button', function (error, stdout, stderr) {
+    const normalizedStdout = normalize(stdout);
+    const normalizedStderr = normalize(stderr);
+    expect(error!.code).toEqual(1);
+    expect(normalizedStdout).toMatchSnapshot();
+    expect(normalizedStderr).toMatchSnapshot();
+    done();
+  });
 }, 120000);
 
 /**
@@ -30,7 +39,7 @@ it('outputs accessibility violation information for the demo app', (done) => {
  */
 function normalize(input: string) {
   /** Test times reported by Mocha. For example, `(520ms)` or `(3s)` */
-  const specTimePattern = /\(\d+m?s\)/g;
+  const specTimePattern = /\s*\([\d.]+m?s\)/g;
   /** File system paths. For example, `/path/to/some/file */
   const cwdPattern = new RegExp(process.cwd(), 'g');
   /** Line numbers from stack trace paths. For example, `.js:20:55` */
