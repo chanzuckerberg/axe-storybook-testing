@@ -69,6 +69,7 @@ Option|Default|Type|Description
 -|-|-|-
 `--browser`|`chromium`|chromium, firefox, or webkit|Which browser to run the tests in
 `--build-dir`|`storybook-static`|string|Storybook static build directory
+`--format`|`spec`|string|Format to output test data in. Right now the only option is "spec"
 `--headless`|`true`|boolean|Whether to run headlessly or not
 `--pattern`|`.*`|string regex|Only run tests that match a component name pattern
 `--timeout`|2000|number|Timeout (in milliseconds) for each test
