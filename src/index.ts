@@ -1,6 +1,6 @@
 import { parseOptions } from './Options';
 import * as Suite from './Suite';
-import { findFormat } from './formats';
+import findFormat from './formats/findFormat';
 
 /**
  * Run the accessibility tests and return a promise that is resolved or rejected based on whether
