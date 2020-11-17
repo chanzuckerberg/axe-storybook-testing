@@ -29,7 +29,7 @@ exports[`can filter the components to run 1`] = `
 
        1. button-name (Buttons must have discernible text)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.0/button-name?application=axeAPI.
+          For more info, visit https://dequeuniversity.com/rules/axe/4.1/button-name?application=axeAPI.
 
           Check these nodes:
 
@@ -38,9 +38,8 @@ exports[`can filter the components to run 1`] = `
                        Element does not have inner text that is visible to screen readers
                        aria-label attribute does not exist or is empty
                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                       Element's default semantics were not overridden with role=\\"presentation\\"
-                       Element's default semantics were not overridden with role=\\"none\\"
-                       Element has no title attribute or the title attribute is empty
+                       Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+                       Element has no title attribute
 
 2) [chromium] accessibility
      button
@@ -50,7 +49,7 @@ exports[`can filter the components to run 1`] = `
 
        1. color-contrast (Elements must have sufficient color contrast)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.0/color-contrast?application=axeAPI.
+          For more info, visit https://dequeuniversity.com/rules/axe/4.1/color-contrast?application=axeAPI.
 
           Check these nodes:
 
@@ -66,7 +65,7 @@ exports[`can filter the components to run 1`] = `
 
        1. color-contrast (Elements must have sufficient color contrast)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.0/color-contrast?application=axeAPI.
+          For more info, visit https://dequeuniversity.com/rules/axe/4.1/color-contrast?application=axeAPI.
 
           Check these nodes:
 
@@ -116,7 +115,7 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
 
        1. button-name (Buttons must have discernible text)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.0/button-name?application=axeAPI.
+          For more info, visit https://dequeuniversity.com/rules/axe/4.1/button-name?application=axeAPI.
 
           Check these nodes:
 
@@ -125,9 +124,8 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
                        Element does not have inner text that is visible to screen readers
                        aria-label attribute does not exist or is empty
                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                       Element's default semantics were not overridden with role=\\"presentation\\"
-                       Element's default semantics were not overridden with role=\\"none\\"
-                       Element has no title attribute or the title attribute is empty
+                       Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+                       Element has no title attribute
 
 2) [chromium] accessibility
      button
@@ -137,7 +135,7 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
 
        1. color-contrast (Elements must have sufficient color contrast)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.0/color-contrast?application=axeAPI.
+          For more info, visit https://dequeuniversity.com/rules/axe/4.1/color-contrast?application=axeAPI.
 
           Check these nodes:
 
@@ -153,7 +151,7 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
 
        1. color-contrast (Elements must have sufficient color contrast)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.0/color-contrast?application=axeAPI.
+          For more info, visit https://dequeuniversity.com/rules/axe/4.1/color-contrast?application=axeAPI.
 
           Check these nodes:
 
@@ -173,19 +171,19 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
 
        1. label (Form elements must have labels)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.0/label?application=axeAPI.
+          For more info, visit https://dequeuniversity.com/rules/axe/4.1/label?application=axeAPI.
 
           Check these nodes:
 
-          - html: <input placeholder=\\"Favorite coffee\\">
+          - html: <input>
             summary: Fix any of the following:
                        aria-label attribute does not exist or is empty
                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                        Form element does not have an implicit (wrapped) <label>
                        Form element does not have an explicit <label>
-                       Element has no title attribute or the title attribute is empty
-                       Element's default semantics were not overridden with role=\\"none\\"
-                       Element's default semantics were not overridden with role=\\"presentation\\"
+                       Element has no title attribute
+                       Element has no placeholder attribute
+                       Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
 
 5) [chromium] accessibility
      input
@@ -195,29 +193,29 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
 
        1. aria-roles (ARIA roles used must conform to valid values)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.0/aria-roles?application=axeAPI.
+          For more info, visit https://dequeuniversity.com/rules/axe/4.1/aria-roles?application=axeAPI.
 
           Check these nodes:
 
-          - html: <input placeholder=\\"Favorite coffee\\" role=\\"wut-the-wut\\">
+          - html: <input role=\\"wut-the-wut\\">
             summary: Fix all of the following:
                        Role must be one of the valid ARIA roles: wut-the-wut
 
        2. label (Form elements must have labels)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.0/label?application=axeAPI.
+          For more info, visit https://dequeuniversity.com/rules/axe/4.1/label?application=axeAPI.
 
           Check these nodes:
 
-          - html: <input placeholder=\\"Favorite coffee\\" role=\\"wut-the-wut\\">
+          - html: <input role=\\"wut-the-wut\\">
             summary: Fix any of the following:
                        aria-label attribute does not exist or is empty
                        aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                        Form element does not have an implicit (wrapped) <label>
                        Form element does not have an explicit <label>
-                       Element has no title attribute or the title attribute is empty
-                       Element's default semantics were not overridden with role=\\"none\\"
-                       Element's default semantics were not overridden with role=\\"presentation\\"
+                       Element has no title attribute
+                       Element has no placeholder attribute
+                       Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
 
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 "
