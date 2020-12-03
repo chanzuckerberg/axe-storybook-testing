@@ -51,7 +51,7 @@ function getOptions(options: RunOptions, disabledRules: string[] = []) {
 function addPromiseQueue() {
   type QueuedPromise<T> = {
     promiseCreator: () => Promise<T>;
-    resolve: (value?: T | PromiseLike<T>) => void;
+    resolve: (value: T | PromiseLike<T>) => void;
     reject: (reason?: unknown) => void;
   }
 
