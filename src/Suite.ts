@@ -79,7 +79,7 @@ export function run(options: Options): SuiteEmitter {
             const storyEndTime = Date.now();
             const storyElapsedTime = storyEndTime - storyStartTime;
 
-            if (Result.isPassing(result)) {
+            if (Result.isPassing(result, options.failingImpacts)) {
               numPass += 1;
               emitter.emit('storyPass', story.name, componentName, result, storyElapsedTime);
             } else {
