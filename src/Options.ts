@@ -21,6 +21,12 @@ const options = {
     description: 'The format to display the test run in',
     type: 'string' as const,
   },
+  'failing-impact': {
+    alias: 'i',
+    default: 'all',
+    description: 'Lowest impact level to consider a failure. Should be one of minor, moderate, serious, critical, or all',
+    type: 'string' as const,
+  },
   headless: {
     alias: 'h',
     default: true,
@@ -52,6 +58,7 @@ export function parseOptions() {
   return {
     browser: getBrowser(argv.browser),
     format: getFormat(argv.format),
+    failingImpacts: getFailingImpacts(argv['failing-impact']),
     headless: argv.headless,
     iframePath: getIframePath(argv['build-dir']),
     pattern: new RegExp(argv.pattern),
@@ -87,5 +94,22 @@ function getFormat(format: string) {
       return format;
     default:
       throw new Error(`Invalid format option: "${format}"`);
+  }
+}
+
+function getFailingImpacts(failingImpact: string): string[] {
+  switch (failingImpact) {
+    case 'critical':
+      return ['critical'];
+    case 'serious':
+      return ['critical', 'serious'];
+    case 'moderate':
+      return ['critical', 'serious', 'moderate'];
+    case 'minor':
+      return ['critical', 'serious', 'moderate', 'minor'];
+    case 'all':
+      return ['critical', 'serious', 'moderate', 'minor', 'all'];
+    default:
+      throw new Error(`Invalid failing impact option: "${failingImpact}"`);
   }
 }
