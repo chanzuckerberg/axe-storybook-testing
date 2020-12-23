@@ -6,6 +6,7 @@
 - [new] A `--format` option has been added. The only possible value of it currently is `spec` (which is also the default) - [#10](https://github.com/chanzuckerberg/axe-storybook-testing/pull/10)
 - Removed the mocha dependency and implemented our own test formatting - [#8](https://github.com/chanzuckerberg/axe-storybook-testing/pull/8)
 - Updated all dependencies - [#12](https://github.com/chanzuckerberg/axe-storybook-testing/pull/12)
+- [new] A `--failing-impact` option has been added. Specify at what impact level you consider that failing - [#9](https://github.com/chanzuckerberg/axe-storybook-testing/pull/9)
 
 ## 1.3.0 (2020-10-27)
 
