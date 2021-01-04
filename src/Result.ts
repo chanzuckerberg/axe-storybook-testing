@@ -36,13 +36,12 @@ export async function fromPage(page: Page, story: ProcessedStory): Promise<Resul
  * Determine if a result is passing or not. A result is passing if it has no violations.
  */
 export function isPassing(result: Result, failingImpacts: string[]): boolean {
-  if (failingImpacts.includes('all'))
-  {
+  if (failingImpacts.includes('all')) {
     // Violation impact is optional, so to avoid a check below for undefined impacts,
     // just check for any violation.
     return result.violations.length === 0;
   }
-  
+
   return result.violations.every(violation => {
     return !failingImpacts.includes(String(violation.impact));
   });
