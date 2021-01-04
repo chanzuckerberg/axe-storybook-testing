@@ -7,7 +7,7 @@ import { exec } from 'child_process';
 //                        the demo app.
 // 2. `yarn build` - automatically ran by the pretest:integration step.
 
-it('outputs accessibility violation information for the demo app', (done) => {
+test('outputting accessibility violation information for the demo app', (done) => {
   expect.assertions(3);
 
   exec('yarn --cwd demo storybook:axe-no-build', function (error, stdout, stderr) {
@@ -20,7 +20,7 @@ it('outputs accessibility violation information for the demo app', (done) => {
   });
 }, 120000);
 
-it('can filter the components to run', (done) => {
+test('filtering the components to run', (done) => {
   expect.assertions(3);
 
   exec('yarn --cwd demo storybook:axe-no-build --pattern button', function (error, stdout, stderr) {
@@ -33,7 +33,7 @@ it('can filter the components to run', (done) => {
   });
 }, 120000);
 
-it('can only fail at specific severity levels', (done) => {
+test('failing specific impact levels', (done) => {
   expect.assertions(3);
 
   exec('yarn --cwd demo storybook:axe-no-build --failing-impact critical', function (error, stdout, stderr) {
