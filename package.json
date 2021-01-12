@@ -18,6 +18,7 @@
     "access": "public"
   },
   "scripts": {
+    "all": "yarn lint && yarn types && yarn test",
     "build": "babel --extensions '.js,.ts' src -d build",
     "clean": "rimraf ./build",
     "demo": "yarn build && yarn --cwd demo storybook:axe",
@@ -31,7 +32,7 @@
     "prebuild": "yarn clean",
     "prepublishOnly": "yarn build",
     "pretest:integration": "yarn build",
-    "test": "yarn lint && yarn types && yarn test:unit && yarn test:integration",
+    "test": "yarn test:unit && yarn test:integration",
     "test:integration": "yarn test:integrationOnly",
     "test:integrationOnly": "jest tests/integration",
     "test:unit": "jest tests/unit",
