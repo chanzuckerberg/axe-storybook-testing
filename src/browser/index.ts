@@ -1,1 +1,3 @@
-export * from './TestBrowser';
+import TestBrowser from './TestBrowser';
+
+export default TestBrowser;

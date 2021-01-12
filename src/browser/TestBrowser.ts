@@ -1,54 +1,55 @@
-import playwright, { Browser, BrowserContext, Page } from 'playwright';
+import playwright, { Browser, Page } from 'playwright';
 import type { Options } from '../Options';
 import * as ProcessedStory from '../ProcessedStory';
 import * as AxePage from './AxePage';
 import * as StorybookPage from './StorybookPage';
 
-type TestBrowser = {
-  browser: Browser;
-  context: BrowserContext;
-}
+export default class TestBrowser {
+  private browser: Browser;
+  page: Page;
 
-/**
- * Create new Browser and BrowserContext instances in the specified browser.
- */
-export async function create(options: Options): Promise<TestBrowser> {
-  const browser = await playwright[options.browser].launch({
-    headless: options.headless,
-    args: [
-      // Force the `prefers-reduced-motion` media query to be true in Chromium. This will prevent
-      // animations (that respect the media query) from causing flaky or failing tests due to the
-      // animation. Only works in Chromium, currently.
-      '--force-prefers-reduced-motion',
-    ],
-  });
+  /**
+   * Create a new test browser instance that knows how to use Storybook and Axe. Needed because
+   * constructors can't be async.
+   */
+  static async create(options: Options): Promise<TestBrowser> {
+    const browser = await playwright[options.browser].launch({
+      headless: options.headless,
+      args: [
+        // Force the `prefers-reduced-motion` media query to be true in Chromium. This will prevent
+        // animations (that respect the media query) from causing flaky or failing tests due to the
+        // animation. Only works in Chromium, currently.
+        '--force-prefers-reduced-motion',
+      ],
+    });
 
-  const context = await browser.newContext({ bypassCSP: true });
+    const context = await browser.newContext({ bypassCSP: true });
 
-  return { browser, context };
-}
+    // Create a new page at Storybook's static iframe and with axe-core setup and ready to run.
+    const page = await context.newPage();
+    await page.goto('file://' + options.iframePath);
+    await AxePage.prepare(page);
 
-/**
- * Create a new page at Storybook's static iframe and with axe-core setup and ready to run.
- */
-export async function createPage(testBrowser: TestBrowser, options: Options): Promise<Page> {
-  const page = await testBrowser.context.newPage();
-  await page.goto('file://' + options.iframePath);
-  await AxePage.prepare(page);
-  return page;
-}
+    return new TestBrowser(browser, page);
+  }
 
-/**
- * Close the browser.
- */
-export function close(testBrowser: TestBrowser): Promise<void> {
-  return testBrowser.browser.close();
-}
+  private constructor(browser: Browser, page: Page) {
+    this.browser = browser;
+    this.page = page;
+  }
 
-/**
- * Get the Storybook stories from a prepared browser page.
- */
-export async function getStories(page: Page): Promise<ProcessedStory.ProcessedStory[]> {
-  const rawStories = await StorybookPage.getStories(page);
-  return ProcessedStory.fromStories(rawStories);
+  /**
+   * Get the Storybook stories from a prepared browser page.
+   */
+  async getStories(): Promise<ProcessedStory.ProcessedStory[]> {
+    const rawStories = await StorybookPage.getStories(this.page);
+    return ProcessedStory.fromStories(rawStories);
+  }
+
+  /**
+   * Close the browser and any open pages.
+   */
+  close(): Promise<void> {
+    return this.browser.close();
+  }
 }

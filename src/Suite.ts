@@ -6,7 +6,7 @@ import { createEmitter, Emitter } from './Emitter';
 import { Options } from './Options';
 import * as ProcessedStory from './ProcessedStory';
 import * as Result from './Result';
-import * as Browser from './browser';
+import Browser from './browser';
 
 /**
  * Mapping of event names to handlers for the test suite.
@@ -44,9 +44,8 @@ export function run(options: Options): SuiteEmitter {
     emitter.emit('suiteStart', options.browser);
 
     // Get the Storybook stories.
-    const testBrowser = await Browser.create(options);
-    const page = await Browser.createPage(testBrowser, options);
-    const stories = await Browser.getStories(page);
+    const browser = await Browser.create(options);
+    const stories = await browser.getStories();
     const storiesByComponent = groupBy(stories, 'componentName');
     const storiesAndComponents = Object.entries(storiesByComponent);
 
@@ -75,7 +74,7 @@ export function run(options: Options): SuiteEmitter {
 
           try {
             // Detect any Axe violations for this story.
-            const result = await pTimeout(Result.fromPage(page, story), options.timeout);
+            const result = await pTimeout(Result.fromPage(browser.page, story), options.timeout);
             const storyEndTime = Date.now();
             const storyElapsedTime = storyEndTime - storyStartTime;
 
@@ -98,7 +97,7 @@ export function run(options: Options): SuiteEmitter {
       const suiteElapsedTime = suiteEndTime - suiteStartTime;
       emitter.emit('suiteFinish', options.browser, numPass, numFail, numSkip, suiteElapsedTime);
     } finally {
-      await Browser.close(testBrowser);
+      await browser.close();
     }
   });
 
