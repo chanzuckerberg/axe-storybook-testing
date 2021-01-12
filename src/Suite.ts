@@ -4,7 +4,7 @@ import groupBy from 'lodash/groupBy';
 import pTimeout from 'p-timeout';
 import { createEmitter, Emitter } from './Emitter';
 import { Options } from './Options';
-import * as ProcessedStory from './ProcessedStory';
+import { isEnabled } from './ProcessedStory';
 import { Result, isPassing } from './Result';
 import Browser from './browser';
 
@@ -64,7 +64,7 @@ export function run(options: Options): SuiteEmitter {
         for (const story of stories) {
           const storyStartTime = Date.now();
 
-          if (!shouldComponentRun || !ProcessedStory.isEnabled(story)) {
+          if (!shouldComponentRun || !isEnabled(story)) {
             numSkip += 1;
             emitter.emit('storySkip', story.name, componentName);
             continue;
