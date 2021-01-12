@@ -1,9 +1,9 @@
 import chalk from 'chalk';
 import dedent from 'ts-dedent';
-import { createEmitter } from '../../../src/Emitter';
 import { Result } from '../../../src/Result';
-import { SuiteEvents } from '../../../src/Suite';
 import { format } from '../../../src/formats/Spec';
+import { createEmitter } from '../../../src/suite/Emitter';
+import { SuiteEvents } from '../../../src/suite/Suite';
 
 const noColors = new chalk.Instance({ level: 0 });
 

@@ -2,7 +2,8 @@
 
 ## Unreleased
 
-- Refactor browser functionality into a single class - [#13](https://github.com/chanzuckerberg/axe-storybook-testing/pull/13)
+- [maintenance] Refactor browser functionality into a single class - [#13](https://github.com/chanzuckerberg/axe-storybook-testing/pull/13)
+- [maintenance] Group suite files into a suite/ directory - [#19](https://github.com/chanzuckerberg/axe-storybook-testing/pull/19)
 
 ## 2.0.0 (2021-01-04)
 

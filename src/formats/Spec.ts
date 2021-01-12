@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import indent from 'indent-string';
 import dedent from 'ts-dedent';
 import { Result } from '../Result';
-import { SuiteEmitter } from '../Suite';
+import { SuiteEmitter } from '../suite';
 import humanizeDuration from './humanizeDuration';
 
 type Failure = {
