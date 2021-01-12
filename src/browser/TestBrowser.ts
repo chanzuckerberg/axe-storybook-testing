@@ -1,12 +1,13 @@
 import playwright, { Browser, Page } from 'playwright';
 import type { Options } from '../Options';
 import * as ProcessedStory from '../ProcessedStory';
+import * as Result from '../Result';
 import * as AxePage from './AxePage';
 import * as StorybookPage from './StorybookPage';
 
 export default class TestBrowser {
   private browser: Browser;
-  page: Page;
+  private page: Page;
 
   /**
    * Create a new test browser instance that knows how to use Storybook and Axe. Needed because
@@ -44,6 +45,13 @@ export default class TestBrowser {
   async getStories(): Promise<ProcessedStory.ProcessedStory[]> {
     const rawStories = await StorybookPage.getStories(this.page);
     return ProcessedStory.fromStories(rawStories);
+  }
+
+  /**
+   * Run Axe for a story.
+   */
+  getResultForStory(story: ProcessedStory.ProcessedStory): Promise<Result.Result> {
+    return Result.fromPage(this.page, story);
   }
 
   /**

@@ -5,7 +5,7 @@ import pTimeout from 'p-timeout';
 import { createEmitter, Emitter } from './Emitter';
 import { Options } from './Options';
 import * as ProcessedStory from './ProcessedStory';
-import * as Result from './Result';
+import { Result, isPassing } from './Result';
 import Browser from './browser';
 
 /**
@@ -16,8 +16,8 @@ export type SuiteEvents = {
   componentStart: (componentName: string) => void;
   componentSkip: (componentName: string) => void;
   storyStart: (storyName: string, componentName: string) => void;
-  storyPass: (storyName: string, componentName: string, result: Result.Result, elapsedTime: number) => void;
-  storyFail: (storyName: string, componentName: string, result: Result.Result, elapsedTime: number) => void;
+  storyPass: (storyName: string, componentName: string, result: Result, elapsedTime: number) => void;
+  storyFail: (storyName: string, componentName: string, result: Result, elapsedTime: number) => void;
   storySkip: (storyName: string, componentName: string) => void;
   storyError: (storyName: string, componentName: string, error: Error) => void;
   suiteFinish: (browser: string, numPass: number, numFail: number, numSkip: number, elapsedTime: number) => void;
@@ -74,11 +74,11 @@ export function run(options: Options): SuiteEmitter {
 
           try {
             // Detect any Axe violations for this story.
-            const result = await pTimeout(Result.fromPage(browser.page, story), options.timeout);
+            const result = await pTimeout(browser.getResultForStory(story), options.timeout);
             const storyEndTime = Date.now();
             const storyElapsedTime = storyEndTime - storyStartTime;
 
-            if (Result.isPassing(result, options.failingImpacts)) {
+            if (isPassing(result, options.failingImpacts)) {
               numPass += 1;
               emitter.emit('storyPass', story.name, componentName, result, storyElapsedTime);
             } else {
