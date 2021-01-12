@@ -3,7 +3,7 @@ import defer from 'lodash/defer';
 import groupBy from 'lodash/groupBy';
 import pTimeout from 'p-timeout';
 import { createEmitter, Emitter } from './Emitter';
-import { Options } from './Options';
+import type { Options } from './Options';
 import { isEnabled } from './ProcessedStory';
 import { Result, isPassing } from './Result';
 import Browser from './browser';
