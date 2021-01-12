@@ -9,9 +9,6 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@master
-      - name: Install ubuntu dependencies needed for Playwright
-        run: sudo apt-get install ffmpeg
-        if: matrix.os == 'ubuntu-18.04'
       - name: Install
         run: yarn install
       - name: Lint

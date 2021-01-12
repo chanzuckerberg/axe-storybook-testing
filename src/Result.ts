@@ -1,8 +1,7 @@
 import type { Result as AxeResult } from 'axe-core';
 import type { Page } from 'playwright';
-import { analyze } from './AxePage';
 import { getDisabledRules, ProcessedStory } from './ProcessedStory';
-import { showStory } from './StorybookPage';
+import { analyze } from './browser/AxePage';
 
 /**
  * Violations reported by Axe for a story.
@@ -18,11 +17,9 @@ export type Result = {
 const defaultDisabledRules = ['bypass', 'landmark-one-main', 'page-has-heading-one', 'region'];
 
 /**
- * Run Axe on a browser page for a story.
+ * Run Axe on a browser page that is displaying a story.
  */
 export async function fromPage(page: Page, story: ProcessedStory): Promise<Result> {
-  await showStory(page, story);
-
   const storyDisabledRules = getDisabledRules(story);
   const disabledRules = [...defaultDisabledRules, ...storyDisabledRules];
   const result = await analyze(page, disabledRules);

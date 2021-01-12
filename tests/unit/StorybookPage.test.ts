@@ -1,5 +1,5 @@
 import playwright from 'playwright';
-import { getStories } from '../../src/StorybookPage';
+import { getStories } from '../../src/browser/StorybookPage';
 
 describe('getStories', () => {
   it('returns the stories from the window', async () => {
