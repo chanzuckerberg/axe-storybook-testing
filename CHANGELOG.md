@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- Refactor browser functionality into a single class - [#13](https://github.com/chanzuckerberg/axe-storybook-testing/pull/13)
+
 ## 2.0.0 (2021-01-04)
 
 - [breaking] axe-core is now a peer dependency (anyone using this library will need to install axe-core themselves) - [#11](https://github.com/chanzuckerberg/axe-storybook-testing/pull/11)
