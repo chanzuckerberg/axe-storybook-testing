@@ -50,7 +50,8 @@ export default class TestBrowser {
   /**
    * Run Axe for a story.
    */
-  getResultForStory(story: ProcessedStory.ProcessedStory): Promise<Result.Result> {
+  async getResultForStory(story: ProcessedStory.ProcessedStory): Promise<Result.Result> {
+    await StorybookPage.showStory(this.page, story);
     return Result.fromPage(this.page, story);
   }
 
