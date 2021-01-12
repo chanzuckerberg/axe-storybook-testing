@@ -1,4 +1,4 @@
-import { createEmitter } from '../../src/Emitter';
+import { createEmitter } from '../../../src/suite/Emitter';
 
 test('emitting events with no type param', () => {
   const emitter = createEmitter();

@@ -1,5 +1,5 @@
 import type { Options } from '../Options';
-import { SuiteEmitter } from '../Suite';
+import { SuiteEmitter } from '../suite';
 import * as SpecFormat from './Spec';
 
 type Formatter = (emitter: SuiteEmitter) => void;
