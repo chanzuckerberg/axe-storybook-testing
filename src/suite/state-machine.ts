@@ -1,9 +1,67 @@
+/* eslint-disable @typescript-eslint/ban-types */
 import { Machine, assign, interpret } from 'xstate';
+
+interface Context {
+  total: number,
+  passed: number,
+  failed: number,
+  skipped: number,
+}
+
+interface Schema {
+  states: {
+    idle: {},
+    processing: {
+      states: {
+        finding_component: {},
+        no_components: {},
+        processing_component: {
+          states: {
+            idle: {},
+            finding_story: {},
+            finding_story_for_skipped_component: {},
+            no_stories: {},
+            processing_story: {
+              states: {
+                idle: {},
+                running_axe: {},
+                passed: {},
+                failed: {},
+                skipped: {},
+              },
+            },
+            processing_story_for_skipped_component: {
+              states: {
+                idle: {},
+                skipped: {},
+              },
+            },
+          },
+        },
+      },
+    },
+    passed: {},
+    failed: {},
+  },
+}
+
+type Event =
+  | { type: 'SUITE_START' }
+  | { type: 'COMPONENT_FOUND' }
+  | { type: 'COMPONENT_NOT_FOUND' }
+  | { type: 'COMPONENT_SKIPPED' }
+  | { type: 'COMPONENT_START' }
+  | { type: 'STORY_FOUND' }
+  | { type: 'STORY_NOT_FOUND' }
+  | { type: 'STORY_SKIPPED' }
+  | { type: 'STORY_START' }
+  | { type: 'STORY_PASSED' }
+  | { type: 'STORY_FAILED' }
 
 /**
  * @see https://xstate.js.org/viz/?gist=718ff22ce921013a67b2d8d04f33531a
  */
-const suiteMachine = Machine(
+const suiteMachine = Machine<Context, Schema, Event>(
   {
     id: 'suite',
     context: {
@@ -161,5 +219,5 @@ const suiteMachine = Machine(
  * Create a state machine representing the test suite.
  */
 export default function createMachine() {
-  return interpret(suiteMachine).start();
+  return interpret(suiteMachine);
 }
