@@ -160,10 +160,6 @@ const suiteMachine = Machine<Context, Schema, Event>(
                         target: 'skipped',
                         actions: ['captureSkipped', 'captureTotal'],
                       },
-                      STORY_START: {
-                        target: 'skipped',
-                        actions: ['captureSkipped', 'captureTotal'],
-                      },
                     },
                   },
                   skipped: {
