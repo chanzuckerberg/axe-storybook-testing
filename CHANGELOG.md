@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 2.0.1 (2021-01-22)
+
 - [fix] Handle errors during browser initialization - [#22](https://github.com/chanzuckerberg/axe-storybook-testing/pull/22)
 - [maintenance] Refactor browser functionality into a single class - [#13](https://github.com/chanzuckerberg/axe-storybook-testing/pull/13)
 - [maintenance] Group suite files into a suite/ directory - [#19](https://github.com/chanzuckerberg/axe-storybook-testing/pull/19)
