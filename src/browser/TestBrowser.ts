@@ -24,14 +24,22 @@ export default class TestBrowser {
       ],
     });
 
-    const context = await browser.newContext({ bypassCSP: true });
+    try {
+      const context = await browser.newContext({ bypassCSP: true });
 
-    // Create a new page at Storybook's static iframe and with axe-core setup and ready to run.
-    const page = await context.newPage();
-    await page.goto('file://' + options.iframePath);
-    await AxePage.prepare(page);
+      // Create a new page at Storybook's static iframe and with axe-core setup and ready to run.
+      const page = await context.newPage();
+      await page.goto('file://' + options.iframePath);
+      await AxePage.prepare(page);
 
-    return new TestBrowser(browser, page);
+      return new TestBrowser(browser, page);
+    } catch (message) {
+      // Something has gone wrong after the browser was launched. Make sure we clean up the opened
+      // browser.
+      await browser.close();
+      // Reject this promise.
+      throw message;
+    }
   }
 
   private constructor(browser: Browser, page: Page) {
