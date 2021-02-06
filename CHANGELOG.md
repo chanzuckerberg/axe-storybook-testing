@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [fix] Upgrade playwright to v1.8.0
+
 ## 2.0.1 (2021-01-22)
 
 - [fix] Handle errors during browser initialization - [#22](https://github.com/chanzuckerberg/axe-storybook-testing/pull/22)
