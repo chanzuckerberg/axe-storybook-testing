@@ -336,10 +336,10 @@ and when url \\"[ 'http://localhost:6006/iframe.html' ]\\" is responding with HT
 running tests using command \\"yarn --cwd demo storybook:axe-no-build:server\\"
 
 $ start-storybook -p 6006 --ci --quiet
-webpack built 16cb0202058c10b7a31a in 8230ms
-╭───────────────────────────────────────────────────╮
-╰───────────────────────────────────────────────────╯
-$ axe-storybook --storybook-address http://localhost:6006
+webpack built
+
+
+$ axe-storybook --storybook-address http://localhost:6006 --headless
 [chromium] accessibility
   button
     ✓ Button with text (should pass)
@@ -475,29 +475,21 @@ info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this comm
 
 exports[`testing against a storybook server 2`] = `
 "info @storybook/react v6.1.17
-info 
+info
 info => Loading presets
 info => Loading presets
 info => Loading 1 config file in \\"./.storybook\\"
 info => Loading 9 other files in \\"./.storybook\\"
-info => Adding stories defined in \\".storybook\\\\main.js\\"
+info => Adding stories defined in \\".storybook/main.js\\"
 info => Using default Webpack setup
 info => Using cached manager
 error Command failed with exit code 1.
-Error: Command failed with ENOENT: yarn --cwd demo storybook:axe-no-build:server
-spawn yarn --cwd demo storybook:axe-no-build:server ENOENT
-    at notFoundError (\\\\node_modules\\\\cross-spawn\\\\lib\\\\enoent.js)
-    at verifyENOENT (\\\\node_modules\\\\cross-spawn\\\\lib\\\\enoent.js)
-    at ChildProcess.cp.emit (\\\\node_modules\\\\cross-spawn\\\\lib\\\\enoent.js)
-    at Process.ChildProcess._handle.onexit (internal/child_process.js) {
-  code: 'ENOENT',
-  errno: 'ENOENT',
-  syscall: 'spawn yarn --cwd demo storybook:axe-no-build:server',
-  path: 'yarn --cwd demo storybook:axe-no-build:server',
-  spawnargs: [],
-  originalMessage: 'spawn yarn --cwd demo storybook:axe-no-build:server ENOENT',
+Error: Command failed with exit code 1: yarn --cwd demo storybook:axe-no-build:server
+    at makeError (/node_modules/execa/lib/error.js)
+    at handlePromise (/node_modules/execa/index.js)
+    at processTicksAndRejections (internal/process/task_queues.js) {
   command: 'yarn --cwd demo storybook:axe-no-build:server',
-  exitCode: undefined,
+  exitCode: 1,
   signal: undefined,
   signalDescription: undefined,
   stdout: undefined,

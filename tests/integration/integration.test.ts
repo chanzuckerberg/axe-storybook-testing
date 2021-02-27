@@ -49,7 +49,7 @@ test('failing specific impact levels', (done) => {
 test('testing against a storybook server', (done) => {
   expect.assertions(3);
 
-  exec('start-server-and-test "yarn --cwd demo storybook-ci" "http://localhost:6006/iframe.html" "yarn --cwd demo storybook:axe-no-build:server', function (error, stdout, stderr) {
+  exec('start-server-and-test "yarn --cwd demo storybook-ci" "http://localhost:6006/iframe.html" "yarn --cwd demo storybook:axe-no-build:server"', function (error, stdout, stderr) {
     const normalizedStdout = normalize(stdout);
     const normalizedStderr = normalize(stderr);
     expect(error!.code).toEqual(1);
@@ -68,17 +68,17 @@ function normalize(input: string) {
   const specTimePattern = /\s*\([\d.]+m?s\)/g;
   /** File system paths. For example, `/path/to/some/file */
   const cwdPattern = new RegExp(process.cwd(), 'g');
-  /** Error logs can have extra slashes remove those. */
-  const cwdPatternExtended = new RegExp(process.cwd().split('\\').join('\\\\'), 'g');
   /** Line numbers from stack trace paths. For example, `.js:20:55` */
   const lineNumbersPattern = /\.js:\d+:\d+/g;
   /** storybook-start outputs an info dialog at the beginning this removes those lines */
-  const storybookStartedFrame = /│.*│\n/g;
+  const storybookStartedFrame = /(│.*│\n|[─╭╮╰╯]+?)/g;
+  /** webpack outputs a hash and build time */
+  const webpackBuilt = /webpack built \w+? in \d+?ms/g;
 
   return input
     .replace(specTimePattern, '')
     .replace(cwdPattern, '')
-    .replace(cwdPatternExtended, '')
     .replace(lineNumbersPattern, '.js')
-    .replace(storybookStartedFrame, '');
+    .replace(storybookStartedFrame, '')
+    .replace(webpackBuilt, 'webpack built');
 }
