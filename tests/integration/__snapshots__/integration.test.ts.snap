@@ -475,7 +475,7 @@ info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this comm
 
 exports[`testing against a storybook server 2`] = `
 "info @storybook/react v6.1.17
-info
+info 
 info => Loading presets
 info => Loading presets
 info => Loading 1 config file in \\"./.storybook\\"
