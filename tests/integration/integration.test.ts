@@ -75,7 +75,8 @@ function normalize(input: string) {
   /** webpack outputs a hash and build time */
   const webpackBuilt = /webpack built \w+? in \d+?ms/g;
   /** webpack outputs can vary from build to build */
-  const usingCachedManager = /info => Using cached manager/g;
+  const webpackBuildTimeVariations =
+    /info => Using cached manager|Opening `[\w\/]+?` failed \(\d\): Device not configured/g;
 
   return input
     .replace(specTimePattern, '')
@@ -83,5 +84,5 @@ function normalize(input: string) {
     .replace(lineNumbersPattern, '.js')
     .replace(storybookStartedFrame, '')
     .replace(webpackBuilt, 'webpack built')
-    .replace(usingCachedManager, '');
+    .replace(webpackBuildTimeVariations, '');
 }
