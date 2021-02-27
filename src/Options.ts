@@ -18,7 +18,7 @@ const options = {
   },
   'storybook-address': {
     alias: 's',
-    description: 'Address to storybook server to use instead of build-dir. If set, build-dir will be ignored.',
+    description: 'Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored.',
     type: 'string' as const,
   },
   format: {
