@@ -482,7 +482,6 @@ info => Loading 1 config file in \\"./.storybook\\"
 info => Loading 9 other files in \\"./.storybook\\"
 info => Adding stories defined in \\".storybook/main.js\\"
 info => Using default Webpack setup
-info => Using cached manager
 error Command failed with exit code 1.
 Error: Command failed with exit code 1: yarn --cwd demo storybook:axe-no-build:server
     at makeError (/node_modules/execa/lib/error.js)

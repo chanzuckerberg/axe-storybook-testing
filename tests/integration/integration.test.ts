@@ -74,11 +74,14 @@ function normalize(input: string) {
   const storybookStartedFrame = /(│.*│\n|[─╭╮╰╯]+?)/g;
   /** webpack outputs a hash and build time */
   const webpackBuilt = /webpack built \w+? in \d+?ms/g;
+  /** webpack outputs can vary from build to build */
+  const usingCachedManager = /info => Using cached manager/g;
 
   return input
     .replace(specTimePattern, '')
     .replace(cwdPattern, '')
     .replace(lineNumbersPattern, '.js')
     .replace(storybookStartedFrame, '')
-    .replace(webpackBuilt, 'webpack built');
+    .replace(webpackBuilt, 'webpack built')
+    .replace(usingCachedManager, '');
 }
