@@ -76,7 +76,7 @@ function normalize(input: string) {
   const webpackBuilt = /webpack built \w+? in \d+?ms/g;
   /** webpack outputs can vary from build to build */
   const webpackBuildTimeVariations =
-    /info => Using cached manager|Opening `[\w/]+?` failed \(\d\): Device not configured/g;
+    /info => Using cached manager|Opening `[\w/]+?` failed \(\d\): Device not configured\n/g;
 
   return input
     .replace(specTimePattern, '')
