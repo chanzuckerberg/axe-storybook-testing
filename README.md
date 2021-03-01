@@ -69,6 +69,7 @@ Option|Default|Type|Description
 -|-|-|-
 `--browser`|`chromium`|chromium, firefox, or webkit|Which browser to run the tests in
 `--build-dir`|`storybook-static`|string|Storybook static build directory
+`--storybook-address`||string|Storybook server address to test against instead of using a static build directory. If set, `--build-dir` will be ignored. e.g. `--storybook-address http://localhost:6006`
 `--failing-impact`|`all`|minor, moderate, serious, critical, or all|The lowest impact level that should be considered a failure
 `--format`|`spec`|string|Format to output test data in. Right now the only option is "spec"
 `--headless`|`true`|boolean|Whether to run headlessly or not

@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { URL } from 'url';
 import yargs from 'yargs';
 
 const options = {
@@ -13,6 +14,11 @@ const options = {
     alias: 'b',
     default: 'storybook-static',
     description: 'Directory to load the static storybook built by build-storybook from',
+    type: 'string' as const,
+  },
+  'storybook-address': {
+    alias: 's',
+    description: 'Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored.',
     type: 'string' as const,
   },
   format: {
@@ -60,7 +66,7 @@ export function parseOptions() {
     format: getFormat(argv.format),
     failingImpacts: getFailingImpacts(argv['failing-impact']),
     headless: argv.headless,
-    iframePath: getIframePath(argv['build-dir']),
+    iframePath: getIframePath(argv['build-dir'], argv['storybook-address']),
     pattern: new RegExp(argv.pattern),
     timeout: argv.timeout,
   };
@@ -77,15 +83,31 @@ function getBrowser(browser: string) {
   }
 }
 
-function getIframePath(buildDir: string) {
-  const storybookStaticPath = path.resolve(buildDir);
-  const iframePath = path.join(storybookStaticPath, 'iframe.html');
+function getIframePath(buildDir: string, storybookServer?: string) {
+  if (storybookServer !== undefined) {
+    return getIframePathFromStorybookServer(storybookServer);
+  }
+  else {
+    return getIframePathFromBuildDir(buildDir);
+  }
+}
 
-  if (!fs.existsSync(iframePath)) {
+function getIframePathFromBuildDir(buildDir: string) {
+  const storybookStaticPath = path.resolve(buildDir);
+  let iframeFilePath = path.join(storybookStaticPath, 'iframe.html');
+
+  if (!fs.existsSync(iframeFilePath)) {
     throw new Error(`Static Storybook not found at ${storybookStaticPath}. Have you called build-storybook first?`);
   }
 
-  return iframePath;
+  iframeFilePath = path.join('file://', iframeFilePath);
+
+  return iframeFilePath;
+}
+
+function getIframePathFromStorybookServer(storybookServer: string) {
+  const iframePath = new URL(storybookServer + '/iframe.html');
+  return iframePath.href;
 }
 
 function getFormat(format: string) {

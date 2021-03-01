@@ -29,7 +29,7 @@ export default class TestBrowser {
 
       // Create a new page at Storybook's static iframe and with axe-core setup and ready to run.
       const page = await context.newPage();
-      await page.goto('file://' + options.iframePath);
+      await page.goto(options.iframePath);
       await AxePage.prepare(page);
 
       return new TestBrowser(browser, page);
