@@ -472,31 +472,3 @@ $ axe-storybook --storybook-address http://localhost:6006 --headless
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 "
 `;
-
-exports[`testing against a storybook server 2`] = `
-"info @storybook/react v6.1.17
-info 
-info => Loading presets
-info => Loading presets
-info => Loading 1 config file in \\"./.storybook\\"
-info => Loading 9 other files in \\"./.storybook\\"
-info => Adding stories defined in \\".storybook/main.js\\"
-info => Using default Webpack setup
-error Command failed with exit code 1.
-Error: Command failed with exit code 1: yarn --cwd demo storybook:axe-no-build:server
-    at makeError (/node_modules/execa/lib/error.js)
-    at handlePromise (/node_modules/execa/index.js)
-    at processTicksAndRejections (internal/process/task_queues.js) {
-  command: 'yarn --cwd demo storybook:axe-no-build:server',
-  exitCode: 1,
-  signal: undefined,
-  signalDescription: undefined,
-  stdout: undefined,
-  stderr: undefined,
-  failed: true,
-  timedOut: false,
-  isCanceled: false,
-  killed: false
-}
-"
-`;
