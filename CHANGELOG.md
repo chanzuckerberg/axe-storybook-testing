@@ -2,9 +2,11 @@
 
 ## Unreleased
 
+## 3.0.0 (2021-03-02)
+
 - [fix] Upgrade playwright to v1.8.0
-- [new] A `--storybook-address` option has been added. Provide a URL where your storybook server is hosted to test those stories instead of using a static build directory.
-- [breaking] Change `disabled` option to `skip`, to match percy-storybook.
+- [new] A `--storybook-address` option has been added. Provide a URL where your storybook server is hosted to test those stories instead of using a static build directory. [#23](https://github.com/chanzuckerberg/axe-storybook-testing/pull/23)
+- [breaking] Rename `disabled` option to `skip`, to match percy-storybook [#24](https://github.com/chanzuckerberg/axe-storybook-testing/pull/24)
 
 ## 2.0.1 (2021-01-22)
 
