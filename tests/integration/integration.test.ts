@@ -71,7 +71,7 @@ function normalize(input: string) {
   /** storybook-start outputs an info dialog at the beginning this removes those lines */
   const storybookStartedFrame = /(│.*│\n|[─╭╮╰╯]+?)/g;
   /** webpack outputs a hash and build time */
-  const webpackBuilt = /webpack built \w+? in \d+?ms/g;
+  const webpackBuilt = /webpack built [\w\s]*\w\n/g;
   /** webpack outputs can vary from build to build */
   const webpackBuildTimeVariations =
     /info => Using cached manager|Opening `[\w/]+?` failed \(\d\): Device not configured\n/g;

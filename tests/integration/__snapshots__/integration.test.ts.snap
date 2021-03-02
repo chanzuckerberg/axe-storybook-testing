@@ -338,7 +338,6 @@ running tests using command \\"yarn --cwd demo storybook:axe-no-build:server\\"
 $ start-storybook -p 6006 --ci --quiet
 webpack built
 
-
 $ axe-storybook --storybook-address http://localhost:6006 --headless
 [chromium] accessibility
   button
