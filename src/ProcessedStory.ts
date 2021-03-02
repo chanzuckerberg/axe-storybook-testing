@@ -8,7 +8,7 @@ export type ProcessedStory = {
   name: string;
   parameters: {
     axe: {
-      disabled: boolean;
+      skip: boolean;
       disabledRules: string[];
     },
   };
@@ -31,7 +31,7 @@ export function fromStory(rawStory: StorybookStory): ProcessedStory {
     name: rawStory.name,
     parameters: {
       axe: {
-        disabled: normalizeDisabled(rawStory.parameters?.axe?.disabled),
+        skip: normalizeSkip(rawStory.parameters?.axe?.skip),
         disabledRules: normalizeDisabledRules(rawStory.parameters?.axe?.disabledRules),
       },
     },
@@ -43,7 +43,7 @@ export function fromStory(rawStory: StorybookStory): ProcessedStory {
  * Determine if a story is enabled or not.
  */
 export function isEnabled(story: ProcessedStory): boolean {
-  return !story.parameters.axe.disabled;
+  return !story.parameters.axe.skip;
 }
 
 /**
@@ -53,14 +53,14 @@ export function getDisabledRules(story: ProcessedStory): string[] {
   return story.parameters.axe.disabledRules;
 }
 
-function normalizeDisabled(disabled?: unknown): boolean {
-  if (typeof disabled === 'undefined') {
+function normalizeSkip(skipped?: unknown): boolean {
+  if (typeof skipped === 'undefined') {
     return false;
   }
-  if (typeof disabled !== 'boolean') {
-    throw new Error(`Given disabled option '${disabled}' is invalid`);
+  if (typeof skipped !== 'boolean') {
+    throw new Error(`Value of 'skip' option '${skipped}' is invalid`);
   }
-  return disabled;
+  return skipped;
 }
 
 function normalizeDisabledRules(disabledRules?: unknown): string[] {

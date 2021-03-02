@@ -13,7 +13,7 @@ If there are any violations, information about them will be printed, and the com
 - [Usage](#usage)
 - [Options](#options)
 - [Configuring stories](#configuring-stories)
-  - [disabled](#disabled)
+  - [skip](#skip)
   - [disabledRules](#disabledrules)
 - [Developing](#developing)
 - [Inspiration](#inspiration)
@@ -90,14 +90,14 @@ yarn storybook:axe --headless false --browser firefox
 
 Stories can use parameters to configure how axe-storybook-testing handles them.
 
-### disabled
+### skip
 
-Prevent axe-storybook-testing from running a story by using the `disabled` parameter.
+Prevent axe-storybook-testing from running a story by using the `skip` parameter.
 
 ```jsx
 SomeStory.parameters = {
   axe: {
-    disabled: true,
+    skip: true,
   },
 };
 ```

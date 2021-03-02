@@ -13,7 +13,7 @@ describe('fromStories', () => {
         name: 'a',
         parameters: {
           axe: {
-            disabled: false,
+            skip: false,
             disabledRules: [],
           },
         },
@@ -24,7 +24,7 @@ describe('fromStories', () => {
         name: 'b',
         parameters: {
           axe: {
-            disabled: false,
+            skip: false,
             disabledRules: [],
           },
         },
@@ -41,7 +41,7 @@ describe('fromStory', () => {
       const processedStory = fromStory(rawStory);
       expect(processedStory.parameters).toEqual({
         axe: {
-          disabled: false,
+          skip: false,
           disabledRules: [],
         },
       });
@@ -54,7 +54,7 @@ describe('fromStory', () => {
         name: 'a',
         parameters: {
           axe: {
-            disabled: true,
+            skip: true,
             disabledRules: ['label'],
           },
         },
@@ -64,7 +64,7 @@ describe('fromStory', () => {
 
       expect(processedStory.parameters).toEqual({
         axe: {
-          disabled: true,
+          skip: true,
           disabledRules: ['label'],
         },
       });
@@ -77,13 +77,13 @@ describe('fromStory', () => {
         name: 'a',
         parameters: {
           axe: {
-            disabled: 'wut',
+            skip: 'wut',
             disabledRules: [],
           },
         },
       };
 
-      expect(() => fromStory(rawStory)).toThrow("Given disabled option 'wut' is invalid");
+      expect(() => fromStory(rawStory)).toThrow("Value of 'skip' option 'wut' is invalid");
     });
   });
 });

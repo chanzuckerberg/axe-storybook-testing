@@ -24,7 +24,7 @@ export const Input3 = () => <Input />;
 Input3.storyName = 'Input without label but skipped (should pass)';
 Input3.parameters = {
   axe: {
-    disabled: true,
+    skip: true,
   },
 };
 
