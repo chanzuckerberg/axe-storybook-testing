@@ -44,7 +44,7 @@ test('failing specific impact levels', (done) => {
     expect(normalizedStderr).toMatchSnapshot();
     done();
   });
-});
+}, 120000);
 
 // This test is a great idea, but slightly flaky. Skipping it until we can figure out how to make it
 // more reliable. The issue is that sometimes some of the Webpack output is logged AFTER the axe-storybook-testing
