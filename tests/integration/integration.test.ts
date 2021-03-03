@@ -49,7 +49,7 @@ test('failing specific impact levels', (done) => {
 test('testing against a storybook server', (done) => {
   expect.assertions(2);
 
-  exec('start-server-and-test "yarn --cwd demo storybook-ci" "http://localhost:6006/iframe.html" "yarn --cwd demo storybook:axe-no-build:server"', function (error, stdout, stderr) {
+  exec('start-server-and-test "yarn --cwd demo storybook-ci" "http://localhost:6006/iframe.html" "yarn --cwd demo storybook:axe-no-build:server"', function (error, stdout) {
     const normalizedStdout = normalize(stdout);
     expect(error!.code).toEqual(1);
     expect(normalizedStdout).toMatchSnapshot();
