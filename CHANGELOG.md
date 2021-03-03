@@ -2,8 +2,10 @@
 
 ## Unreleased
 
-- [fix] Lower supported Node version from 12 to 10.
-- Update dependencies
+## 3.0.1 (2021-03-03)
+
+- [fix] Lower supported Node version from 12 to 10 [#25](https://github.com/chanzuckerberg/axe-storybook-testing/pull/25)
+- Update dependencies [#26](https://github.com/chanzuckerberg/axe-storybook-testing/pull/26)
 
 ## 3.0.0 (2021-03-02)
 
