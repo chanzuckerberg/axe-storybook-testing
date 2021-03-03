@@ -1,11 +1,7 @@
 module.exports = {
   presets: [
     '@babel/preset-typescript',
-    ['@babel/preset-env', {
-      targets: {
-        node: 10,
-      },
-    }],
+    '@babel/preset-env',
   ],
   overrides: [
     {
