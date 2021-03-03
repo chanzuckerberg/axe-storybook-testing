@@ -1,16 +1,19 @@
 module.exports = {
   presets: [
     '@babel/preset-typescript',
-    ['@babel/preset-env', {
-      // Transform syntax issues in buggy implemenetations, instead of providing polyfills in those
-      // cases. See https://babeljs.io/blog/2020/03/16/7.9.0#babelpreset-envs-bugfixes-option-11083httpsgithubcombabelbabelpull11083.
-      bugfixes: true,
-      // Turn on "shipped proposals", which gives us access to non-stage4 proposals that have
-      // nevertheless shipped in multiple browsers. The main proposal we need support for is
-      // public class properties.
-      // See https://babeljs.io/docs/en/babel-preset-env#shippedproposals.
-      shippedProposals: true,
-    }],
+    '@babel/preset-env',
+  ],
+  'plugins': [
+    // We need to turn on class properties because we support Node 10. Normally we'd do that
+    // through preset-env, but we also need to configure loose transformations, and I didn't want
+    // to configure that for all plugins.
+    //
+    // We need loose transformations because some code gets executed in the browser via Playwright,
+    // instead of Node. The code executing in browser needs to be standlone, and class properties
+    // must be compiled to assignment, instead of `defineProperty`.
+    //
+    // If and when we go from supporting Node 10 to Node 12, delete this.
+    ['@babel/plugin-proposal-class-properties', { loose: true }],
   ],
   overrides: [
     {
