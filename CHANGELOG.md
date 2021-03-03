@@ -3,6 +3,7 @@
 ## Unreleased
 
 - [fix] Lower supported Node version from 12 to 10.
+- Update dependencies
 
 ## 3.0.0 (2021-03-02)
 

@@ -44,12 +44,15 @@ test('failing specific impact levels', (done) => {
     expect(normalizedStderr).toMatchSnapshot();
     done();
   });
-});
+}, 120000);
 
-test('testing against a storybook server', (done) => {
+// This test is a great idea, but slightly flaky. Skipping it until we can figure out how to make it
+// more reliable. The issue is that sometimes some of the Webpack output is logged AFTER the axe-storybook-testing
+// command has started and been logged.
+test.skip('testing against a storybook server', (done) => {
   expect.assertions(2);
 
-  exec('start-server-and-test "yarn --cwd demo storybook-ci" "http://localhost:6006/iframe.html" "yarn --cwd demo storybook:axe-no-build:server"', function (error, stdout, stderr) {
+  exec('start-server-and-test "yarn --cwd demo storybook-ci" "http://localhost:6006/iframe.html" "yarn --cwd demo storybook:axe-no-build:server"', function (error, stdout) {
     const normalizedStdout = normalize(stdout);
     expect(error!.code).toEqual(1);
     expect(normalizedStdout).toMatchSnapshot();
