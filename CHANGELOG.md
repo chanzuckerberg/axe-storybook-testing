@@ -3,6 +3,7 @@
 ## Unreleased
 
 - [fix] Make ts-dedent a regular, instead of dev, dependency [#27](https://github.com/chanzuckerberg/axe-storybook-testing/pull/27)
+- Update all dependencies
 
 ## 3.0.1 (2021-03-03)
 
