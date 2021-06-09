@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [breaking] Drop support for Node 10 [#29](https://github.com/chanzuckerberg/axe-storybook-testing/pull/29)
+
 ## 3.0.2 (2021-04-08)
 
 - [fix] Make ts-dedent a regular, instead of dev, dependency [#27](https://github.com/chanzuckerberg/axe-storybook-testing/pull/27)
