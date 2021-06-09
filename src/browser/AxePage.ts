@@ -55,42 +55,59 @@ function addPromiseQueue() {
     reject: (reason?: unknown) => void;
   }
 
-  class PromiseQueue<T> {
-    pending: QueuedPromise<T>[] = [];
-    working = false;
+  /**
+   * Queue of promises, which forces any promises added to it to run one at a time.
+   *
+   * This was originally implemented as an ES6 class. But I ran into a lot of issues with how the
+   * class's properties were compiled not working in different environments and browsers, and even
+   * breaking when Babel was updated.
+   *
+   * To avoid that, I've instead implemented this as a function that maintains some state within a
+   * closure. Since there are no class properties (which can be compiled by Babel in different ways),
+   * there are no more problems.
+   */
+  function PromiseQueue<T>() {
+    const pending: QueuedPromise<T>[] = [];
+    let working = false;
 
-    add(promiseCreator: () => Promise<T>): Promise<T> {
+    /**
+     * Add a promise to the queue. Returns a promise that is resolved or rejected when the added
+     * promise eventually resolves or rejects.
+     */
+    function add(promiseCreator: () => Promise<T>): Promise<T> {
       return new Promise((resolve, reject) => {
-        this.pending.push({
-          promiseCreator,
-          resolve,
-          reject,
-        });
-        this.dequeue();
+        pending.push({ promiseCreator, resolve, reject });
+        dequeue();
       });
     }
 
-    private dequeue(): void {
-      if (this.working) { return; }
+    /**
+     * Run the next promise in the queue.
+     */
+    function dequeue() {
+      // If we're already working on a promise, do nothing.
+      if (working) { return; }
 
-      const nextPromise = this.pending.shift();
+      const nextPromise = pending.shift();
 
+      // If there are no promises to work on, do nothing.
       if (!nextPromise) { return; }
 
-      this.working = true;
+      working = true;
+
+      // Execute the promise. When it's done, start working on the next.
       nextPromise.promiseCreator()
-        .then(
-          nextPromise.resolve,
-          nextPromise.reject,
-        )
+        .then(nextPromise.resolve, nextPromise.reject)
         .finally(() => {
-          this.working = false;
-          this.dequeue();
+          working = false;
+          dequeue();
         });
     }
+
+    return { add };
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore This function executes in a browser context.
-  window.axeQueue = new PromiseQueue();
+  window.axeQueue = PromiseQueue<AxeResults>();
 }
