@@ -39,13 +39,13 @@
     "types": "tsc --noEmit"
   },
   "dependencies": {
-    "chalk": "^4.1.0",
+    "chalk": "^4.1.1",
     "indent-string": "^4.0.0",
     "lodash": "^4.17.21",
     "p-timeout": "^4.1.0",
-    "playwright": "^1.10.0",
+    "playwright": "^1.12.0",
     "ts-dedent": "^2.1.1",
-    "yargs": "^16.2.0"
+    "yargs": "^17.0.1"
   },
   "peerDependencies": {
     "axe-core": "^4.0.0"
