@@ -95,6 +95,8 @@ Stories can use parameters to configure how axe-storybook-testing handles them.
 Prevent axe-storybook-testing from running a story by using the `skip` parameter.
 
 ```jsx
+// SomeStory.stories.jsx
+
 SomeStory.parameters = {
   axe: {
     skip: true,
@@ -107,7 +109,21 @@ SomeStory.parameters = {
 Prevent axe-storybook-testing from running specific Axe rules on a story by using the `disabledRules` parameter.
 
 ```jsx
+// SomeStory.stories.jsx
+
 SomeStory.parameters = {
+  axe: {
+    disabledRules: ['select-name'],
+  },
+};
+```
+
+Rules can also be disabled globally by [setting this parameter for **all stories** in .storybook/preview.js](https://storybook.js.org/docs/react/writing-stories/parameters#global-parameters).
+
+```jsx
+// .storybook/preview.js
+
+export const parameters = {
   axe: {
     disabledRules: ['select-name'],
   },
