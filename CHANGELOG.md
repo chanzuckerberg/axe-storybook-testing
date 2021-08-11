@@ -5,7 +5,7 @@
 - [breaking] Drop support for Node 10 [#29](https://github.com/chanzuckerberg/axe-storybook-testing/pull/29)
 - [maintenance] Change promise queue implementation so we don't have to worry about how ES6 class properties are compiled
 - [maintenance] Update dev dependencies
-- [maintenance] Update Playwright from 1.12 to 1.13
+- [maintenance] Update Playwright from 1.12 to 1.13.1
 
 ## 3.0.2 (2021-04-08)
 
