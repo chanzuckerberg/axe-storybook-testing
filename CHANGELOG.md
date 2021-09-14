@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [fix] Ensure `prefers-reduced-motion` is turned on [#33](https://github.com/chanzuckerberg/axe-storybook-testing/pull/33)
+
 ## 4.0.0 (2021-09-13)
 
 - [breaking] Drop support for Node 10 [#29](https://github.com/chanzuckerberg/axe-storybook-testing/pull/29)
