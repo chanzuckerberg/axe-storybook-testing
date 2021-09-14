@@ -16,12 +16,6 @@ export default class TestBrowser {
   static async create(options: Options): Promise<TestBrowser> {
     const browser = await playwright[options.browser].launch({
       headless: options.headless,
-      args: [
-        // Force the `prefers-reduced-motion` media query to be true in Chromium. This will prevent
-        // animations (that respect the media query) from causing flaky or failing tests due to the
-        // animation. Only works in Chromium, currently.
-        '--force-prefers-reduced-motion',
-      ],
     });
 
     try {
@@ -29,7 +23,15 @@ export default class TestBrowser {
 
       // Create a new page at Storybook's static iframe and with axe-core setup and ready to run.
       const page = await context.newPage();
+
+      // Turn on `prefers-reduced-motion`. This will prevent any animations that respect the media
+      // query from causing flaky or failing tests due to animation.
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+
+      // Visit Storybook's static iframe.
       await page.goto(options.iframePath);
+
+      // Ensure axe-core is setup and ready to run.
       await AxePage.prepare(page);
 
       return new TestBrowser(browser, page);
