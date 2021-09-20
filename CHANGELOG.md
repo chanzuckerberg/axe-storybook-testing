@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 4.1.0 (2021-9-20)
+
 - [new] Add `waitForSelector` story parameter [#35](https://github.com/chanzuckerberg/axe-storybook-testing/pull/35)
 
 ## 4.0.1 (2021-9-14)
