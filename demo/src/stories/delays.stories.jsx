@@ -13,15 +13,15 @@ function NotDelayed() {
 // Render NotDelayed after a timeout. Should initially "pass" accessibility checks, since there is
 // nothing initially rendered. But if we either run them again (in Storybook) or delay the Axe check
 // (with `waitForSelector`) we should see the failure.
-function Delayed() {
+function Delayed({ delay }) {
   const [show, setShow] = React.useState(false);
 
   React.useEffect(() => {
     const timeoutId = setTimeout(() => {
       setShow(true);
-    }, 1000);
+    }, delay);
     return () => clearTimeout(timeoutId);
-  }, []);
+  }, [delay]);
 
   return show ? <NotDelayed /> : null;
 }
@@ -29,9 +29,17 @@ function Delayed() {
 export const NoDelay = () => <NotDelayed />;
 NoDelay.storyName = 'NoDelay (should fail)';
 
-export const Delay = () => <Delayed />;
-Delay.storyName = 'Delay (should fail)';
-Delay.parameters = {
+export const ShortDelay = () => <Delayed delay={500} />;
+ShortDelay.storyName = 'ShortDelay (should fail)';
+ShortDelay.parameters = {
+  axe: {
+    waitForSelector: '#the-tab',
+  },
+};
+
+export const LongDelay = () => <Delayed delay={30000} />;
+LongDelay.storyName = 'LongDelay (should fail with timeout)';
+LongDelay.parameters = {
   axe: {
     waitForSelector: '#the-tab',
   },
