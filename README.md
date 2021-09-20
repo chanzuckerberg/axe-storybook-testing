@@ -95,7 +95,7 @@ Stories can use parameters to configure how axe-storybook-testing handles them.
 Prevent axe-storybook-testing from running a story by using the `skip` parameter.
 
 ```jsx
-// SomeStory.stories.jsx
+// SomeComponent.stories.jsx
 
 SomeStory.parameters = {
   axe: {
@@ -109,7 +109,7 @@ SomeStory.parameters = {
 Prevent axe-storybook-testing from running specific Axe rules on a story by using the `disabledRules` parameter.
 
 ```jsx
-// SomeStory.stories.jsx
+// SomeComponent.stories.jsx
 
 SomeStory.parameters = {
   axe: {
