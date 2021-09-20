@@ -95,7 +95,7 @@ Stories can use parameters to configure how axe-storybook-testing handles them.
 Prevent axe-storybook-testing from running a story by using the `skip` parameter.
 
 ```jsx
-// SomeStory.stories.jsx
+// SomeComponent.stories.jsx
 
 SomeStory.parameters = {
   axe: {
@@ -109,7 +109,7 @@ SomeStory.parameters = {
 Prevent axe-storybook-testing from running specific Axe rules on a story by using the `disabledRules` parameter.
 
 ```jsx
-// SomeStory.stories.jsx
+// SomeComponent.stories.jsx
 
 SomeStory.parameters = {
   axe: {
@@ -126,6 +126,20 @@ Rules can also be disabled globally by [setting this parameter for **all stories
 export const parameters = {
   axe: {
     disabledRules: ['select-name'],
+  },
+};
+```
+
+### waitForSelector
+
+Wait for an arbitrary CSS selector after rendering before running the Axe checks. Useful if your component takes some time to render and actually display itself on the page.
+
+```jsx
+// SomeComponent.stories.jsx
+
+export const parameters = {
+  axe: {
+    waitForSelector: '#some-component-selector',
   },
 };
 ```

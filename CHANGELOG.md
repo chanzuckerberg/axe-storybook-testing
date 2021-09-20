@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [new] Add `waitForSelector` story parameter [#35](https://github.com/chanzuckerberg/axe-storybook-testing/pull/35)
+
 ## 4.0.1 (2021-9-14)
 
 - [fix] Ensure `prefers-reduced-motion` is turned on [#33](https://github.com/chanzuckerberg/axe-storybook-testing/pull/33)

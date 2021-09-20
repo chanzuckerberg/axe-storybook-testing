@@ -10,6 +10,7 @@ export type ProcessedStory = {
     axe: {
       skip: boolean;
       disabledRules: string[];
+      waitForSelector?: string;
     },
   };
   storybookId: string;
@@ -33,6 +34,7 @@ export function fromStory(rawStory: StorybookStory): ProcessedStory {
       axe: {
         skip: normalizeSkip(rawStory.parameters?.axe?.skip),
         disabledRules: normalizeDisabledRules(rawStory.parameters?.axe?.disabledRules),
+        waitForSelector: normalizeWaitForSelector(rawStory.parameters?.axe?.waitForSelector),
       },
     },
     storybookId: rawStory.id,
@@ -71,4 +73,14 @@ function normalizeDisabledRules(disabledRules?: unknown): string[] {
     throw new Error(`Given disabledRules option '${JSON.stringify(disabledRules)}' is invalid`);
   }
   return disabledRules.map(String);
+}
+
+function normalizeWaitForSelector(waitForSelector?: unknown): string | undefined {
+  if (!waitForSelector) {
+    return undefined;
+  }
+  if (typeof waitForSelector !== 'string') {
+    throw new Error(`Value of 'waitForSelector' option '${waitForSelector}' is invalid`);
+  }
+  return waitForSelector;
 }
