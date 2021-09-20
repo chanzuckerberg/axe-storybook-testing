@@ -56,6 +56,7 @@ describe('fromStory', () => {
           axe: {
             skip: true,
             disabledRules: ['label'],
+            waitForSelector: '.foo',
           },
         },
       };
@@ -66,6 +67,7 @@ describe('fromStory', () => {
         axe: {
           skip: true,
           disabledRules: ['label'],
+          waitForSelector: '.foo',
         },
       });
     });

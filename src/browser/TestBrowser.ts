@@ -61,7 +61,13 @@ export default class TestBrowser {
    * Run Axe for a story.
    */
   async getResultForStory(story: ProcessedStory.ProcessedStory): Promise<Result.Result> {
+    const storyParams = story.parameters.axe;
     await StorybookPage.showStory(this.page, story);
+
+    if (storyParams.waitForSelector) {
+      await this.page.waitForSelector(storyParams.waitForSelector);
+    }
+
     return Result.fromPage(this.page, story);
   }
 

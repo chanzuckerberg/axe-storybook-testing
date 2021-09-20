@@ -10,15 +10,18 @@ exports[`failing specific impact levels 1`] = `
     ✓ Button with insufficient color contrast (should fail)
     - Button with insufficient color contrast but skipped (should pass)
     ✓ Multiple buttons with insufficient color contrast (should fail)
+  delays
+    2) NoDelay (should fail)
+    3) Delay (should fail)
   input
     ✓ Input with label (should pass)
-    2) Input without label (should fail)
+    4) Input without label (should fail)
     - Input without label but skipped (should pass)
-    3) Input without label and invalid role (should fail)
+    5) Input without label and invalid role (should fail)
     ✓ Input without label but \\"label\\" rule is disabled (should pass)
 
 6 passing
-3 failing
+5 failing
 2 pending
 
 1) [chromium] accessibility
@@ -42,6 +45,38 @@ exports[`failing specific impact levels 1`] = `
                        Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
 
 2) [chromium] accessibility
+     delays
+       NoDelay (should fail)
+
+       Detected the following accessibility violations!
+
+       1. aria-required-parent (Certain ARIA roles must be contained by particular parents)
+
+          For more info, visit https://dequeuniversity.com/rules/axe/4.3/aria-required-parent?application=axeAPI.
+
+          Check these nodes:
+
+          - html: <button id=\\"the-tab\\" role=\\"tab\\">Tab</button>
+            summary: Fix any of the following:
+                       Required ARIA parent role not present: tablist
+
+3) [chromium] accessibility
+     delays
+       Delay (should fail)
+
+       Detected the following accessibility violations!
+
+       1. aria-required-parent (Certain ARIA roles must be contained by particular parents)
+
+          For more info, visit https://dequeuniversity.com/rules/axe/4.3/aria-required-parent?application=axeAPI.
+
+          Check these nodes:
+
+          - html: <button id=\\"the-tab\\" role=\\"tab\\">Tab</button>
+            summary: Fix any of the following:
+                       Required ARIA parent role not present: tablist
+
+4) [chromium] accessibility
      input
        Input without label (should fail)
 
@@ -63,7 +98,7 @@ exports[`failing specific impact levels 1`] = `
                        Element has no placeholder attribute
                        Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
 
-3) [chromium] accessibility
+5) [chromium] accessibility
      input
        Input without label and invalid role (should fail)
 
@@ -114,6 +149,9 @@ exports[`filtering the components to run 1`] = `
     2) Button with insufficient color contrast (should fail)
     - Button with insufficient color contrast but skipped (should pass)
     3) Multiple buttons with insufficient color contrast (should fail)
+  [skipped] delays
+    - NoDelay (should fail)
+    - Delay (should fail)
   [skipped] input
     - Input with label (should pass)
     - Input without label (should fail)
@@ -123,7 +161,7 @@ exports[`filtering the components to run 1`] = `
 
 2 passing
 3 failing
-6 pending
+8 pending
 
 1) [chromium] accessibility
      button
@@ -200,15 +238,18 @@ exports[`outputting accessibility violation information for the demo app 1`] = `
     2) Button with insufficient color contrast (should fail)
     - Button with insufficient color contrast but skipped (should pass)
     3) Multiple buttons with insufficient color contrast (should fail)
+  delays
+    4) NoDelay (should fail)
+    5) Delay (should fail)
   input
     ✓ Input with label (should pass)
-    4) Input without label (should fail)
+    6) Input without label (should fail)
     - Input without label but skipped (should pass)
-    5) Input without label and invalid role (should fail)
+    7) Input without label and invalid role (should fail)
     ✓ Input without label but \\"label\\" rule is disabled (should pass)
 
 4 passing
-5 failing
+7 failing
 2 pending
 
 1) [chromium] accessibility
@@ -268,6 +309,38 @@ exports[`outputting accessibility violation information for the demo app 1`] = `
                        Element has insufficient color contrast of 1.24 (foreground color: #32cd32, background color: #ff69b4, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
 
 4) [chromium] accessibility
+     delays
+       NoDelay (should fail)
+
+       Detected the following accessibility violations!
+
+       1. aria-required-parent (Certain ARIA roles must be contained by particular parents)
+
+          For more info, visit https://dequeuniversity.com/rules/axe/4.3/aria-required-parent?application=axeAPI.
+
+          Check these nodes:
+
+          - html: <button id=\\"the-tab\\" role=\\"tab\\">Tab</button>
+            summary: Fix any of the following:
+                       Required ARIA parent role not present: tablist
+
+5) [chromium] accessibility
+     delays
+       Delay (should fail)
+
+       Detected the following accessibility violations!
+
+       1. aria-required-parent (Certain ARIA roles must be contained by particular parents)
+
+          For more info, visit https://dequeuniversity.com/rules/axe/4.3/aria-required-parent?application=axeAPI.
+
+          Check these nodes:
+
+          - html: <button id=\\"the-tab\\" role=\\"tab\\">Tab</button>
+            summary: Fix any of the following:
+                       Required ARIA parent role not present: tablist
+
+6) [chromium] accessibility
      input
        Input without label (should fail)
 
@@ -289,7 +362,7 @@ exports[`outputting accessibility violation information for the demo app 1`] = `
                        Element has no placeholder attribute
                        Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
 
-5) [chromium] accessibility
+7) [chromium] accessibility
      input
        Input without label and invalid role (should fail)
 

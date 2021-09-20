@@ -130,6 +130,20 @@ export const parameters = {
 };
 ```
 
+### waitForSelector
+
+Wait for an arbitrary CSS selector after rendering before running the Axe checks. Useful if your component takes some time to render and actually display itself on the page.
+
+```jsx
+// SomeComponent.stories.jsx
+
+export const parameters = {
+  axe: {
+    waitForSelector: '#some-component-selector',
+  },
+};
+```
+
 ## Developing
 
 If you want to work on this project or contribute back to it, see our [wiki entry on Development setup](https://github.com/chanzuckerberg/axe-storybook-testing/wiki/Development-setup).
