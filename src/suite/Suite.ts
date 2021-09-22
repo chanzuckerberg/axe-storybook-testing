@@ -54,6 +54,9 @@ export function run(options: Options): SuiteEmitter {
       try {
         // Iterate each component.
         for (const [componentName, stories] of storiesAndComponents) {
+          // Determine if we should actually check this component. Even if we're not going to check
+          // it we keep iterating and DON'T return early. That way the formatters can still print
+          // information about the skipped component and stories.
           const shouldComponentRun = options.pattern.test(componentName);
 
           if (shouldComponentRun) {
@@ -66,6 +69,8 @@ export function run(options: Options): SuiteEmitter {
           for (const story of stories) {
             const storyStartTime = Date.now();
 
+            // If either the entire component or this specific story is skipped, move on to the
+            // next story.
             if (!shouldComponentRun || !isEnabled(story)) {
               numSkip += 1;
               emitter.emit('storySkip', story.name, componentName);
