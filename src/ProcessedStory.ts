@@ -33,18 +33,9 @@ export function fromStory(rawStory: StorybookStory): ProcessedStory {
     name: rawStory.name,
     parameters: {
       axe: {
-        skip: Parameters.parseSkip(
-          rawStory.parameters?.axe?.skip,
-          createInvalidParamErrorMessage(rawStory, 'skip'),
-        ) || false,
-        disabledRules: Parameters.parseDisabledRules(
-          rawStory.parameters?.axe?.disabledRules,
-          createInvalidParamErrorMessage(rawStory, 'disabledRules'),
-        ) || [],
-        waitForSelector: Parameters.parseWaitForSelector(
-          rawStory.parameters?.axe?.waitForSelector,
-          createInvalidParamErrorMessage(rawStory, 'waitForSelector'),
-        ),
+        skip: normalizeSkip(rawStory.parameters?.axe?.skip, rawStory),
+        disabledRules: normalizeDisabledRules(rawStory.parameters?.axe?.disabledRules, rawStory),
+        waitForSelector: normalizeWaitForSelector(rawStory.parameters?.axe?.waitForSelector, rawStory),
       },
     },
     storybookId: rawStory.id,
@@ -63,6 +54,39 @@ export function isEnabled(story: ProcessedStory): boolean {
  */
 export function getDisabledRules(story: ProcessedStory): string[] {
   return story.parameters.axe.disabledRules;
+}
+
+function normalizeSkip(skip: unknown, rawStory: StorybookStory) {
+  return parseWithFriendlyError(
+    () => Parameters.parseSkip(skip),
+    createInvalidParamErrorMessage(rawStory, 'skip'),
+  ) || false;
+}
+
+function normalizeDisabledRules(disabledRules: unknown, rawStory: StorybookStory) {
+  return parseWithFriendlyError(
+    () => Parameters.parseDisabledRules(disabledRules),
+    createInvalidParamErrorMessage(rawStory, 'disabledRules'),
+  ) || [];
+}
+
+function normalizeWaitForSelector(waitForSelector: unknown, rawStory: StorybookStory) {
+  return parseWithFriendlyError(
+    () => Parameters.parseWaitForSelector(waitForSelector),
+    createInvalidParamErrorMessage(rawStory, 'waitForSelector'),
+  );
+}
+
+function parseWithFriendlyError<T>(parser: () => T, errorMessage: string): T {
+  try {
+    return parser();
+  } catch (message) {
+    if (message instanceof Parameters.ParamError) {
+      throw new TypeError(errorMessage);
+    } else {
+      throw message;
+    }
+  }
 }
 
 function createInvalidParamErrorMessage(rawStory: StorybookStory, paramName: string): string {
