@@ -1,3 +1,4 @@
+import * as Parameters from './Parameters';
 import type { StorybookStory } from './browser/StorybookPage';
 
 /**
@@ -32,9 +33,9 @@ export function fromStory(rawStory: StorybookStory): ProcessedStory {
     name: rawStory.name,
     parameters: {
       axe: {
-        skip: normalizeSkip(rawStory.parameters?.axe?.skip),
-        disabledRules: normalizeDisabledRules(rawStory.parameters?.axe?.disabledRules),
-        waitForSelector: normalizeWaitForSelector(rawStory.parameters?.axe?.waitForSelector),
+        skip: Parameters.parseSkip(rawStory.parameters?.axe?.skip) || false,
+        disabledRules: Parameters.parseDisabledRules(rawStory.parameters?.axe?.disabledRules) || [],
+        waitForSelector: Parameters.parseWaitForSelector(rawStory.parameters?.axe?.waitForSelector),
       },
     },
     storybookId: rawStory.id,
@@ -53,34 +54,4 @@ export function isEnabled(story: ProcessedStory): boolean {
  */
 export function getDisabledRules(story: ProcessedStory): string[] {
   return story.parameters.axe.disabledRules;
-}
-
-function normalizeSkip(skipped?: unknown): boolean {
-  if (typeof skipped === 'undefined') {
-    return false;
-  }
-  if (typeof skipped !== 'boolean') {
-    throw new Error(`Value of 'skip' option '${skipped}' is invalid`);
-  }
-  return skipped;
-}
-
-function normalizeDisabledRules(disabledRules?: unknown): string[] {
-  if (typeof disabledRules === 'undefined') {
-    return [];
-  }
-  if (!Array.isArray(disabledRules)) {
-    throw new Error(`Given disabledRules option '${JSON.stringify(disabledRules)}' is invalid`);
-  }
-  return disabledRules.map(String);
-}
-
-function normalizeWaitForSelector(waitForSelector?: unknown): string | undefined {
-  if (!waitForSelector) {
-    return undefined;
-  }
-  if (typeof waitForSelector !== 'string') {
-    throw new Error(`Value of 'waitForSelector' option '${waitForSelector}' is invalid`);
-  }
-  return waitForSelector;
 }
