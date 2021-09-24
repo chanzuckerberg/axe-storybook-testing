@@ -60,14 +60,14 @@ function normalizeSkip(skip: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
     () => Parameters.parseSkip(skip),
     createInvalidParamErrorMessage(rawStory, 'skip'),
-  ) || false;
+  );
 }
 
 function normalizeDisabledRules(disabledRules: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
     () => Parameters.parseDisabledRules(disabledRules),
     createInvalidParamErrorMessage(rawStory, 'disabledRules'),
-  ) || [];
+  );
 }
 
 function normalizeWaitForSelector(waitForSelector: unknown, rawStory: StorybookStory) {

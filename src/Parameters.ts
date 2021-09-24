@@ -2,16 +2,16 @@ import { z as zod } from 'zod';
 
 export const ParamError = zod.ZodError;
 
-const skipSchema = zod.optional(zod.boolean());
-const disabledRulesSchema = zod.optional(zod.array(zod.string()));
+const skipSchema = zod.boolean();
+const disabledRulesSchema = zod.array(zod.string());
 const waitForSelectorSchema = zod.optional(zod.string());
 
 export function parseSkip(skipped: unknown): zod.infer<typeof skipSchema> {
-  return skipSchema.parse(skipped);
+  return skipSchema.optional().parse(skipped) || false;
 }
 
 export function parseDisabledRules(disabledRules: unknown): zod.infer<typeof disabledRulesSchema> {
-  return disabledRulesSchema.parse(disabledRules);
+  return disabledRulesSchema.optional().parse(disabledRules) || [];
 }
 
 export function parseWaitForSelector(waitForSelector: unknown): zod.infer<typeof waitForSelectorSchema> {
