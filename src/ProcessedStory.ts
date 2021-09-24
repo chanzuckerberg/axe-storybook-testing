@@ -33,9 +33,18 @@ export function fromStory(rawStory: StorybookStory): ProcessedStory {
     name: rawStory.name,
     parameters: {
       axe: {
-        skip: Parameters.parseSkip(rawStory.parameters?.axe?.skip) || false,
-        disabledRules: Parameters.parseDisabledRules(rawStory.parameters?.axe?.disabledRules) || [],
-        waitForSelector: Parameters.parseWaitForSelector(rawStory.parameters?.axe?.waitForSelector),
+        skip: Parameters.parseSkip(
+          rawStory.parameters?.axe?.skip,
+          createInvalidParamErrorMessage(rawStory, 'skip'),
+        ) || false,
+        disabledRules: Parameters.parseDisabledRules(
+          rawStory.parameters?.axe?.disabledRules,
+          createInvalidParamErrorMessage(rawStory, 'disabledRules'),
+        ) || [],
+        waitForSelector: Parameters.parseWaitForSelector(
+          rawStory.parameters?.axe?.waitForSelector,
+          createInvalidParamErrorMessage(rawStory, 'waitForSelector'),
+        ),
       },
     },
     storybookId: rawStory.id,
@@ -54,4 +63,8 @@ export function isEnabled(story: ProcessedStory): boolean {
  */
 export function getDisabledRules(story: ProcessedStory): string[] {
   return story.parameters.axe.disabledRules;
+}
+
+function createInvalidParamErrorMessage(rawStory: StorybookStory, paramName: string): string {
+  return `Invalid value for parameter "${paramName}" in component "${rawStory.kind}", story "${rawStory.name}"`;
 }

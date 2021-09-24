@@ -85,7 +85,7 @@ describe('fromStory', () => {
         },
       };
 
-      expect(() => fromStory(rawStory)).toThrow("Value of 'skip' option 'wut' is invalid");
+      expect(() => fromStory(rawStory)).toThrow('Invalid value for parameter "skip" in component "button", story "a"');
     });
   });
 });
