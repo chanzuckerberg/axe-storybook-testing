@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [maintenance] Use [Zod](https://github.com/colinhacks/zod) to validate story parameters, instead of custom logic [#37](https://github.com/chanzuckerberg/axe-storybook-testing/pull/37)
+
 ## 4.1.0 (2021-9-20)
 
 - [new] Add `waitForSelector` story parameter [#35](https://github.com/chanzuckerberg/axe-storybook-testing/pull/35)
