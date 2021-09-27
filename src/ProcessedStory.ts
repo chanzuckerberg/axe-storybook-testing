@@ -1,3 +1,4 @@
+import * as Parameters from './Parameters';
 import type { StorybookStory } from './browser/StorybookPage';
 
 /**
@@ -32,9 +33,9 @@ export function fromStory(rawStory: StorybookStory): ProcessedStory {
     name: rawStory.name,
     parameters: {
       axe: {
-        skip: normalizeSkip(rawStory.parameters?.axe?.skip),
-        disabledRules: normalizeDisabledRules(rawStory.parameters?.axe?.disabledRules),
-        waitForSelector: normalizeWaitForSelector(rawStory.parameters?.axe?.waitForSelector),
+        skip: normalizeSkip(rawStory.parameters?.axe?.skip, rawStory),
+        disabledRules: normalizeDisabledRules(rawStory.parameters?.axe?.disabledRules, rawStory),
+        waitForSelector: normalizeWaitForSelector(rawStory.parameters?.axe?.waitForSelector, rawStory),
       },
     },
     storybookId: rawStory.id,
@@ -55,32 +56,49 @@ export function getDisabledRules(story: ProcessedStory): string[] {
   return story.parameters.axe.disabledRules;
 }
 
-function normalizeSkip(skipped?: unknown): boolean {
-  if (typeof skipped === 'undefined') {
-    return false;
-  }
-  if (typeof skipped !== 'boolean') {
-    throw new Error(`Value of 'skip' option '${skipped}' is invalid`);
-  }
-  return skipped;
+function normalizeSkip(skip: unknown, rawStory: StorybookStory) {
+  return parseWithFriendlyError(
+    () => Parameters.parseSkip(skip),
+    createInvalidParamErrorMessage(rawStory, 'skip'),
+  );
 }
 
-function normalizeDisabledRules(disabledRules?: unknown): string[] {
-  if (typeof disabledRules === 'undefined') {
-    return [];
-  }
-  if (!Array.isArray(disabledRules)) {
-    throw new Error(`Given disabledRules option '${JSON.stringify(disabledRules)}' is invalid`);
-  }
-  return disabledRules.map(String);
+function normalizeDisabledRules(disabledRules: unknown, rawStory: StorybookStory) {
+  return parseWithFriendlyError(
+    () => Parameters.parseDisabledRules(disabledRules),
+    createInvalidParamErrorMessage(rawStory, 'disabledRules'),
+  );
 }
 
-function normalizeWaitForSelector(waitForSelector?: unknown): string | undefined {
-  if (!waitForSelector) {
-    return undefined;
+function normalizeWaitForSelector(waitForSelector: unknown, rawStory: StorybookStory) {
+  return parseWithFriendlyError(
+    () => Parameters.parseWaitForSelector(waitForSelector),
+    createInvalidParamErrorMessage(rawStory, 'waitForSelector'),
+  );
+}
+
+/**
+ * Our Parameter parsers use Zod under the hood, which works great. Unfortunately, there's no way
+ * to provide a custom error message when parsing, and its default error messages won't give users
+ * enough information about what went wrong and where. Instead we'll catch errors from the parsers
+ * and re-throw our own.
+ */
+function parseWithFriendlyError<T>(parser: () => T, errorMessage: string): T {
+  try {
+    return parser();
+  } catch (message) {
+    if (message instanceof Parameters.ParamError) {
+      throw new TypeError(errorMessage);
+    } else {
+      throw message;
+    }
   }
-  if (typeof waitForSelector !== 'string') {
-    throw new Error(`Value of 'waitForSelector' option '${waitForSelector}' is invalid`);
-  }
-  return waitForSelector;
+}
+
+/**
+ * Create useful error text for an invalid param. We provide info on what parameter failed, in
+ * which component, and in what story. That way people can easily find their error.
+ */
+function createInvalidParamErrorMessage(rawStory: StorybookStory, paramName: string): string {
+  return `Invalid value for parameter "${paramName}" in component "${rawStory.kind}", story "${rawStory.name}"`;
 }
