@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 4.1.1 (2021-9-27)
+
 - [maintenance] Use [Zod](https://github.com/colinhacks/zod) to validate story parameters, instead of custom logic [#37](https://github.com/chanzuckerberg/axe-storybook-testing/pull/37)
 - [fix] Allow `waitForSelector` to select any element in the DOM (whether visible or not) [#38](https://github.com/chanzuckerberg/axe-storybook-testing/pull/38)
 
