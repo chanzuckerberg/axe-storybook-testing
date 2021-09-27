@@ -65,7 +65,7 @@ export default class TestBrowser {
     await StorybookPage.showStory(this.page, story);
 
     if (storyParams.waitForSelector) {
-      await this.page.waitForSelector(storyParams.waitForSelector);
+      await this.page.waitForSelector(storyParams.waitForSelector, { state: 'attached' });
     }
 
     return Result.fromPage(this.page, story);
