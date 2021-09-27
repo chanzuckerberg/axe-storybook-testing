@@ -1,5 +1,7 @@
 import { z as zod } from 'zod';
 
+// Functions for validating parameters and providing default values.
+
 export const ParamError = zod.ZodError;
 
 const skipSchema = zod.boolean();

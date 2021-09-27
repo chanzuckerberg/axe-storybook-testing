@@ -77,6 +77,12 @@ function normalizeWaitForSelector(waitForSelector: unknown, rawStory: StorybookS
   );
 }
 
+/**
+ * Our Parameter parsers use Zod under the hood, which works great. Unfortunately, there's no way
+ * to provide a custom error message when parsing, and its default error messages won't give users
+ * enough information about what went wrong and where. Instead we'll catch errors from the parsers
+ * and re-throw our own.
+ */
 function parseWithFriendlyError<T>(parser: () => T, errorMessage: string): T {
   try {
     return parser();
@@ -89,6 +95,10 @@ function parseWithFriendlyError<T>(parser: () => T, errorMessage: string): T {
   }
 }
 
+/**
+ * Create useful error text for an invalid param. We provide info on what parameter failed, in
+ * which component, and in what story. That way people can easily find their error.
+ */
 function createInvalidParamErrorMessage(rawStory: StorybookStory, paramName: string): string {
   return `Invalid value for parameter "${paramName}" in component "${rawStory.kind}", story "${rawStory.name}"`;
 }
