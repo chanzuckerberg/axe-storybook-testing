@@ -52,11 +52,6 @@
     "axe-core": "^4.0.0"
   },
   "devDependencies": {
-    "@babel/cli": "^7.15.4",
-    "@babel/core": "^7.15.5",
-    "@babel/preset-env": "^7.15.6",
-    "@babel/preset-react": "^7.14.5",
-    "@babel/preset-typescript": "^7.15.0",
     "@storybook/client-api": "^6.3.8",
     "@types/jest": "^27.0.1",
     "@types/lodash": "^4.14.172",
@@ -64,7 +59,6 @@
     "@typescript-eslint/eslint-plugin": "^4.31.0",
     "@typescript-eslint/parser": "^4.31.0",
     "axe-core": "^4.3.3",
-    "babel-jest": "^27.2.0",
     "esbuild": "^0.13.6",
     "eslint": "^7.32.0",
     "eslint-plugin-import": "^2.24.2",
