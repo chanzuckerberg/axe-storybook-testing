@@ -3,6 +3,7 @@
 ## Unreleased
 
 - [maintenance] Use esbuild to build the project, instead of Babel [#40](https://github.com/chanzuckerberg/axe-storybook-testing/pull/40)
+- [fix] Update playwright (from 1.14.1 to 1.15.2), yargs (from 17.1.2 to 17.2.1), and zod (from 3.8.2 to 3.9.8)
 
 ## 4.1.1 (2021-9-27)
 
