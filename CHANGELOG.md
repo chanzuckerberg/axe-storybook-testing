@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [maintenance] Use esbuild to build the project, instead of Babel [#40](https://github.com/chanzuckerberg/axe-storybook-testing/pull/40)
+
 ## 4.1.1 (2021-9-27)
 
 - [maintenance] Use [Zod](https://github.com/colinhacks/zod) to validate story parameters, instead of custom logic [#37](https://github.com/chanzuckerberg/axe-storybook-testing/pull/37)

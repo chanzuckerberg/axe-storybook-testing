@@ -7,7 +7,7 @@
     "lib": ["es2019"],
     "module": "commonjs",
     "noEmit": true,
-    "target": "es5",
+    "target": "es6",
     "skipLibCheck": true,
     "strict": true,
   }
