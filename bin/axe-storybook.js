@@ -4,11 +4,11 @@
 require('../build/index')
   .run()
   .then(() => {
-    process.on('exit', () => process.exit(0));
+    process.exit(0);
   })
   .catch((error) => {
     if (error) {
       console.log(error);
     }
-    process.on('exit', () => process.exit(1));
+    process.exit(1);
   });
