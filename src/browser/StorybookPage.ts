@@ -41,7 +41,7 @@ export async function showStory(page: Page, story: ProcessedStory): Promise<void
  *
  * Executes in a browser context.
  */
-function fetchStoriesFromWindow(): Promise<StoreItem[]> {
+function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
   return new Promise((resolve, reject) => {
     // Check if the window has stories every 100ms for up to 10 seconds.
     // This allows 10 seconds for any async pre-tasks (like fetch) to complete.
@@ -52,7 +52,8 @@ function fetchStoriesFromWindow(): Promise<StoreItem[]> {
       const storybookClientApi = window.__STORYBOOK_CLIENT_API__ as ClientApi;
 
       if (storybookClientApi) {
-        resolve(storybookClientApi.raw());
+        const serializableStories = storybookClientApi.raw().map(pickOnlyNecessaryAndSerializableStoryProperties);
+        resolve(serializableStories);
       } else if (timesCalled < 100) {
         // Stories not found yet, try again 100ms from now
         setTimeout(() => {
@@ -61,6 +62,25 @@ function fetchStoriesFromWindow(): Promise<StoreItem[]> {
       } else {
         reject(new Error('Storybook object not found on window. Open your storybook and check the console for errors.'));
       }
+    }
+
+    // Pick only the properties we need from Storybook's representation of a story.
+    //
+    // This is necessary because Playwright's `page.evaluate` requires return values to be JSON
+    // serializable, so we need to make sure there are no non-serializable things in this object.
+    // There's no telling what Storybook addons people are using, and whether their parameters are
+    // serializable or not.
+    //
+    // See https://github.com/chanzuckerberg/axe-storybook-testing/issues/44 for a bug caused by this.
+    function pickOnlyNecessaryAndSerializableStoryProperties(story: StoreItem): StorybookStory {
+      return {
+        id: story.id,
+        name: story.name,
+        kind: story.kind,
+        parameters: {
+          axe: story.parameters.axe,
+        },
+      };
     }
 
     checkStories(0);
