@@ -1,5 +1,6 @@
 import type { ClientApi, StoreItem } from '@storybook/client-api';
 import type { Page } from 'playwright';
+import dedent from 'ts-dedent';
 import type { ProcessedStory } from '../ProcessedStory';
 
 /**
@@ -14,7 +15,15 @@ export async function getStories(page: Page): Promise<StorybookStory[]> {
   const rawStories = await page.evaluate(fetchStoriesFromWindow);
 
   if (!rawStories) {
-    throw new Error('Storybook object not found on window. Open your storybook and check the console for errors.');
+    throw new Error(dedent`
+      Stories could not be retrieved from storybook!
+
+      Please check the following
+      - Is storybook being successfully built into a static directory before running axe-storybook?
+      - Is axe-storybook pointing at the static storybook build? By default it looks for ./storybook-static, but that can be configured with a CLI option.
+
+      If everything looks good with those, this is likely a bug with axe-storybook-testing. Reporting a bug would be greatly appreciated!
+    `);
   }
 
   return rawStories;
