@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [fix] Fix for issue [#44](https://github.com/chanzuckerberg/axe-storybook-testing/issues/44). Prevent the command from blowing up when addon parameters cannot be serialized [#45](https://github.com/chanzuckerberg/axe-storybook-testing/pull/40)
+
 ## 4.1.2 (2021-10-21)
 
 - [maintenance] Use esbuild to build the project, instead of Babel [#40](https://github.com/chanzuckerberg/axe-storybook-testing/pull/40)
