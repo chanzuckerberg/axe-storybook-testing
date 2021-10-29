@@ -50,10 +50,7 @@ function fetchStoriesFromWindow(): Promise<StoreItem[]> {
           checkStories(timesCalled + 1);
         }, 100);
       } else {
-        reject(new Error(
-          'Storybook object not found on window. ' +
-          'Open your storybook and check the console for errors.',
-        ));
+        reject(new Error('Storybook object not found on window. Open your storybook and check the console for errors.'));
       }
     }
 
