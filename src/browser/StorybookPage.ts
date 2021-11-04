@@ -66,7 +66,7 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
           checkStories(timesCalled + 1);
         }, 100);
       } else {
-        reject(new Error('Storybook object not found on window. Open your storybook and check the console for errors.'));
+        reject(new Error('Storybook object not found on window! Either Storybook has encountered an error, or the version of Storybook is incompatible with this version of axe-storybook-testing.'));
       }
     }
 
