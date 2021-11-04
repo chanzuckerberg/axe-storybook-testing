@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [breaking] Only support Storybook 6.4 and up [#46](https://github.com/chanzuckerberg/axe-storybook-testing/pull/46)
+
 ## 4.1.3 (2021-10-29)
 
 - [fix] Fix for issue [#44](https://github.com/chanzuckerberg/axe-storybook-testing/issues/44). Prevent the command from blowing up when addon parameters cannot be serialized [#45](https://github.com/chanzuckerberg/axe-storybook-testing/pull/40)

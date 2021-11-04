@@ -1,4 +1,6 @@
-import type { ClientApi, StoreItem } from '@storybook/client-api';
+import type { AnyFramework } from '@storybook/csf';
+import type { PreviewWeb } from '@storybook/preview-web';
+import type { Story } from '@storybook/store';
 import type { Page } from 'playwright';
 import dedent from 'ts-dedent';
 import type { ProcessedStory } from '../ProcessedStory';
@@ -6,7 +8,7 @@ import type { ProcessedStory } from '../ProcessedStory';
 /**
  * Storybook's internal representation of a story.
  */
-export type StorybookStory = Pick<StoreItem, 'id' | 'kind' | 'name' | 'parameters'>;
+export type StorybookStory = Pick<Story, 'id' | 'kind' | 'name' | 'parameters'>;
 
 /**
  * Get the list of stories from a static storybook build.
@@ -49,10 +51,10 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
     function checkStories(timesCalled: number) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore This function executes in a browser context.
-      const storybookClientApi = window.__STORYBOOK_CLIENT_API__ as ClientApi;
+      const storybookPreview = window.__STORYBOOK_PREVIEW__ as PreviewWeb<AnyFramework>;
 
-      if (storybookClientApi) {
-        const serializableStories = storybookClientApi.raw().map(pickOnlyNecessaryAndSerializableStoryProperties);
+      if (storybookPreview) {
+        const serializableStories = storybookPreview.storyStore.raw().map(pickOnlyNecessaryAndSerializableStoryProperties);
         resolve(serializableStories);
       } else if (timesCalled < 100) {
         // Stories not found yet, try again 100ms from now
@@ -72,7 +74,7 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
     // serializable or not.
     //
     // See https://github.com/chanzuckerberg/axe-storybook-testing/issues/44 for a bug caused by this.
-    function pickOnlyNecessaryAndSerializableStoryProperties(story: StoreItem): StorybookStory {
+    function pickOnlyNecessaryAndSerializableStoryProperties(story: Story): StorybookStory {
       return {
         id: story.id,
         name: story.name,
@@ -99,15 +101,13 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
 function emitSetCurrentStory(id: string) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore This function executes in a browser context.
-  const storybookClientApi = window.__STORYBOOK_CLIENT_API__ as ClientApi;
+  const storybookPreview = window.__STORYBOOK_PREVIEW__ as PreviewWeb<AnyFramework>;
 
-  if (!storybookClientApi) {
+  if (!storybookPreview) {
     return Promise.reject(new Error("Storybook doesn't seem to be running on the page"));
   }
 
-  const store = storybookClientApi.store();
-
-  store._channel.emit('setCurrentStory', {
+  storybookPreview.channel.emit('setCurrentStory', {
     storyId: id,
     viewMode: 'story',
     options: {
