@@ -5,6 +5,12 @@ import type { Page } from 'playwright';
 import dedent from 'ts-dedent';
 import type { ProcessedStory } from '../ProcessedStory';
 
+// Functions we pass to `page.evaluate` execute in a browser environment, and can access window.
+// eslint-disable-next-line no-var
+declare var window: {
+  __STORYBOOK_PREVIEW__: PreviewWeb<AnyFramework>
+};
+
 /**
  * Storybook's internal representation of a story.
  */
@@ -49,9 +55,7 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
     // This allows 10 seconds for any async pre-tasks (like fetch) to complete.
     // Usually stories will be found on the first loop.
     function checkStories(timesCalled: number) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore This function executes in a browser context.
-      const storybookPreview = window.__STORYBOOK_PREVIEW__ as PreviewWeb<AnyFramework>;
+      const storybookPreview = window.__STORYBOOK_PREVIEW__;
 
       if (storybookPreview) {
         const serializableStories = storybookPreview.storyStore.raw().map(pickOnlyNecessaryAndSerializableStoryProperties);
@@ -99,9 +103,7 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
  * Executes in a browser context.
  */
 function emitSetCurrentStory(id: string) {
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore This function executes in a browser context.
-  const storybookPreview = window.__STORYBOOK_PREVIEW__ as PreviewWeb<AnyFramework>;
+  const storybookPreview = window.__STORYBOOK_PREVIEW__;
 
   if (!storybookPreview) {
     return Promise.reject(new Error("Storybook doesn't seem to be running on the page"));
