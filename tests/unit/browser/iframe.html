@@ -1,11 +1,19 @@
 <html>
   <head>
     <script>
-      window['__STORYBOOK_PREVIEW__'] = { storyStore: { raw: function() { return [{
-        name: 'this is the story\'s name',
-        kind: 'this is the story\'s kind',
-        parameters: {}
-      }]}}};
+      window['__STORYBOOK_PREVIEW__'] = {
+        storyStore: {
+          raw: function() {
+            return [
+              {
+                name: 'this is the story\'s name',
+                kind: 'this is the story\'s kind',
+                parameters: {}
+              },
+            ];
+          },
+        },
+      };
     </script>
   </head>
   <body>
