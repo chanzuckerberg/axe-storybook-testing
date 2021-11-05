@@ -118,6 +118,6 @@ function emitSetCurrentStory(id: string) {
   });
 
   return new Promise((resolve) => {
-    setTimeout(resolve, 0);
+    storybookPreview.channel.once('storyRendered', resolve);
   });
 }
