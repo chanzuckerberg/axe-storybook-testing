@@ -53,6 +53,7 @@
     "zod": "^3.9.8"
   },
   "peerDependencies": {
+    "@storybook/preview-web": "^6.4.0-beta.28",
     "axe-core": "^4.0.0"
   },
   "devDependencies": {

@@ -8,7 +8,7 @@ If there are any violations, information about them will be printed, and the com
 
 ## Table of contents
 
-- [Project goals](#project-goals)
+- [Minimum requirements](#minimum-requirements)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Options](#options)
@@ -18,15 +18,11 @@ If there are any violations, information about them will be printed, and the com
 - [Developing](#developing)
 - [Inspiration](#inspiration)
 
-## Project goals
+## Minimum requirements
 
-These will be used to determine development work and direction, and triage bugs and pull requests.
-
-1. Run axe-core on Storybook stories written in [Component Story Format](https://storybook.js.org/docs/react/api/csf).
-2. Run on CI as automated accessibility tests.
-3. Also be useful for humans to run on local machines.
-3. Have reasonable performance. It doesn't have to maximize speed, but needs to be fast enough that people will actually use it.
-4. Allow people to adopt incrementally. For example, by allowing rules to be disabled.
+- Node 12
+- Storybook 6.4 (for previous versions of Storybook, use axe-storybook-testing v4.1.3)
+- axe-core 4.0
 
 ## Installation
 
