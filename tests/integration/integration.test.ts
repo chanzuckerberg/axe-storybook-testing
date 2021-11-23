@@ -23,7 +23,7 @@ test('outputting accessibility violation information for the demo app', (done) =
 test('filtering the components to run', (done) => {
   expect.assertions(3);
 
-  exec('yarn --cwd demo storybook:axe-no-build --pattern button', function (error, stdout, stderr) {
+  exec('yarn --cwd demo storybook:axe-no-build --pattern simple', function (error, stdout, stderr) {
     const normalizedStdout = normalize(stdout);
     const normalizedStderr = normalize(stderr);
     expect(error!.code).toEqual(1);
