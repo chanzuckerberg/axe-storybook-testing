@@ -8,51 +8,31 @@ import { exec } from 'child_process';
 // 2. `yarn build` - automatically ran by the pretest:integration step.
 
 test('outputting accessibility violation information for the demo app', (done) => {
-  expect.assertions(3);
+  expect.assertions(2);
 
-  exec('yarn --cwd demo storybook:axe-no-build', function (error, stdout, stderr) {
+  exec('yarn --cwd demo storybook:axe-no-build', function (error, stdout) {
     const normalizedStdout = normalize(stdout);
-    const normalizedStderr = normalize(stderr);
     expect(error!.code).toEqual(1);
     expect(normalizedStdout).toMatchSnapshot();
-    expect(normalizedStderr).toMatchSnapshot();
     done();
   });
 }, 120000);
 
 test('filtering the components to run', (done) => {
-  expect.assertions(3);
+  expect.assertions(2);
 
-  exec('yarn --cwd demo storybook:axe-no-build --pattern button', function (error, stdout, stderr) {
+  exec('yarn --cwd demo storybook:axe-no-build --pattern simple', function (error, stdout) {
     const normalizedStdout = normalize(stdout);
-    const normalizedStderr = normalize(stderr);
     expect(error!.code).toEqual(1);
     expect(normalizedStdout).toMatchSnapshot();
-    expect(normalizedStderr).toMatchSnapshot();
     done();
   });
 }, 120000);
 
 test('failing specific impact levels', (done) => {
-  expect.assertions(3);
-
-  exec('yarn --cwd demo storybook:axe-no-build --failing-impact critical', function (error, stdout, stderr) {
-    const normalizedStdout = normalize(stdout);
-    const normalizedStderr = normalize(stderr);
-    expect(error!.code).toEqual(1);
-    expect(normalizedStdout).toMatchSnapshot();
-    expect(normalizedStderr).toMatchSnapshot();
-    done();
-  });
-}, 120000);
-
-// This test is a great idea, but slightly flaky. Skipping it until we can figure out how to make it
-// more reliable. The issue is that sometimes some of the Webpack output is logged AFTER the axe-storybook-testing
-// command has started and been logged.
-test.skip('testing against a storybook server', (done) => {
   expect.assertions(2);
 
-  exec('start-server-and-test "yarn --cwd demo storybook-ci" "http://localhost:6006/iframe.html" "yarn --cwd demo storybook:axe-no-build:server"', function (error, stdout) {
+  exec('yarn --cwd demo storybook:axe-no-build --failing-impact critical', function (error, stdout) {
     const normalizedStdout = normalize(stdout);
     expect(error!.code).toEqual(1);
     expect(normalizedStdout).toMatchSnapshot();
