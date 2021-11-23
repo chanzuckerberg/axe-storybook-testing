@@ -8,40 +8,34 @@ import { exec } from 'child_process';
 // 2. `yarn build` - automatically ran by the pretest:integration step.
 
 test('outputting accessibility violation information for the demo app', (done) => {
-  expect.assertions(3);
+  expect.assertions(2);
 
-  exec('yarn --cwd demo storybook:axe-no-build', function (error, stdout, stderr) {
+  exec('yarn --cwd demo storybook:axe-no-build', function (error, stdout) {
     const normalizedStdout = normalize(stdout);
-    const normalizedStderr = normalize(stderr);
     expect(error!.code).toEqual(1);
     expect(normalizedStdout).toMatchSnapshot();
-    expect(normalizedStderr).toMatchSnapshot();
     done();
   });
 }, 120000);
 
 test('filtering the components to run', (done) => {
-  expect.assertions(3);
+  expect.assertions(2);
 
-  exec('yarn --cwd demo storybook:axe-no-build --pattern simple', function (error, stdout, stderr) {
+  exec('yarn --cwd demo storybook:axe-no-build --pattern simple', function (error, stdout) {
     const normalizedStdout = normalize(stdout);
-    const normalizedStderr = normalize(stderr);
     expect(error!.code).toEqual(1);
     expect(normalizedStdout).toMatchSnapshot();
-    expect(normalizedStderr).toMatchSnapshot();
     done();
   });
 }, 120000);
 
 test('failing specific impact levels', (done) => {
-  expect.assertions(3);
+  expect.assertions(2);
 
-  exec('yarn --cwd demo storybook:axe-no-build --failing-impact critical', function (error, stdout, stderr) {
+  exec('yarn --cwd demo storybook:axe-no-build --failing-impact critical', function (error, stdout) {
     const normalizedStdout = normalize(stdout);
-    const normalizedStderr = normalize(stderr);
     expect(error!.code).toEqual(1);
     expect(normalizedStdout).toMatchSnapshot();
-    expect(normalizedStderr).toMatchSnapshot();
     done();
   });
 }, 120000);
