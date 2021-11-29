@@ -53,10 +53,13 @@
     "zod": "^3.9.8"
   },
   "peerDependencies": {
+    "@storybook/preview-web": "^6.4.0",
     "axe-core": "^4.0.0"
   },
   "devDependencies": {
-    "@storybook/client-api": "^6.3.12",
+    "@storybook/csf": "0.0.2--canary.87bc651.0",
+    "@storybook/preview-web": "^6.4.0",
+    "@storybook/store": "^6.4.0",
     "@types/jest": "^27.0.2",
     "@types/lodash": "^4.14.175",
     "@types/node": "^16.11.0",
