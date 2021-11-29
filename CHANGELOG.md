@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 5.0.0 (2021-11-29)
+
 - [breaking] Only support Storybook 6.4 and up [#46](https://github.com/chanzuckerberg/axe-storybook-testing/pull/46)
 - [maintenance] Upgrade Playwright to 1.16.3
 
