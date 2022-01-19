@@ -40,7 +40,7 @@ This package works by analyzing the static files that Storybook produces. Theref
 
 To make this as easy as possible to use, we recommend adding a script to your package.json that builds Storybook and then executes the `axe-storybook` command.
 
-```json
+```jsonc
 // In package.json
 "scripts": {
   "storybook:axe": "build-storybook && axe-storybook"
