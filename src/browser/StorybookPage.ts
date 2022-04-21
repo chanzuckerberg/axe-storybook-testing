@@ -1,6 +1,7 @@
 import type { AnyFramework } from '@storybook/csf';
 import type { PreviewWeb } from '@storybook/preview-web';
 import type { Story } from '@storybook/store';
+import pTimeout from 'p-timeout';
 import type { Page } from 'playwright';
 import dedent from 'ts-dedent';
 import type { ProcessedStory } from '../ProcessedStory';
@@ -20,7 +21,7 @@ export type StorybookStory = Pick<Story, 'id' | 'kind' | 'name' | 'parameters'>;
  * Get the list of stories from a static storybook build.
  */
 export async function getStories(page: Page): Promise<StorybookStory[]> {
-  const rawStories = await page.evaluate(fetchStoriesFromWindow);
+  const rawStories = await pTimeout(page.evaluate(fetchStoriesFromWindow), 10_000);
 
   if (!rawStories) {
     throw new Error(dedent`
