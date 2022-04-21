@@ -1,6 +1,7 @@
 import type { AnyFramework } from '@storybook/csf';
 import type { PreviewWeb } from '@storybook/preview-web';
 import type { Story } from '@storybook/store';
+import pTimeout from 'p-timeout';
 import type { Page } from 'playwright';
 import dedent from 'ts-dedent';
 import type { ProcessedStory } from '../ProcessedStory';
@@ -20,19 +21,19 @@ export type StorybookStory = Pick<Story, 'id' | 'kind' | 'name' | 'parameters'>;
  * Get the list of stories from a static storybook build.
  */
 export async function getStories(page: Page): Promise<StorybookStory[]> {
-  const rawStories = await page.evaluate(fetchStoriesFromWindow);
-
-  if (!rawStories) {
+  const rawStories = await pTimeout(page.evaluate(fetchStoriesFromWindow), 10_000).catch(e => {
     throw new Error(dedent`
       Stories could not be retrieved from storybook!
 
-      Please check the following
-      - Is storybook being successfully built into a static directory before running axe-storybook?
-      - Is axe-storybook pointing at the static storybook build? By default it looks for ./storybook-static, but that can be configured with a CLI option.
+      Please check that...
+      - You're using a compatible version of Storybook
+      - Storybook doesn't have any errors
 
-      If everything looks good with those, this is likely a bug with axe-storybook-testing. Reporting a bug would be greatly appreciated!
+      Otherwise this is likely a bug with axe-storybook-testing.
+
+      Original error message: ${e}
     `);
-  }
+  });
 
   return rawStories;
 }
@@ -50,26 +51,10 @@ export async function showStory(page: Page, story: ProcessedStory): Promise<void
  * Executes in a browser context.
  */
 function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
-  return new Promise((resolve, reject) => {
-    // Check if the window has stories every 100ms for up to 10 seconds.
-    // This allows 10 seconds for any async pre-tasks (like fetch) to complete.
-    // Usually stories will be found on the first loop.
-    function checkStories(timesCalled: number) {
-      const storybookPreview = window.__STORYBOOK_PREVIEW__;
+  const storybookPreview = window.__STORYBOOK_PREVIEW__;
+  const storyStore = storybookPreview.storyStore;
 
-      if (storybookPreview) {
-        const serializableStories = storybookPreview.storyStore.raw().map(pickOnlyNecessaryAndSerializableStoryProperties);
-        resolve(serializableStories);
-      } else if (timesCalled < 100) {
-        // Stories not found yet, try again 100ms from now
-        setTimeout(() => {
-          checkStories(timesCalled + 1);
-        }, 100);
-      } else {
-        reject(new Error('Storybook object not found on window! Either Storybook has encountered an error, or the version of Storybook is incompatible with this version of axe-storybook-testing.'));
-      }
-    }
-
+  return storyStore.initializationPromise.then(() => {
     // Pick only the properties we need from Storybook's representation of a story.
     //
     // This is necessary because Playwright's `page.evaluate` requires return values to be JSON
@@ -89,7 +74,7 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
       };
     }
 
-    checkStories(0);
+    return storyStore.raw().map(pickOnlyNecessaryAndSerializableStoryProperties);
   });
 }
 

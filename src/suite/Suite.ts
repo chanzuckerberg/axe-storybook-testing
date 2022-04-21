@@ -107,8 +107,8 @@ export function run(options: Options): SuiteEmitter {
         await browser.close();
       }
     } catch (message) {
-      // The test suite failed to run. Likely the browser failed to open, or something else went
-      // wrong before we started iterating components.
+      // The test suite failed to run. Likely something went wrong before we started iterating
+      // components.
       const error = message instanceof Error ? message : new Error(String(message));
       emitter.emit('suiteError', error);
       // Signal that the test suite is done. Pass a failed count of 1 to indicate that the test run
