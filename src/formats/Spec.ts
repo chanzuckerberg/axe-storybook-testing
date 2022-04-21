@@ -26,7 +26,7 @@ export function format(emitter: SuiteEmitter, print = console.log, colors = new 
   emitter.on('suiteError', (error) => {
     print(dedent`
       ${colors.red('Error! The suite failed to run')}
-      An error was encountered before we started testing stories. Likely this means the browser failed to open.
+      An error was encountered before we started testing stories.
     `);
     print('');
     print(String(error));

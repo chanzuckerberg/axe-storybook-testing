@@ -25,12 +25,11 @@ export async function getStories(page: Page): Promise<StorybookStory[]> {
     throw new Error(dedent`
       Stories could not be retrieved from storybook!
 
-      Please check the following
-      - Is storybook being successfully built into a static directory before running axe-storybook?
-      - Is axe-storybook pointing at the static storybook build? By default it looks for ./storybook-static, but that can be configured with a CLI option.
-      - Are you using a compatible version of Storybook?
+      Please check that...
+      - You're using a compatible version of Storybook
+      - Storybook doesn't have any errors
 
-      If everything looks good with those, this is likely a bug with axe-storybook-testing. Reporting a bug would be greatly appreciated!
+      Otherwise this is likely a bug with axe-storybook-testing.
 
       Original error message: ${e}
     `);
