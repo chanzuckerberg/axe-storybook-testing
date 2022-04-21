@@ -9,6 +9,7 @@ If there are any violations, information about them will be printed, and the com
 ## Table of contents
 
 - [Minimum requirements](#minimum-requirements)
+- [Known issues](#known-issues)
 - [Installation](#installation)
 - [Usage](#usage)
 - [Options](#options)
@@ -23,6 +24,10 @@ If there are any violations, information about them will be printed, and the com
 - Node 12
 - Storybook 6.4 (for previous versions of Storybook, use axe-storybook-testing v4.1.3)
 - axe-core 4.0
+
+## Known issues
+
+- axe-storybook-testing doesn't work when [storyStoreV7](https://storybook.js.org/blog/storybook-on-demand-architecture/) is set to `true`, due to https://github.com/storybookjs/storybook/issues/16967.
 
 ## Installation
 
