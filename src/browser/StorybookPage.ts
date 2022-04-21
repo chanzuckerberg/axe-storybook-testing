@@ -50,26 +50,10 @@ export async function showStory(page: Page, story: ProcessedStory): Promise<void
  * Executes in a browser context.
  */
 function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
-  return new Promise((resolve, reject) => {
-    // Check if the window has stories every 100ms for up to 10 seconds.
-    // This allows 10 seconds for any async pre-tasks (like fetch) to complete.
-    // Usually stories will be found on the first loop.
-    function checkStories(timesCalled: number) {
-      const storybookPreview = window.__STORYBOOK_PREVIEW__;
+  const storybookPreview = window.__STORYBOOK_PREVIEW__;
+  const storyStore = storybookPreview.storyStore;
 
-      if (storybookPreview) {
-        const serializableStories = storybookPreview.storyStore.raw().map(pickOnlyNecessaryAndSerializableStoryProperties);
-        resolve(serializableStories);
-      } else if (timesCalled < 100) {
-        // Stories not found yet, try again 100ms from now
-        setTimeout(() => {
-          checkStories(timesCalled + 1);
-        }, 100);
-      } else {
-        reject(new Error('Storybook object not found on window! Either Storybook has encountered an error, or the version of Storybook is incompatible with this version of axe-storybook-testing.'));
-      }
-    }
-
+  return storyStore.initializationPromise.then(() => {
     // Pick only the properties we need from Storybook's representation of a story.
     //
     // This is necessary because Playwright's `page.evaluate` requires return values to be JSON
@@ -89,7 +73,7 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
       };
     }
 
-    checkStories(0);
+    return storyStore.raw().map(pickOnlyNecessaryAndSerializableStoryProperties);
   });
 }
 
