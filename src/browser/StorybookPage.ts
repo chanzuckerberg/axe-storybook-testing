@@ -21,19 +21,20 @@ export type StorybookStory = Pick<Story, 'id' | 'kind' | 'name' | 'parameters'>;
  * Get the list of stories from a static storybook build.
  */
 export async function getStories(page: Page): Promise<StorybookStory[]> {
-  const rawStories = await pTimeout(page.evaluate(fetchStoriesFromWindow), 10_000);
-
-  if (!rawStories) {
+  const rawStories = await pTimeout(page.evaluate(fetchStoriesFromWindow), 10_000).catch(e => {
     throw new Error(dedent`
       Stories could not be retrieved from storybook!
 
       Please check the following
       - Is storybook being successfully built into a static directory before running axe-storybook?
       - Is axe-storybook pointing at the static storybook build? By default it looks for ./storybook-static, but that can be configured with a CLI option.
+      - Are you using a compatible version of Storybook?
 
       If everything looks good with those, this is likely a bug with axe-storybook-testing. Reporting a bug would be greatly appreciated!
+
+      Original error message: ${e}
     `);
-  }
+  });
 
   return rawStories;
 }
