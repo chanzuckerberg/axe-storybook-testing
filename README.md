@@ -9,9 +9,9 @@ If there are any violations, information about them will be printed, and the com
 ## Table of contents
 
 - [Minimum requirements](#minimum-requirements)
-- [Known issues](#known-issues)
 - [Installation](#installation)
 - [Usage](#usage)
+- [Known issue with storyStoreV7](#known-issue)
 - [Options](#options)
 - [Configuring stories](#configuring-stories)
   - [skip](#skip)
@@ -24,10 +24,6 @@ If there are any violations, information about them will be printed, and the com
 - Node 12
 - Storybook 6.4 (for previous versions of Storybook, use axe-storybook-testing v4.1.3)
 - axe-core 4.0
-
-## Known issues
-
-- axe-storybook-testing doesn't work when [storyStoreV7](https://storybook.js.org/blog/storybook-on-demand-architecture/) is set to `true`, due to https://github.com/storybookjs/storybook/issues/16967.
 
 ## Installation
 
@@ -61,6 +57,35 @@ npm run storybook:axe
 # or, if using Yarn
 yarn storybook:axe
 ```
+
+## Known issue with storyStoreV7
+
+There is a [known issue](https://github.com/chanzuckerberg/axe-storybook-testing/issues/51) preventing this project from working when [storyStoreV7](https://storybook.js.org/blog/storybook-on-demand-architecture/) is set to `true`, due to https://github.com/storybookjs/storybook/issues/16967.
+
+Two workarounds are:
+
+1. Set `storyStoreV7` to `false` in .storybook/main.js
+   ```js
+   // In .storybook/main.js
+   module.exports = {
+     // ...
+     storyStoreV7: false,
+   };
+   ```
+2. Set `storyStoreV7` based on an environment variable, and turn it off when running axe-storybook-testing
+   ```js
+   // In .storybook/main.js
+   module.exports = {
+     // ...
+     storyStoreV7: process.env.NO_STORY_STORE_V7 !== 'true',
+   }
+   ```
+   ```jsonc
+   // In package.json
+   "scripts": {
+     "storybook:axe": "build-storybook && NO_STORY_STORE_V7=true axe-storybook"
+   }
+   ```
 
 ## Options
 
