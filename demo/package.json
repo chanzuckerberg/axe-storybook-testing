@@ -11,10 +11,10 @@
     "storybook:axe-no-build:server": "axe-storybook --storybook-address http://localhost:6006 --headless"
   },
   "dependencies": {
-    "@babel/core": "^7.17.9",
+    "@babel/core": "^7.17.12",
     "babel-loader": "^8.2.5",
-    "react": "^18.0.0",
-    "react-dom": "^18.0.0"
+    "react": "^18.1.0",
+    "react-dom": "^18.1.0"
   },
   "devDependencies": {
     "@storybook/addon-a11y": "^6.5.0",

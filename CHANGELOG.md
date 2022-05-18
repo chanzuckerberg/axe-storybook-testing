@@ -1,5 +1,7 @@
 # Changelog
 
+- [maintenance] Upgrade Playwright to 1.22.1
+
 ## Unreleased
 
 - [maintenance] Upgrade all dependencies

@@ -59,7 +59,7 @@ export type Options = ReturnType<typeof parseOptions>;
  * Parse and normalize command line arguments passed to the script.
  */
 export function parseOptions() {
-  const argv = yargs.options(options).argv;
+  const argv = yargs.options(options).parseSync();
 
   return {
     browser: getBrowser(argv.browser),
