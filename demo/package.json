@@ -4,11 +4,11 @@
   "version": "3.1.0",
   "scripts": {
     "build-storybook": "build-storybook",
-    "storybook": "start-storybook -p 6006",
-    "storybook-ci": "start-storybook -p 6006 --ci --quiet",
+    "storybook": "start-storybook -p 6007",
+    "storybook-ci": "start-storybook -p 6007 --ci --quiet",
     "storybook:axe": "build-storybook && axe-storybook",
     "storybook:axe-no-build": "axe-storybook",
-    "storybook:axe-no-build:server": "axe-storybook --storybook-address http://localhost:6006 --headless"
+    "storybook:axe-no-build:server": "axe-storybook --storybook-address http://localhost:6007 --headless"
   },
   "dependencies": {
     "@babel/core": "^7.17.12",
