@@ -54,7 +54,7 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
   const storybookPreview = window.__STORYBOOK_PREVIEW__;
   const storyStore = storybookPreview.storyStore;
 
-  return storyStore.initializationPromise.then(() => {
+  return storyStore.cacheAllCSFFiles().then(() => {
     // Pick only the properties we need from Storybook's representation of a story.
     //
     // This is necessary because Playwright's `page.evaluate` requires return values to be JSON
