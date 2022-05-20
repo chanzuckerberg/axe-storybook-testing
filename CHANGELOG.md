@@ -1,6 +1,6 @@
 # Changelog
 
-## 5.0.1-alpha.1 (2022-05-20)
+## 5.0.1 (2022-05-20)
 
 - [maintenance] Upgrade all dependencies
 - [fix] Access static storybook via file server so everything works with storyStoreV7 (fixing #51)
