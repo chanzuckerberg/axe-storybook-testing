@@ -24,6 +24,16 @@ export default class TestBrowser {
       // Create a new page at Storybook's static iframe and with axe-core setup and ready to run.
       const page = await context.newPage();
 
+      // Print any console logs coming from the browser.
+      page.on('console', (message) => {
+        console.log('console log from browser:', message);
+      });
+
+      // Print any errors coming from the browser.
+      page.on('pageerror', (error) => {
+        console.log('error from browser:', error);
+      });
+
       // Turn on `prefers-reduced-motion`. This will prevent any animations that respect the media
       // query from causing flaky or failing tests due to animation.
       await page.emulateMedia({ reducedMotion: 'reduce' });
