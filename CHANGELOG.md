@@ -1,13 +1,9 @@
 # Changelog
 
-- [maintenance] Upgrade Playwright to 1.22.1
-- [fix] Access static storybook via file server so everything works with storyStoreV7 (fixing #51)
-
-## Unreleased
+## 5.0.1-alpha.1 (2022-05-20)
 
 - [maintenance] Upgrade all dependencies
-- [fix] Upgrade Playwright from 1.16.3 to 1.21.1
-- [fix] Upgrade Yargs from 17.2.1 to 17.4.1
+- [fix] Access static storybook via file server so everything works with storyStoreV7 (fixing #51)
 
 ## 5.0.0 (2021-11-29)
 
