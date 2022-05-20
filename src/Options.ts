@@ -1,6 +1,3 @@
-import fs from 'fs';
-import path from 'path';
-import { URL } from 'url';
 import yargs from 'yargs';
 
 const options = {
@@ -63,10 +60,11 @@ export function parseOptions() {
 
   return {
     browser: getBrowser(argv.browser),
+    buildDir: argv.buildDir,
     format: getFormat(argv.format),
     failingImpacts: getFailingImpacts(argv['failing-impact']),
     headless: argv.headless,
-    iframePath: getIframePath(argv['build-dir'], argv['storybook-address']),
+    storybookAddress: argv.storybookAddress,
     pattern: new RegExp(argv.pattern),
     timeout: argv.timeout,
   };
@@ -81,33 +79,6 @@ function getBrowser(browser: string) {
     default:
       throw new Error(`Invalid browser option: "${browser}"`);
   }
-}
-
-function getIframePath(buildDir: string, storybookServer?: string) {
-  if (storybookServer !== undefined) {
-    return getIframePathFromStorybookServer(storybookServer);
-  }
-  else {
-    return getIframePathFromBuildDir(buildDir);
-  }
-}
-
-function getIframePathFromBuildDir(buildDir: string) {
-  const storybookStaticPath = path.resolve(buildDir);
-  let iframeFilePath = path.join(storybookStaticPath, 'iframe.html');
-
-  if (!fs.existsSync(iframeFilePath)) {
-    throw new Error(`Static Storybook not found at ${storybookStaticPath}. Have you called build-storybook first?`);
-  }
-
-  iframeFilePath = path.join('file://', iframeFilePath);
-
-  return iframeFilePath;
-}
-
-function getIframePathFromStorybookServer(storybookServer: string) {
-  const iframePath = new URL(storybookServer + '/iframe.html');
-  return iframePath.href;
 }
 
 function getFormat(format: string) {

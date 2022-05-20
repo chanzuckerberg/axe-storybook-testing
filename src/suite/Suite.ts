@@ -33,7 +33,7 @@ export type SuiteEmitter = Emitter<SuiteEvents>;
  * Find Storybook stories and run Axe on each one. Returns an event emitter that emits events when
  * components and stories are processed.
  */
-export function run(options: Options): SuiteEmitter {
+export function run(storybookUrl: string, options: Options): SuiteEmitter {
   const emitter = createEmitter<SuiteEvents>();
 
   defer(async () => {
@@ -46,7 +46,7 @@ export function run(options: Options): SuiteEmitter {
 
     // Get the Storybook stories.
     try {
-      const browser = await Browser.create(options);
+      const browser = await Browser.create(storybookUrl, options);
       const stories = await browser.getStories();
       const storiesByComponent = groupBy(stories, 'componentName');
       const storiesAndComponents = Object.entries(storiesByComponent);

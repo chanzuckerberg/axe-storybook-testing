@@ -1,4 +1,5 @@
 import { parseOptions } from './Options';
+import { getStorybookUrl } from './Server';
 import findFormat from './formats/findFormat';
 import { run as runSuite } from './suite/Suite';
 
@@ -10,7 +11,7 @@ export function run(): Promise<void> {
   return new Promise((resolve, reject) => {
     const options = parseOptions();
     const format = findFormat(options);
-    const emitter = runSuite(options);
+    const emitter = runSuite(getStorybookUrl(options), options);
 
     emitter.on('suiteFinish', (_browser, _numPass, numFail) => {
       return numFail > 0 ? reject() : resolve();
