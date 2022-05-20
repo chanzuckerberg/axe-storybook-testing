@@ -1,9 +1,12 @@
 import fs from 'fs';
 import path from 'path';
+import httpServer from 'http-server';
+import portfinder from 'portfinder';
 import type { Options } from './Options';
 
 /**
- * Start up a server for the storybook build. If using a running Storybook, then just use that.
+ * Start up a server to serve up the storybook build. If using a running Storybook, then just use
+ * that.
  *
  * Needed to work around https://github.com/chanzuckerberg/axe-storybook-testing/issues/51 and
  * https://github.com/storybookjs/storybook/issues/16967, so Storybook can load all the stories
@@ -23,17 +26,29 @@ export async function getServer(options: Options): Promise<[storybookUrl: string
     ];
   }
 
-  return [
-    getStaticStorybookUrl(options),
-    () => Promise.resolve(),
-    () => {},
-  ];
+  const localPath = getStaticStorybookPath(options);
+  const port = await portfinder.getPortPromise();
+  const host = '127.0.0.1';
+  const server = httpServer.createServer({root: localPath});
+  const storybookUrl = `http://${host}:${port}`;
+
+  function start(): Promise<void> {
+    return new Promise((resolve) => {
+      server.listen(port, host, () => {
+        console.log('Serving up 🍕 static storybook build at:', storybookUrl);
+        resolve();
+      });
+    });
+  }
+
+  function stop() {
+    server.close();
+  }
+
+  return [storybookUrl, start, stop];
 }
 
-/**
- * Get the url we'll use to access a static storybook build.
- */
-function getStaticStorybookUrl(options: Options): string {
+function getStaticStorybookPath(options: Options): string {
   const storybookStaticPath = path.resolve(options.buildDir);
   const iframeFilePath = path.join(storybookStaticPath, 'iframe.html');
 
@@ -41,5 +56,5 @@ function getStaticStorybookUrl(options: Options): string {
     throw new Error(`Static Storybook not found at ${storybookStaticPath}. Have you called build-storybook first?`);
   }
 
-  return 'file://' + storybookStaticPath;
+  return storybookStaticPath;
 }

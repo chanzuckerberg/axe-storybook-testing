@@ -1,6 +1,7 @@
 # Changelog
 
 - [maintenance] Upgrade Playwright to 1.22.1
+- [fix] Access static storybook via file server so everything works with storyStoreV7 (fixing #51)
 
 ## Unreleased
 

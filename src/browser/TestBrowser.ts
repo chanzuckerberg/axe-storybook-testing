@@ -16,13 +16,6 @@ export default class TestBrowser {
   static async create(storybookUrl: string, options: Options): Promise<TestBrowser> {
     const browser = await playwright[options.browser].launch({
       headless: options.headless,
-      args: [
-        // Allow Chrome to open one file:/// url from another. Needed because:
-        // - We open iframe.html from the local file system.
-        // - When using storyStoreV7, Storybook tries to fetch './stories.json'.
-        // - Since that fetch is coming from a file:/// url, it's also TO a file:/// url.
-        '--allow-file-access-from-files',
-      ],
     });
 
     try {
