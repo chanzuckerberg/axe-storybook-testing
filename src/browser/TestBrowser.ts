@@ -13,7 +13,7 @@ export default class TestBrowser {
    * Create a new test browser instance that knows how to use Storybook and Axe. Needed because
    * constructors can't be async.
    */
-  static async create(options: Options): Promise<TestBrowser> {
+  static async create(storybookUrl: string, options: Options): Promise<TestBrowser> {
     const browser = await playwright[options.browser].launch({
       headless: options.headless,
     });
@@ -24,12 +24,20 @@ export default class TestBrowser {
       // Create a new page at Storybook's static iframe and with axe-core setup and ready to run.
       const page = await context.newPage();
 
+      // Print any console logs containing the word "error" coming from the browser, to help
+      // debugging.
+      page.on('console', (message) => {
+        if (/error/i.test(message.text())) {
+          console.log('console log from browser:', message);
+        }
+      });
+
       // Turn on `prefers-reduced-motion`. This will prevent any animations that respect the media
       // query from causing flaky or failing tests due to animation.
       await page.emulateMedia({ reducedMotion: 'reduce' });
 
       // Visit Storybook's static iframe.
-      await page.goto(options.iframePath);
+      await page.goto(storybookUrl + '/iframe.html');
 
       // Ensure axe-core is setup and ready to run.
       await AxePage.prepare(page);

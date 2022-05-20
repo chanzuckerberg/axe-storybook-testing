@@ -5,4 +5,7 @@ module.exports = {
     "@storybook/addon-a11y",
     "@storybook/addon-postcss",
   ],
+  features: {
+    storyStoreV7: true,
+  },
 };
