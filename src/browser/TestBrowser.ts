@@ -24,14 +24,12 @@ export default class TestBrowser {
       // Create a new page at Storybook's static iframe and with axe-core setup and ready to run.
       const page = await context.newPage();
 
-      // Print any console logs coming from the browser.
+      // Print any console logs containing the word "error" coming from the browser, to help
+      // debugging.
       page.on('console', (message) => {
-        console.log('console log from browser:', message);
-      });
-
-      // Print any errors coming from the browser.
-      page.on('pageerror', (error) => {
-        console.log('error from browser:', error);
+        if (/error/i.test(message.text())) {
+          console.log('console log from browser:', message);
+        }
       });
 
       // Turn on `prefers-reduced-motion`. This will prevent any animations that respect the media
