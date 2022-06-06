@@ -7,7 +7,7 @@ import { SuiteEvents } from '../../../src/suite/Suite';
 
 const noColors = new chalk.Instance({ level: 0 });
 
-test('suiteStart', () => {
+it('handles suiteStart', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
@@ -18,7 +18,7 @@ test('suiteStart', () => {
   expect(print).toHaveBeenCalledWith('[mosaic] accessibility');
 });
 
-test('componentStart', () => {
+it('handles componentStart', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
@@ -29,7 +29,7 @@ test('componentStart', () => {
   expect(print).toHaveBeenCalledWith('  button');
 });
 
-test('componentSkip', () => {
+it('handles componentSkip', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
@@ -40,7 +40,7 @@ test('componentSkip', () => {
   expect(print).toHaveBeenCalledWith('  [skipped] button');
 });
 
-test('storyPass', () => {
+it('handles storyPass', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
@@ -55,7 +55,7 @@ test('storyPass', () => {
   expect(print).toHaveBeenCalledWith('    ✓ some story (666ms)');
 });
 
-test('storyFail', () => {
+it('handles storyFail', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
@@ -73,7 +73,7 @@ test('storyFail', () => {
   expect(print).toHaveBeenCalledWith('    2) some story 2 (666ms)');
 });
 
-test('storySkip', () => {
+it('handles storySkip', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
@@ -84,7 +84,7 @@ test('storySkip', () => {
   expect(print).toHaveBeenCalledWith('    - some story');
 });
 
-test('suiteFinish', () => {
+it('handles suiteFinish', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 
@@ -141,7 +141,7 @@ test('suiteFinish', () => {
   `);
 });
 
-test('an error', () => {
+it('handles errors', () => {
   const emitter = createEmitter<SuiteEvents>();
   const print = jest.fn();
 

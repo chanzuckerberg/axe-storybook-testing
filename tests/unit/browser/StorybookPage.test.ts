@@ -2,7 +2,7 @@ import playwright from 'playwright';
 import { getStories } from '../../../src/browser/StorybookPage';
 
 describe('getStories', () => {
-  it('returns the stories from the window', async () => {
+  it('returns stories from the Storybook instance', async () => {
     const browser = await playwright.chromium.launch();
     const context = await browser.newContext();
     const page = await context.newPage();

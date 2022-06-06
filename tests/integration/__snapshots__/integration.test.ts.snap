@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`failing specific impact levels 1`] = `
+exports[`fails only specific impact levels if specified 1`] = `
 "$ axe-storybook --failing-impact critical
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 [chromium] accessibility
@@ -137,7 +137,7 @@ info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this comm
 "
 `;
 
-exports[`filtering the components to run 1`] = `
+exports[`filters the components to run 1`] = `
 "$ axe-storybook --pattern simple
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 [chromium] accessibility
@@ -252,7 +252,7 @@ info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this comm
 "
 `;
 
-exports[`outputting accessibility violation information for the demo app 1`] = `
+exports[`outputs accessibility violation information for the demo app 1`] = `
 "$ axe-storybook
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 [chromium] accessibility

@@ -1,6 +1,6 @@
 import { createEmitter } from '../../../src/suite/Emitter';
 
-test('emitting events with no type param', () => {
+it('allows arbitrary events to be subscribed to and triggered', () => {
   const emitter = createEmitter();
   const handler = jest.fn();
 
@@ -12,7 +12,7 @@ test('emitting events with no type param', () => {
   expect(handler).toHaveBeenCalled();
 });
 
-test('emitting events with an explicit type param', () => {
+it('enforces specific event names when a type param is provided', () => {
   type Events = {
     bakingStarted: (cookies: boolean, coffee: boolean) => void;
   };
