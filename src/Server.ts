@@ -4,8 +4,14 @@ import httpServer from 'http-server';
 import portfinder from 'portfinder';
 import type { Options } from './Options';
 
+type Server = {
+  storybookUrl: string;
+  start: () => Promise<void>;
+  stop: () => Promise<void>;
+};
+
 /**
- * Start up a server to serve up the storybook build. If using a running Storybook, then just use
+ * Create a server to serve up the storybook build. If using a running Storybook, then just use
  * that.
  *
  * Needed to work around https://github.com/chanzuckerberg/axe-storybook-testing/issues/51 and
@@ -15,15 +21,15 @@ import type { Options } from './Options';
  * In particular there's a stories.json file that Storybook fetches, and it can't do that if we're
  * accessing it via file:// url.
  */
-export async function getServer(options: Options): Promise<[storybookUrl: string, start: () => Promise<void>, shutdown: () => Promise<void>]> {
+export async function getServer(options: Options): Promise<Server> {
   // If we have a storybook address, then storybook is already running and we just need to use that
   // address. No need to start or stop a server, either.
   if (options.storybookAddress) {
-    return [
-      options.storybookAddress,
-      () => Promise.resolve(),
-      () => Promise.resolve(),
-    ];
+    return {
+      storybookUrl: options.storybookAddress,
+      start: () => Promise.resolve(),
+      stop: () => Promise.resolve(),
+    };
   }
 
   const localPath = getStaticStorybookPath(options);
@@ -46,7 +52,7 @@ export async function getServer(options: Options): Promise<[storybookUrl: string
     return Promise.resolve();
   }
 
-  return [storybookUrl, start, stop];
+  return {storybookUrl, start, stop};
 }
 
 function getStaticStorybookPath(options: Options): string {

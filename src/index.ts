@@ -10,15 +10,14 @@ import { run as runSuite } from './suite/Suite';
 export async function run(): Promise<void> {
   const options = parseOptions();
   const format = findFormat(options);
-  const [storybookUrl, startServer, shutdownServer] = await getServer(options);
-
-  await startServer();
+  const server = await getServer(options);
+  await server.start();
 
   return new Promise((resolve, reject) => {
-    const emitter = runSuite(storybookUrl, options);
+    const emitter = runSuite(server.storybookUrl, options);
 
     emitter.on('suiteFinish', (_browser, _numPass, numFail) => {
-      shutdownServer().then(() => {
+      server.stop().then(() => {
         return numFail > 0 ? reject() : resolve();
       });
     });
