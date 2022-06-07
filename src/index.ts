@@ -18,8 +18,9 @@ export async function run(): Promise<void> {
     const emitter = runSuite(storybookUrl, options);
 
     emitter.on('suiteFinish', (_browser, _numPass, numFail) => {
-      shutdownServer();
-      return numFail > 0 ? reject() : resolve();
+      shutdownServer().then(() => {
+        return numFail > 0 ? reject() : resolve();
+      });
     });
 
     format(emitter);

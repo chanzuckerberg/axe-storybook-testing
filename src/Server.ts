@@ -15,14 +15,14 @@ import type { Options } from './Options';
  * In particular there's a stories.json file that Storybook fetches, and it can't do that if we're
  * accessing it via file:// url.
  */
-export async function getServer(options: Options): Promise<[storybookUrl: string, start: () => Promise<void>, shutdown: () => void]> {
+export async function getServer(options: Options): Promise<[storybookUrl: string, start: () => Promise<void>, shutdown: () => Promise<void>]> {
   // If we have a storybook address, then storybook is already running and we just need to use that
   // address. No need to start or stop a server, either.
   if (options.storybookAddress) {
     return [
       options.storybookAddress,
       () => Promise.resolve(),
-      () => {},
+      () => Promise.resolve(),
     ];
   }
 
@@ -43,6 +43,7 @@ export async function getServer(options: Options): Promise<[storybookUrl: string
 
   function stop() {
     server.close();
+    return Promise.resolve();
   }
 
   return [storybookUrl, start, stop];
