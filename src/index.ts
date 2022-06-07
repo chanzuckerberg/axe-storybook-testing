@@ -1,6 +1,6 @@
 import { parseOptions } from './Options';
 import { getServer } from './Server';
-import findFormat from './formats/findFormat';
+import { format } from './formats/Spec';
 import { run as runSuite } from './suite/Suite';
 
 /**
@@ -9,7 +9,6 @@ import { run as runSuite } from './suite/Suite';
  */
 export async function run(): Promise<void> {
   const options = parseOptions();
-  const format = findFormat(options);
   const server = await getServer(options);
   await server.start();
 
