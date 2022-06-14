@@ -9,7 +9,7 @@ import { runSuite } from './Suite';
 export async function run(): Promise<void> {
   const options = parseOptions();
 
-  const numFailed = await runWithServer(options, async (storybookUrl) => {
+  const numFailed = await runWithServer(options, (storybookUrl) => {
     return runSuite(storybookUrl, options);
   });
 
