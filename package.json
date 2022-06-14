@@ -23,7 +23,7 @@
   },
   "scripts": {
     "all": "yarn lint && yarn types && yarn test",
-    "build": "esbuild `find src -name '*.ts'` --format=cjs --outdir=build --platform=node --target=node12",
+    "build": "tsc --project tsconfig.build.json",
     "clean": "rimraf ./build",
     "demo": "yarn build && yarn --cwd demo storybook:axe",
     "demo:build": "yarn --cwd demo build-storybook",
@@ -70,7 +70,6 @@
     "@typescript-eslint/eslint-plugin": "^5.28.0",
     "@typescript-eslint/parser": "^5.28.0",
     "axe-core": "^4.4.2",
-    "esbuild": "^0.14.43",
     "eslint": "^8.17.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-jest": "^26.5.3",

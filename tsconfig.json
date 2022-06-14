@@ -1,15 +1,14 @@
 // https://www.typescriptlang.org/tsconfig
 {
   "compilerOptions": {
-    "allowJs": true,
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
     "lib": ["es2019"],
     "module": "commonjs",
-    "noEmit": true,
+    "outDir": "build",
     "skipLibCheck": true,
     "strict": true,
-    "target": "es6",
+    "target": "es2015",
   }
 }

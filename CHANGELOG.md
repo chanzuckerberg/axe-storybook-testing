@@ -6,6 +6,7 @@
 - [fix] Access static storybook via file server so everything works with storyStoreV7 (fixing #51)
 - [maintenance] Upgrade all dependencies
 - [maintenance] Use MochaJS internally for running the "tests"
+- [maintenance] Use TypeScript to build the package, instead of esbuild
 
 ## 5.0.0 (2021-11-29)
 
