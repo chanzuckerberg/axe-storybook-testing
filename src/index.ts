@@ -1,7 +1,6 @@
 import { parseOptions } from './Options';
 import { getServer } from './Server';
-import { format } from './formats/Spec';
-import { run as runSuite } from './suite/Suite';
+import { runSuite } from './Suite';
 
 /**
  * Run the accessibility tests and return a promise that is resolved or rejected based on whether
@@ -10,17 +9,12 @@ import { run as runSuite } from './suite/Suite';
 export async function run(): Promise<void> {
   const options = parseOptions();
   const server = await getServer(options);
+
   await server.start();
+  const numFailed = await runSuite(server.storybookUrl, options);
+  await server.stop();
 
   return new Promise((resolve, reject) => {
-    const emitter = runSuite(server.storybookUrl, options);
-
-    emitter.on('suiteFinish', (_browser, _numPass, numFail) => {
-      server.stop().then(() => {
-        return numFail > 0 ? reject() : resolve();
-      });
-    });
-
-    format(emitter);
+    return numFailed > 0 ? reject() : resolve();
   });
 }

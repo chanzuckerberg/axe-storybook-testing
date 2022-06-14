@@ -3,8 +3,9 @@
 ## 5.0.1 (2022-05-20)
 
 - [breaking] Remove `--format` option
-- [maintenance] Upgrade all dependencies
 - [fix] Access static storybook via file server so everything works with storyStoreV7 (fixing #51)
+- [maintenance] Upgrade all dependencies
+- [maintenance] Use MochaJS internally for running the "tests"
 
 ## 5.0.0 (2021-11-29)
 

@@ -16,6 +16,7 @@ it('outputs accessibility violation information for the demo app', (done) => {
     expect(normalizedStdout).toMatchSnapshot();
     done();
   });
+  // @ts-expect-error Getting Mocha instead of Jest types...
 }, 120000);
 
 it('filters the components to run', (done) => {
@@ -27,6 +28,7 @@ it('filters the components to run', (done) => {
     expect(normalizedStdout).toMatchSnapshot();
     done();
   });
+  // @ts-expect-error Getting Mocha instead of Jest types...
 }, 120000);
 
 it('fails only specific impact levels if specified', (done) => {
@@ -38,6 +40,7 @@ it('fails only specific impact levels if specified', (done) => {
     expect(normalizedStdout).toMatchSnapshot();
     done();
   });
+  // @ts-expect-error Getting Mocha instead of Jest types...
 }, 120000);
 
 /**

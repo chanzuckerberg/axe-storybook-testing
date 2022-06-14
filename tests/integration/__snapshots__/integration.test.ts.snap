@@ -3,135 +3,135 @@
 exports[`fails only specific impact levels if specified 1`] = `
 "$ axe-storybook --failing-impact critical
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
+
 [chromium] accessibility
   delays
-    ✓ Short Delay And Pass
+    ✔ Short Delay And Pass
     1) Short Delay And Fail
-    ✓ Medium Delay And Pass
+    ✔ Medium Delay And Pass
     2) Medium Delay And Fail
     3) Long Delay And Timeout
+
   simple
-    ✓ No Failures
+    ✔ No Failures
     4) Failure No Discernible Text
-    ✓ Failure Color Contrast
+    ✔ Failure Color Contrast
     5) Failure No Discernible Text And Invalid Role
     - Failure Color Contrast Skipped
     - Failure No Discernible Text And Invalid Role Skipped
-    ✓ Failure Color Contrast Disabled Rule
+    ✔ Failure Color Contrast Disabled Rule
     6) Failure No Discernible Text And Invalid Role Disabled One Rule
-    ✓ Failure No Discernible Text And Invalid Role Disabled Rules
+    ✔ Failure No Discernible Text And Invalid Role Disabled Rules
 
-6 passing
-6 failing
-2 pending
 
-1) [chromium] accessibility
-     delays
-       Short Delay And Fail
+  6 passing
+  2 pending
+  6 failing
 
-       Detected the following accessibility violations!
+  1) delays
+       Short Delay And Fail:
+     Error: Detected the following accessibility violations!
 
-       1. aria-roles (ARIA roles used must conform to valid values)
+     1. aria-roles (ARIA roles used must conform to valid values)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
 
-          Check these nodes:
+        Check these nodes:
 
-          - html: <button id=\\"hi\\" role=\\"wut-the-wut\\">hello world</button>
-            summary: Fix all of the following:
-                       Role must be one of the valid ARIA roles: wut-the-wut
+        - html: <button id=\\"hi\\" role=\\"wut-the-wut\\">hello world</button>
+          summary: Fix all of the following:
+                     Role must be one of the valid ARIA roles: wut-the-wut
+      at Context.<anonymous> (/build/Suite.js)
 
-2) [chromium] accessibility
-     delays
-       Medium Delay And Fail
+  2) delays
+       Medium Delay And Fail:
+     Error: Detected the following accessibility violations!
 
-       Detected the following accessibility violations!
+     1. aria-roles (ARIA roles used must conform to valid values)
 
-       1. aria-roles (ARIA roles used must conform to valid values)
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
+        Check these nodes:
 
-          Check these nodes:
+        - html: <button id=\\"hi\\" role=\\"wut-the-wut\\">hello world</button>
+          summary: Fix all of the following:
+                     Role must be one of the valid ARIA roles: wut-the-wut
+      at Context.<anonymous> (/build/Suite.js)
 
-          - html: <button id=\\"hi\\" role=\\"wut-the-wut\\">hello world</button>
-            summary: Fix all of the following:
-                       Role must be one of the valid ARIA roles: wut-the-wut
+  3) delays
+       Long Delay And Timeout:
+     Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \\"done()\\" is called; if returning a Promise, ensure it resolves.
+      at listOnTimeout (node:internal/timers:557:17)
+      at processTimers (node:internal/timers:500:7)
 
-3) [chromium] accessibility
-     delays
-       Long Delay And Timeout
+  4) simple
+       Failure No Discernible Text:
+     Error: Detected the following accessibility violations!
 
-       TimeoutError: Promise timed out after 2000 milliseconds
+     1. button-name (Buttons must have discernible text)
 
-4) [chromium] accessibility
-     simple
-       Failure No Discernible Text
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
 
-       Detected the following accessibility violations!
+        Check these nodes:
 
-       1. button-name (Buttons must have discernible text)
+        - html: <button></button>
+          summary: Fix any of the following:
+                     Element does not have inner text that is visible to screen readers
+                     aria-label attribute does not exist or is empty
+                     aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                     Element has no title attribute
+                     Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+      at Context.<anonymous> (/build/Suite.js)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
+  5) simple
+       Failure No Discernible Text And Invalid Role:
+     Error: Detected the following accessibility violations!
 
-          Check these nodes:
+     1. aria-roles (ARIA roles used must conform to valid values)
 
-          - html: <button></button>
-            summary: Fix any of the following:
-                       Element does not have inner text that is visible to screen readers
-                       aria-label attribute does not exist or is empty
-                       aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                       Element has no title attribute
-                       Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
 
-5) [chromium] accessibility
-     simple
-       Failure No Discernible Text And Invalid Role
+        Check these nodes:
 
-       Detected the following accessibility violations!
+        - html: <button role=\\"wut-the-wut\\"></button>
+          summary: Fix all of the following:
+                     Role must be one of the valid ARIA roles: wut-the-wut
 
-       1. aria-roles (ARIA roles used must conform to valid values)
+     2. button-name (Buttons must have discernible text)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
 
-          Check these nodes:
+        Check these nodes:
 
-          - html: <button role=\\"wut-the-wut\\"></button>
-            summary: Fix all of the following:
-                       Role must be one of the valid ARIA roles: wut-the-wut
+        - html: <button role=\\"wut-the-wut\\"></button>
+          summary: Fix any of the following:
+                     Element does not have inner text that is visible to screen readers
+                     aria-label attribute does not exist or is empty
+                     aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                     Element has no title attribute
+                     Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+      at Context.<anonymous> (/build/Suite.js)
 
-       2. button-name (Buttons must have discernible text)
+  6) simple
+       Failure No Discernible Text And Invalid Role Disabled One Rule:
+     Error: Detected the following accessibility violations!
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
+     1. button-name (Buttons must have discernible text)
 
-          Check these nodes:
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
 
-          - html: <button role=\\"wut-the-wut\\"></button>
-            summary: Fix any of the following:
-                       Element does not have inner text that is visible to screen readers
-                       aria-label attribute does not exist or is empty
-                       aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                       Element has no title attribute
-                       Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+        Check these nodes:
 
-6) [chromium] accessibility
-     simple
-       Failure No Discernible Text And Invalid Role Disabled One Rule
+        - html: <button role=\\"wut-the-wut\\"></button>
+          summary: Fix any of the following:
+                     Element does not have inner text that is visible to screen readers
+                     aria-label attribute does not exist or is empty
+                     aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                     Element has no title attribute
+                     Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+      at Context.<anonymous> (/build/Suite.js)
 
-       Detected the following accessibility violations!
 
-       1. button-name (Buttons must have discernible text)
-
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
-
-          Check these nodes:
-
-          - html: <button role=\\"wut-the-wut\\"></button>
-            summary: Fix any of the following:
-                       Element does not have inner text that is visible to screen readers
-                       aria-label attribute does not exist or is empty
-                       aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                       Element has no title attribute
-                       Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
 
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 "
@@ -140,113 +140,114 @@ info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this comm
 exports[`filters the components to run 1`] = `
 "$ axe-storybook --pattern simple
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
+
 [chromium] accessibility
-  [skipped] delays
+  delays
     - Short Delay And Pass
     - Short Delay And Fail
     - Medium Delay And Pass
     - Medium Delay And Fail
     - Long Delay And Timeout
+
   simple
-    ✓ No Failures
+    ✔ No Failures
     1) Failure No Discernible Text
     2) Failure Color Contrast
     3) Failure No Discernible Text And Invalid Role
     - Failure Color Contrast Skipped
     - Failure No Discernible Text And Invalid Role Skipped
-    ✓ Failure Color Contrast Disabled Rule
+    ✔ Failure Color Contrast Disabled Rule
     4) Failure No Discernible Text And Invalid Role Disabled One Rule
-    ✓ Failure No Discernible Text And Invalid Role Disabled Rules
+    ✔ Failure No Discernible Text And Invalid Role Disabled Rules
 
-3 passing
-4 failing
-7 pending
 
-1) [chromium] accessibility
-     simple
-       Failure No Discernible Text
+  3 passing
+  7 pending
+  4 failing
 
-       Detected the following accessibility violations!
+  1) simple
+       Failure No Discernible Text:
+     Error: Detected the following accessibility violations!
 
-       1. button-name (Buttons must have discernible text)
+     1. button-name (Buttons must have discernible text)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
 
-          Check these nodes:
+        Check these nodes:
 
-          - html: <button></button>
-            summary: Fix any of the following:
-                       Element does not have inner text that is visible to screen readers
-                       aria-label attribute does not exist or is empty
-                       aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                       Element has no title attribute
-                       Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+        - html: <button></button>
+          summary: Fix any of the following:
+                     Element does not have inner text that is visible to screen readers
+                     aria-label attribute does not exist or is empty
+                     aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                     Element has no title attribute
+                     Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+      at Context.<anonymous> (/build/Suite.js)
 
-2) [chromium] accessibility
-     simple
-       Failure Color Contrast
+  2) simple
+       Failure Color Contrast:
+     Error: Detected the following accessibility violations!
 
-       Detected the following accessibility violations!
+     1. color-contrast (Elements must have sufficient color contrast)
 
-       1. color-contrast (Elements must have sufficient color contrast)
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/color-contrast?application=axeAPI.
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/color-contrast?application=axeAPI.
+        Check these nodes:
 
-          Check these nodes:
+        - html: <button style=\\"background-color: red; color: hotpink;\\">hello world</button>
+          summary: Fix any of the following:
+                     Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+      at Context.<anonymous> (/build/Suite.js)
 
-          - html: <button style=\\"background-color: red; color: hotpink;\\">hello world</button>
-            summary: Fix any of the following:
-                       Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+  3) simple
+       Failure No Discernible Text And Invalid Role:
+     Error: Detected the following accessibility violations!
 
-3) [chromium] accessibility
-     simple
-       Failure No Discernible Text And Invalid Role
+     1. aria-roles (ARIA roles used must conform to valid values)
 
-       Detected the following accessibility violations!
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
 
-       1. aria-roles (ARIA roles used must conform to valid values)
+        Check these nodes:
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
+        - html: <button role=\\"wut-the-wut\\"></button>
+          summary: Fix all of the following:
+                     Role must be one of the valid ARIA roles: wut-the-wut
 
-          Check these nodes:
+     2. button-name (Buttons must have discernible text)
 
-          - html: <button role=\\"wut-the-wut\\"></button>
-            summary: Fix all of the following:
-                       Role must be one of the valid ARIA roles: wut-the-wut
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
 
-       2. button-name (Buttons must have discernible text)
+        Check these nodes:
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
+        - html: <button role=\\"wut-the-wut\\"></button>
+          summary: Fix any of the following:
+                     Element does not have inner text that is visible to screen readers
+                     aria-label attribute does not exist or is empty
+                     aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                     Element has no title attribute
+                     Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+      at Context.<anonymous> (/build/Suite.js)
 
-          Check these nodes:
+  4) simple
+       Failure No Discernible Text And Invalid Role Disabled One Rule:
+     Error: Detected the following accessibility violations!
 
-          - html: <button role=\\"wut-the-wut\\"></button>
-            summary: Fix any of the following:
-                       Element does not have inner text that is visible to screen readers
-                       aria-label attribute does not exist or is empty
-                       aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                       Element has no title attribute
-                       Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+     1. button-name (Buttons must have discernible text)
 
-4) [chromium] accessibility
-     simple
-       Failure No Discernible Text And Invalid Role Disabled One Rule
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
 
-       Detected the following accessibility violations!
+        Check these nodes:
 
-       1. button-name (Buttons must have discernible text)
+        - html: <button role=\\"wut-the-wut\\"></button>
+          summary: Fix any of the following:
+                     Element does not have inner text that is visible to screen readers
+                     aria-label attribute does not exist or is empty
+                     aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                     Element has no title attribute
+                     Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+      at Context.<anonymous> (/build/Suite.js)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
 
-          Check these nodes:
-
-          - html: <button role=\\"wut-the-wut\\"></button>
-            summary: Fix any of the following:
-                       Element does not have inner text that is visible to screen readers
-                       aria-label attribute does not exist or is empty
-                       aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                       Element has no title attribute
-                       Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
 
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 "
@@ -255,151 +256,150 @@ info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this comm
 exports[`outputs accessibility violation information for the demo app 1`] = `
 "$ axe-storybook
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
+
 [chromium] accessibility
   delays
-    ✓ Short Delay And Pass
+    ✔ Short Delay And Pass
     1) Short Delay And Fail
-    ✓ Medium Delay And Pass
+    ✔ Medium Delay And Pass
     2) Medium Delay And Fail
     3) Long Delay And Timeout
+
   simple
-    ✓ No Failures
+    ✔ No Failures
     4) Failure No Discernible Text
     5) Failure Color Contrast
     6) Failure No Discernible Text And Invalid Role
     - Failure Color Contrast Skipped
     - Failure No Discernible Text And Invalid Role Skipped
-    ✓ Failure Color Contrast Disabled Rule
+    ✔ Failure Color Contrast Disabled Rule
     7) Failure No Discernible Text And Invalid Role Disabled One Rule
-    ✓ Failure No Discernible Text And Invalid Role Disabled Rules
+    ✔ Failure No Discernible Text And Invalid Role Disabled Rules
 
-5 passing
-7 failing
-2 pending
 
-1) [chromium] accessibility
-     delays
-       Short Delay And Fail
+  5 passing
+  2 pending
+  7 failing
 
-       Detected the following accessibility violations!
+  1) delays
+       Short Delay And Fail:
+     Error: Detected the following accessibility violations!
 
-       1. aria-roles (ARIA roles used must conform to valid values)
+     1. aria-roles (ARIA roles used must conform to valid values)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
 
-          Check these nodes:
+        Check these nodes:
 
-          - html: <button id=\\"hi\\" role=\\"wut-the-wut\\">hello world</button>
-            summary: Fix all of the following:
-                       Role must be one of the valid ARIA roles: wut-the-wut
+        - html: <button id=\\"hi\\" role=\\"wut-the-wut\\">hello world</button>
+          summary: Fix all of the following:
+                     Role must be one of the valid ARIA roles: wut-the-wut
+      at Context.<anonymous> (/build/Suite.js)
 
-2) [chromium] accessibility
-     delays
-       Medium Delay And Fail
+  2) delays
+       Medium Delay And Fail:
+     Error: Detected the following accessibility violations!
 
-       Detected the following accessibility violations!
+     1. aria-roles (ARIA roles used must conform to valid values)
 
-       1. aria-roles (ARIA roles used must conform to valid values)
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
+        Check these nodes:
 
-          Check these nodes:
+        - html: <button id=\\"hi\\" role=\\"wut-the-wut\\">hello world</button>
+          summary: Fix all of the following:
+                     Role must be one of the valid ARIA roles: wut-the-wut
+      at Context.<anonymous> (/build/Suite.js)
 
-          - html: <button id=\\"hi\\" role=\\"wut-the-wut\\">hello world</button>
-            summary: Fix all of the following:
-                       Role must be one of the valid ARIA roles: wut-the-wut
+  3) delays
+       Long Delay And Timeout:
+     Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \\"done()\\" is called; if returning a Promise, ensure it resolves.
+      at listOnTimeout (node:internal/timers:557:17)
+      at processTimers (node:internal/timers:500:7)
 
-3) [chromium] accessibility
-     delays
-       Long Delay And Timeout
+  4) simple
+       Failure No Discernible Text:
+     Error: Detected the following accessibility violations!
 
-       TimeoutError: Promise timed out after 2000 milliseconds
+     1. button-name (Buttons must have discernible text)
 
-4) [chromium] accessibility
-     simple
-       Failure No Discernible Text
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
 
-       Detected the following accessibility violations!
+        Check these nodes:
 
-       1. button-name (Buttons must have discernible text)
+        - html: <button></button>
+          summary: Fix any of the following:
+                     Element does not have inner text that is visible to screen readers
+                     aria-label attribute does not exist or is empty
+                     aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                     Element has no title attribute
+                     Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+      at Context.<anonymous> (/build/Suite.js)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
+  5) simple
+       Failure Color Contrast:
+     Error: Detected the following accessibility violations!
 
-          Check these nodes:
+     1. color-contrast (Elements must have sufficient color contrast)
 
-          - html: <button></button>
-            summary: Fix any of the following:
-                       Element does not have inner text that is visible to screen readers
-                       aria-label attribute does not exist or is empty
-                       aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                       Element has no title attribute
-                       Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/color-contrast?application=axeAPI.
 
-5) [chromium] accessibility
-     simple
-       Failure Color Contrast
+        Check these nodes:
 
-       Detected the following accessibility violations!
+        - html: <button style=\\"background-color: red; color: hotpink;\\">hello world</button>
+          summary: Fix any of the following:
+                     Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+      at Context.<anonymous> (/build/Suite.js)
 
-       1. color-contrast (Elements must have sufficient color contrast)
+  6) simple
+       Failure No Discernible Text And Invalid Role:
+     Error: Detected the following accessibility violations!
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/color-contrast?application=axeAPI.
+     1. aria-roles (ARIA roles used must conform to valid values)
 
-          Check these nodes:
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
 
-          - html: <button style=\\"background-color: red; color: hotpink;\\">hello world</button>
-            summary: Fix any of the following:
-                       Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+        Check these nodes:
 
-6) [chromium] accessibility
-     simple
-       Failure No Discernible Text And Invalid Role
+        - html: <button role=\\"wut-the-wut\\"></button>
+          summary: Fix all of the following:
+                     Role must be one of the valid ARIA roles: wut-the-wut
 
-       Detected the following accessibility violations!
+     2. button-name (Buttons must have discernible text)
 
-       1. aria-roles (ARIA roles used must conform to valid values)
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/aria-roles?application=axeAPI.
+        Check these nodes:
 
-          Check these nodes:
+        - html: <button role=\\"wut-the-wut\\"></button>
+          summary: Fix any of the following:
+                     Element does not have inner text that is visible to screen readers
+                     aria-label attribute does not exist or is empty
+                     aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                     Element has no title attribute
+                     Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+      at Context.<anonymous> (/build/Suite.js)
 
-          - html: <button role=\\"wut-the-wut\\"></button>
-            summary: Fix all of the following:
-                       Role must be one of the valid ARIA roles: wut-the-wut
+  7) simple
+       Failure No Discernible Text And Invalid Role Disabled One Rule:
+     Error: Detected the following accessibility violations!
 
-       2. button-name (Buttons must have discernible text)
+     1. button-name (Buttons must have discernible text)
 
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
 
-          Check these nodes:
+        Check these nodes:
 
-          - html: <button role=\\"wut-the-wut\\"></button>
-            summary: Fix any of the following:
-                       Element does not have inner text that is visible to screen readers
-                       aria-label attribute does not exist or is empty
-                       aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                       Element has no title attribute
-                       Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+        - html: <button role=\\"wut-the-wut\\"></button>
+          summary: Fix any of the following:
+                     Element does not have inner text that is visible to screen readers
+                     aria-label attribute does not exist or is empty
+                     aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                     Element has no title attribute
+                     Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
+      at Context.<anonymous> (/build/Suite.js)
 
-7) [chromium] accessibility
-     simple
-       Failure No Discernible Text And Invalid Role Disabled One Rule
 
-       Detected the following accessibility violations!
-
-       1. button-name (Buttons must have discernible text)
-
-          For more info, visit https://dequeuniversity.com/rules/axe/4.4/button-name?application=axeAPI.
-
-          Check these nodes:
-
-          - html: <button role=\\"wut-the-wut\\"></button>
-            summary: Fix any of the following:
-                       Element does not have inner text that is visible to screen readers
-                       aria-label attribute does not exist or is empty
-                       aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
-                       Element has no title attribute
-                       Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
 
 info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 "
