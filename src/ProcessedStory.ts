@@ -1,59 +1,56 @@
 import * as Parameters from './Parameters';
 import type { StorybookStory } from './browser/StorybookPage';
 
+type Params = {
+  axe: {
+    skip: boolean;
+    disabledRules: string[],
+    waitForSelector?: string,
+  },
+}
+
 /**
  * Story with normalized and custom properties needed by this project.
  */
-export type ProcessedStory = {
-  componentName: string;
-  name: string;
-  parameters: {
-    axe: {
-      skip: boolean;
-      disabledRules: string[];
-      waitForSelector?: string;
-    },
-  };
-  storybookId: string;
-}
+export default class ProcessedStory {
+  static fromStories(rawStories: StorybookStory[]): ProcessedStory[] {
+    return rawStories.map(ProcessedStory.fromStory);
+  }
 
-/**
- * Convert a list of Storybook stories into a normalized format.
- */
-export function fromStories(rawStories: StorybookStory[]): ProcessedStory[] {
-  return rawStories.map(fromStory);
-}
-
-/**
- * Convert a raw Storybook story into a normalized format with no optional properties.
- */
-export function fromStory(rawStory: StorybookStory): ProcessedStory {
-  return {
-    componentName: rawStory.kind,
-    name: rawStory.name,
-    parameters: {
-      axe: {
-        skip: normalizeSkip(rawStory.parameters?.axe?.skip, rawStory),
-        disabledRules: normalizeDisabledRules(rawStory.parameters?.axe?.disabledRules, rawStory),
-        waitForSelector: normalizeWaitForSelector(rawStory.parameters?.axe?.waitForSelector, rawStory),
+  static fromStory(rawStory: StorybookStory): ProcessedStory {
+    return new ProcessedStory(
+      rawStory.name,
+      rawStory.kind,
+      rawStory.id,
+      {
+        axe: {
+          skip: normalizeSkip(rawStory.parameters?.axe?.skip, rawStory),
+          disabledRules: normalizeDisabledRules(rawStory.parameters?.axe?.disabledRules, rawStory),
+          waitForSelector: normalizeWaitForSelector(rawStory.parameters?.axe?.waitForSelector, rawStory),
+        },
       },
-    },
-    storybookId: rawStory.id,
-  };
-}
+    );
+  }
 
-/**
- * Determine if a story is enabled or not.
- */
-export function isEnabled(story: ProcessedStory): boolean {
-  return !story.parameters.axe.skip;
-}
+  name: string;
+  componentTitle: string;
+  id: string;
+  parameters: Params;
 
-/**
- * Get the Axe rules that a story has disabled.
- */
-export function getDisabledRules(story: ProcessedStory): string[] {
-  return story.parameters.axe.disabledRules;
+  constructor(name: string, componentTitle: string, id: string, parameters: Params) {
+    this.name = name;
+    this.componentTitle = componentTitle;
+    this.id = id;
+    this.parameters = parameters;
+  }
+
+  get isEnabled() {
+    return !this.parameters.axe.skip;
+  }
+
+  get disabledRules() {
+    return this.parameters.axe.disabledRules;
+  }
 }
 
 function normalizeSkip(skip: unknown, rawStory: StorybookStory) {

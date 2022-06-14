@@ -2,7 +2,7 @@ import type { Result as AxeResult, NodeResult } from 'axe-core';
 import indent from 'indent-string';
 import type { Page } from 'playwright';
 import dedent from 'ts-dedent';
-import { getDisabledRules, ProcessedStory } from './ProcessedStory';
+import type ProcessedStory from './ProcessedStory';
 import { analyze } from './browser/AxePage';
 
 /**
@@ -22,7 +22,7 @@ const defaultDisabledRules = ['bypass', 'landmark-one-main', 'page-has-heading-o
  * Run Axe on a browser page that is displaying a story.
  */
 export async function fromPage(page: Page, story: ProcessedStory): Promise<Result> {
-  const storyDisabledRules = getDisabledRules(story);
+  const storyDisabledRules = story.disabledRules;
   const disabledRules = [...defaultDisabledRules, ...storyDisabledRules];
   const result = await analyze(page, disabledRules);
 

@@ -1,4 +1,4 @@
-import { fromStories, fromStory } from '../../src/ProcessedStory';
+import ProcessedStory from '../../src/ProcessedStory';
 
 describe('fromStories', () => {
   it('converts an array of raw stories', () => {
@@ -7,9 +7,9 @@ describe('fromStories', () => {
       { name: 'b', kind: 'button', id: 'button--b', parameters: {} },
     ];
 
-    expect(fromStories(rawStories)).toEqual([
+    expect(ProcessedStory.fromStories(rawStories)).toMatchObject([
       {
-        componentName: 'button',
+        componentTitle: 'button',
         name: 'a',
         parameters: {
           axe: {
@@ -17,10 +17,10 @@ describe('fromStories', () => {
             disabledRules: [],
           },
         },
-        storybookId: 'button--a',
+        id: 'button--a',
       },
       {
-        componentName: 'button',
+        componentTitle: 'button',
         name: 'b',
         parameters: {
           axe: {
@@ -28,7 +28,7 @@ describe('fromStories', () => {
             disabledRules: [],
           },
         },
-        storybookId: 'button--b',
+        id: 'button--b',
       },
     ]);
   });
@@ -38,7 +38,7 @@ describe('fromStory', () => {
   describe('parameters', () => {
     it('adds fallback parameters if none are present', () => {
       const rawStory = { id: 'button--a', kind: 'button', name: 'a', parameters: {} };
-      const processedStory = fromStory(rawStory);
+      const processedStory = ProcessedStory.fromStory(rawStory);
       expect(processedStory.parameters).toEqual({
         axe: {
           skip: false,
@@ -61,7 +61,7 @@ describe('fromStory', () => {
         },
       };
 
-      const processedStory = fromStory(rawStory);
+      const processedStory = ProcessedStory.fromStory(rawStory);
 
       expect(processedStory.parameters).toEqual({
         axe: {
@@ -85,7 +85,7 @@ describe('fromStory', () => {
         },
       };
 
-      expect(() => fromStory(rawStory)).toThrow('Invalid value for parameter "skip" in component "button", story "a"');
+      expect(() => ProcessedStory.fromStory(rawStory)).toThrow('Invalid value for parameter "skip" in component "button", story "a"');
     });
   });
 });

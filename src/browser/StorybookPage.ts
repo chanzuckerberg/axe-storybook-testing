@@ -4,7 +4,7 @@ import type { Story } from '@storybook/store';
 import pTimeout from 'p-timeout';
 import type { Page } from 'playwright';
 import dedent from 'ts-dedent';
-import type { ProcessedStory } from '../ProcessedStory';
+import type ProcessedStory from '../ProcessedStory';
 
 // Functions we pass to `page.evaluate` execute in a browser environment, and can access window.
 // eslint-disable-next-line no-var
@@ -42,7 +42,7 @@ export async function getStories(page: Page): Promise<StorybookStory[]> {
  * Render a story on a Storybook page.
  */
 export async function showStory(page: Page, story: ProcessedStory): Promise<void> {
-  await page.evaluate(emitSetCurrentStory, story.storybookId);
+  await page.evaluate(emitSetCurrentStory, story.id);
 }
 
 /**
