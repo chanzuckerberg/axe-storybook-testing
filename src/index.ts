@@ -1,5 +1,5 @@
 import { parseOptions } from './Options';
-import { getServer } from './Server';
+import { runWithServer } from './Server';
 import { runSuite } from './Suite';
 
 /**
@@ -8,11 +8,10 @@ import { runSuite } from './Suite';
  */
 export async function run(): Promise<void> {
   const options = parseOptions();
-  const server = await getServer(options);
 
-  await server.start();
-  const numFailed = await runSuite(server.storybookUrl, options);
-  await server.stop();
+  const numFailed = await runWithServer(options, async (storybookUrl) => {
+    return runSuite(storybookUrl, options);
+  });
 
   return new Promise((resolve, reject) => {
     return numFailed > 0 ? reject() : resolve();
