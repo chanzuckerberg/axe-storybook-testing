@@ -52,8 +52,8 @@ function normalize(input: string) {
   const specTimePattern = /\s*\([\d.]+m?s\)/g;
   /** File system paths. For example, `/path/to/some/file */
   const cwdPattern = new RegExp(process.cwd(), 'g');
-  /** Line numbers from stack trace paths. For example, `.js:20:55` */
-  const lineNumbersPattern = /\.js:\d+:\d+/g;
+  /** Line numbers from stack trace paths. For example, `timers:20:55` */
+  const lineNumbersPattern = /:\d+:\d+/g;
   /** storybook-start outputs an info dialog at the beginning this removes those lines */
   const storybookStartedFrame = /(│.*│\n|[─╭╮╰╯]+?)/g;
   /** webpack outputs a hash and build time */
@@ -65,7 +65,7 @@ function normalize(input: string) {
   return input
     .replace(specTimePattern, '')
     .replace(cwdPattern, '')
-    .replace(lineNumbersPattern, '.js')
+    .replace(lineNumbersPattern, '')
     .replace(storybookStartedFrame, '')
     .replace(webpackBuilt, 'webpack built')
     .replace(webpackBuildTimeVariations, '');
