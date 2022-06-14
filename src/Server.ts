@@ -21,7 +21,15 @@ type Server = {
  * In particular there's a stories.json file that Storybook fetches, and it can't do that if we're
  * accessing it via file:// url.
  */
-export async function getServer(options: Options): Promise<Server> {
+export async function runWithServer<T>(options: Options, callback: (storybookUrl: string) => Promise<T>): Promise<T> {
+  const server = await getServer(options);
+  await server.start();
+  const returnValue = await callback(server.storybookUrl);
+  await server.stop();
+  return returnValue;
+}
+
+async function getServer(options: Options): Promise<Server> {
   // If we have a storybook address, then storybook is already running and we just need to use that
   // address. No need to start or stop a server, either.
   if (options.storybookAddress) {

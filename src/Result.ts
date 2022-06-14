@@ -1,5 +1,7 @@
-import type { Result as AxeResult } from 'axe-core';
+import type { Result as AxeResult, NodeResult } from 'axe-core';
+import indent from 'indent-string';
 import type { Page } from 'playwright';
+import dedent from 'ts-dedent';
 import { getDisabledRules, ProcessedStory } from './ProcessedStory';
 import { analyze } from './browser/AxePage';
 
@@ -42,4 +44,34 @@ export function isPassing(result: Result, failingImpacts: string[]): boolean {
   return result.violations.every(violation => {
     return !failingImpacts.includes(String(violation.impact));
   });
+}
+
+export function formatFailureResult(result: Result) {
+  return dedent`
+    Detected the following accessibility violations!
+
+    ${result.violations.map(formatViolation).join('\n\n') }
+  `;
+}
+
+function formatViolation(violation: AxeResult, index: number) {
+  return dedent`
+    ${index + 1}. ${violation.id} (${violation.help})
+
+       For more info, visit ${violation.helpUrl}.
+
+       Check these nodes:
+
+       ${violation.nodes.map(formatNode).join('\n\n') }
+  `;
+}
+
+function formatNode(node: NodeResult) {
+  if (node.failureSummary) {
+    return dedent`
+      - html: ${node.html}
+        summary: ${indent(node.failureSummary, 11).trimStart() }
+    `;
+  }
+  return `- html: ${node.html}`;
 }

@@ -12,5 +12,6 @@ describe('getStories', () => {
       { kind: "this is the story's kind", name: "this is the story's name", parameters: {} },
     ]);
     await browser.close();
+  // @ts-expect-error Getting Mocha instead of Jest types...
   }, 60000);
 });

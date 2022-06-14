@@ -1,7 +1,6 @@
 import { parseOptions } from './Options';
-import { getServer } from './Server';
-import findFormat from './formats/findFormat';
-import { run as runSuite } from './suite/Suite';
+import { runWithServer } from './Server';
+import { runSuite } from './Suite';
 
 /**
  * Run the accessibility tests and return a promise that is resolved or rejected based on whether
@@ -9,19 +8,12 @@ import { run as runSuite } from './suite/Suite';
  */
 export async function run(): Promise<void> {
   const options = parseOptions();
-  const format = findFormat(options);
-  const server = await getServer(options);
-  await server.start();
+
+  const numFailed = await runWithServer(options, (storybookUrl) => {
+    return runSuite(storybookUrl, options);
+  });
 
   return new Promise((resolve, reject) => {
-    const emitter = runSuite(server.storybookUrl, options);
-
-    emitter.on('suiteFinish', (_browser, _numPass, numFail) => {
-      server.stop().then(() => {
-        return numFail > 0 ? reject() : resolve();
-      });
-    });
-
-    format(emitter);
+    return numFailed > 0 ? reject() : resolve();
   });
 }

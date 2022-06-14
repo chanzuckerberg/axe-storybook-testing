@@ -18,12 +18,6 @@ const options = {
     description: 'Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored.',
     type: 'string' as const,
   },
-  format: {
-    alias: 'f',
-    default: 'spec',
-    description: 'The format to display the test run in',
-    type: 'string' as const,
-  },
   'failing-impact': {
     alias: 'i',
     default: 'all',
@@ -61,7 +55,6 @@ export function parseOptions() {
   return {
     browser: getBrowser(argv.browser),
     buildDir: argv.buildDir,
-    format: getFormat(argv.format),
     failingImpacts: getFailingImpacts(argv['failing-impact']),
     headless: argv.headless,
     storybookAddress: argv.storybookAddress,
@@ -78,15 +71,6 @@ function getBrowser(browser: string) {
       return browser;
     default:
       throw new Error(`Invalid browser option: "${browser}"`);
-  }
-}
-
-function getFormat(format: string) {
-  switch (format) {
-    case 'spec':
-      return format;
-    default:
-      throw new Error(`Invalid format option: "${format}"`);
   }
 }
 
