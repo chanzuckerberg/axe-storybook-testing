@@ -13,11 +13,6 @@ const options = {
     description: 'Directory to load the static storybook built by build-storybook from',
     type: 'string' as const,
   },
-  'storybook-address': {
-    alias: 's',
-    description: 'Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored.',
-    type: 'string' as const,
-  },
   'failing-impact': {
     alias: 'i',
     default: 'all',
@@ -34,6 +29,11 @@ const options = {
     alias: 'p',
     default: '.*',
     description: 'Filter by a component name regex pattern',
+    type: 'string' as const,
+  },
+  'storybook-address': {
+    alias: 's',
+    description: 'Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored.',
     type: 'string' as const,
   },
   timeout: {
@@ -55,10 +55,10 @@ export function parseOptions() {
   return {
     browser: getBrowser(argv.browser),
     buildDir: argv.buildDir,
-    failingImpacts: getFailingImpacts(argv['failing-impact']),
     headless: argv.headless,
-    storybookAddress: argv.storybookAddress,
+    failingImpacts: getFailingImpacts(argv['failing-impact']),
     pattern: new RegExp(argv.pattern),
+    storybookAddress: argv.storybookAddress,
     timeout: argv.timeout,
   };
 }
