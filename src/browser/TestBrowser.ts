@@ -62,18 +62,17 @@ export default class TestBrowser {
    */
   async getStories(): Promise<ProcessedStory[]> {
     const rawStories = await StorybookPage.getStories(this.page);
-    return ProcessedStory.fromStories(rawStories);
+    return rawStories.map((story) => new ProcessedStory(story));
   }
 
   /**
    * Run Axe for a story.
    */
   async getResultForStory(story: ProcessedStory): Promise<Result.Result> {
-    const storyParams = story.parameters.axe;
-    await StorybookPage.showStory(this.page, story);
+    await StorybookPage.showStory(this.page, story.id);
 
-    if (storyParams.waitForSelector) {
-      await this.page.waitForSelector(storyParams.waitForSelector, { state: 'attached' });
+    if (story.waitForSelector) {
+      await this.page.waitForSelector(story.waitForSelector, { state: 'attached' });
     }
 
     return Result.fromPage(this.page, story);

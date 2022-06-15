@@ -2,54 +2,41 @@ import * as Parameters from './Parameters';
 import type { StorybookStory } from './browser/StorybookPage';
 
 type Params = {
-  axe: {
-    skip: boolean;
-    disabledRules: string[],
-    waitForSelector?: string,
-  },
+  skip: boolean;
+  disabledRules: string[],
+  waitForSelector?: string,
 }
 
 /**
  * Story with normalized and custom properties needed by this project.
  */
 export default class ProcessedStory {
-  static fromStories(rawStories: StorybookStory[]): ProcessedStory[] {
-    return rawStories.map(ProcessedStory.fromStory);
-  }
-
-  static fromStory(rawStory: StorybookStory): ProcessedStory {
-    return new ProcessedStory(
-      rawStory.name,
-      rawStory.kind,
-      rawStory.id,
-      {
-        axe: {
-          skip: normalizeSkip(rawStory.parameters?.axe?.skip, rawStory),
-          disabledRules: normalizeDisabledRules(rawStory.parameters?.axe?.disabledRules, rawStory),
-          waitForSelector: normalizeWaitForSelector(rawStory.parameters?.axe?.waitForSelector, rawStory),
-        },
-      },
-    );
-  }
-
   name: string;
   componentTitle: string;
   id: string;
-  parameters: Params;
+  private parameters: Params;
 
-  constructor(name: string, componentTitle: string, id: string, parameters: Params) {
-    this.name = name;
-    this.componentTitle = componentTitle;
-    this.id = id;
-    this.parameters = parameters;
+  constructor(rawStory: StorybookStory) {
+    this.name = rawStory.name;
+    this.componentTitle = rawStory.kind;
+    this.id = rawStory.id;
+    this.parameters = {
+      skip: normalizeSkip(rawStory.parameters?.axe?.skip, rawStory),
+      disabledRules: normalizeDisabledRules(rawStory.parameters?.axe?.disabledRules, rawStory),
+      waitForSelector: normalizeWaitForSelector(rawStory.parameters?.axe?.waitForSelector, rawStory),
+    };
   }
 
   get isEnabled() {
-    return !this.parameters.axe.skip;
+    return !this.parameters.skip;
   }
 
   get disabledRules() {
-    return this.parameters.axe.disabledRules;
+    return this.parameters.disabledRules;
+  }
+
+  get waitForSelector() {
+    return this.parameters.waitForSelector;
   }
 }
 
