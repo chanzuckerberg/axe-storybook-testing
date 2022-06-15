@@ -38,8 +38,13 @@ const options = {
   reporter: {
     alias: 'r',
     default: 'spec' as Repoters,
-    description: 'How to display test results. Can be any [built-in Mocha reporter](https://mochajs.org/#reporters)',
+    description: 'How to display test results. Can be any built-in Mocha reporter - https://mochajs.org/#reporters',
     choices: ['spec', 'dot', 'nyan', 'tap', 'landing', 'list', 'progress', 'json', 'json-stream', 'min', 'doc', 'markdown', 'xunit'],
+  },
+  'reporter-options': {
+    alias: 'R',
+    description: 'Options to pass to the Mocha reporter (especially the xunit reporter) - https://mochajs.org/#reporters',
+    type: 'string' as const,
   },
   'storybook-address': {
     alias: 's',
@@ -69,6 +74,7 @@ export function parseOptions() {
     failingImpacts: getFailingImpacts(argv['failing-impact']),
     pattern: new RegExp(argv.pattern),
     reporter: argv.reporter,
+    reporterOptions: argv['reporter-options'],
     storybookAddress: argv.storybookAddress,
     timeout: argv.timeout,
   };

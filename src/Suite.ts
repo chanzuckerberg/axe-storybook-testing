@@ -10,16 +10,18 @@ import Browser from './browser';
  * Find Storybook stories and generate a test for each one.
  */
 export async function runSuite(storybookUrl: string, options: Options): Promise<number> {
+  const suiteTitle = `[${options.browser}] accessibility`;
   const browser = await Browser.create(storybookUrl, options);
   const stories = await browser.getStories();
   const storiesByComponent = groupBy(stories, 'componentTitle');
 
   const mocha = new Mocha({
     reporter: options.reporter,
+    reporterOptions: getReporterOptions(suiteTitle, options),
     timeout: options.timeout,
   });
 
-  mocha.suite.title = `[${options.browser}] accessibility`;
+  mocha.suite.title = suiteTitle;
 
   // Make sure the test browser closes after everything has finished.
   mocha.suite.afterAll(async () => {
@@ -68,4 +70,15 @@ export async function runSuite(storybookUrl: string, options: Options): Promise<
   return new Promise((resolve) => {
     mocha.run(resolve);
   });
+}
+
+/**
+ * Create an options object for a Mocha reporter from the `--reporter-otions` CLI option. Mostly
+ * useful for the xunit reporter to specify where to output the XML file.
+ */
+function getReporterOptions(suiteTitle: string, options: Options) {
+  return {
+    suiteName: suiteTitle,
+    ...Object.fromEntries(new URLSearchParams(options.reporterOptions)),
+  };
 }
