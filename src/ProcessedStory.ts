@@ -1,4 +1,4 @@
-import * as Parameters from './Parameters';
+import { z as zod } from 'zod';
 import type { StorybookStory } from './browser/StorybookPage';
 
 type Params = {
@@ -40,23 +40,27 @@ export default class ProcessedStory {
   }
 }
 
+const skipSchema = zod.boolean();
+const disabledRulesSchema = zod.array(zod.string());
+const waitForSelectorSchema = zod.optional(zod.string());
+
 function normalizeSkip(skip: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
-    () => Parameters.parseSkip(skip),
+    () => skipSchema.optional().parse(skip) || false,
     createInvalidParamErrorMessage(rawStory, 'skip'),
   );
 }
 
 function normalizeDisabledRules(disabledRules: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
-    () => Parameters.parseDisabledRules(disabledRules),
+    () => disabledRulesSchema.optional().parse(disabledRules) || [],
     createInvalidParamErrorMessage(rawStory, 'disabledRules'),
   );
 }
 
 function normalizeWaitForSelector(waitForSelector: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
-    () => Parameters.parseWaitForSelector(waitForSelector),
+    () => waitForSelectorSchema.parse(waitForSelector),
     createInvalidParamErrorMessage(rawStory, 'waitForSelector'),
   );
 }
@@ -71,7 +75,7 @@ function parseWithFriendlyError<T>(parser: () => T, errorMessage: string): T {
   try {
     return parser();
   } catch (message) {
-    if (message instanceof Parameters.ParamError) {
+    if (message instanceof zod.ZodError) {
       throw new TypeError(errorMessage);
     } else {
       throw message;
