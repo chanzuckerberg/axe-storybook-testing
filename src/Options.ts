@@ -1,11 +1,14 @@
 import yargs from 'yargs';
 
+type Browsers = 'chromium' | 'webkit' | 'firefox';
+type FailingImpacts = 'minor' | 'moderate' | 'serious' | 'critical' | 'all';
+
 const options = {
   browser: {
     alias: 'B',
-    default: 'chromium',
-    description: 'Which browser to run in. Should be one of: chromium, webkit, firefox',
-    type: 'string' as const,
+    default: 'chromium' as Browsers,
+    description: 'Which browser to run in',
+    choices: ['chromium', 'webkit', 'firefox'],
   },
   'build-dir': {
     alias: 'b',
@@ -15,9 +18,9 @@ const options = {
   },
   'failing-impact': {
     alias: 'i',
-    default: 'all',
-    description: 'Lowest impact level to consider a failure. Should be one of minor, moderate, serious, critical, or all',
-    type: 'string' as const,
+    default: 'all' as FailingImpacts,
+    description: 'Lowest impact level to consider a failure',
+    choices: ['minor', 'moderate', 'serious', 'critical', 'all'],
   },
   headless: {
     alias: 'h',
@@ -53,7 +56,7 @@ export function parseOptions() {
   const argv = yargs.options(options).parseSync();
 
   return {
-    browser: getBrowser(argv.browser),
+    browser: argv.browser,
     buildDir: argv.buildDir,
     headless: argv.headless,
     failingImpacts: getFailingImpacts(argv['failing-impact']),
@@ -63,18 +66,7 @@ export function parseOptions() {
   };
 }
 
-function getBrowser(browser: string) {
-  switch (browser) {
-    case 'chromium':
-    case 'firefox':
-    case 'webkit':
-      return browser;
-    default:
-      throw new Error(`Invalid browser option: "${browser}"`);
-  }
-}
-
-function getFailingImpacts(failingImpact: string): string[] {
+function getFailingImpacts(failingImpact: FailingImpacts): string[] {
   switch (failingImpact) {
     case 'critical':
       return ['critical'];
@@ -86,7 +78,5 @@ function getFailingImpacts(failingImpact: string): string[] {
       return ['critical', 'serious', 'moderate', 'minor'];
     case 'all':
       return ['critical', 'serious', 'moderate', 'minor', 'all'];
-    default:
-      throw new Error(`Invalid failing impact option: "${failingImpact}"`);
   }
 }
