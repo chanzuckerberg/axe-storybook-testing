@@ -74,7 +74,7 @@ export function parseOptions() {
     failingImpacts: getFailingImpacts(argv['failing-impact']),
     pattern: new RegExp(argv.pattern),
     reporter: argv.reporter,
-    reporterOptions: argv['reporter-options'],
+    reporterOptions: getReporterOptions(argv['reporter-options']),
     storybookAddress: argv.storybookAddress,
     timeout: argv.timeout,
   };
@@ -93,4 +93,8 @@ function getFailingImpacts(failingImpact: FailingImpacts): string[] {
     case 'all':
       return ['critical', 'serious', 'moderate', 'minor', 'all'];
   }
+}
+
+function getReporterOptions(reporterOptionsParams?: string) {
+  return Object.fromEntries(new URLSearchParams(reporterOptionsParams));
 }
