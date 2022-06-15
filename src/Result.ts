@@ -6,52 +6,52 @@ import type ProcessedStory from './ProcessedStory';
 import { analyze } from './browser/AxePage';
 
 /**
- * Violations reported by Axe for a story.
- */
-export type Result = {
-  violations: AxeResult[];
-};
-
-/**
  * These rules aren't useful/helpful in the context of Storybook stories, and we disable them when
  * running Axe.
  */
 const defaultDisabledRules = ['bypass', 'landmark-one-main', 'page-has-heading-one', 'region'];
 
 /**
- * Run Axe on a browser page that is displaying a story.
+ * Violations reported by Axe for a story.
  */
-export async function fromPage(page: Page, story: ProcessedStory): Promise<Result> {
-  const storyDisabledRules = story.disabledRules;
-  const disabledRules = [...defaultDisabledRules, ...storyDisabledRules];
-  const result = await analyze(page, disabledRules);
-
-  return {
-    violations: result.violations,
-  };
-}
-
-/**
- * Determine if a result is passing or not. A result is passing if it has no violations.
- */
-export function isPassing(result: Result, failingImpacts: string[]): boolean {
-  if (failingImpacts.includes('all')) {
-    // Violation impact is optional, so to avoid a check below for undefined impacts,
-    // just check for any violation.
-    return result.violations.length === 0;
+export default class Result {
+  /**
+   * Run Axe on a browser page that is displaying a story.
+   */
+  static async fromPage(page: Page, story: ProcessedStory) {
+    const disabledRules = [...defaultDisabledRules, ...story.disabledRules];
+    const axeResults = await analyze(page, disabledRules);
+    return new Result(axeResults.violations);
   }
 
-  return result.violations.every(violation => {
-    return !failingImpacts.includes(String(violation.impact));
-  });
-}
+  violations: AxeResult[];
 
-export function formatFailureResult(result: Result) {
-  return dedent`
+  constructor(violations: AxeResult[]) {
+    this.violations = violations;
+  }
+
+  /**
+   * Determine if a result is passing or not. A result is passing if it has no violations.
+   */
+  isPassing(failingImpacts: string[]): boolean {
+    if (failingImpacts.includes('all')) {
+      // Violation impact is optional, so to avoid a check below for undefined impacts,
+      // just check for any violation.
+      return this.violations.length === 0;
+    }
+
+    return this.violations.every(violation => {
+      return !failingImpacts.includes(String(violation.impact));
+    });
+  }
+
+  toString(): string {
+    return dedent`
     Detected the following accessibility violations!
 
-    ${result.violations.map(formatViolation).join('\n\n') }
+    ${this.violations.map(formatViolation).join('\n\n')}
   `;
+  }
 }
 
 function formatViolation(violation: AxeResult, index: number) {

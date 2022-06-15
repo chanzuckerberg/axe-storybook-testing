@@ -1,7 +1,7 @@
 import playwright, { Browser, Page } from 'playwright';
 import type { Options } from '../Options';
 import ProcessedStory from '../ProcessedStory';
-import * as Result from '../Result';
+import Result from '../Result';
 import * as AxePage from './AxePage';
 import * as StorybookPage from './StorybookPage';
 
@@ -68,7 +68,7 @@ export default class TestBrowser {
   /**
    * Run Axe for a story.
    */
-  async getResultForStory(story: ProcessedStory): Promise<Result.Result> {
+  async getResultForStory(story: ProcessedStory): Promise<Result> {
     await StorybookPage.showStory(this.page, story.id);
 
     if (story.waitForSelector) {
