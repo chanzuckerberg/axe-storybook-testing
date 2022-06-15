@@ -61,14 +61,16 @@ yarn storybook:axe
 
 The command-line interface has the following options.
 
-Option|Default|Type|Description
+Option|Default|Values|Description
 -|-|-|-
 `--browser`|`chromium`|chromium, firefox, or webkit|Which browser to run the tests in
 `--build-dir`|`storybook-static`|string|Storybook static build directory
-`--storybook-address`||string|Storybook server address to test against instead of using a static build directory. If set, `--build-dir` will be ignored. e.g. `--storybook-address http://localhost:6006`
 `--failing-impact`|`all`|minor, moderate, serious, critical, or all|The lowest impact level that should be considered a failure
 `--headless`|`true`|boolean|Whether to run headlessly or not
 `--pattern`|`.*`|string regex|Only run tests that match a component name pattern
+`--reporter`|`spec`|spec, dot, nyan, tap, landing, list, progress, json, json-stream, min, doc, markdown, xunit|How to display the test run. Can be any [built-in Mocha reporter](https://mochajs.org/#reporters).
+`--reporter-options`||string|Options to pass to the mocha reporter. Especially useful with the xunit reporter - e.g. `--reporter-options output=./filename.xml`
+`--storybook-address`||string|Storybook server address to test against instead of using a static build directory. If set, `--build-dir` will be ignored. e.g. `--storybook-address http://localhost:6006`
 `--timeout`|2000|number|Timeout (in milliseconds) for each test
 
 For example, to run non-headlessly on Firefox, you would run

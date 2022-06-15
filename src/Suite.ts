@@ -10,16 +10,18 @@ import Browser from './browser';
  * Find Storybook stories and generate a test for each one.
  */
 export async function runSuite(storybookUrl: string, options: Options): Promise<number> {
+  const suiteTitle = `[${options.browser}] accessibility`;
   const browser = await Browser.create(storybookUrl, options);
   const stories = await browser.getStories();
   const storiesByComponent = groupBy(stories, 'componentTitle');
 
   const mocha = new Mocha({
-    reporter: 'spec',
+    reporter: options.reporter,
+    reporterOptions: { suiteName: suiteTitle, ...options.reporterOptions },
     timeout: options.timeout,
   });
 
-  mocha.suite.title = `[${options.browser}] accessibility`;
+  mocha.suite.title = suiteTitle;
 
   // Make sure the test browser closes after everything has finished.
   mocha.suite.afterAll(async () => {

@@ -1,11 +1,15 @@
 import yargs from 'yargs';
 
+type Browsers = 'chromium' | 'webkit' | 'firefox';
+type FailingImpacts = 'minor' | 'moderate' | 'serious' | 'critical' | 'all';
+type Repoters = 'spec' | 'dot' | 'nyan' | 'tap' | 'landing' | 'list' | 'progress' | 'json' | 'json-stream' | 'min' | 'doc' | 'markdown' | 'xunit';
+
 const options = {
   browser: {
     alias: 'B',
-    default: 'chromium',
-    description: 'Which browser to run in. Should be one of: chromium, webkit, firefox',
-    type: 'string' as const,
+    default: 'chromium' as Browsers,
+    description: 'Which browser to run in',
+    choices: ['chromium', 'webkit', 'firefox'],
   },
   'build-dir': {
     alias: 'b',
@@ -13,16 +17,11 @@ const options = {
     description: 'Directory to load the static storybook built by build-storybook from',
     type: 'string' as const,
   },
-  'storybook-address': {
-    alias: 's',
-    description: 'Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored.',
-    type: 'string' as const,
-  },
   'failing-impact': {
     alias: 'i',
-    default: 'all',
-    description: 'Lowest impact level to consider a failure. Should be one of minor, moderate, serious, critical, or all',
-    type: 'string' as const,
+    default: 'all' as FailingImpacts,
+    description: 'Lowest impact level to consider a failure',
+    choices: ['minor', 'moderate', 'serious', 'critical', 'all'],
   },
   headless: {
     alias: 'h',
@@ -34,6 +33,22 @@ const options = {
     alias: 'p',
     default: '.*',
     description: 'Filter by a component name regex pattern',
+    type: 'string' as const,
+  },
+  reporter: {
+    alias: 'r',
+    default: 'spec' as Repoters,
+    description: 'How to display test results. Can be any built-in Mocha reporter - https://mochajs.org/#reporters',
+    choices: ['spec', 'dot', 'nyan', 'tap', 'landing', 'list', 'progress', 'json', 'json-stream', 'min', 'doc', 'markdown', 'xunit'],
+  },
+  'reporter-options': {
+    alias: 'R',
+    description: 'Options to pass to the Mocha reporter (especially the xunit reporter) - https://mochajs.org/#reporters',
+    type: 'string' as const,
+  },
+  'storybook-address': {
+    alias: 's',
+    description: 'Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored.',
     type: 'string' as const,
   },
   timeout: {
@@ -53,28 +68,19 @@ export function parseOptions() {
   const argv = yargs.options(options).parseSync();
 
   return {
-    browser: getBrowser(argv.browser),
+    browser: argv.browser,
     buildDir: argv.buildDir,
-    failingImpacts: getFailingImpacts(argv['failing-impact']),
     headless: argv.headless,
-    storybookAddress: argv.storybookAddress,
+    failingImpacts: getFailingImpacts(argv['failing-impact']),
     pattern: new RegExp(argv.pattern),
+    reporter: argv.reporter,
+    reporterOptions: getReporterOptions(argv['reporter-options']),
+    storybookAddress: argv.storybookAddress,
     timeout: argv.timeout,
   };
 }
 
-function getBrowser(browser: string) {
-  switch (browser) {
-    case 'chromium':
-    case 'firefox':
-    case 'webkit':
-      return browser;
-    default:
-      throw new Error(`Invalid browser option: "${browser}"`);
-  }
-}
-
-function getFailingImpacts(failingImpact: string): string[] {
+function getFailingImpacts(failingImpact: FailingImpacts): string[] {
   switch (failingImpact) {
     case 'critical':
       return ['critical'];
@@ -86,7 +92,9 @@ function getFailingImpacts(failingImpact: string): string[] {
       return ['critical', 'serious', 'moderate', 'minor'];
     case 'all':
       return ['critical', 'serious', 'moderate', 'minor', 'all'];
-    default:
-      throw new Error(`Invalid failing impact option: "${failingImpact}"`);
   }
+}
+
+function getReporterOptions(reporterOptionsParams?: string) {
+  return Object.fromEntries(new URLSearchParams(reporterOptionsParams));
 }
