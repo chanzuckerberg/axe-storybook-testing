@@ -7,8 +7,8 @@
     "storybook": "start-storybook -p 6007",
     "storybook-ci": "start-storybook -p 6007 --ci --quiet",
     "storybook:axe": "build-storybook && axe-storybook",
-    "storybook:axe-no-build": "axe-storybook",
-    "storybook:axe-no-build:server": "axe-storybook --storybook-address http://localhost:6007 --headless"
+    "storybook:axeOnly": "axe-storybook",
+    "storybook:axeServer": "axe-storybook --storybook-address http://localhost:6007"
   },
   "dependencies": {
     "@babel/core": "^7.18.5",

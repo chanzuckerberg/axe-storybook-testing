@@ -10,7 +10,7 @@ import { exec } from 'child_process';
 it('outputs accessibility violation information for the demo app', (done) => {
   expect.assertions(2);
 
-  exec('yarn --cwd demo storybook:axe-no-build', function (error, stdout) {
+  exec('yarn --cwd demo storybook:axeOnly', function (error, stdout) {
     const normalizedStdout = normalize(stdout);
     expect(error!.code).toEqual(1);
     expect(normalizedStdout).toMatchSnapshot();
@@ -22,7 +22,7 @@ it('outputs accessibility violation information for the demo app', (done) => {
 it('filters the components to run', (done) => {
   expect.assertions(2);
 
-  exec('yarn --cwd demo storybook:axe-no-build --pattern simple', function (error, stdout) {
+  exec('yarn --cwd demo storybook:axeOnly --pattern simple', function (error, stdout) {
     const normalizedStdout = normalize(stdout);
     expect(error!.code).toEqual(1);
     expect(normalizedStdout).toMatchSnapshot();
@@ -34,7 +34,7 @@ it('filters the components to run', (done) => {
 it('fails only specific impact levels if specified', (done) => {
   expect.assertions(2);
 
-  exec('yarn --cwd demo storybook:axe-no-build --failing-impact critical', function (error, stdout) {
+  exec('yarn --cwd demo storybook:axeOnly --failing-impact critical', function (error, stdout) {
     const normalizedStdout = normalize(stdout);
     expect(error!.code).toEqual(1);
     expect(normalizedStdout).toMatchSnapshot();
