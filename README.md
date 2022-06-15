@@ -127,15 +127,25 @@ export const parameters = {
 
 ### waitForSelector
 
-Wait for an arbitrary CSS selector after rendering before running the Axe checks. Useful if your component takes some time to render and actually display itself on the page.
+**Deprecated!**
+
+Legacy way of waiting for a selector before running Axe.
+
+Instead, use a Storybook [play function](https://storybook.js.org/docs/react/writing-stories/play-function) to do the same thing.
 
 ```jsx
 // SomeComponent.stories.jsx
 
-export const parameters = {
+// Old, deprecated way.
+SomeStory.parameters = {
   axe: {
     waitForSelector: '#some-component-selector',
   },
+};
+
+// New, better way using a play function - https://storybook.js.org/docs/react/writing-stories/play-function
+SomeStory.play = async () => {
+  await screen.findByText('some string');
 };
 ```
 

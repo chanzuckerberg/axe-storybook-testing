@@ -4,8 +4,6 @@ import each from 'lodash/each';
 import groupBy from 'lodash/groupBy';
 import Mocha from 'mocha';
 import type { Options } from './Options';
-import { isEnabled } from './ProcessedStory';
-import { isPassing, formatFailureResult } from './Result';
 import Browser from './browser';
 
 /**
@@ -14,7 +12,7 @@ import Browser from './browser';
 export async function runSuite(storybookUrl: string, options: Options): Promise<number> {
   const browser = await Browser.create(storybookUrl, options);
   const stories = await browser.getStories();
-  const storiesByComponent = groupBy(stories, 'componentName');
+  const storiesByComponent = groupBy(stories, 'componentTitle');
 
   const mocha = new Mocha({
     reporter: 'spec',
@@ -43,7 +41,7 @@ export async function runSuite(storybookUrl: string, options: Options): Promise<
       const test = new Mocha.Test(story.name, async () => {
         const result = await browser.getResultForStory(story);
 
-        if (isPassing(result, options.failingImpacts)) {
+        if (result.isPassing(options.failingImpacts)) {
           assert.ok(true);
         } else {
           assert.fail(
@@ -52,14 +50,14 @@ export async function runSuite(storybookUrl: string, options: Options): Promise<
             new Error(
               // Indent each line of the failure message so it lines up with how Mocha prints
               // the test names.
-              indent(formatFailureResult(result), 5).trimStart(),
+              indent(result.toString(), 5).trimStart(),
             ),
           );
         }
       });
 
       // Skip this test if the story is disabled. Equivalent to writing `it.skip(...)`.
-      if (!isEnabled(story)) {
+      if (!story.isEnabled) {
        test.pending = true;
       }
 

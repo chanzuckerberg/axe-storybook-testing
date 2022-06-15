@@ -1,7 +1,7 @@
 import playwright, { Browser, Page } from 'playwright';
 import type { Options } from '../Options';
-import * as ProcessedStory from '../ProcessedStory';
-import * as Result from '../Result';
+import ProcessedStory from '../ProcessedStory';
+import Result from '../Result';
 import * as AxePage from './AxePage';
 import * as StorybookPage from './StorybookPage';
 
@@ -60,20 +60,19 @@ export default class TestBrowser {
   /**
    * Get the Storybook stories from a prepared browser page.
    */
-  async getStories(): Promise<ProcessedStory.ProcessedStory[]> {
+  async getStories(): Promise<ProcessedStory[]> {
     const rawStories = await StorybookPage.getStories(this.page);
-    return ProcessedStory.fromStories(rawStories);
+    return rawStories.map((story) => new ProcessedStory(story));
   }
 
   /**
    * Run Axe for a story.
    */
-  async getResultForStory(story: ProcessedStory.ProcessedStory): Promise<Result.Result> {
-    const storyParams = story.parameters.axe;
-    await StorybookPage.showStory(this.page, story);
+  async getResultForStory(story: ProcessedStory): Promise<Result> {
+    await StorybookPage.showStory(this.page, story.id);
 
-    if (storyParams.waitForSelector) {
-      await this.page.waitForSelector(storyParams.waitForSelector, { state: 'attached' });
+    if (story.waitForSelector) {
+      await this.page.waitForSelector(story.waitForSelector, { state: 'attached' });
     }
 
     return Result.fromPage(this.page, story);
