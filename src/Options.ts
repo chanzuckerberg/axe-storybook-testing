@@ -2,6 +2,7 @@ import yargs from 'yargs';
 
 type Browsers = 'chromium' | 'webkit' | 'firefox';
 type FailingImpacts = 'minor' | 'moderate' | 'serious' | 'critical' | 'all';
+type Repoters = 'spec' | 'dot' | 'nyan' | 'tap' | 'landing' | 'list' | 'progress' | 'json' | 'json-stream' | 'min' | 'doc' | 'markdown' | 'xunit';
 
 const options = {
   browser: {
@@ -34,6 +35,12 @@ const options = {
     description: 'Filter by a component name regex pattern',
     type: 'string' as const,
   },
+  reporter: {
+    alias: 'r',
+    default: 'spec' as Repoters,
+    description: 'How to display test results. Can be any [built-in Mocha reporter](https://mochajs.org/#reporters)',
+    choices: ['spec', 'dot', 'nyan', 'tap', 'landing', 'list', 'progress', 'json', 'json-stream', 'min', 'doc', 'markdown', 'xunit'],
+  },
   'storybook-address': {
     alias: 's',
     description: 'Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored.',
@@ -61,6 +68,7 @@ export function parseOptions() {
     headless: argv.headless,
     failingImpacts: getFailingImpacts(argv['failing-impact']),
     pattern: new RegExp(argv.pattern),
+    reporter: argv.reporter,
     storybookAddress: argv.storybookAddress,
     timeout: argv.timeout,
   };

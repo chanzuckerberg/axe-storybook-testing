@@ -68,6 +68,7 @@ Option|Default|Values|Description
 `--failing-impact`|`all`|minor, moderate, serious, critical, or all|The lowest impact level that should be considered a failure
 `--headless`|`true`|boolean|Whether to run headlessly or not
 `--pattern`|`.*`|string regex|Only run tests that match a component name pattern
+`--reporter`|`spec`|spec, dot, nyan, tap, landing, list, progress, json, json-stream, min, doc, markdown, xunit|How to display the test run. Can be any [built-in Mocha reporter](https://mochajs.org/#reporters).
 `--storybook-address`||string|Storybook server address to test against instead of using a static build directory. If set, `--build-dir` will be ignored. e.g. `--storybook-address http://localhost:6006`
 `--timeout`|2000|number|Timeout (in milliseconds) for each test
 

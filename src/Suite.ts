@@ -15,7 +15,7 @@ export async function runSuite(storybookUrl: string, options: Options): Promise<
   const storiesByComponent = groupBy(stories, 'componentTitle');
 
   const mocha = new Mocha({
-    reporter: 'spec',
+    reporter: options.reporter,
     timeout: options.timeout,
   });
 

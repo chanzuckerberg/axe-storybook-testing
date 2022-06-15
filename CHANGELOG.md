@@ -3,6 +3,7 @@
 ## Unreleased
 
 - [breaking] Remove `--format` option
+- [new] Added `--reporter` option, which can be any [built-in Mocha reporter](https://mochajs.org/#reporters)
 - [fix] Mark `waitForSelector` as deprecated; use play functions instead (https://storybook.js.org/docs/react/writing-stories/play-function)
 - [maintenance] Upgrade all dependencies
 - [maintenance] Use MochaJS internally for running the "tests"
