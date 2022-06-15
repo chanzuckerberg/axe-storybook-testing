@@ -4,6 +4,7 @@ import type { StorybookStory } from './browser/StorybookPage';
 type Params = {
   skip: boolean;
   disabledRules: string[],
+  /** @deprecated */
   waitForSelector?: string,
 }
 
@@ -35,6 +36,7 @@ export default class ProcessedStory {
     return this.parameters.disabledRules;
   }
 
+  /** @deprecated */
   get waitForSelector() {
     return this.parameters.waitForSelector;
   }
