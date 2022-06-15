@@ -47,21 +47,24 @@ const waitForSelectorSchema = zod.optional(zod.string());
 function normalizeSkip(skip: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
     () => skipSchema.optional().parse(skip) || false,
-    createInvalidParamErrorMessage(rawStory, 'skip'),
+    rawStory,
+    'skip',
   );
 }
 
 function normalizeDisabledRules(disabledRules: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
     () => disabledRulesSchema.optional().parse(disabledRules) || [],
-    createInvalidParamErrorMessage(rawStory, 'disabledRules'),
+    rawStory,
+    'disabledRules',
   );
 }
 
 function normalizeWaitForSelector(waitForSelector: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
     () => waitForSelectorSchema.parse(waitForSelector),
-    createInvalidParamErrorMessage(rawStory, 'waitForSelector'),
+    rawStory,
+    'waitForSelector',
   );
 }
 
@@ -71,22 +74,14 @@ function normalizeWaitForSelector(waitForSelector: unknown, rawStory: StorybookS
  * enough information about what went wrong and where. Instead we'll catch errors from the parsers
  * and re-throw our own.
  */
-function parseWithFriendlyError<T>(parser: () => T, errorMessage: string): T {
+function parseWithFriendlyError<T>(parser: () => T, rawStory: StorybookStory, paramName: string): T {
   try {
     return parser();
   } catch (message) {
     if (message instanceof zod.ZodError) {
-      throw new TypeError(errorMessage);
+      throw new TypeError(`Invalid value for parameter "${paramName}" in component "${rawStory.kind}", story "${rawStory.name}"`);
     } else {
       throw message;
     }
   }
-}
-
-/**
- * Create useful error text for an invalid param. We provide info on what parameter failed, in
- * which component, and in what story. That way people can easily find their error.
- */
-function createInvalidParamErrorMessage(rawStory: StorybookStory, paramName: string): string {
-  return `Invalid value for parameter "${paramName}" in component "${rawStory.kind}", story "${rawStory.name}"`;
 }
