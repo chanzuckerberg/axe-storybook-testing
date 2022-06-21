@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 6.0.0 (2022-06-21)
+
 - [breaking] Remove `--format` option
 - [new] Add `--reporter` option, which can be any [built-in Mocha reporter](https://mochajs.org/#reporters)
 - [new] Add `--reporter-options` option, which is mostly useful with the xunit reporter
