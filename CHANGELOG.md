@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [fix] Prevent error messages being printed twice when using the `xunit` reporter.
+
 ## 6.0.0 (2022-06-21)
 
 - [breaking] Remove `--format` option

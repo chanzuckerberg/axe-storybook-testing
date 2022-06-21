@@ -46,15 +46,20 @@ export async function runSuite(storybookUrl: string, options: Options): Promise<
         if (result.isPassing(options.failingImpacts)) {
           assert.ok(true);
         } else {
-          assert.fail(
-            // Fail with an error instead of a string, to prevent some unnecessary stuff being
-            // printed to the console.
-            new Error(
-              // Indent each line of the failure message so it lines up with how Mocha prints
-              // the test names.
-              indent(result.toString(), 5).trimStart(),
-            ),
+          // Fail with an error instead of a string, to prevent some unnecessary stuff being
+          // printed to the console.
+          const error = new Error(
+            // Indent each line of the failure message so it lines up with how Mocha prints
+            // the test names.
+            indent(result.toString(), 5).trimStart(),
           );
+
+          // Null out the `stack` property. For some reason it contains the error message, so the
+          // xunit reporter prints the message twice (once for the message, and another time in the
+          // stack trace).
+          error.stack = undefined;
+
+          assert.fail(error);
         }
       });
 

@@ -30,7 +30,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
   1) delays
        Short Delay And Fail:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
@@ -41,13 +41,11 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
         - html: <button id=\\"hi\\" role=\\"wut-the-wut\\">hello world</button>
           summary: Fix all of the following:
                      Role must be one of the valid ARIA roles: wut-the-wut
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
   2) delays
        Medium Delay And Fail:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
@@ -58,9 +56,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
         - html: <button id=\\"hi\\" role=\\"wut-the-wut\\">hello world</button>
           summary: Fix all of the following:
                      Role must be one of the valid ARIA roles: wut-the-wut
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
   3) delays
        Long Delay And Timeout:
@@ -70,7 +66,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
   4) simple
        Failure No Discernible Text:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. button-name (Buttons must have discernible text)
 
@@ -85,13 +81,11 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
                      Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
   5) simple
        Failure No Discernible Text And Invalid Role:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
@@ -116,13 +110,11 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
                      Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
   6) simple
        Failure No Discernible Text And Invalid Role Disabled One Rule:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. button-name (Buttons must have discernible text)
 
@@ -137,9 +129,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
                      Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
 
 
@@ -177,7 +167,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
   1) simple
        Failure No Discernible Text:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. button-name (Buttons must have discernible text)
 
@@ -192,13 +182,11 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
                      Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
   2) simple
        Failure Color Contrast:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. color-contrast (Elements must have sufficient color contrast)
 
@@ -209,13 +197,11 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
         - html: <button style=\\"background-color: red; color: hotpink;\\">hello world</button>
           summary: Fix any of the following:
                      Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
   3) simple
        Failure No Discernible Text And Invalid Role:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
@@ -240,13 +226,11 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
                      Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
   4) simple
        Failure No Discernible Text And Invalid Role Disabled One Rule:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. button-name (Buttons must have discernible text)
 
@@ -261,9 +245,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
                      Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
 
 
@@ -301,7 +283,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
   1) delays
        Short Delay And Fail:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
@@ -312,13 +294,11 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
         - html: <button id=\\"hi\\" role=\\"wut-the-wut\\">hello world</button>
           summary: Fix all of the following:
                      Role must be one of the valid ARIA roles: wut-the-wut
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
   2) delays
        Medium Delay And Fail:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
@@ -329,9 +309,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
         - html: <button id=\\"hi\\" role=\\"wut-the-wut\\">hello world</button>
           summary: Fix all of the following:
                      Role must be one of the valid ARIA roles: wut-the-wut
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
   3) delays
        Long Delay And Timeout:
@@ -341,7 +319,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
   4) simple
        Failure No Discernible Text:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. button-name (Buttons must have discernible text)
 
@@ -356,13 +334,11 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
                      Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
   5) simple
        Failure Color Contrast:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. color-contrast (Elements must have sufficient color contrast)
 
@@ -373,13 +349,11 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
         - html: <button style=\\"background-color: red; color: hotpink;\\">hello world</button>
           summary: Fix any of the following:
                      Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
   6) simple
        Failure No Discernible Text And Invalid Role:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
@@ -404,13 +378,11 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
                      Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
   7) simple
        Failure No Discernible Text And Invalid Role Disabled One Rule:
-     Error: Detected the following accessibility violations!
+     Detected the following accessibility violations!
 
      1. button-name (Buttons must have discernible text)
 
@@ -425,9 +397,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
                      Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
-      at /build/Suite.js
-      at Generator.next (<anonymous>)
-      at fulfilled (/build/Suite.js)
+  
 
 
 
