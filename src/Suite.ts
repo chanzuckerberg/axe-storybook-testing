@@ -42,7 +42,7 @@ export async function runSuite(storybookUrl: string, options: Options): Promise<
       // Create a test for this story.
       const test = new Mocha.Test(story.name, async function () {
         if (story.timeout) {
-          // @ts-ignore -- Mocha's TS definitions don't properly type `this`
+          // @ts-expect-error -- Mocha's TS definitions don't properly type `this`
           this.timeout(story.timeout);
         }
         const result = await browser.getResultForStory(story);
