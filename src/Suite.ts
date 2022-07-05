@@ -2,7 +2,7 @@ import assert from 'assert';
 import indent from 'indent-string';
 import each from 'lodash/each';
 import groupBy from 'lodash/groupBy';
-import Mocha from 'mocha';
+import Mocha, { Runnable } from 'mocha';
 import type { Options } from './Options';
 import Browser from './browser';
 
@@ -40,7 +40,11 @@ export async function runSuite(storybookUrl: string, options: Options): Promise<
 
     stories.forEach((story) => {
       // Create a test for this story.
-      const test = new Mocha.Test(story.name, async () => {
+      const test = new Mocha.Test(story.name, async function () {
+        if (story.timeout) {
+          // @ts-ignore -- Mocha's TS definitions don't properly type `this`
+          this.timeout(story.timeout);
+        }
         const result = await browser.getResultForStory(story);
 
         if (result.isPassing(options.failingImpacts)) {
@@ -62,11 +66,7 @@ export async function runSuite(storybookUrl: string, options: Options): Promise<
           assert.fail(error);
         }
       });
-
-      if (story.timeout) {
-        test.timeout(story.timeout);
-      }
-
+  
       // Skip this test if the story is disabled. Equivalent to writing `it.skip(...)`.
       if (!story.isEnabled) {
         test.pending = true;

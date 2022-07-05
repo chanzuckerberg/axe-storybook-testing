@@ -66,6 +66,20 @@ export const MediumDelayAndFail = {
   },
 };
 
+export const MediumDelayAndShortTimeoutFail = {
+  render: () => (
+    <Delay
+      // Should be UNDER the test timeout, which is 2000ms by default.
+      delay={500}
+    >
+      <button id="hi">hello world</button>
+    </Delay>
+  ),
+  parameters: {
+    axe: { waitForSelector: '#hi', timeout: 100 },
+  },
+};
+
 export const LongDelayAndTimeout = {
   render: () => (
     <Delay
