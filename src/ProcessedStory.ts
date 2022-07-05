@@ -51,7 +51,7 @@ export default class ProcessedStory {
 const skipSchema = zod.boolean();
 const disabledRulesSchema = zod.array(zod.string());
 const waitForSelectorSchema = zod.optional(zod.string());
-const timeoutSchema = zod.number().gte(0).lte(60000);
+const timeoutSchema = zod.number().gte(0);
 
 function normalizeSkip(skip: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(

@@ -2,7 +2,7 @@ import assert from 'assert';
 import indent from 'indent-string';
 import each from 'lodash/each';
 import groupBy from 'lodash/groupBy';
-import Mocha, { Runnable } from 'mocha';
+import Mocha from 'mocha';
 import type { Options } from './Options';
 import Browser from './browser';
 
@@ -66,7 +66,7 @@ export async function runSuite(storybookUrl: string, options: Options): Promise<
           assert.fail(error);
         }
       });
-  
+
       // Skip this test if the story is disabled. Equivalent to writing `it.skip(...)`.
       if (!story.isEnabled) {
         test.pending = true;
