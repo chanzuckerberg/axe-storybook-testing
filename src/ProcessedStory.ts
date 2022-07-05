@@ -3,10 +3,11 @@ import type { StorybookStory } from './browser/StorybookPage';
 
 type Params = {
   skip: boolean;
-  disabledRules: string[],
+  disabledRules: string[];
+  timeout: number;
   /** @deprecated */
-  waitForSelector?: string,
-}
+  waitForSelector?: string;
+};
 
 /**
  * Story with normalized and custom properties needed by this project.
@@ -25,6 +26,7 @@ export default class ProcessedStory {
       skip: normalizeSkip(rawStory.parameters?.axe?.skip, rawStory),
       disabledRules: normalizeDisabledRules(rawStory.parameters?.axe?.disabledRules, rawStory),
       waitForSelector: normalizeWaitForSelector(rawStory.parameters?.axe?.waitForSelector, rawStory),
+      timeout: normalizeTimeout(rawStory.parameters?.axe?.timeout, rawStory),
     };
   }
 
@@ -36,6 +38,10 @@ export default class ProcessedStory {
     return this.parameters.disabledRules;
   }
 
+  get timeout() {
+    return this.parameters.timeout;
+  }
+
   /** @deprecated */
   get waitForSelector() {
     return this.parameters.waitForSelector;
@@ -45,6 +51,7 @@ export default class ProcessedStory {
 const skipSchema = zod.boolean();
 const disabledRulesSchema = zod.array(zod.string());
 const waitForSelectorSchema = zod.optional(zod.string());
+const timeoutSchema = zod.number().gte(0).lte(60000);
 
 function normalizeSkip(skip: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
@@ -59,6 +66,14 @@ function normalizeDisabledRules(disabledRules: unknown, rawStory: StorybookStory
     () => disabledRulesSchema.optional().parse(disabledRules) || [],
     rawStory,
     'disabledRules',
+  );
+}
+
+function normalizeTimeout(timeout: unknown, rawStory: StorybookStory) {
+  return parseWithFriendlyError(
+    () => timeoutSchema.optional().parse(timeout) || 0,
+    rawStory,
+    'timeout',
   );
 }
 

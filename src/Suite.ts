@@ -63,9 +63,13 @@ export async function runSuite(storybookUrl: string, options: Options): Promise<
         }
       });
 
+      if (story.timeout) {
+        test.timeout(story.timeout);
+      }
+
       // Skip this test if the story is disabled. Equivalent to writing `it.skip(...)`.
       if (!story.isEnabled) {
-       test.pending = true;
+        test.pending = true;
       }
 
       componentSuite.addTest(test);

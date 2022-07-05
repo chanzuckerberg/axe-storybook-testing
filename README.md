@@ -8,15 +8,19 @@ If there are any violations, information about them will be printed, and the com
 
 ## Table of contents
 
-- [Minimum requirements](#minimum-requirements)
-- [Installation](#installation)
-- [Usage](#usage)
-- [Options](#options)
-- [Configuring stories](#configuring-stories)
-  - [skip](#skip)
-  - [disabledRules](#disabledrules)
-- [Developing](#developing)
-- [Inspiration](#inspiration)
+- [@chanzuckerberg/axe-storybook-testing](#chanzuckerbergaxe-storybook-testing)
+  - [Table of contents](#table-of-contents)
+  - [Minimum requirements](#minimum-requirements)
+  - [Installation](#installation)
+  - [Usage](#usage)
+  - [Options](#options)
+  - [Configuring stories](#configuring-stories)
+    - [skip](#skip)
+    - [disabledRules](#disabledrules)
+    - [timeout](#timeout)
+    - [waitForSelector](#waitforselector)
+  - [Developing](#developing)
+  - [Inspiration](#inspiration)
 
 ## Minimum requirements
 
@@ -125,6 +129,20 @@ export const parameters = {
     disabledRules: ['select-name'],
   },
 };
+```
+
+### timeout
+
+Overrides global `--timeout` for this specific test
+
+```jsx
+// SomeComponent.stories.jsx
+
+SomeStory.parameters = {
+  axe: {
+    timeout: 5000,
+  },
+}
 ```
 
 ### waitForSelector
