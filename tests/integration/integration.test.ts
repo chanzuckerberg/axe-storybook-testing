@@ -61,6 +61,8 @@ function normalize(input: string) {
   /** webpack outputs can vary from build to build */
   const webpackBuildTimeVariations =
     /info => Using cached manager|Opening `[\w/]+?` failed \(\d\): Device not configured\n/g;
+  /** node show `process.` on some platforms and not others */
+  const nodeProcessInternalsVariation = /process\.(.*?\(node:internal)/
 
   return input
     .replace(specTimePattern, '')
@@ -68,5 +70,6 @@ function normalize(input: string) {
     .replace(lineNumbersPattern, '')
     .replace(storybookStartedFrame, '')
     .replace(webpackBuilt, 'webpack built')
-    .replace(webpackBuildTimeVariations, '');
+    .replace(webpackBuildTimeVariations, '')
+    .replace(nodeProcessInternalsVariation, '$1');
 }
