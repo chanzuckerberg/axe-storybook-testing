@@ -62,7 +62,7 @@ function normalize(input: string) {
   const webpackBuildTimeVariations =
     /info => Using cached manager|Opening `[\w/]+?` failed \(\d\): Device not configured\n/g;
   /** node show `process.` on some platforms and not others */
-  const nodeProcessInternalsVariation = /process\.(.*?\(node:internal)/
+  const nodeProcessInternalsVariation = /process\.(.*?\(node:internal)/;
 
   return input
     .replace(specTimePattern, '')
