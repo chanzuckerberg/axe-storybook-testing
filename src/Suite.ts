@@ -40,7 +40,11 @@ export async function runSuite(storybookUrl: string, options: Options): Promise<
 
     stories.forEach((story) => {
       // Create a test for this story.
-      const test = new Mocha.Test(story.name, async () => {
+      const test = new Mocha.Test(story.name, async function () {
+        if (story.timeout) {
+          // @ts-expect-error -- Mocha's TS definitions don't properly type `this`
+          this.timeout(story.timeout);
+        }
         const result = await browser.getResultForStory(story);
 
         if (result.isPassing(options.failingImpacts)) {
@@ -65,7 +69,7 @@ export async function runSuite(storybookUrl: string, options: Options): Promise<
 
       // Skip this test if the story is disabled. Equivalent to writing `it.skip(...)`.
       if (!story.isEnabled) {
-       test.pending = true;
+        test.pending = true;
       }
 
       componentSuite.addTest(test);

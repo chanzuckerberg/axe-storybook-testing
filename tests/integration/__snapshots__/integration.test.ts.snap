@@ -10,23 +10,24 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
     1) Short Delay And Fail
     ✔ Medium Delay And Pass
     2) Medium Delay And Fail
-    3) Long Delay And Timeout
+    3) Medium Delay And Short Timeout Fail
+    4) Long Delay And Timeout
 
   simple
     ✔ No Failures
-    4) Failure No Discernible Text
+    5) Failure No Discernible Text
     ✔ Failure Color Contrast
-    5) Failure No Discernible Text And Invalid Role
+    6) Failure No Discernible Text And Invalid Role
     - Failure Color Contrast Skipped
     - Failure No Discernible Text And Invalid Role Skipped
     ✔ Failure Color Contrast Disabled Rule
-    6) Failure No Discernible Text And Invalid Role Disabled One Rule
+    7) Failure No Discernible Text And Invalid Role Disabled One Rule
     ✔ Failure No Discernible Text And Invalid Role Disabled Rules
 
 
   6 passing
   2 pending
-  6 failing
+  7 failing
 
   1) delays
        Short Delay And Fail:
@@ -59,12 +60,18 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
   
 
   3) delays
+       Medium Delay And Short Timeout Fail:
+     Error: Timeout of 100ms exceeded. For async tests and hooks, ensure \\"done()\\" is called; if returning a Promise, ensure it resolves.
+      at listOnTimeout (node:internal/timers)
+      at processTimers (node:internal/timers)
+
+  4) delays
        Long Delay And Timeout:
      Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \\"done()\\" is called; if returning a Promise, ensure it resolves.
       at listOnTimeout (node:internal/timers)
       at processTimers (node:internal/timers)
 
-  4) simple
+  5) simple
        Failure No Discernible Text:
      Detected the following accessibility violations!
 
@@ -83,7 +90,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
   
 
-  5) simple
+  6) simple
        Failure No Discernible Text And Invalid Role:
      Detected the following accessibility violations!
 
@@ -112,7 +119,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
   
 
-  6) simple
+  7) simple
        Failure No Discernible Text And Invalid Role Disabled One Rule:
      Detected the following accessibility violations!
 
@@ -147,6 +154,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
     - Short Delay And Fail
     - Medium Delay And Pass
     - Medium Delay And Fail
+    - Medium Delay And Short Timeout Fail
     - Long Delay And Timeout
 
   simple
@@ -162,7 +170,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
 
   3 passing
-  7 pending
+  8 pending
   4 failing
 
   1) simple
@@ -263,23 +271,24 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
     1) Short Delay And Fail
     ✔ Medium Delay And Pass
     2) Medium Delay And Fail
-    3) Long Delay And Timeout
+    3) Medium Delay And Short Timeout Fail
+    4) Long Delay And Timeout
 
   simple
     ✔ No Failures
-    4) Failure No Discernible Text
-    5) Failure Color Contrast
-    6) Failure No Discernible Text And Invalid Role
+    5) Failure No Discernible Text
+    6) Failure Color Contrast
+    7) Failure No Discernible Text And Invalid Role
     - Failure Color Contrast Skipped
     - Failure No Discernible Text And Invalid Role Skipped
     ✔ Failure Color Contrast Disabled Rule
-    7) Failure No Discernible Text And Invalid Role Disabled One Rule
+    8) Failure No Discernible Text And Invalid Role Disabled One Rule
     ✔ Failure No Discernible Text And Invalid Role Disabled Rules
 
 
   5 passing
   2 pending
-  7 failing
+  8 failing
 
   1) delays
        Short Delay And Fail:
@@ -312,12 +321,18 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
   
 
   3) delays
+       Medium Delay And Short Timeout Fail:
+     Error: Timeout of 100ms exceeded. For async tests and hooks, ensure \\"done()\\" is called; if returning a Promise, ensure it resolves.
+      at listOnTimeout (node:internal/timers)
+      at processTimers (node:internal/timers)
+
+  4) delays
        Long Delay And Timeout:
      Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure \\"done()\\" is called; if returning a Promise, ensure it resolves.
       at listOnTimeout (node:internal/timers)
       at processTimers (node:internal/timers)
 
-  4) simple
+  5) simple
        Failure No Discernible Text:
      Detected the following accessibility violations!
 
@@ -336,7 +351,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
   
 
-  5) simple
+  6) simple
        Failure Color Contrast:
      Detected the following accessibility violations!
 
@@ -351,7 +366,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
   
 
-  6) simple
+  7) simple
        Failure No Discernible Text And Invalid Role:
      Detected the following accessibility violations!
 
@@ -380,7 +395,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      Element's default semantics were not overridden with role=\\"none\\" or role=\\"presentation\\"
   
 
-  7) simple
+  8) simple
        Failure No Discernible Text And Invalid Role Disabled One Rule:
      Detected the following accessibility violations!
 
