@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- [new] Allow each test to specify a timeout [#59](https://github.com/chanzuckerberg/axe-storybook-testing/pull/59)
 - [fix] Prevent the xunit reporter from printing an extra `undefined` with each failure.
 
 ## 6.0.1 (2022-06-21)
