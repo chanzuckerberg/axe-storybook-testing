@@ -58,10 +58,9 @@ export async function runSuite(storybookUrl: string, options: Options): Promise<
             indent(result.toString(), 5).trimStart(),
           );
 
-          // Null out the `stack` property. For some reason it contains the error message, so the
-          // xunit reporter prints the message twice (once for the message, and another time in the
-          // stack trace).
-          error.stack = undefined;
+          // Clear out the `stack` property. Otherwise the xunit reporter prints the error message
+          // twice. It seems that the stack trace includes the error message, for some reason.
+          error.stack = '';
 
           assert.fail(error);
         }

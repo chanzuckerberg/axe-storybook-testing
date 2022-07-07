@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [fix] Prevent the xunit reporter from printing an extra `undefined` with each failure.
+
 ## 6.0.1 (2022-06-21)
 
 - [fix] Prevent error messages being printed twice when using the `xunit` reporter.
