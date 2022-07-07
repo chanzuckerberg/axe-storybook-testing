@@ -11,7 +11,7 @@
     "storybook:axeServer": "axe-storybook --storybook-address http://localhost:6007"
   },
   "dependencies": {
-    "@babel/core": "^7.18.5",
+    "@babel/core": "^7.18.6",
     "babel-loader": "^8.2.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
