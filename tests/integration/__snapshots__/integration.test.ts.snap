@@ -5,6 +5,9 @@ exports[`fails only specific impact levels if specified 1`] = `
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
 [chromium] accessibility
+  autoTitles
+    ✔ No Failures
+
   delays
     ✔ Short Delay And Pass
     1) Short Delay And Fail
@@ -25,7 +28,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
     ✔ Failure No Discernible Text And Invalid Role Disabled Rules
 
 
-  6 passing
+  7 passing
   2 pending
   7 failing
 
@@ -149,6 +152,9 @@ exports[`filters the components to run 1`] = `
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
 [chromium] accessibility
+  autoTitles
+    - No Failures
+
   delays
     - Short Delay And Pass
     - Short Delay And Fail
@@ -170,7 +176,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
 
   3 passing
-  8 pending
+  9 pending
   4 failing
 
   1) simple
@@ -266,6 +272,9 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
 [chromium] accessibility
+  autoTitles
+    ✔ No Failures
+
   delays
     ✔ Short Delay And Pass
     1) Short Delay And Fail
@@ -286,7 +295,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
     ✔ Failure No Discernible Text And Invalid Role Disabled Rules
 
 
-  5 passing
+  6 passing
   2 pending
   8 failing
 
