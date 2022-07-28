@@ -108,6 +108,7 @@ SomeStory.parameters = {
 ### disabledRules
 
 Prevent axe-storybook-testing from running specific Axe rules on a story by using the `disabledRules` parameter.
+Array elements should be the name of [axe-core](https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md.) rules.
 
 ```jsx
 // SomeComponent.stories.jsx
@@ -133,7 +134,7 @@ export const parameters = {
 
 ### timeout
 
-Overrides global `--timeout` for this specific test
+Overrides global `--timeout` for this specific test. (in ms)
 
 ```jsx
 // SomeComponent.stories.jsx

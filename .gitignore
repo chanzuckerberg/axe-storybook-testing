@@ -56,4 +56,6 @@ storybook-static
 
 # Non-Yarn lockfiles
 package-lock.json
+
+# Editor Config directory
 .vscode
