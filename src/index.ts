@@ -2,11 +2,8 @@ import { parseOptions } from './Options';
 import { runWithServer } from './Server';
 import { runSuite } from './Suite';
 
-export type AxeParams = {
-  skip?: boolean;
-  disabledRules?: string[];
-  timeout?: number;
-};
+export type {AxeParams} from './ProcessedStory';
+
 /**
  * Run the accessibility tests and return a promise that is resolved or rejected based on whether
  * any violations were detected.
