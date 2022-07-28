@@ -56,3 +56,4 @@ storybook-static
 
 # Non-Yarn lockfiles
 package-lock.json
+.vscode

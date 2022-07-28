@@ -1,10 +1,8 @@
 import { z as zod } from 'zod';
 import type { StorybookStory } from './browser/StorybookPage';
+import type { AxeParams } from './index';
 
-type Params = {
-  skip: boolean;
-  disabledRules: string[];
-  timeout: number;
+type Params = AxeParams & {
   /** @deprecated */
   waitForSelector?: string;
 };
@@ -24,8 +22,14 @@ export default class ProcessedStory {
     this.id = rawStory.id;
     this.parameters = {
       skip: normalizeSkip(rawStory.parameters?.axe?.skip, rawStory),
-      disabledRules: normalizeDisabledRules(rawStory.parameters?.axe?.disabledRules, rawStory),
-      waitForSelector: normalizeWaitForSelector(rawStory.parameters?.axe?.waitForSelector, rawStory),
+      disabledRules: normalizeDisabledRules(
+        rawStory.parameters?.axe?.disabledRules,
+        rawStory,
+      ),
+      waitForSelector: normalizeWaitForSelector(
+        rawStory.parameters?.axe?.waitForSelector,
+        rawStory,
+      ),
       timeout: normalizeTimeout(rawStory.parameters?.axe?.timeout, rawStory),
     };
   }
@@ -61,7 +65,10 @@ function normalizeSkip(skip: unknown, rawStory: StorybookStory) {
   );
 }
 
-function normalizeDisabledRules(disabledRules: unknown, rawStory: StorybookStory) {
+function normalizeDisabledRules(
+  disabledRules: unknown,
+  rawStory: StorybookStory,
+) {
   return parseWithFriendlyError(
     () => disabledRulesSchema.optional().parse(disabledRules) || [],
     rawStory,
@@ -77,7 +84,10 @@ function normalizeTimeout(timeout: unknown, rawStory: StorybookStory) {
   );
 }
 
-function normalizeWaitForSelector(waitForSelector: unknown, rawStory: StorybookStory) {
+function normalizeWaitForSelector(
+  waitForSelector: unknown,
+  rawStory: StorybookStory,
+) {
   return parseWithFriendlyError(
     () => waitForSelectorSchema.parse(waitForSelector),
     rawStory,
@@ -91,12 +101,18 @@ function normalizeWaitForSelector(waitForSelector: unknown, rawStory: StorybookS
  * enough information about what went wrong and where. Instead we'll catch errors from the parsers
  * and re-throw our own.
  */
-function parseWithFriendlyError<T>(parser: () => T, rawStory: StorybookStory, paramName: string): T {
+function parseWithFriendlyError<T>(
+  parser: () => T,
+  rawStory: StorybookStory,
+  paramName: string,
+): T {
   try {
     return parser();
   } catch (message) {
     if (message instanceof zod.ZodError) {
-      throw new TypeError(`Invalid value for parameter "${paramName}" in component "${rawStory.kind}", story "${rawStory.name}"`);
+      throw new TypeError(
+        `Invalid value for parameter "${paramName}" in component "${rawStory.kind}", story "${rawStory.name}"`,
+      );
     } else {
       throw message;
     }
