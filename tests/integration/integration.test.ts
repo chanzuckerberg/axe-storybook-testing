@@ -22,24 +22,30 @@ it('outputs accessibility violation information for the demo app', (done) => {
 it('filters the components to run', (done) => {
   expect.assertions(2);
 
-  exec('yarn --cwd demo storybook:axeOnly --pattern simple', function (error, stdout) {
-    const normalizedStdout = normalize(stdout);
-    expect(error!.code).toEqual(1);
-    expect(normalizedStdout).toMatchSnapshot();
-    done();
-  });
+  exec(
+    'yarn --cwd demo storybook:axeOnly --pattern simple',
+    function (error, stdout) {
+      const normalizedStdout = normalize(stdout);
+      expect(error!.code).toEqual(1);
+      expect(normalizedStdout).toMatchSnapshot();
+      done();
+    },
+  );
   // @ts-expect-error Getting Mocha instead of Jest types...
 }, 120000);
 
 it('fails only specific impact levels if specified', (done) => {
   expect.assertions(2);
 
-  exec('yarn --cwd demo storybook:axeOnly --failing-impact critical', function (error, stdout) {
-    const normalizedStdout = normalize(stdout);
-    expect(error!.code).toEqual(1);
-    expect(normalizedStdout).toMatchSnapshot();
-    done();
-  });
+  exec(
+    'yarn --cwd demo storybook:axeOnly --failing-impact critical',
+    function (error, stdout) {
+      const normalizedStdout = normalize(stdout);
+      expect(error!.code).toEqual(1);
+      expect(normalizedStdout).toMatchSnapshot();
+      done();
+    },
+  );
   // @ts-expect-error Getting Mocha instead of Jest types...
 }, 120000);
 

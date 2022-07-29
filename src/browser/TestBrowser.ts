@@ -13,7 +13,10 @@ export default class TestBrowser {
    * Create a new test browser instance that knows how to use Storybook and Axe. Needed because
    * constructors can't be async.
    */
-  static async create(storybookUrl: string, options: Options): Promise<TestBrowser> {
+  static async create(
+    storybookUrl: string,
+    options: Options,
+  ): Promise<TestBrowser> {
     const browser = await playwright[options.browser].launch({
       headless: options.headless,
     });
@@ -72,7 +75,9 @@ export default class TestBrowser {
     await StorybookPage.showStory(this.page, story.id);
 
     if (story.waitForSelector) {
-      await this.page.waitForSelector(story.waitForSelector, { state: 'attached' });
+      await this.page.waitForSelector(story.waitForSelector, {
+        state: 'attached',
+      });
     }
 
     return Result.fromPage(this.page, story);

@@ -21,7 +21,10 @@ type Server = {
  * In particular there's a stories.json file that Storybook fetches, and it can't do that if we're
  * accessing it via file:// url.
  */
-export async function runWithServer<T>(options: Options, callback: (storybookUrl: string) => Promise<T>): Promise<T> {
+export async function runWithServer<T>(
+  options: Options,
+  callback: (storybookUrl: string) => Promise<T>,
+): Promise<T> {
   const server = await getServer(options);
   await server.start();
   const returnValue = await callback(server.storybookUrl);
@@ -43,7 +46,7 @@ async function getServer(options: Options): Promise<Server> {
   const localPath = getStaticStorybookPath(options);
   const port = await portfinder.getPortPromise();
   const host = '127.0.0.1';
-  const server = httpServer.createServer({root: localPath});
+  const server = httpServer.createServer({ root: localPath });
   const storybookUrl = `http://${host}:${port}`;
 
   function start(): Promise<void> {
@@ -60,7 +63,7 @@ async function getServer(options: Options): Promise<Server> {
     return Promise.resolve();
   }
 
-  return {storybookUrl, start, stop};
+  return { storybookUrl, start, stop };
 }
 
 function getStaticStorybookPath(options: Options): string {
@@ -68,7 +71,9 @@ function getStaticStorybookPath(options: Options): string {
   const iframeFilePath = path.join(storybookStaticPath, 'iframe.html');
 
   if (!fs.existsSync(iframeFilePath)) {
-    throw new Error(`Static Storybook not found at ${storybookStaticPath}. Have you called build-storybook first?`);
+    throw new Error(
+      `Static Storybook not found at ${storybookStaticPath}. Have you called build-storybook first?`,
+    );
   }
 
   return storybookStaticPath;

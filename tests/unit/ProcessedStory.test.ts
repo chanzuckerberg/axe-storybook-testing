@@ -1,7 +1,12 @@
 import ProcessedStory from '../../src/ProcessedStory';
 
 it('parses a raw Storybook story', () => {
-  const rawStory = { id: 'button--a', kind: 'button', name: 'a', parameters: {} };
+  const rawStory = {
+    id: 'button--a',
+    kind: 'button',
+    name: 'a',
+    parameters: {},
+  };
   const processedStory = new ProcessedStory(rawStory);
 
   expect(processedStory.name).toEqual('a');
@@ -38,7 +43,9 @@ describe('isEnabled', () => {
     const parameters = { axe: { skip: 666 } };
     const rawStory = { id: 'button--a', kind: 'button', name: 'a', parameters };
 
-    expect(() => new ProcessedStory(rawStory)).toThrow('Invalid value for parameter "skip" in component "button", story "a"');
+    expect(() => new ProcessedStory(rawStory)).toThrow(
+      'Invalid value for parameter "skip" in component "button", story "a"',
+    );
   });
 });
 
@@ -63,6 +70,8 @@ describe('disabledRules', () => {
     const parameters = { axe: { disabledRules: [666] } };
     const rawStory = { id: 'button--a', kind: 'button', name: 'a', parameters };
 
-    expect(() => new ProcessedStory(rawStory)).toThrow('Invalid value for parameter "disabledRules" in component "button", story "a"');
+    expect(() => new ProcessedStory(rawStory)).toThrow(
+      'Invalid value for parameter "disabledRules" in component "button", story "a"',
+    );
   });
 });

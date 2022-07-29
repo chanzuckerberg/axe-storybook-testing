@@ -9,7 +9,10 @@ import Browser from './browser';
 /**
  * Find Storybook stories and generate a test for each one.
  */
-export async function runSuite(storybookUrl: string, options: Options): Promise<number> {
+export async function runSuite(
+  storybookUrl: string,
+  options: Options,
+): Promise<number> {
   const suiteTitle = `[${options.browser}] accessibility`;
   const browser = await Browser.create(storybookUrl, options);
   const stories = await browser.getStories();

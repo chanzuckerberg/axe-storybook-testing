@@ -9,7 +9,12 @@ import { analyze } from './browser/AxePage';
  * These rules aren't useful/helpful in the context of Storybook stories, and we disable them when
  * running Axe.
  */
-const defaultDisabledRules = ['bypass', 'landmark-one-main', 'page-has-heading-one', 'region'];
+const defaultDisabledRules = [
+  'bypass',
+  'landmark-one-main',
+  'page-has-heading-one',
+  'region',
+];
 
 /**
  * Violations reported by Axe for a story.
@@ -40,7 +45,7 @@ export default class Result {
       return this.violations.length === 0;
     }
 
-    return this.violations.every(violation => {
+    return this.violations.every((violation) => {
       return !failingImpacts.includes(String(violation.impact));
     });
   }
@@ -62,7 +67,7 @@ function formatViolation(violation: AxeResult, index: number) {
 
        Check these nodes:
 
-       ${violation.nodes.map(formatNode).join('\n\n') }
+       ${violation.nodes.map(formatNode).join('\n\n')}
   `;
 }
 
@@ -70,7 +75,7 @@ function formatNode(node: NodeResult) {
   if (node.failureSummary) {
     return dedent`
       - html: ${node.html}
-        summary: ${indent(node.failureSummary, 11).trimStart() }
+        summary: ${indent(node.failureSummary, 11).trimStart()}
     `;
   }
   return `- html: ${node.html}`;

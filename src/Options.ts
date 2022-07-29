@@ -2,7 +2,20 @@ import yargs from 'yargs';
 
 type Browsers = 'chromium' | 'webkit' | 'firefox';
 type FailingImpacts = 'minor' | 'moderate' | 'serious' | 'critical' | 'all';
-type Repoters = 'spec' | 'dot' | 'nyan' | 'tap' | 'landing' | 'list' | 'progress' | 'json' | 'json-stream' | 'min' | 'doc' | 'markdown' | 'xunit';
+type Repoters =
+  | 'spec'
+  | 'dot'
+  | 'nyan'
+  | 'tap'
+  | 'landing'
+  | 'list'
+  | 'progress'
+  | 'json'
+  | 'json-stream'
+  | 'min'
+  | 'doc'
+  | 'markdown'
+  | 'xunit';
 
 const options = {
   browser: {
@@ -14,7 +27,8 @@ const options = {
   'build-dir': {
     alias: 'b',
     default: 'storybook-static',
-    description: 'Directory to load the static storybook built by build-storybook from',
+    description:
+      'Directory to load the static storybook built by build-storybook from',
     type: 'string' as const,
   },
   'failing-impact': {
@@ -26,7 +40,8 @@ const options = {
   headless: {
     alias: 'h',
     default: true,
-    description: 'Whether the browser should be ran "headfully" (non-headlessly)',
+    description:
+      'Whether the browser should be ran "headfully" (non-headlessly)',
     type: 'boolean' as const,
   },
   pattern: {
@@ -38,17 +53,34 @@ const options = {
   reporter: {
     alias: 'r',
     default: 'spec' as Repoters,
-    description: 'How to display test results. Can be any built-in Mocha reporter - https://mochajs.org/#reporters',
-    choices: ['spec', 'dot', 'nyan', 'tap', 'landing', 'list', 'progress', 'json', 'json-stream', 'min', 'doc', 'markdown', 'xunit'],
+    description:
+      'How to display test results. Can be any built-in Mocha reporter - https://mochajs.org/#reporters',
+    choices: [
+      'spec',
+      'dot',
+      'nyan',
+      'tap',
+      'landing',
+      'list',
+      'progress',
+      'json',
+      'json-stream',
+      'min',
+      'doc',
+      'markdown',
+      'xunit',
+    ],
   },
   'reporter-options': {
     alias: 'R',
-    description: 'Options to pass to the Mocha reporter (especially the xunit reporter) - https://mochajs.org/#reporters',
+    description:
+      'Options to pass to the Mocha reporter (especially the xunit reporter) - https://mochajs.org/#reporters',
     type: 'string' as const,
   },
   'storybook-address': {
     alias: 's',
-    description: 'Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored.',
+    description:
+      'Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored.',
     type: 'string' as const,
   },
   timeout: {

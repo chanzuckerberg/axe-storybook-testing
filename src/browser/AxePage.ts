@@ -13,7 +13,10 @@ export async function prepare(page: Page): Promise<void> {
 /**
  * Run axe-core on a page and return the results.
  */
-export function analyze(page: Page, disabledRules: string[] = []): Promise<AxeResults> {
+export function analyze(
+  page: Page,
+  disabledRules: string[] = [],
+): Promise<AxeResults> {
   return page.evaluate(runAxe, getOptions({}, disabledRules));
 }
 
@@ -53,7 +56,7 @@ function addPromiseQueue() {
     promiseCreator: () => Promise<T>;
     resolve: (value: T | PromiseLike<T>) => void;
     reject: (reason?: unknown) => void;
-  }
+  };
 
   /**
    * Queue of promises, which forces any promises added to it to run one at a time.
@@ -86,17 +89,22 @@ function addPromiseQueue() {
      */
     function dequeue() {
       // If we're already working on a promise, do nothing.
-      if (working) { return; }
+      if (working) {
+        return;
+      }
 
       const nextPromise = pending.shift();
 
       // If there are no promises to work on, do nothing.
-      if (!nextPromise) { return; }
+      if (!nextPromise) {
+        return;
+      }
 
       working = true;
 
       // Execute the promise. When it's done, start working on the next.
-      nextPromise.promiseCreator()
+      nextPromise
+        .promiseCreator()
         .then(nextPromise.resolve, nextPromise.reject)
         .finally(() => {
           working = false;

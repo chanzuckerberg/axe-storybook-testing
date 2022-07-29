@@ -30,7 +30,9 @@ export const ShortDelayAndPass = {
 export const ShortDelayAndFail = {
   render: () => (
     <Delay delay={10}>
-      <button id="hi" role="wut-the-wut">hello world</button>
+      <button id="hi" role="wut-the-wut">
+        hello world
+      </button>
     </Delay>
   ),
   parameters: {
@@ -58,7 +60,9 @@ export const MediumDelayAndFail = {
       // Should be UNDER the test timeout, which is 2000ms by default.
       delay={500}
     >
-      <button id="hi" role="wut-the-wut">hello world</button>
+      <button id="hi" role="wut-the-wut">
+        hello world
+      </button>
     </Delay>
   ),
   parameters: {

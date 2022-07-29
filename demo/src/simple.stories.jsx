@@ -7,8 +7,16 @@ export default {
 
 export const NoFailures = { render: () => <button>hello world</button> };
 export const FailureNoDiscernibleText = { render: () => <button></button> };
-export const FailureColorContrast = { render: () => <button style={{ backgroundColor: 'red', color: 'hotpink' }}>hello world</button> };
-export const FailureNoDiscernibleTextAndInvalidRole = { render: () => <button role="wut-the-wut"></button> };
+export const FailureColorContrast = {
+  render: () => (
+    <button style={{ backgroundColor: 'red', color: 'hotpink' }}>
+      hello world
+    </button>
+  ),
+};
+export const FailureNoDiscernibleTextAndInvalidRole = {
+  render: () => <button role="wut-the-wut"></button>,
+};
 
 export const FailureColorContrastSkipped = {
   ...FailureColorContrast,

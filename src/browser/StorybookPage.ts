@@ -8,7 +8,7 @@ import dedent from 'ts-dedent';
 // Functions we pass to `page.evaluate` execute in a browser environment, and can access window.
 // eslint-disable-next-line no-var
 declare var window: {
-  __STORYBOOK_PREVIEW__: PreviewWeb<AnyFramework>
+  __STORYBOOK_PREVIEW__: PreviewWeb<AnyFramework>;
 };
 
 /**
@@ -20,7 +20,10 @@ export type StorybookStory = Pick<Story, 'id' | 'kind' | 'name' | 'parameters'>;
  * Get the list of stories from a static storybook build.
  */
 export async function getStories(page: Page): Promise<StorybookStory[]> {
-  const rawStories = await pTimeout(page.evaluate(fetchStoriesFromWindow), 10_000).catch(e => {
+  const rawStories = await pTimeout(
+    page.evaluate(fetchStoriesFromWindow),
+    10_000,
+  ).catch((e) => {
     throw new Error(dedent`
       Stories could not be retrieved from storybook!
 
@@ -62,7 +65,9 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
     // serializable or not.
     //
     // See https://github.com/chanzuckerberg/axe-storybook-testing/issues/44 for a bug caused by this.
-    function pickOnlyNecessaryAndSerializableStoryProperties(story: Story): StorybookStory {
+    function pickOnlyNecessaryAndSerializableStoryProperties(
+      story: Story,
+    ): StorybookStory {
       return {
         id: story.id,
         name: story.name,
@@ -73,7 +78,9 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
       };
     }
 
-    return storyStore.raw().map(pickOnlyNecessaryAndSerializableStoryProperties);
+    return storyStore
+      .raw()
+      .map(pickOnlyNecessaryAndSerializableStoryProperties);
   });
 }
 
@@ -90,7 +97,9 @@ function emitSetCurrentStory(id: string) {
   const storybookPreview = window.__STORYBOOK_PREVIEW__;
 
   if (!storybookPreview) {
-    return Promise.reject(new Error("Storybook doesn't seem to be running on the page"));
+    return Promise.reject(
+      new Error("Storybook doesn't seem to be running on the page"),
+    );
   }
 
   storybookPreview.channel.emit('setCurrentStory', {
