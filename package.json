@@ -16,7 +16,8 @@
   "main": "build/index.js",
   "files": [
     "bin",
-    "build"
+    "build",
+    "index.d.ts"
   ],
   "publishConfig": {
     "access": "public"
