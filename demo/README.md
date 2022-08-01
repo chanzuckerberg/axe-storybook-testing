@@ -11,7 +11,4 @@ Run this demo app's storybook by
 
 ## axe-storybook-testing
 
-Run axe-storybook-testing on this demo app by
-
-1. Link axe-storybook-testing - run `yarn demo:link` from the project's root directory.
-1. Run axe-storybook-testing - run `yarn demo` from the project's root directory.
+Run axe-storybook-testing on this demo app by running `yarn demo` from this project's root directory (one level up from this one).

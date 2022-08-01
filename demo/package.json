@@ -17,6 +17,7 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
+    "@chanzuckerberg/axe-storybook-testing": "file:./..",
     "@storybook/addon-a11y": "^6.5.9",
     "@storybook/addon-essentials": "^6.5.9",
     "@storybook/addon-postcss": "^2.0.0",
