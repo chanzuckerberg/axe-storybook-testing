@@ -169,6 +169,24 @@ SomeStory.play = async () => {
 };
 ```
 
+## Type Safety
+axe-storybook-testing provides Typescript types for the story parameters listed above.
+Story parameters can be type checked by augmenting Storybook's `Parameter` type like so:
+
+```ts
+// SomeTypescriptModule.d.ts
+
+import type {AxeParams} from '@chanzuckerberg/axe-storybook-testing';
+...
+declare module '@storybook/react' {
+  // Augment Storybook's definition of Parameters so it contains valid options for axe-storybook-testing
+  interface Parameters {
+    axe?: AxeParams;
+  }
+}
+...
+```
+
 ## Developing
 
 If you want to work on this project or contribute back to it, see our [wiki entry on Development setup](https://github.com/chanzuckerberg/axe-storybook-testing/wiki/Development-setup).
