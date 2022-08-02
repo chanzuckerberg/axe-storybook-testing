@@ -2,7 +2,7 @@
 
 [![Package Status](https://img.shields.io/npm/v/@chanzuckerberg/axe-storybook-testing.svg)](https://www.npmjs.com/package/@chanzuckerberg/axe-storybook-testing) ![Tests](https://github.com/chanzuckerberg/axe-storybook-testing/workflows/Tests/badge.svg)
 
-Command line interface for running accessibility tests (using [axe-core](https://github.com/dequelabs/axe-core)) on your [Storybook stories](https://storybook.js.org/docs/react/api/csf).
+Command line interface for running [axe-core](https://github.com/dequelabs/axe-core) accessibility tests on your [Storybook stories](https://storybook.js.org/docs/react/api/csf).
 
 If there are any violations, information about them will be printed, and the command will exit with a non-zero exit code. That way, you can use this as automated accessibility tests on CI.
 
@@ -14,11 +14,12 @@ If there are any violations, information about them will be printed, and the com
   - [Installation](#installation)
   - [Usage](#usage)
   - [Options](#options)
-  - [Configuring stories](#configuring-stories)
+  - [Story parameters](#story-parameters)
     - [skip](#skip)
     - [disabledRules](#disabledrules)
     - [timeout](#timeout)
     - [waitForSelector](#waitforselector)
+  - [TypeScript](#typescript)
   - [Developing](#developing)
   - [Inspiration](#inspiration)
 
@@ -40,9 +41,11 @@ yarn add --dev @chanzuckerberg/axe-storybook-testing
 
 ## Usage
 
-This package works by analyzing the static files that Storybook produces. Therefore, Storybook's build command must be ran first.
+To use:
+1. Create a static Storybook build. Normally you'll do this with the [build-storybook command](https://storybook.js.org/docs/react/api/cli-options#build-storybook).
+2. Run `axe-storybook`, which will analyze the static build.
 
-To make this as easy as possible to use, we recommend adding a script to your package.json that builds Storybook and then executes the `axe-storybook` command.
+To make this as easy as possible to use, we recommend adding a script to your package.json that does this in one step.
 
 ```jsonc
 // In package.json
@@ -63,21 +66,21 @@ yarn storybook:axe
 
 ## Options
 
-The command-line interface has the following options.
+The command-line interface has the following options:
 
-Option|Default|Values|Description
--|-|-|-
-`--browser`|`chromium`|chromium, firefox, or webkit|Which browser to run the tests in
-`--build-dir`|`storybook-static`|string|Storybook static build directory
-`--failing-impact`|`all`|minor, moderate, serious, critical, or all|The lowest impact level that should be considered a failure
-`--headless`|`true`|boolean|Whether to run headlessly or not
-`--pattern`|`.*`|string regex|Only run tests that match a component name pattern
-`--reporter`|`spec`|spec, dot, nyan, tap, landing, list, progress, json, json-stream, min, doc, markdown, xunit|How to display the test run. Can be any [built-in Mocha reporter](https://mochajs.org/#reporters).
-`--reporter-options`||string|Options to pass to the mocha reporter. Especially useful with the xunit reporter - e.g. `--reporter-options output=./filename.xml`
-`--storybook-address`||string|Storybook server address to test against instead of using a static build directory. If set, `--build-dir` will be ignored. e.g. `--storybook-address http://localhost:6006`
-`--timeout`|2000|number|Timeout (in milliseconds) for each test
+Option               |Default           |Values                                    |Description
+---------------------|------------------|------------------------------------------|-
+`--browser`          |`chromium`        |chromium, firefox, webkit                 |Which browser to run the tests in
+`--build-dir`        |`storybook-static`|path                                      |Storybook static build directory
+`--failing-impact`   |`all`             |all, minor, moderate, serious, critical   |The lowest impact level that should be considered a failure
+`--headless`         |`true`            |boolean                                   |Whether to run headlessly or not
+`--pattern`          |`.*`              |regex pattern                             |Only run tests that match a component name pattern
+`--reporter`         |`spec`            |spec, dot, nyan, tap, landing, list, progress, json, json-stream, min, doc, markdown, xunit|How to display the test run. Can be any [built-in Mocha reporter](https://mochajs.org/#reporters).
+`--reporter-options` |                  |string                                    |Options to pass to the mocha reporter. Especially useful with the xunit reporter - e.g. `--reporter-options output=./filename.xml`
+`--storybook-address`|                  |url                                       |Storybook server address to test against instead of using a static build directory. If set, `--build-dir` will be ignored. e.g. `--storybook-address http://localhost:6006`
+`--timeout`          |2000              |number                                    |Timeout (in milliseconds) for each test
 
-For example, to run non-headlessly on Firefox, you would run
+For example, to run non-headlessly in Firefox, you would run
 
 ```sh
 # If using npm
@@ -87,7 +90,7 @@ npm run storybook:axe -- --headless false --browser firefox
 yarn storybook:axe --headless false --browser firefox
 ```
 
-## Configuring stories
+## Story parameters
 
 Stories can use parameters to configure how axe-storybook-testing handles them.
 
@@ -98,9 +101,11 @@ Prevent axe-storybook-testing from running a story by using the `skip` parameter
 ```jsx
 // SomeComponent.stories.jsx
 
-SomeStory.parameters = {
-  axe: {
-    skip: true,
+export const SomeStory = {
+  parameters: {
+    axe: {
+      skip: true,
+    },
   },
 };
 ```
@@ -112,10 +117,12 @@ Prevent axe-storybook-testing from running specific Axe rules on a story by usin
 ```jsx
 // SomeComponent.stories.jsx
 
-SomeStory.parameters = {
-  axe: {
-    disabledRules: ['select-name'],
-  },
+export const SomeStory = {
+  parameters: {
+    axe: {
+      disabledRules: ['select-name'],
+    },
+  }.
 };
 ```
 
@@ -138,11 +145,13 @@ Overrides global `--timeout` for this specific test
 ```jsx
 // SomeComponent.stories.jsx
 
-SomeStory.parameters = {
-  axe: {
-    timeout: 5000,
+export const SomeStory = {
+  parameters: {
+    axe: {
+      timeout: 5000,
+    },
   },
-}
+};
 ```
 
 ### waitForSelector
@@ -151,15 +160,17 @@ SomeStory.parameters = {
 
 Legacy way of waiting for a selector before running Axe.
 
-Instead, use a Storybook [play function](https://storybook.js.org/docs/react/writing-stories/play-function) to do the same thing.
+Now we recommend using a Storybook [play function](https://storybook.js.org/docs/react/writing-stories/play-function) to do the same thing.
 
 ```jsx
 // SomeComponent.stories.jsx
 
 // Old, deprecated way.
-SomeStory.parameters = {
-  axe: {
-    waitForSelector: '#some-component-selector',
+export const SomeStory = {
+  parameters: {
+    axe: {
+      waitForSelector: '#some-component-selector',
+    },
   },
 };
 
@@ -169,22 +180,36 @@ SomeStory.play = async () => {
 };
 ```
 
-## Type Safety
-axe-storybook-testing provides Typescript types for the story parameters listed above.
-Story parameters can be type checked by augmenting Storybook's `Parameter` type like so:
+## TypeScript
+
+axe-storybook-testing provides TypeScript types for the story parameters listed above.
+Story parameters can be type checked by augmenting Storybook's `Parameter` type:
 
 ```ts
-// SomeTypescriptModule.d.ts
+// overrides.d.ts
 
-import type {AxeParams} from '@chanzuckerberg/axe-storybook-testing';
-...
+import type { AxeParams } from '@chanzuckerberg/axe-storybook-testing';
+
 declare module '@storybook/react' {
   // Augment Storybook's definition of Parameters so it contains valid options for axe-storybook-testing
   interface Parameters {
     axe?: AxeParams;
   }
 }
-...
+```
+
+Annotate your stories with the `StoryObj` type, and your parameters will be type-checked!
+
+```ts
+// SomeComponent.stories.ts
+
+export const SomeStory: StoryObj<Args> = {
+  parameters: {
+    axe: {
+      timeout: 5000,
+    },
+  },
+};
 ```
 
 ## Developing
