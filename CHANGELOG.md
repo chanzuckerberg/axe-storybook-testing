@@ -1,7 +1,9 @@
 # Changelog
 
 ## Unreleased
+
 - [new] Export types for Story parameters
+- [maintenance] Update all dependencies
 
 ## 6.1.0 (2022-07-07)
 
