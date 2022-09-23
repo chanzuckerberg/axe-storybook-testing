@@ -2,7 +2,7 @@ import yargs from 'yargs';
 
 type Browsers = 'chromium' | 'webkit' | 'firefox';
 type FailingImpacts = 'minor' | 'moderate' | 'serious' | 'critical' | 'all';
-type Repoters =
+type Reporters =
   | 'spec'
   | 'dot'
   | 'nyan'
@@ -52,7 +52,7 @@ const options = {
   },
   reporter: {
     alias: 'r',
-    default: 'spec' as Repoters,
+    default: 'spec' as Reporters,
     description:
       'How to display test results. Can be any built-in Mocha reporter - https://mochajs.org/#reporters',
     choices: [
