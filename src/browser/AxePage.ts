@@ -16,8 +16,9 @@ export async function prepare(page: Page): Promise<void> {
 export function analyze(
   page: Page,
   disabledRules: string[] = [],
+  runOptions: RunOptions = {},
 ): Promise<AxeResults> {
-  return page.evaluate(runAxe, getOptions({}, disabledRules));
+  return page.evaluate(runAxe, getRunOptions(runOptions, disabledRules));
 }
 
 function runAxe(options: RunOptions): Promise<AxeResults> {
@@ -26,13 +27,24 @@ function runAxe(options: RunOptions): Promise<AxeResults> {
   return window.axeQueue.add(() => window.axe.run(document, options));
 }
 
-function getOptions(options: RunOptions, disabledRules: string[] = []) {
+export function getRunOptions(
+  options: RunOptions,
+  disabledRules: string[] = [],
+): RunOptions {
   const newRules: RuleObject = options.rules || {};
 
   for (const rule of disabledRules) {
     newRules[rule] = { enabled: false };
   }
 
+  /**
+   * TODO-ah: if `options.rules` AND disabledRules exist, we should:
+   * - merge the two together (preserves API and call signatures)
+   * - overwrite any rules from `runOptions` with those based on defaults and `disabledRules`
+   * Also:
+   * - throw a warning in case of deprecation approach?
+   * - throw an error in case of deprecation approach?
+   *  */
   return {
     ...options,
     rules: newRules,

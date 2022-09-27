@@ -1,9 +1,11 @@
+import type { RunOptions } from 'axe-core';
 import { z as zod } from 'zod';
 import type { StorybookStory } from './browser/StorybookPage';
 
 type Params = {
-  skip: boolean;
   disabledRules: string[];
+  runOptions?: RunOptions;
+  skip: boolean;
   timeout: number;
   /** @deprecated */
   waitForSelector?: string;
@@ -33,17 +35,31 @@ export default class ProcessedStory {
         rawStory,
       ),
       timeout: normalizeTimeout(rawStory.parameters?.axe?.timeout, rawStory),
+      runOptions: normalizeRunOptions(
+        rawStory.parameters?.axe?.runOptions,
+        rawStory,
+      ),
     };
   }
 
+  // Determines if the test should be skipped in runSuite()
   get isEnabled() {
     return !this.parameters.skip;
   }
 
+  // Run option for rules to disable in a given story
+  // TODO: mark as deprecated and suggest using `runOptions` instead?
   get disabledRules() {
     return this.parameters.disabledRules;
   }
 
+  // All optional run options used for a given story
+  // @see https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter
+  get runOptions() {
+    return this.parameters.runOptions;
+  }
+
+  // Timeout override for a test triggered in runSuite()
   get timeout() {
     return this.parameters.timeout;
   }
@@ -58,6 +74,35 @@ const skipSchema = zod.boolean();
 const disabledRulesSchema = zod.array(zod.string());
 const waitForSelectorSchema = zod.optional(zod.string());
 const timeoutSchema = zod.number().gte(0);
+const runOptionsSchema = zod.object({
+  runOnly: zod.optional(
+    zod.object({
+      type: zod.enum(['rule', 'rules', 'tag', 'tags']),
+      values: zod.array(zod.string()),
+    }),
+  ),
+  rules: zod.optional(
+    zod.object({}).catchall(
+      zod.object({
+        enabled: zod.boolean(),
+      }),
+    ),
+  ),
+  reporter: zod.optional(zod.enum(['v1', 'v2', 'raw', 'raw-env', 'no-passes'])),
+  resultTypes: zod.optional(
+    zod.array(zod.enum(['inapplicable', 'passes', 'incomplete', 'violations'])),
+  ),
+  selector: zod.optional(zod.boolean()),
+  ancestry: zod.optional(zod.boolean()),
+  xpath: zod.optional(zod.boolean()),
+  absolutePaths: zod.optional(zod.boolean()),
+  iframes: zod.optional(zod.boolean()),
+  elementRef: zod.optional(zod.boolean()),
+  frameWaitTime: zod.optional(zod.number().gte(0)),
+  preload: zod.optional(zod.boolean()),
+  performanceTimer: zod.optional(zod.boolean()),
+  pingWaitTime: zod.optional(zod.number().gte(0)),
+});
 
 function normalizeSkip(skip: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
@@ -83,6 +128,14 @@ function normalizeTimeout(timeout: unknown, rawStory: StorybookStory) {
     () => timeoutSchema.optional().parse(timeout) || 0,
     rawStory,
     'timeout',
+  );
+}
+
+function normalizeRunOptions(runOptions: unknown, rawStory: StorybookStory) {
+  return parseWithFriendlyError(
+    () => runOptionsSchema.optional().parse(runOptions) || {},
+    rawStory,
+    'runOptions',
   );
 }
 

@@ -75,3 +75,51 @@ describe('disabledRules', () => {
     );
   });
 });
+
+describe('runOptions', () => {
+  it('is an empty object when runOptions parameter is missing', () => {
+    const parameters = { axe: {} };
+    const rawStory = { id: 'button--a', kind: 'button', name: 'a', parameters };
+    const processedStory = new ProcessedStory(rawStory);
+
+    expect(processedStory.runOptions).toEqual({});
+  });
+
+  it('can parse fully formatted rule entries in runOptions', () => {
+    const parameters = {
+      axe: { runOptions: { rules: { 'color-contrast': { enabled: true } } } },
+    };
+    const rawStory = { id: 'button--a', kind: 'button', name: 'a', parameters };
+    const processedStory = new ProcessedStory(rawStory);
+
+    expect(processedStory.runOptions).toEqual({
+      rules: { 'color-contrast': { enabled: true } },
+    });
+  });
+
+  it('preserves both disabledRules and any rules in runOptions.rules', () => {
+    const parameters = {
+      axe: {
+        disabledRules: ['color-contrast'],
+        runOptions: { rules: { 'color-contrast': { enabled: true } } },
+      },
+    };
+    const rawStory = { id: 'button--a', kind: 'button', name: 'a', parameters };
+    const processedStory = new ProcessedStory(rawStory);
+
+    expect(processedStory.runOptions).toEqual({
+      rules: { 'color-contrast': { enabled: true } },
+    });
+    expect(processedStory.disabledRules).toEqual(['color-contrast']);
+  });
+
+  it('throws an error if a key does not conform to the documented options shape', () => {
+    // @see https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter
+    const parameters = { axe: { runOptions: { selector: 'invalid' } } };
+    const rawStory = { id: 'button--a', kind: 'button', name: 'a', parameters };
+
+    expect(() => new ProcessedStory(rawStory)).toThrow(
+      'Invalid value for parameter "runOptions" in component "button", story "a"',
+    );
+  });
+});

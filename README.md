@@ -42,6 +42,7 @@ yarn add --dev @chanzuckerberg/axe-storybook-testing
 ## Usage
 
 To use:
+
 1. Create a static Storybook build. Normally you'll do this with the [build-storybook command](https://storybook.js.org/docs/react/api/cli-options#build-storybook).
 2. Run `axe-storybook`, which will analyze the static build.
 
@@ -68,17 +69,17 @@ yarn storybook:axe
 
 The command-line interface has the following options:
 
-Option               |Default           |Values                                    |Description
----------------------|------------------|------------------------------------------|-
-`--browser`          |`chromium`        |chromium, firefox, webkit                 |Which browser to run the tests in
-`--build-dir`        |`storybook-static`|path                                      |Storybook static build directory
-`--failing-impact`   |`all`             |all, minor, moderate, serious, critical   |The lowest impact level that should be considered a failure
-`--headless`         |`true`            |boolean                                   |Whether to run headlessly or not
-`--pattern`          |`.*`              |regex pattern                             |Only run tests that match a component name pattern
-`--reporter`         |`spec`            |spec, dot, nyan, tap, landing, list, progress, json, json-stream, min, doc, markdown, xunit|How to display the test run. Can be any [built-in Mocha reporter](https://mochajs.org/#reporters).
-`--reporter-options` |                  |string                                    |Options to pass to the mocha reporter. Especially useful with the xunit reporter - e.g. `--reporter-options output=./filename.xml`
-`--storybook-address`|                  |url                                       |Storybook server address to test against instead of using a static build directory. If set, `--build-dir` will be ignored. e.g. `--storybook-address http://localhost:6006`
-`--timeout`          |2000              |number                                    |Timeout (in milliseconds) for each test
+| Option                | Default            | Values                                                                                      | Description                                                                                                                                                                 |
+| --------------------- | ------------------ | ------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--browser`           | `chromium`         | chromium, firefox, webkit                                                                   | Which browser to run the tests in                                                                                                                                           |
+| `--build-dir`         | `storybook-static` | path                                                                                        | Storybook static build directory                                                                                                                                            |
+| `--failing-impact`    | `all`              | all, minor, moderate, serious, critical                                                     | The lowest impact level that should be considered a failure                                                                                                                 |
+| `--headless`          | `true`             | boolean                                                                                     | Whether to run headlessly or not                                                                                                                                            |
+| `--pattern`           | `.*`               | regex pattern                                                                               | Only run tests that match a component name pattern                                                                                                                          |
+| `--reporter`          | `spec`             | spec, dot, nyan, tap, landing, list, progress, json, json-stream, min, doc, markdown, xunit | How to display the test run. Can be any [built-in Mocha reporter](https://mochajs.org/#reporters).                                                                          |
+| `--reporter-options`  |                    | string                                                                                      | Options to pass to the mocha reporter. Especially useful with the xunit reporter - e.g. `--reporter-options output=./filename.xml`                                          |
+| `--storybook-address` |                    | url                                                                                         | Storybook server address to test against instead of using a static build directory. If set, `--build-dir` will be ignored. e.g. `--storybook-address http://localhost:6006` |
+| `--timeout`           | 2000               | number                                                                                      | Timeout (in milliseconds) for each test                                                                                                                                     |
 
 For example, to run non-headlessly in Firefox, you would run
 
@@ -152,6 +153,24 @@ export const SomeStory = {
     },
   },
 };
+```
+
+### runOptions
+
+Allows use of any of the available [`axe.run`](https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter) options. See the link for more details. When using `runOptions.rules` in combination with `disabledRules`, **`disabledRules` will always take precedent.**
+
+```jsx
+
+export const SomeStory = {
+  parameters: {
+    axe: {
+      runOptions: {
+        preload: true,
+        selectors: true,
+        ...
+      }
+    }
+  };
 ```
 
 ### waitForSelector
