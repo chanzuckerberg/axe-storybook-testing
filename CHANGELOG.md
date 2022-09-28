@@ -4,6 +4,7 @@
 
 - [new] Export types for Story parameters
 - [maintenance] Update all dependencies
+- [new] Allow use of axe runOptions for stories [#65]https://github.com/chanzuckerberg/axe-storybook-testing/pull/65)
 
 ## 6.1.0 (2022-07-07)
 

@@ -25,7 +25,7 @@ export default class Result {
    */
   static async fromPage(page: Page, story: ProcessedStory) {
     const disabledRules = [...defaultDisabledRules, ...story.disabledRules];
-    const axeResults = await analyze(page, disabledRules);
+    const axeResults = await analyze(page, disabledRules, story.runOptions);
     return new Result(axeResults.violations);
   }
 

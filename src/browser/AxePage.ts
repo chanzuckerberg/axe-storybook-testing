@@ -16,8 +16,9 @@ export async function prepare(page: Page): Promise<void> {
 export function analyze(
   page: Page,
   disabledRules: string[] = [],
+  runOptions: RunOptions = {},
 ): Promise<AxeResults> {
-  return page.evaluate(runAxe, getOptions({}, disabledRules));
+  return page.evaluate(runAxe, getRunOptions(runOptions, disabledRules));
 }
 
 function runAxe(options: RunOptions): Promise<AxeResults> {
@@ -26,7 +27,10 @@ function runAxe(options: RunOptions): Promise<AxeResults> {
   return window.axeQueue.add(() => window.axe.run(document, options));
 }
 
-function getOptions(options: RunOptions, disabledRules: string[] = []) {
+export function getRunOptions(
+  options: RunOptions,
+  disabledRules: string[] = [],
+): RunOptions {
   const newRules: RuleObject = options.rules || {};
 
   for (const rule of disabledRules) {
