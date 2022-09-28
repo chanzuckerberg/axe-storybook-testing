@@ -42,24 +42,31 @@ export default class ProcessedStory {
     };
   }
 
-  // Determines if the test should be skipped in runSuite()
+  /**
+   * Determines if the test should be skipped in runSuite()
+   */
   get isEnabled() {
     return !this.parameters.skip;
   }
 
-  // Run option for rules to disable in a given story
-  // TODO: mark as deprecated and suggest using `runOptions` instead?
+  /**
+   * Run option for rules to disable in a given story
+   */
   get disabledRules() {
     return this.parameters.disabledRules;
   }
 
-  // All optional run options used for a given story
-  // @see https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter
+  /**
+   * All optional run options used for a given story
+   * @see https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter
+   */
   get runOptions() {
     return this.parameters.runOptions;
   }
 
-  // Timeout override for a test triggered in runSuite()
+  /**
+   * Timeout override for a test triggered in runSuite()
+   */
   get timeout() {
     return this.parameters.timeout;
   }

@@ -37,14 +37,6 @@ export function getRunOptions(
     newRules[rule] = { enabled: false };
   }
 
-  /**
-   * TODO-ah: if `options.rules` AND disabledRules exist, we should:
-   * - merge the two together (preserves API and call signatures)
-   * - overwrite any rules from `runOptions` with those based on defaults and `disabledRules`
-   * Also:
-   * - throw a warning in case of deprecation approach?
-   * - throw an error in case of deprecation approach?
-   *  */
   return {
     ...options,
     rules: newRules,
