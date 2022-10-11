@@ -5,7 +5,7 @@ export default {
   component: Delay,
 };
 
-function Delay({ children, delay }) {
+function Delay({children, delay}) {
   const [show, setShow] = React.useState(false);
 
   React.useEffect(() => {
@@ -23,7 +23,7 @@ export const ShortDelayAndPass = {
     </Delay>
   ),
   parameters: {
-    axe: { waitForSelector: '#hi' },
+    axe: {waitForSelector: '#hi'},
   },
 };
 
@@ -36,7 +36,7 @@ export const ShortDelayAndFail = {
     </Delay>
   ),
   parameters: {
-    axe: { waitForSelector: '#hi' },
+    axe: {waitForSelector: '#hi'},
   },
 };
 
@@ -50,7 +50,7 @@ export const MediumDelayAndPass = {
     </Delay>
   ),
   parameters: {
-    axe: { waitForSelector: '#hi' },
+    axe: {waitForSelector: '#hi'},
   },
 };
 
@@ -66,7 +66,7 @@ export const MediumDelayAndFail = {
     </Delay>
   ),
   parameters: {
-    axe: { waitForSelector: '#hi' },
+    axe: {waitForSelector: '#hi'},
   },
 };
 
@@ -80,7 +80,7 @@ export const MediumDelayAndShortTimeoutFail = {
     </Delay>
   ),
   parameters: {
-    axe: { waitForSelector: '#hi', timeout: 100 },
+    axe: {waitForSelector: '#hi', timeout: 100},
   },
 };
 
@@ -94,6 +94,6 @@ export const LongDelayAndTimeout = {
     </Delay>
   ),
   parameters: {
-    axe: { waitForSelector: '#hi' },
+    axe: {waitForSelector: '#hi'},
   },
 };

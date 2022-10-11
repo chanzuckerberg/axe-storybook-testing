@@ -1,8 +1,8 @@
-import type { AnyFramework } from '@storybook/csf';
-import type { PreviewWeb } from '@storybook/preview-web';
-import type { Story } from '@storybook/store';
+import type {AnyFramework} from '@storybook/csf';
+import type {PreviewWeb} from '@storybook/preview-web';
+import type {Story} from '@storybook/store';
 import pTimeout from 'p-timeout';
-import type { Page } from 'playwright';
+import type {Page} from 'playwright';
 import dedent from 'ts-dedent';
 
 // Functions we pass to `page.evaluate` execute in a browser environment, and can access window.

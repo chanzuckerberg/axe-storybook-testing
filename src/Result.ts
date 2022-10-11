@@ -1,9 +1,9 @@
-import type { Result as AxeResult, NodeResult } from 'axe-core';
+import type {Result as AxeResult, NodeResult} from 'axe-core';
 import indent from 'indent-string';
-import type { Page } from 'playwright';
+import type {Page} from 'playwright';
 import dedent from 'ts-dedent';
 import type ProcessedStory from './ProcessedStory';
-import { analyze } from './browser/AxePage';
+import {analyze} from './browser/AxePage';
 
 /**
  * These rules aren't useful/helpful in the context of Storybook stories, and we disable them when

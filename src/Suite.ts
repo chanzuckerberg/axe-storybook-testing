@@ -3,7 +3,7 @@ import indent from 'indent-string';
 import each from 'lodash/each';
 import groupBy from 'lodash/groupBy';
 import Mocha from 'mocha';
-import type { Options } from './Options';
+import type {Options} from './Options';
 import Browser from './browser';
 
 /**
@@ -20,7 +20,7 @@ export async function runSuite(
 
   const mocha = new Mocha({
     reporter: options.reporter,
-    reporterOptions: { suiteName: suiteTitle, ...options.reporterOptions },
+    reporterOptions: {suiteName: suiteTitle, ...options.reporterOptions},
     timeout: options.timeout,
   });
 
