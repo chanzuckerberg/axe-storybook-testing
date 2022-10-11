@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [maintenance] Update all dependencies
+
 ## 6.2.0 (2022-09-29)
 
 - [new] Export types for Story parameters
