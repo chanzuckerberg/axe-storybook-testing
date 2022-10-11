@@ -1,5 +1,4 @@
-/* eslint-disable @typescript-eslint/no-non-null-assertion */
-import { exec } from 'child_process';
+import {exec} from 'child_process';
 
 // Before running these integration tests, the following steps must be completed:
 //

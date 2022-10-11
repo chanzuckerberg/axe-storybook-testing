@@ -1,5 +1,6 @@
-import playwright, { Browser, Page } from 'playwright';
-import type { Options } from '../Options';
+import type {Browser, Page} from 'playwright';
+import playwright from 'playwright'; // eslint-disable-line import/default
+import type {Options} from '../Options';
 import ProcessedStory from '../ProcessedStory';
 import Result from '../Result';
 import * as AxePage from './AxePage';
@@ -22,7 +23,7 @@ export default class TestBrowser {
     });
 
     try {
-      const context = await browser.newContext({ bypassCSP: true });
+      const context = await browser.newContext({bypassCSP: true});
 
       // Create a new page at Storybook's static iframe and with axe-core setup and ready to run.
       const page = await context.newPage();
@@ -37,7 +38,7 @@ export default class TestBrowser {
 
       // Turn on `prefers-reduced-motion`. This will prevent any animations that respect the media
       // query from causing flaky or failing tests due to animation.
-      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await page.emulateMedia({reducedMotion: 'reduce'});
 
       // Visit Storybook's static iframe.
       await page.goto(storybookUrl + '/iframe.html');

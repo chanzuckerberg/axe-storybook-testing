@@ -1,12 +1,12 @@
-import type { AxeResults, RuleObject, RunOptions } from 'axe-core';
-import type { Page } from 'playwright';
+import type {AxeResults, RuleObject, RunOptions} from 'axe-core';
+import type {Page} from 'playwright';
 
 /**
  * Prepare a page for running axe on it.
  */
 export async function prepare(page: Page): Promise<void> {
   await page.waitForLoadState();
-  await page.addScriptTag({ path: require.resolve('axe-core') });
+  await page.addScriptTag({path: require.resolve('axe-core')});
   await page.evaluate(addPromiseQueue);
 }
 
@@ -34,7 +34,7 @@ export function getRunOptions(
   const newRules: RuleObject = options.rules || {};
 
   for (const rule of disabledRules) {
-    newRules[rule] = { enabled: false };
+    newRules[rule] = {enabled: false};
   }
 
   return {
@@ -83,7 +83,7 @@ function addPromiseQueue() {
      */
     function add(promiseCreator: () => Promise<T>): Promise<T> {
       return new Promise((resolve, reject) => {
-        pending.push({ promiseCreator, resolve, reject });
+        pending.push({promiseCreator, resolve, reject});
         dequeue();
       });
     }
@@ -116,7 +116,7 @@ function addPromiseQueue() {
         });
     }
 
-    return { add };
+    return {add};
   }
 
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment

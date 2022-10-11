@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import httpServer from 'http-server';
 import portfinder from 'portfinder';
-import type { Options } from './Options';
+import type {Options} from './Options';
 
 type Server = {
   storybookUrl: string;
@@ -46,7 +46,7 @@ async function getServer(options: Options): Promise<Server> {
   const localPath = getStaticStorybookPath(options);
   const port = await portfinder.getPortPromise();
   const host = '127.0.0.1';
-  const server = httpServer.createServer({ root: localPath });
+  const server = httpServer.createServer({root: localPath});
   const storybookUrl = `http://${host}:${port}`;
 
   function start(): Promise<void> {
@@ -63,7 +63,7 @@ async function getServer(options: Options): Promise<Server> {
     return Promise.resolve();
   }
 
-  return { storybookUrl, start, stop };
+  return {storybookUrl, start, stop};
 }
 
 function getStaticStorybookPath(options: Options): string {

@@ -1,4 +1,1 @@
-module.exports = {
-  singleQuote: true,
-  trailingComma: 'all',
-};
+module.exports = require('@chanzuckerberg/prettier-config-edu');

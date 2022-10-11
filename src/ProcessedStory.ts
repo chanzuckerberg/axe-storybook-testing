@@ -1,6 +1,6 @@
-import type { RunOptions } from 'axe-core';
-import { z as zod } from 'zod';
-import type { StorybookStory } from './browser/StorybookPage';
+import type {RunOptions} from 'axe-core';
+import {z as zod} from 'zod';
+import type {StorybookStory} from './browser/StorybookPage';
 
 type Params = {
   disabledRules: string[];
