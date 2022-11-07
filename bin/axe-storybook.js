@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
-require('../build/index')
+// eslint-disable-next-line import/extensions
+require('../build/index.js')
   .run()
   .then(() => {
     process.exit(0);
