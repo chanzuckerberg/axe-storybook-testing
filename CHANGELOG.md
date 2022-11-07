@@ -3,6 +3,7 @@
 ## Unreleased
 
 - [maintenance] Update all dependencies
+- [maintenance] Prune unneeded dependencies
 
 ## 6.2.0 (2022-09-29)
 
