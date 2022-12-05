@@ -22,7 +22,7 @@ const options = {
     alias: 'B',
     default: 'chromium' as Browsers,
     description: 'Which browser to run in',
-    choices: ['chromium', 'webkit', 'firefox'],
+    choices: ['chromium', 'webkit', 'firefox'] as const,
   },
   'build-dir': {
     alias: 'b',
@@ -35,7 +35,7 @@ const options = {
     alias: 'i',
     default: 'all' as FailingImpacts,
     description: 'Lowest impact level to consider a failure',
-    choices: ['minor', 'moderate', 'serious', 'critical', 'all'],
+    choices: ['minor', 'moderate', 'serious', 'critical', 'all'] as const,
   },
   headless: {
     alias: 'h',
