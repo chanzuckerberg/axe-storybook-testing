@@ -1,7 +1,3 @@
 # Ensure that all files have line feeds for line endings, so that they're consistent regardless of
 # which platform a change was developed on.
 * text=auto eol=lf
-
-# Yarn v3
-/.yarn/releases/** binary
-/.yarn/plugins/** binary

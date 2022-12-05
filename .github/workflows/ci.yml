@@ -12,7 +12,7 @@ jobs:
           node-version-file: '.node-version'
           cache: 'yarn'
       - name: Install
-        run: yarn install --immutable
+        run: yarn install --frozen-lockfile
       - name: Typecheck
         run: yarn types
       - name: Build

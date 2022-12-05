@@ -56,12 +56,3 @@ storybook-static
 
 # Non-Yarn lockfiles
 package-lock.json
-
-# Yarn v3
-.pnp.*
-.yarn/*
-!.yarn/patches
-!.yarn/plugins
-!.yarn/releases
-!.yarn/sdks
-!.yarn/versions
