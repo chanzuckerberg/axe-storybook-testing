@@ -2,15 +2,17 @@ name: Tests
 on: [push, pull_request]
 jobs:
   build:
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        os: [ubuntu-22.04, macos-12]
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@master
+        uses: actions/checkout@v3
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.node-version'
+          cache: 'yarn'
       - name: Install
-        run: yarn install
+        run: yarn install --frozen-lockfile
       - name: Typecheck
         run: yarn types
       - name: Build
