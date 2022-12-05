@@ -1,4 +1,4 @@
-import type {AnyFramework} from '@storybook/csf';
+import type {Renderer} from '@storybook/csf';
 import type {PreviewWeb} from '@storybook/preview-web';
 import type {Story} from '@storybook/store';
 import pTimeout from 'p-timeout';
@@ -8,7 +8,7 @@ import dedent from 'ts-dedent';
 // Functions we pass to `page.evaluate` execute in a browser environment, and can access window.
 // eslint-disable-next-line no-var
 declare var window: {
-  __STORYBOOK_PREVIEW__: PreviewWeb<AnyFramework>;
+  __STORYBOOK_PREVIEW__: PreviewWeb<Renderer>;
 };
 
 /**

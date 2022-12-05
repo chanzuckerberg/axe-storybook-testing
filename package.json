@@ -62,7 +62,7 @@
     "@chanzuckerberg/eslint-config-edu-js": "^1.0.2",
     "@chanzuckerberg/eslint-config-edu-ts": "^1.0.4",
     "@chanzuckerberg/prettier-config-edu": "^1.0.1",
-    "@storybook/csf": "0.0.2--canary.87bc651.0",
+    "@storybook/csf": "0.0.2-next.7",
     "@storybook/preview-web": "^6.5.14",
     "@storybook/store": "^6.5.14",
     "@types/http-server": "^0.12.1",
