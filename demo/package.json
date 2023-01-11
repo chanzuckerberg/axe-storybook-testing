@@ -16,9 +16,9 @@
   },
   "devDependencies": {
     "@chanzuckerberg/axe-storybook-testing": "file:./..",
-    "@storybook/addon-a11y": "^6.5.13",
-    "@storybook/addon-essentials": "^6.5.13",
+    "@storybook/addon-a11y": "^6.5.15",
+    "@storybook/addon-essentials": "^6.5.15",
     "@storybook/addon-postcss": "^2.0.0",
-    "@storybook/react": "^6.5.13"
+    "@storybook/react": "^6.5.15"
   }
 }
