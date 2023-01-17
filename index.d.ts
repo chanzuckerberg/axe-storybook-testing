@@ -16,7 +16,7 @@ export declare type AxeParams = {
    * Set whether violations in a story should cause the test suite to fail or not. Valid options
    * are 'off' and 'error'.
    */
-  mode?: 'off' | 'error';
+  mode?: 'off' | 'warn' | 'error';
   /**
    * Overrides the global timeout for this specific test (in ms)
    */

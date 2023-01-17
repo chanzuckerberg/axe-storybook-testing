@@ -4,7 +4,7 @@ import type {StorybookStory} from './browser/StorybookPage';
 
 type Params = {
   disabledRules: string[];
-  mode: 'off' | 'error';
+  mode: 'off' | 'warn' | 'error';
   runOptions?: RunOptions;
   skip: boolean;
   timeout: number;
@@ -87,7 +87,7 @@ export default class ProcessedStory {
 }
 
 const disabledRulesSchema = zod.array(zod.string());
-const modeSchema = zod.enum(['off', 'error']).optional();
+const modeSchema = zod.enum(['off', 'warn', 'error']).optional();
 const skipSchema = zod.boolean();
 const timeoutSchema = zod.number().gte(0);
 const waitForSelectorSchema = zod.optional(zod.string());

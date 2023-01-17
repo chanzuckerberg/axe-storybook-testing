@@ -31,6 +31,14 @@ describe('canFail', () => {
     expect(processedStory.canFail).toEqual(false);
   });
 
+  it('is false when mode is "warn"', () => {
+    const parameters = {axe: {mode: 'warn'}};
+    const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
+    const processedStory = new ProcessedStory(rawStory);
+
+    expect(processedStory.canFail).toEqual(false);
+  });
+
   it('is true when mode is missing', () => {
     const parameters = {axe: {}};
     const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
@@ -80,6 +88,14 @@ describe('shouldSkip', () => {
     const processedStory = new ProcessedStory(rawStory);
 
     expect(processedStory.shouldSkip).toEqual(true);
+  });
+
+  it('is false when the mode parameter is "warn"', () => {
+    const parameters = {axe: {mode: 'warn'}};
+    const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
+    const processedStory = new ProcessedStory(rawStory);
+
+    expect(processedStory.shouldSkip).toEqual(false);
   });
 
   it('is false when the mode parameter is "error"', () => {
