@@ -25,6 +25,27 @@ export const FailureColorContrastSkipped = {
   },
 };
 
+export const FailureColorContrastWarn = {
+  ...FailureColorContrast,
+  parameters: {
+    axe: {mode: 'warn'},
+  },
+};
+
+export const FailureNoDiscernibleTextWarn = {
+  render: () => <button></button>,
+  parameters: {
+    axe: {mode: 'warn'},
+  },
+};
+
+export const FailureColorContrastOff = {
+  ...FailureColorContrast,
+  parameters: {
+    axe: {mode: 'off'},
+  },
+};
+
 export const FailureNoDiscernibleTextAndInvalidRoleSkipped = {
   ...FailureNoDiscernibleTextAndInvalidRole,
   parameters: {

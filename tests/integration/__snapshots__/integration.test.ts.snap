@@ -22,14 +22,34 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
     ✔ Failure Color Contrast
     6) Failure No Discernible Text And Invalid Role
     - Failure Color Contrast Skipped
+    ✔ Failure Color Contrast Warn
+    - Failure No Discernible Text Warn
+    - Failure Color Contrast Off
     - Failure No Discernible Text And Invalid Role Skipped
     ✔ Failure Color Contrast Disabled Rule
     7) Failure No Discernible Text And Invalid Role Disabled One Rule
     ✔ Failure No Discernible Text And Invalid Role Disabled Rules
 
+1 violations were detected in stories with "mode" set to "warn", so did not fail the test suite:
 
-  7 passing
-  2 pending
+ Error: simple / Failure No Discernible Text Warn / Detected the following accessibility violations!
+
+     1. button-name (Buttons must have discernible text)
+
+        For more info, visit https://dequeuniversity.com/rules/axe/4.6/button-name?application=axeAPI.
+
+        Check these nodes:
+
+        - html: <button></button>
+          summary: Fix any of the following:
+                     Element does not have inner text that is visible to screen readers
+                     aria-label attribute does not exist or is empty
+                     aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                     Element has no title attribute
+                     Element's default semantics were not overridden with role="none" or role="presentation"
+
+  8 passing
+  4 pending
   7 failing
 
   1) delays
@@ -169,14 +189,46 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
     2) Failure Color Contrast
     3) Failure No Discernible Text And Invalid Role
     - Failure Color Contrast Skipped
+    - Failure Color Contrast Warn
+    - Failure No Discernible Text Warn
+    - Failure Color Contrast Off
     - Failure No Discernible Text And Invalid Role Skipped
     ✔ Failure Color Contrast Disabled Rule
     4) Failure No Discernible Text And Invalid Role Disabled One Rule
     ✔ Failure No Discernible Text And Invalid Role Disabled Rules
 
+2 violations were detected in stories with "mode" set to "warn", so did not fail the test suite:
+
+ Error: simple / Failure Color Contrast Warn / Detected the following accessibility violations!
+
+     1. color-contrast (Elements must have sufficient color contrast)
+
+        For more info, visit https://dequeuniversity.com/rules/axe/4.6/color-contrast?application=axeAPI.
+
+        Check these nodes:
+
+        - html: <button style="background-color: red; color: hotpink;">hello world</button>
+          summary: Fix any of the following:
+                     Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+
+Error: simple / Failure No Discernible Text Warn / Detected the following accessibility violations!
+
+     1. button-name (Buttons must have discernible text)
+
+        For more info, visit https://dequeuniversity.com/rules/axe/4.6/button-name?application=axeAPI.
+
+        Check these nodes:
+
+        - html: <button></button>
+          summary: Fix any of the following:
+                     Element does not have inner text that is visible to screen readers
+                     aria-label attribute does not exist or is empty
+                     aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                     Element has no title attribute
+                     Element's default semantics were not overridden with role="none" or role="presentation"
 
   3 passing
-  9 pending
+  12 pending
   4 failing
 
   1) simple
@@ -289,14 +341,46 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
     6) Failure Color Contrast
     7) Failure No Discernible Text And Invalid Role
     - Failure Color Contrast Skipped
+    - Failure Color Contrast Warn
+    - Failure No Discernible Text Warn
+    - Failure Color Contrast Off
     - Failure No Discernible Text And Invalid Role Skipped
     ✔ Failure Color Contrast Disabled Rule
     8) Failure No Discernible Text And Invalid Role Disabled One Rule
     ✔ Failure No Discernible Text And Invalid Role Disabled Rules
 
+2 violations were detected in stories with "mode" set to "warn", so did not fail the test suite:
+
+ Error: simple / Failure Color Contrast Warn / Detected the following accessibility violations!
+
+     1. color-contrast (Elements must have sufficient color contrast)
+
+        For more info, visit https://dequeuniversity.com/rules/axe/4.6/color-contrast?application=axeAPI.
+
+        Check these nodes:
+
+        - html: <button style="background-color: red; color: hotpink;">hello world</button>
+          summary: Fix any of the following:
+                     Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+
+Error: simple / Failure No Discernible Text Warn / Detected the following accessibility violations!
+
+     1. button-name (Buttons must have discernible text)
+
+        For more info, visit https://dequeuniversity.com/rules/axe/4.6/button-name?application=axeAPI.
+
+        Check these nodes:
+
+        - html: <button></button>
+          summary: Fix any of the following:
+                     Element does not have inner text that is visible to screen readers
+                     aria-label attribute does not exist or is empty
+                     aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
+                     Element has no title attribute
+                     Element's default semantics were not overridden with role="none" or role="presentation"
 
   6 passing
-  2 pending
+  5 pending
   8 failing
 
   1) delays

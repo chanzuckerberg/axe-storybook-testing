@@ -2,7 +2,8 @@ import type {RunOptions} from 'axe-core';
 
 export declare type AxeParams = {
   /**
-   * Prevents axe-storybook-testing from running Axe rules on this story.
+   * Prevents axe-storybook-testing from running Axe rules on this story. Shorthand for
+   * `mode: 'off'`.
    */
   skip?: boolean;
   /**
@@ -11,6 +12,11 @@ export declare type AxeParams = {
    * https://github.com/dequelabs/axe-core/blob/develop/doc/rule-descriptions.md.
    */
   disabledRules?: string[];
+  /**
+   * Set whether violations in a story should cause the test suite to fail or not. Valid options
+   * are 'off', warn, and 'error'.
+   */
+  mode?: 'off' | 'warn' | 'error';
   /**
    * Overrides the global timeout for this specific test (in ms)
    */

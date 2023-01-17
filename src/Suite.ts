@@ -17,6 +17,7 @@ export async function runSuite(
   const browser = await Browser.create(storybookUrl, options);
   const stories = await browser.getStories();
   const storiesByComponent = groupBy(stories, 'componentTitle');
+  const skippedErrors: Error[] = [];
 
   const mocha = new Mocha({
     reporter: options.reporter,
@@ -25,6 +26,17 @@ export async function runSuite(
   });
 
   mocha.suite.title = suiteTitle;
+
+  // Print info about any errors that were skipped but did not fail the test suite. This happens
+  // when a story has `mode: 'skip'`.
+  mocha.suite.afterAll(() => {
+    if (skippedErrors.length > 0) {
+      console.log(
+        `${skippedErrors.length} violations were detected in stories with "mode" set to "warn", so did not fail the test suite:\n\n`,
+        skippedErrors.join('\n\n'),
+      );
+    }
+  });
 
   // Make sure the test browser closes after everything has finished.
   mocha.suite.afterAll(async () => {
@@ -65,12 +77,21 @@ export async function runSuite(
           // twice. It seems that the stack trace includes the error message, for some reason.
           error.stack = '';
 
-          assert.fail(error);
+          // Fail the test suite if the story is supposed to be able to do that. Either way the
+          // error message is displayed.
+          if (story.canFail) {
+            assert.fail(error);
+          } else {
+            error.message = `${componentTitle} / ${story.name} / ${error.message}`;
+            skippedErrors.push(error);
+            // @ts-expect-error -- Mocha's TS definitions don't properly type `this`
+            this.skip();
+          }
         }
       });
 
       // Skip this test if the story is disabled. Equivalent to writing `it.skip(...)`.
-      if (!story.isEnabled) {
+      if (story.shouldSkip) {
         test.pending = true;
       }
 

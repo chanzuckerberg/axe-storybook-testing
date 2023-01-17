@@ -15,8 +15,8 @@ If there are any violations, information about them will be printed, and the com
   - [Usage](#usage)
   - [Options](#options)
   - [Story parameters](#story-parameters)
-    - [skip](#skip)
     - [disabledRules](#disabledrules)
+    - [skip](#skip)
     - [timeout](#timeout)
     - [waitForSelector](#waitforselector)
   - [TypeScript](#typescript)
@@ -95,22 +95,6 @@ yarn storybook:axe --headless false --browser firefox
 
 Stories can use parameters to configure how axe-storybook-testing handles them.
 
-### skip
-
-Prevent axe-storybook-testing from running a story by using the `skip` parameter.
-
-```jsx
-// SomeComponent.stories.jsx
-
-export const SomeStory = {
-  parameters: {
-    axe: {
-      skip: true,
-    },
-  },
-};
-```
-
 ### disabledRules
 
 Prevent axe-storybook-testing from running specific Axe rules on a story by using the `disabledRules` parameter.
@@ -139,18 +123,21 @@ export const parameters = {
 };
 ```
 
-### timeout
+### mode
 
-Overrides global `--timeout` for this specific test
+Set whether errors for a story will fail the test suite or not.
+
+Valid options are:
+- `off` - the story will be skipped and axe will not run on it. This is the same as setting `skip: true`.
+- `warn` - axe errors will be printed, but won't fail the test suite. Stories with this set will show up as pending.
+- `error` (default) - axe errors will fail the test suite for a story.
 
 ```jsx
-// SomeComponent.stories.jsx
+// .storybook/preview.js
 
-export const SomeStory = {
-  parameters: {
-    axe: {
-      timeout: 5000,
-    },
+export const parameters = {
+  axe: {
+    mode: 'warn',
   },
 };
 ```
@@ -171,6 +158,38 @@ export const SomeStory = {
       }
     }
   };
+```
+
+### skip
+
+Prevent axe-storybook-testing from running a story by using the `skip` parameter. This is shorthand for setting `mode: 'off'`.
+
+```jsx
+// SomeComponent.stories.jsx
+
+export const SomeStory = {
+  parameters: {
+    axe: {
+      skip: true,
+    },
+  },
+};
+```
+
+### timeout
+
+Overrides global `--timeout` for this specific test
+
+```jsx
+// SomeComponent.stories.jsx
+
+export const SomeStory = {
+  parameters: {
+    axe: {
+      timeout: 5000,
+    },
+  },
+};
 ```
 
 ### waitForSelector
