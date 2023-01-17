@@ -15,8 +15,8 @@ If there are any violations, information about them will be printed, and the com
   - [Usage](#usage)
   - [Options](#options)
   - [Story parameters](#story-parameters)
-    - [skip](#skip)
     - [disabledRules](#disabledrules)
+    - [skip](#skip)
     - [timeout](#timeout)
     - [waitForSelector](#waitforselector)
   - [TypeScript](#typescript)
@@ -95,22 +95,6 @@ yarn storybook:axe --headless false --browser firefox
 
 Stories can use parameters to configure how axe-storybook-testing handles them.
 
-### skip
-
-Prevent axe-storybook-testing from running a story by using the `skip` parameter.
-
-```jsx
-// SomeComponent.stories.jsx
-
-export const SomeStory = {
-  parameters: {
-    axe: {
-      skip: true,
-    },
-  },
-};
-```
-
 ### disabledRules
 
 Prevent axe-storybook-testing from running specific Axe rules on a story by using the `disabledRules` parameter.
@@ -139,22 +123,6 @@ export const parameters = {
 };
 ```
 
-### timeout
-
-Overrides global `--timeout` for this specific test
-
-```jsx
-// SomeComponent.stories.jsx
-
-export const SomeStory = {
-  parameters: {
-    axe: {
-      timeout: 5000,
-    },
-  },
-};
-```
-
 ### runOptions
 
 Allows use of any of the available [`axe.run`](https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter) options. See the link for more details. When using `runOptions.rules` in combination with `disabledRules`, **`disabledRules` will always take precedent.**
@@ -171,6 +139,38 @@ export const SomeStory = {
       }
     }
   };
+```
+
+### skip
+
+Prevent axe-storybook-testing from running a story by using the `skip` parameter.
+
+```jsx
+// SomeComponent.stories.jsx
+
+export const SomeStory = {
+  parameters: {
+    axe: {
+      skip: true,
+    },
+  },
+};
+```
+
+### timeout
+
+Overrides global `--timeout` for this specific test
+
+```jsx
+// SomeComponent.stories.jsx
+
+export const SomeStory = {
+  parameters: {
+    axe: {
+      timeout: 5000,
+    },
+  },
+};
 ```
 
 ### waitForSelector
