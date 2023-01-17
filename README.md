@@ -123,6 +123,24 @@ export const parameters = {
 };
 ```
 
+### mode
+
+Set whether errors for a story will fail the test suite or not.
+
+Valid options are:
+- `off` - the story will be skipped and axe will not run on it. This is the same as setting `skip: true`.
+- `error` (default) - axe errors will fail the test suite for a story.
+
+```jsx
+// .storybook/preview.js
+
+export const parameters = {
+  axe: {
+    mode: 'off',
+  },
+};
+```
+
 ### runOptions
 
 Allows use of any of the available [`axe.run`](https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter) options. See the link for more details. When using `runOptions.rules` in combination with `disabledRules`, **`disabledRules` will always take precedent.**
@@ -143,7 +161,7 @@ export const SomeStory = {
 
 ### skip
 
-Prevent axe-storybook-testing from running a story by using the `skip` parameter.
+Prevent axe-storybook-testing from running a story by using the `skip` parameter. This is shorthand for setting `mode: 'off'`.
 
 ```jsx
 // SomeComponent.stories.jsx

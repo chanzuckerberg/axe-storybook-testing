@@ -4,6 +4,7 @@ import type {StorybookStory} from './browser/StorybookPage';
 
 type Params = {
   disabledRules: string[];
+  mode: 'off' | 'error';
   runOptions?: RunOptions;
   skip: boolean;
   timeout: number;
@@ -30,6 +31,7 @@ export default class ProcessedStory {
         rawStory.parameters?.axe?.disabledRules,
         rawStory,
       ),
+      mode: normalizeMode(rawStory.parameters?.axe?.mode, rawStory),
       waitForSelector: normalizeWaitForSelector(
         rawStory.parameters?.axe?.waitForSelector,
         rawStory,
@@ -43,10 +45,10 @@ export default class ProcessedStory {
   }
 
   /**
-   * Determines if the test should be skipped in runSuite()
+   * Whether axe violations should cause the test suite to fail or not.
    */
-  get isEnabled() {
-    return !this.parameters.skip;
+  get canFail() {
+    return this.parameters.mode === 'error';
   }
 
   /**
@@ -54,6 +56,13 @@ export default class ProcessedStory {
    */
   get disabledRules() {
     return this.parameters.disabledRules;
+  }
+
+  /**
+   * Whether axe should even run on this story or not.
+   */
+  get shouldSkip() {
+    return this.parameters.mode === 'off' || this.parameters.skip;
   }
 
   /**
@@ -77,10 +86,12 @@ export default class ProcessedStory {
   }
 }
 
-const skipSchema = zod.boolean();
 const disabledRulesSchema = zod.array(zod.string());
-const waitForSelectorSchema = zod.optional(zod.string());
+const modeSchema = zod.enum(['off', 'error']).optional();
+const skipSchema = zod.boolean();
 const timeoutSchema = zod.number().gte(0);
+const waitForSelectorSchema = zod.optional(zod.string());
+
 const runOptionsSchema = zod.object({
   runOnly: zod.optional(
     zod.object({
@@ -154,6 +165,14 @@ function normalizeWaitForSelector(
     () => waitForSelectorSchema.parse(waitForSelector),
     rawStory,
     'waitForSelector',
+  );
+}
+
+function normalizeMode(mode: unknown, rawStory: StorybookStory) {
+  return parseWithFriendlyError(
+    () => modeSchema.parse(mode) || 'error',
+    rawStory,
+    'mode',
   );
 }
 

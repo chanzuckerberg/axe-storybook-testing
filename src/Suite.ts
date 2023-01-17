@@ -65,12 +65,18 @@ export async function runSuite(
           // twice. It seems that the stack trace includes the error message, for some reason.
           error.stack = '';
 
-          assert.fail(error);
+          // Fail the test suite if the story is supposed to be able to do that. Either way the
+          // error message is displayed.
+          if (story.canFail) {
+            assert.fail(error);
+          } else {
+            assert.ok(true, error);
+          }
         }
       });
 
       // Skip this test if the story is disabled. Equivalent to writing `it.skip(...)`.
-      if (!story.isEnabled) {
+      if (!story.shouldSkip) {
         test.pending = true;
       }
 
