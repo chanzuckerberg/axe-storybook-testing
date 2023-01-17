@@ -129,7 +129,7 @@ Set whether errors for a story will fail the test suite or not.
 
 Valid options are:
 - `off` - the story will be skipped and axe will not run on it. This is the same as setting `skip: true`.
-- `warn` - axe errors will be printed, but won't fail the test suite.
+- `warn` - axe errors will be printed, but won't fail the test suite. Stories with this set will show up as pending.
 - `error` (default) - axe errors will fail the test suite for a story.
 
 ```jsx
@@ -137,7 +137,7 @@ Valid options are:
 
 export const parameters = {
   axe: {
-    mode: 'off',
+    mode: 'warn',
   },
 };
 ```

@@ -14,7 +14,7 @@ export declare type AxeParams = {
   disabledRules?: string[];
   /**
    * Set whether violations in a story should cause the test suite to fail or not. Valid options
-   * are 'off' and 'error'.
+   * are 'off', warn, and 'error'.
    */
   mode?: 'off' | 'warn' | 'error';
   /**

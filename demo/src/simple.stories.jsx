@@ -32,6 +32,13 @@ export const FailureColorContrastWarn = {
   },
 };
 
+export const FailureNoDiscernibleTextWarn = {
+  render: () => <button></button>,
+  parameters: {
+    axe: {mode: 'warn'},
+  },
+};
+
 export const FailureColorContrastOff = {
   ...FailureColorContrast,
   parameters: {
