@@ -25,6 +25,11 @@ export const FailureColorContrastSkipped = {
   },
 };
 
+export const NoFailuresWarn = {
+  render: () => <button>hello world</button>,
+  parameters: {axe: {mode: 'warn'}},
+};
+
 export const FailureColorContrastWarn = {
   ...FailureColorContrast,
   parameters: {

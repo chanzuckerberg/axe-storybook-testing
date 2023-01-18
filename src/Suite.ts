@@ -63,7 +63,12 @@ export async function runSuite(
         const result = await browser.getResultForStory(story);
 
         if (result.isPassing(options.failingImpacts)) {
-          assert.ok(true);
+          if (story.canFail) {
+            assert.ok(true);
+          } else {
+            // @ts-expect-error -- Mocha's TS definitions don't properly type `this`
+            this.skip();
+          }
         } else {
           // Fail with an error instead of a string, to prevent some unnecessary stuff being
           // printed to the console.

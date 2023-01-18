@@ -22,7 +22,8 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
     ✔ Failure Color Contrast
     6) Failure No Discernible Text And Invalid Role
     - Failure Color Contrast Skipped
-    ✔ Failure Color Contrast Warn
+    - No Failures Warn
+    - Failure Color Contrast Warn
     - Failure No Discernible Text Warn
     - Failure Color Contrast Off
     - Failure No Discernible Text And Invalid Role Skipped
@@ -48,8 +49,8 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      Element has no title attribute
                      Element's default semantics were not overridden with role="none" or role="presentation"
 
-  8 passing
-  4 pending
+  7 passing
+  6 pending
   7 failing
 
   1) delays
@@ -189,6 +190,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
     2) Failure Color Contrast
     3) Failure No Discernible Text And Invalid Role
     - Failure Color Contrast Skipped
+    - No Failures Warn
     - Failure Color Contrast Warn
     - Failure No Discernible Text Warn
     - Failure Color Contrast Off
@@ -228,7 +230,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      Element's default semantics were not overridden with role="none" or role="presentation"
 
   3 passing
-  12 pending
+  13 pending
   4 failing
 
   1) simple
@@ -341,6 +343,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
     6) Failure Color Contrast
     7) Failure No Discernible Text And Invalid Role
     - Failure Color Contrast Skipped
+    - No Failures Warn
     - Failure Color Contrast Warn
     - Failure No Discernible Text Warn
     - Failure Color Contrast Off
@@ -380,7 +383,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      Element's default semantics were not overridden with role="none" or role="presentation"
 
   6 passing
-  5 pending
+  6 pending
   8 failing
 
   1) delays
