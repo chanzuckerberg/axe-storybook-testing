@@ -29,6 +29,7 @@
     "demo": "yarn build && yarn --cwd demo storybook:axe",
     "demo:axeOnly": "yarn build && yarn --cwd demo storybook:axeOnly",
     "demo:build": "yarn --cwd demo build-storybook",
+    "demo:eds": "axe-storybook --storybook-address https://chanzuckerberg.github.io/edu-design-system",
     "demo:install": "yarn --cwd demo install",
     "demo:link": "yarn link && yarn --cwd demo link @chanzuckerberg/axe-storybook-testing",
     "demo:setup": "yarn demo:install && yarn demo:link && yarn demo:build",
