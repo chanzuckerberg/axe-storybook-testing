@@ -60,12 +60,15 @@ export async function runSuite(
           // @ts-expect-error -- Mocha's TS definitions don't properly type `this`
           this.timeout(story.timeout);
         }
+
+        // Run Axe.
         const result = await browser.getResultForStory(story);
 
         if (result.isPassing(options.failingImpacts)) {
-          if (story.shouldFailTestSuiteIfViolations) {
-            assert.ok(true);
-          } else {
+          assert.ok(true);
+
+          // Mark this test as pending if it cannot cause the suite to fail.
+          if (!story.shouldFailTestSuiteIfViolations) {
             // @ts-expect-error -- Mocha's TS definitions don't properly type `this`
             this.skip();
           }
@@ -82,8 +85,8 @@ export async function runSuite(
           // twice. It seems that the stack trace includes the error message, for some reason.
           error.stack = '';
 
-          // Fail the test suite if the story is supposed to be able to do that. Either way the
-          // error message is displayed.
+          // Fail the test if the story isn't skipped or configured to "warn". Show the error
+          // message either way .
           if (story.shouldFailTestSuiteIfViolations) {
             assert.fail(error);
           } else {
