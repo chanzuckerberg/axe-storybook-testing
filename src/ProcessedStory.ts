@@ -86,45 +86,51 @@ export default class ProcessedStory {
   }
 }
 
-const disabledRulesSchema = zod.array(zod.string());
+const disabledRulesSchema = zod.array(zod.string()).optional();
 const modeSchema = zod.enum(['off', 'warn', 'error']).optional();
-const skipSchema = zod.boolean();
-const timeoutSchema = zod.number().gte(0);
-const waitForSelectorSchema = zod.optional(zod.string());
+const skipSchema = zod.boolean().optional();
+const timeoutSchema = zod.number().gte(0).optional();
+const waitForSelectorSchema = zod.string().optional();
 
-const runOptionsSchema = zod.object({
-  runOnly: zod.optional(
-    zod.object({
-      type: zod.enum(['rule', 'rules', 'tag', 'tags']),
-      values: zod.array(zod.string()),
-    }),
-  ),
-  rules: zod.optional(
-    zod.object({}).catchall(
+const runOptionsSchema = zod.optional(
+  zod.object({
+    runOnly: zod.optional(
       zod.object({
-        enabled: zod.boolean(),
+        type: zod.enum(['rule', 'rules', 'tag', 'tags']),
+        values: zod.array(zod.string()),
       }),
     ),
-  ),
-  reporter: zod.optional(zod.enum(['v1', 'v2', 'raw', 'raw-env', 'no-passes'])),
-  resultTypes: zod.optional(
-    zod.array(zod.enum(['inapplicable', 'passes', 'incomplete', 'violations'])),
-  ),
-  selector: zod.optional(zod.boolean()),
-  ancestry: zod.optional(zod.boolean()),
-  xpath: zod.optional(zod.boolean()),
-  absolutePaths: zod.optional(zod.boolean()),
-  iframes: zod.optional(zod.boolean()),
-  elementRef: zod.optional(zod.boolean()),
-  frameWaitTime: zod.optional(zod.number().gte(0)),
-  preload: zod.optional(zod.boolean()),
-  performanceTimer: zod.optional(zod.boolean()),
-  pingWaitTime: zod.optional(zod.number().gte(0)),
-});
+    rules: zod.optional(
+      zod.object({}).catchall(
+        zod.object({
+          enabled: zod.boolean(),
+        }),
+      ),
+    ),
+    reporter: zod.optional(
+      zod.enum(['v1', 'v2', 'raw', 'raw-env', 'no-passes']),
+    ),
+    resultTypes: zod.optional(
+      zod.array(
+        zod.enum(['inapplicable', 'passes', 'incomplete', 'violations']),
+      ),
+    ),
+    selector: zod.optional(zod.boolean()),
+    ancestry: zod.optional(zod.boolean()),
+    xpath: zod.optional(zod.boolean()),
+    absolutePaths: zod.optional(zod.boolean()),
+    iframes: zod.optional(zod.boolean()),
+    elementRef: zod.optional(zod.boolean()),
+    frameWaitTime: zod.optional(zod.number().gte(0)),
+    preload: zod.optional(zod.boolean()),
+    performanceTimer: zod.optional(zod.boolean()),
+    pingWaitTime: zod.optional(zod.number().gte(0)),
+  }),
+);
 
 function normalizeSkip(skip: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
-    () => skipSchema.optional().parse(skip) || false,
+    () => skipSchema.parse(skip) || false,
     rawStory,
     'skip',
   );
@@ -135,7 +141,7 @@ function normalizeDisabledRules(
   rawStory: StorybookStory,
 ) {
   return parseWithFriendlyError(
-    () => disabledRulesSchema.optional().parse(disabledRules) || [],
+    () => disabledRulesSchema.parse(disabledRules) || [],
     rawStory,
     'disabledRules',
   );
@@ -143,7 +149,7 @@ function normalizeDisabledRules(
 
 function normalizeTimeout(timeout: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
-    () => timeoutSchema.optional().parse(timeout) || 0,
+    () => timeoutSchema.parse(timeout) || 0,
     rawStory,
     'timeout',
   );
@@ -151,7 +157,7 @@ function normalizeTimeout(timeout: unknown, rawStory: StorybookStory) {
 
 function normalizeRunOptions(runOptions: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
-    () => runOptionsSchema.optional().parse(runOptions) || {},
+    () => runOptionsSchema.parse(runOptions) || {},
     rawStory,
     'runOptions',
   );
