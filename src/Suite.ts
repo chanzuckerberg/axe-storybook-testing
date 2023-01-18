@@ -63,7 +63,7 @@ export async function runSuite(
         const result = await browser.getResultForStory(story);
 
         if (result.isPassing(options.failingImpacts)) {
-          if (story.canFail) {
+          if (story.shouldFailTestSuiteIfViolations) {
             assert.ok(true);
           } else {
             // @ts-expect-error -- Mocha's TS definitions don't properly type `this`
@@ -84,7 +84,7 @@ export async function runSuite(
 
           // Fail the test suite if the story is supposed to be able to do that. Either way the
           // error message is displayed.
-          if (story.canFail) {
+          if (story.shouldFailTestSuiteIfViolations) {
             assert.fail(error);
           } else {
             error.message = `${componentTitle} / ${story.name} / ${error.message}`;
@@ -96,7 +96,7 @@ export async function runSuite(
       });
 
       // Skip this test if the story is disabled. Equivalent to writing `it.skip(...)`.
-      if (story.shouldSkip) {
+      if (story.shouldNotEvenRunTest) {
         test.pending = true;
       }
 

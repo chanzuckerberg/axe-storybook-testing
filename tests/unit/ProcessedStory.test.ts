@@ -14,13 +14,13 @@ it('parses a raw Storybook story', () => {
   expect(processedStory.id).toEqual('button--a');
 });
 
-describe('canFail', () => {
+describe('shouldFailTestSuiteIfViolations', () => {
   it('is true when mode is "error"', () => {
     const parameters = {axe: {mode: 'error'}};
     const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
     const processedStory = new ProcessedStory(rawStory);
 
-    expect(processedStory.canFail).toEqual(true);
+    expect(processedStory.shouldFailTestSuiteIfViolations).toEqual(true);
   });
 
   it('is false when mode is "off"', () => {
@@ -28,7 +28,7 @@ describe('canFail', () => {
     const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
     const processedStory = new ProcessedStory(rawStory);
 
-    expect(processedStory.canFail).toEqual(false);
+    expect(processedStory.shouldFailTestSuiteIfViolations).toEqual(false);
   });
 
   it('is false when mode is "warn"', () => {
@@ -36,7 +36,7 @@ describe('canFail', () => {
     const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
     const processedStory = new ProcessedStory(rawStory);
 
-    expect(processedStory.canFail).toEqual(false);
+    expect(processedStory.shouldFailTestSuiteIfViolations).toEqual(false);
   });
 
   it('is true when mode is missing', () => {
@@ -44,17 +44,17 @@ describe('canFail', () => {
     const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
     const processedStory = new ProcessedStory(rawStory);
 
-    expect(processedStory.canFail).toEqual(true);
+    expect(processedStory.shouldFailTestSuiteIfViolations).toEqual(true);
   });
 });
 
-describe('shouldSkip', () => {
+describe('shouldNotEvenRunTest', () => {
   it('is true when the skip parameter is true', () => {
     const parameters = {axe: {skip: true}};
     const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
     const processedStory = new ProcessedStory(rawStory);
 
-    expect(processedStory.shouldSkip).toEqual(true);
+    expect(processedStory.shouldNotEvenRunTest).toEqual(true);
   });
 
   it('is false when the skip parameter is false', () => {
@@ -62,7 +62,7 @@ describe('shouldSkip', () => {
     const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
     const processedStory = new ProcessedStory(rawStory);
 
-    expect(processedStory.shouldSkip).toEqual(false);
+    expect(processedStory.shouldNotEvenRunTest).toEqual(false);
   });
 
   it('is false when the skip parameter is missing', () => {
@@ -70,7 +70,7 @@ describe('shouldSkip', () => {
     const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
     const processedStory = new ProcessedStory(rawStory);
 
-    expect(processedStory.shouldSkip).toEqual(false);
+    expect(processedStory.shouldNotEvenRunTest).toEqual(false);
   });
 
   it('throws an error when the skip parameter is not a boolean', () => {
@@ -87,7 +87,7 @@ describe('shouldSkip', () => {
     const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
     const processedStory = new ProcessedStory(rawStory);
 
-    expect(processedStory.shouldSkip).toEqual(true);
+    expect(processedStory.shouldNotEvenRunTest).toEqual(true);
   });
 
   it('is false when the mode parameter is "warn"', () => {
@@ -95,7 +95,7 @@ describe('shouldSkip', () => {
     const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
     const processedStory = new ProcessedStory(rawStory);
 
-    expect(processedStory.shouldSkip).toEqual(false);
+    expect(processedStory.shouldNotEvenRunTest).toEqual(false);
   });
 
   it('is false when the mode parameter is "error"', () => {
@@ -103,7 +103,7 @@ describe('shouldSkip', () => {
     const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
     const processedStory = new ProcessedStory(rawStory);
 
-    expect(processedStory.shouldSkip).toEqual(false);
+    expect(processedStory.shouldNotEvenRunTest).toEqual(false);
   });
 
   it('is false when the mode parameter is missing', () => {
@@ -111,7 +111,7 @@ describe('shouldSkip', () => {
     const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
     const processedStory = new ProcessedStory(rawStory);
 
-    expect(processedStory.shouldSkip).toEqual(false);
+    expect(processedStory.shouldNotEvenRunTest).toEqual(false);
   });
 
   it('throws an error when the mode parameter is not a string', () => {
@@ -128,7 +128,7 @@ describe('shouldSkip', () => {
     const rawStory = {id: 'button--a', kind: 'button', name: 'a', parameters};
     const processedStory = new ProcessedStory(rawStory);
 
-    expect(processedStory.shouldSkip).toEqual(true);
+    expect(processedStory.shouldNotEvenRunTest).toEqual(true);
   });
 });
 

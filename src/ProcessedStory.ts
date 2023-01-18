@@ -45,13 +45,6 @@ export default class ProcessedStory {
   }
 
   /**
-   * Whether axe violations should cause the test suite to fail or not.
-   */
-  get canFail() {
-    return this.parameters.mode === 'error';
-  }
-
-  /**
    * Run option for rules to disable in a given story
    */
   get disabledRules() {
@@ -61,8 +54,15 @@ export default class ProcessedStory {
   /**
    * Whether axe should even run on this story or not.
    */
-  get shouldSkip() {
+  get shouldNotEvenRunTest() {
     return this.parameters.mode === 'off' || this.parameters.skip;
+  }
+
+  /**
+   * Whether axe violations should cause the test suite to fail or not.
+   */
+  get shouldFailTestSuiteIfViolations() {
+    return this.parameters.mode === 'error';
   }
 
   /**
