@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 6.3.0 (2023-01-18)
+
 - [maintenance] Update all dependencies
 - [maintenance] Prune unneeded dependencies
 - [new] Add `mode` option to Story parameters. Most useful for its `warn` option, which will print errors detected for a story but not fail the test suite.
