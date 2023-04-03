@@ -28,7 +28,7 @@ If there are any violations, information about them will be printed, and the com
 ## Minimum requirements
 
 - Node 12
-- Storybook 6.4 (for previous versions of Storybook, use axe-storybook-testing v4.1.3)
+- Storybook 7.0 (for Storybook 6, use axe-storybook-testing v6.3.1)
 - axe-core 4.0
 
 ## Installation

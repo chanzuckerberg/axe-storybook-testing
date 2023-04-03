@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+Storybook 7 is now officially supported!
+
+- [breaking] Drop Storybook 6 support
+
 ## 6.3.1 (2023-04-03)
 
 - [fix] Update all dependencies
