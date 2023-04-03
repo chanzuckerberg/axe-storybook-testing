@@ -703,7 +703,7 @@
   resolved "https://registry.yarnpkg.com/@storybook/core-events/-/core-events-7.0.2.tgz#5038aa5ea1e035099ed1dc48aa233e232ff882e7"
   integrity sha512-1DCHCwHRL3+rlvnVVc/BCfReP31XaT2WYgcLeGTmkX1E43Po1MkgcM7PnJPSaa9POvSqZ+6YLZv5Bs1SXbufow==
 
-"@storybook/csf@0.1.0", "@storybook/csf@^0.1.0":
+"@storybook/csf@^0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@storybook/csf/-/csf-0.1.0.tgz#62315bf9704f3aa4e0d4d909b9033833774ddfbe"
   integrity sha512-uk+jMXCZ8t38jSTHk2o5btI+aV2Ksbvl6DoOv3r6VaCM1KZqeuMwtwywIQdflkA8/6q/dKT8z8L+g8hC4GC3VQ==
@@ -744,15 +744,7 @@
     "@storybook/client-logger" "7.0.2"
     "@storybook/preview-api" "7.0.2"
 
-"@storybook/store@^7.0.2":
-  version "7.0.2"
-  resolved "https://registry.yarnpkg.com/@storybook/store/-/store-7.0.2.tgz#d406027f4edcc7907d9f13df153aa13cd81898cc"
-  integrity sha512-I4c/BJNL5KAs7S5bRCy1LeBSG3uqNTuXZdDQ5aYNLpnYNSGHV2l5EVJDYkk7mRQ6iayQavESRG1yVPshUWtqcQ==
-  dependencies:
-    "@storybook/client-logger" "7.0.2"
-    "@storybook/preview-api" "7.0.2"
-
-"@storybook/types@7.0.2":
+"@storybook/types@7.0.2", "@storybook/types@^7.0.2":
   version "7.0.2"
   resolved "https://registry.yarnpkg.com/@storybook/types/-/types-7.0.2.tgz#32ae7b9521d42617bd8fb87f3b85b0f77d2739f5"
   integrity sha512-0OCt/kAexa8MCcljxA+yZxGMn0n2U2Ync0KxotItqNbKBKVkaLQUls0+IXTWSCpC/QJvNZ049jxUHHanNi/96w==

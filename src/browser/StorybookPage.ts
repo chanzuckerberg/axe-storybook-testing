@@ -1,6 +1,5 @@
-import type {Renderer} from '@storybook/csf';
 import type {PreviewWeb} from '@storybook/preview-web';
-import type {Story} from '@storybook/store';
+import type {Renderer, StoryIdentifier, Parameters} from '@storybook/types';
 import pTimeout from 'p-timeout';
 import type {Page} from 'playwright';
 import dedent from 'ts-dedent';
@@ -14,6 +13,10 @@ declare var window: {
 /**
  * Storybook's internal representation of a story.
  */
+type Story = StoryIdentifier & {
+  parameters: Parameters;
+};
+
 export type StorybookStory = Pick<Story, 'id' | 'kind' | 'name' | 'parameters'>;
 
 /**
@@ -96,13 +99,16 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
 function emitSetCurrentStory(id: string) {
   const storybookPreview = window.__STORYBOOK_PREVIEW__;
 
+  // @ts-expect-error Access the protected "channel", so we can send stuff through it.
+  const channel = storybookPreview.channel;
+
   if (!storybookPreview) {
     return Promise.reject(
       new Error("Storybook doesn't seem to be running on the page"),
     );
   }
 
-  storybookPreview.channel.emit('setCurrentStory', {
+  channel.emit('setCurrentStory', {
     storyId: id,
     viewMode: 'story',
     options: {
@@ -111,6 +117,6 @@ function emitSetCurrentStory(id: string) {
   });
 
   return new Promise((resolve) => {
-    storybookPreview.channel.once('storyRendered', resolve);
+    channel.once('storyRendered', resolve);
   });
 }
