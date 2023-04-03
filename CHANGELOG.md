@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [fix] Update all dependencies
+
 ## 6.3.0 (2023-01-18)
 
 - [maintenance] Update all dependencies
