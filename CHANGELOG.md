@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.0.0 (2023-04-03)
+
 Storybook 7 is now officially supported!
 
 - [breaking] Drop Storybook 6 support
