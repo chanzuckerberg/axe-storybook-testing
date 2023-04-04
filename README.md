@@ -28,7 +28,7 @@ If there are any violations, information about them will be printed, and the com
 ## Minimum requirements
 
 - Node 12
-- Storybook 6.4 (for previous versions of Storybook, use axe-storybook-testing v4.1.3)
+- Storybook 7.0 (for Storybook 6, use axe-storybook-testing v6.3.1)
 - axe-core 4.0
 
 ## Installation
@@ -45,7 +45,7 @@ yarn add --dev @chanzuckerberg/axe-storybook-testing
 
 To use:
 
-1. Create a static Storybook build. Normally you'll do this with the [build-storybook command](https://storybook.js.org/docs/react/api/cli-options#build-storybook).
+1. Create a static Storybook build. Normally you'll do this with the [`storybook build` command](https://storybook.js.org/docs/react/api/cli-options#build).
 2. Run `axe-storybook`, which will analyze the static build.
 
 To make this as easy as possible to use, we recommend adding a script to your package.json that does this in one step.
@@ -53,7 +53,7 @@ To make this as easy as possible to use, we recommend adding a script to your pa
 ```jsonc
 // In package.json
 "scripts": {
-  "storybook:axe": "build-storybook && axe-storybook"
+  "storybook:axe": "storybook build && axe-storybook"
 },
 ```
 
