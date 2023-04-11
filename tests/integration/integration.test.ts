@@ -2,14 +2,14 @@ import {exec} from 'child_process';
 
 // Before running these integration tests, the following steps must be completed:
 //
-// 1. `yarn demo:setup` - only needs to be ran when initially setting up the repo, or when changing
-//                        the demo app.
-// 2. `yarn build` - automatically ran by the pretest:integration step.
+// 1. `npm run demo:setup` - only needs to be ran when initially setting up the repo, or when changing
+//                           the demo app.
+// 2. `npm run build` - automatically ran by the pretest:integration step.
 
 it('outputs accessibility violation information for the demo app', (done) => {
   expect.assertions(2);
 
-  exec('yarn --cwd demo storybook:axeOnly', function (error, stdout) {
+  exec('cd demo && npm run storybook:axeOnly', function (error, stdout) {
     const normalizedStdout = normalize(stdout);
     expect(error!.code).toEqual(1);
     expect(normalizedStdout).toMatchSnapshot();
@@ -22,7 +22,7 @@ it('filters the components to run', (done) => {
   expect.assertions(2);
 
   exec(
-    'yarn --cwd demo storybook:axeOnly --pattern simple',
+    'cd demo && npm run storybook:axeOnly -- --pattern simple',
     function (error, stdout) {
       const normalizedStdout = normalize(stdout);
       expect(error!.code).toEqual(1);
@@ -37,7 +37,7 @@ it('fails only specific impact levels if specified', (done) => {
   expect.assertions(2);
 
   exec(
-    'yarn --cwd demo storybook:axeOnly --failing-impact critical',
+    'cd demo && npm run storybook:axeOnly -- --failing-impact critical',
     function (error, stdout) {
       const normalizedStdout = normalize(stdout);
       expect(error!.code).toEqual(1);

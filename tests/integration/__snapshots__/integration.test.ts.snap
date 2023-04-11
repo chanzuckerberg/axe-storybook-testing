@@ -1,7 +1,10 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[`fails only specific impact levels if specified 1`] = `
-"$ axe-storybook --failing-impact critical
+"
+> storybook-for-react-integration-tests@3.1.0 storybook:axeOnly
+> axe-storybook --failing-impact critical
+
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
 [chromium] accessibility
@@ -164,12 +167,14 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
 
 
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 "
 `;
 
 exports[`filters the components to run 1`] = `
-"$ axe-storybook --pattern simple
+"
+> storybook-for-react-integration-tests@3.1.0 storybook:axeOnly
+> axe-storybook --pattern simple
+
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
 [chromium] accessibility
@@ -317,12 +322,14 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
 
 
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 "
 `;
 
 exports[`outputs accessibility violation information for the demo app 1`] = `
-"$ axe-storybook
+"
+> storybook-for-react-integration-tests@3.1.0 storybook:axeOnly
+> axe-storybook
+
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
 [chromium] accessibility
@@ -512,6 +519,5 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
 
 
-info Visit https://yarnpkg.com/en/docs/cli/run for documentation about this command.
 "
 `;
