@@ -3,7 +3,7 @@
   "name": "storybook-for-react-integration-tests",
   "version": "3.1.0",
   "scripts": {
-    "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider storybook build",
+    "build-storybook": "storybook build",
     "storybook": "storybook dev -p 6007",
     "storybook-ci": "storybook dev -p 6007 --ci --quiet",
     "storybook:axe": "npm run build-storybook && axe-storybook",
