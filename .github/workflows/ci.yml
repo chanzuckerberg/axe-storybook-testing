@@ -10,18 +10,17 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version-file: '.node-version'
-          cache: 'yarn'
-      - name: Install
-        run: yarn install --frozen-lockfile
+      - name: Install deps
+        uses: bahmutov/npm-install@v1
       - name: Typecheck
-        run: yarn types
+        run: npm run types
       - name: Build
-        run: yarn build
+        run: npm run build
       - name: Lint
-        run: yarn lint
+        run: npm run lint
       - name: Unit Tests
-        run: yarn test:unit
+        run: npm run test:unit
       - name: Prepare for Integration Tests
-        run: yarn demo:build
+        run: npm run demo:build
       - name: Integration Tests
-        run: yarn test:integrationOnly
+        run: npm run test:integrationOnly
