@@ -11,6 +11,7 @@
     "storybook:axeServer": "axe-storybook --storybook-address http://localhost:6007"
   },
   "dependencies": {
+    "@chanzuckerberg/axe-storybook-testing": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },

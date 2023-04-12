@@ -22,18 +22,18 @@
   "publishConfig": {
     "access": "public"
   },
+  "workspaces": [
+    "demo"
+  ],
   "scripts": {
     "all": "npm run lint && npm run types && npm run test",
     "build": "tsc --project tsconfig.build.json",
     "clean": "rimraf ./build",
-    "demo": "npm run build && (cd demo && npm run storybook:axe)",
-    "demo:axeOnly": "npm run build && (cd demo && npm run storybook:axeOnly)",
-    "demo:build": "cd demo && npm run build-storybook",
+    "demo": "npm run build && npm run --workspace=demo storybook:axe --",
+    "demo:axeOnly": "npm run build && npm run --workspace=demo storybook:axeOnly --",
+    "demo:build": "npm run --workspace=demo build-storybook",
     "demo:eds": "axe-storybook --storybook-address https://chanzuckerberg.github.io/edu-design-system",
-    "demo:install": "cd demo && npm install",
-    "demo:link": "npm link && (cd demo && npm link @chanzuckerberg/axe-storybook-testing)",
-    "demo:setup": "npm run demo:install && npm run demo:link && npm run demo:build",
-    "demo:storybook": "cd demo && npm run storybook",
+    "demo:storybook": "npm --workspace=demo run storybook",
     "lint": "eslint --ext=js,jsx,ts,tsx .",
     "prebuild": "npm run clean",
     "prepublishOnly": "npm run build",
