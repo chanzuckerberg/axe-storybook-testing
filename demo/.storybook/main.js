@@ -1,6 +1,6 @@
 module.exports = {
   stories: ["../src"],
-  addons: ["@storybook/addon-essentials", "@storybook/addon-a11y", "@storybook/addon-postcss"],
+  addons: ["@storybook/addon-essentials", "@storybook/addon-a11y"],
   features: {
     storyStoreV7: true
   },
