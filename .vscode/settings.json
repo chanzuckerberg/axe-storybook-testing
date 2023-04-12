@@ -10,6 +10,5 @@
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": true
   },
-  "eslint.run": "onSave",
-  "typescript.tsdk": "node_modules/typescript/lib"
+  "eslint.run": "onSave"
 }
