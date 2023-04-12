@@ -42,9 +42,6 @@ jspm_packages
 # Mac files
 .DS_Store
 
-# Nested Yarn files
-packages/*/yarn.lock
-
 # Output directories
 /build
 
@@ -54,5 +51,5 @@ packages/*/yarn.lock
 # Storybook build directories in the integration testing app.
 storybook-static
 
-# Non-Yarn lockfiles
-package-lock.json
+# Non-NPM lockfiles
+yarn.lock

@@ -6,11 +6,12 @@
     "build-storybook": "NODE_OPTIONS=--openssl-legacy-provider storybook build",
     "storybook": "storybook dev -p 6007",
     "storybook-ci": "storybook dev -p 6007 --ci --quiet",
-    "storybook:axe": "yarn run build-storybook && axe-storybook",
+    "storybook:axe": "npm run build-storybook && axe-storybook",
     "storybook:axeOnly": "axe-storybook",
     "storybook:axeServer": "axe-storybook --storybook-address http://localhost:6007"
   },
   "dependencies": {
+    "@chanzuckerberg/axe-storybook-testing": "*",
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
