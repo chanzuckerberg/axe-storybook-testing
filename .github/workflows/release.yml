@@ -1,0 +1,19 @@
+name: Release
+on:
+  release:
+    types:
+      - created
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Build
+        uses: ./.github/workflows/build.yml
+      # Publish the package on Github's package registry for internal CZI use. You should still
+      # publish to the npm registry separately from this job.
+      - name: Publish package to the Github registry
+        run: npm publish --registry=https://npm.pkg.github.com/
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
