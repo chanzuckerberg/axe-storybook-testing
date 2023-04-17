@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [new] Add `--storybook-url` option, which deprecates `--storybook-address`
+
 ## 7.0.0 (2023-04-03)
 
 Storybook 7 is now officially supported!

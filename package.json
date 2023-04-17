@@ -31,7 +31,7 @@
     "demo": "npm run build && npm run --workspace=demo storybook:axe --",
     "demo:axeOnly": "npm run build && npm run --workspace=demo storybook:axeOnly --",
     "demo:build": "npm run --workspace=demo build-storybook",
-    "demo:eds": "axe-storybook --storybook-address https://chanzuckerberg.github.io/edu-design-system",
+    "demo:eds": "axe-storybook --storybook-url https://chanzuckerberg.github.io/edu-design-system",
     "demo:storybook": "npm --workspace=demo run storybook",
     "lint": "eslint --ext=js,jsx,ts,tsx .",
     "prebuild": "npm run clean",

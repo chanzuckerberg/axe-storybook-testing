@@ -35,9 +35,9 @@ export async function runWithServer<T>(
 async function getServer(options: Options): Promise<Server> {
   // If we have a storybook address, then storybook is already running and we just need to use that
   // address. No need to start or stop a server, either.
-  if (options.storybookAddress) {
+  if (options.storybookUrl) {
     return {
-      storybookUrl: options.storybookAddress,
+      storybookUrl: options.storybookUrl,
       start: () => Promise.resolve(),
       stop: () => Promise.resolve(),
     };
