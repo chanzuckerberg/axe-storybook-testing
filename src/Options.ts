@@ -80,13 +80,13 @@ const options = {
   'storybook-address': {
     alias: 's',
     description:
-      '** Deprecated! Use --storybook-url instead ** Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored.',
+      '** Deprecated! Use --storybook-url instead ** Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored',
     type: 'string' as const,
   },
   'storybook-url': {
     alias: 'u',
     description:
-      'Url to a running Storybook to test against. Alternative to --build-dir, which will be ignored if this is set.',
+      'Url to a running Storybook to test against. Alternative to --build-dir, which will be ignored if this is set',
     type: 'string' as const,
   },
   timeout: {
