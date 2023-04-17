@@ -80,13 +80,20 @@ const options = {
   'storybook-address': {
     alias: 's',
     description:
-      'Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored.',
+      '** Deprecated! Use --storybook-url instead ** Storybook server address to test against instead of using a static build directory. If set, build-dir will be ignored',
+    type: 'string' as const,
+  },
+  'storybook-url': {
+    alias: 'u',
+    description:
+      'Url to a running Storybook to test against. Alternative to --build-dir, which will be ignored if this is set',
     type: 'string' as const,
   },
   timeout: {
     alias: 't',
     default: 2000,
-    description: 'Timeout for each test (in milliseconds)',
+    description:
+      '** Deprecated! Use the "timeout" story parameter instead ** Timeout for each test (in milliseconds)',
     type: 'number' as const,
   },
 };
@@ -107,7 +114,7 @@ export function parseOptions() {
     pattern: new RegExp(argv.pattern),
     reporter: argv.reporter,
     reporterOptions: getReporterOptions(argv['reporter-options']),
-    storybookAddress: argv.storybookAddress,
+    storybookUrl: argv.storybookAddress || argv.storybookUrl,
     timeout: argv.timeout,
   };
 }
