@@ -1,0 +1,34 @@
+name: Release
+on:
+  release:
+    types:
+      - created
+jobs:
+  tests:
+    uses: ./.github/workflows/tests.yml
+  release:
+    runs-on: ubuntu-latest
+    needs: tests
+    permissions:
+      packages: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.node-version'
+          # Configure NPM to point to Github's package registry.
+          registry-url: https://npm.pkg.github.com/
+
+      - name: Install deps
+        uses: bahmutov/npm-install@v1
+
+      # Publish the package on Github's package registry for internal CZI use. You should still
+      # publish to the npm registry separately from this job.
+      - name: Publish package to the Github registry
+        run: npm publish
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
