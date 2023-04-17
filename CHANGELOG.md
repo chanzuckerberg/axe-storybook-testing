@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.1.0 (2023-04-17)
+
 - [new] Add `--storybook-url` option, which deprecates `--storybook-address`
 
 ## 7.0.0 (2023-04-03)
