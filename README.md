@@ -82,7 +82,7 @@ The command-line interface has the following options:
 | `--reporter-options` |  | string | Options to pass to the mocha reporter. Especially useful with the xunit reporter - e.g. `--reporter-options output=./filename.xml` |
 | `--storybook-address`|  | url | **_Deprecated!_** Use `--storybook-url` instead. |
 | `--storybook-url` |  | url | Url to a running Storybook to test against. Alternative to `--build-dir`, which will be ignored if this is set. |
-| `--timeout` | 2000 | number | Timeout (in milliseconds) for each test |
+| `--timeout` | 2000 | number | **_Deprecated!_** Use the `timeout` story parameter instead. |
 
 For example, to run non-headlessly in Firefox, you would run
 

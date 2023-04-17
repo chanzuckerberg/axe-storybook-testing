@@ -92,7 +92,8 @@ const options = {
   timeout: {
     alias: 't',
     default: 2000,
-    description: 'Timeout for each test (in milliseconds)',
+    description:
+      '** Deprecated! Use the "timeout" story parameter instead ** Timeout for each test (in milliseconds)',
     type: 'number' as const,
   },
 };
