@@ -1,4 +1,4 @@
-import type {PreviewWeb} from '@storybook/preview-web';
+import type {PreviewWeb} from '@storybook/preview-api';
 import type {Renderer, StoryIdentifier, Parameters} from '@storybook/types';
 import pTimeout from 'p-timeout';
 import type {Page} from 'playwright';
@@ -17,7 +17,13 @@ type Story = StoryIdentifier & {
   parameters: Parameters;
 };
 
-export type StorybookStory = Pick<Story, 'id' | 'kind' | 'name' | 'parameters'>;
+/**
+ * Story with only the attributes we need.
+ */
+export type StorybookStory = Pick<
+  Story,
+  'id' | 'title' | 'name' | 'parameters'
+>;
 
 /**
  * Get the list of stories from a static storybook build.
@@ -57,6 +63,15 @@ export async function showStory(page: Page, id: string): Promise<void> {
  */
 function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
   const storybookPreview = window.__STORYBOOK_PREVIEW__;
+
+  if (!storybookPreview) {
+    return Promise.reject(
+      new Error(
+        'Storybook preview not found. Is Storybook running, and is it at least v7?',
+      ),
+    );
+  }
+
   const storyStore = storybookPreview.storyStore;
 
   return storyStore.cacheAllCSFFiles().then(() => {
@@ -74,7 +89,7 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
       return {
         id: story.id,
         name: story.name,
-        kind: story.kind,
+        title: story.title,
         parameters: {
           axe: story.parameters.axe,
         },
@@ -99,14 +114,16 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
 function emitSetCurrentStory(id: string) {
   const storybookPreview = window.__STORYBOOK_PREVIEW__;
 
-  // @ts-expect-error Access the protected "channel", so we can send stuff through it.
-  const channel = storybookPreview.channel;
-
   if (!storybookPreview) {
     return Promise.reject(
-      new Error("Storybook doesn't seem to be running on the page"),
+      new Error(
+        'Storybook preview not found. Is Storybook running, and is it at least v7?',
+      ),
     );
   }
+
+  // @ts-expect-error Access the protected "channel", so we can send stuff through it.
+  const channel = storybookPreview.channel;
 
   channel.emit('setCurrentStory', {
     storyId: id,
