@@ -17,6 +17,9 @@ type Story = StoryIdentifier & {
   parameters: Parameters;
 };
 
+/**
+ * Story with only the attributes we need.
+ */
 export type StorybookStory = Pick<
   Story,
   'id' | 'title' | 'name' | 'parameters'
