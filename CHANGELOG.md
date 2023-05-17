@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [fix] Replace @storybook/preview-web peer dependency with @storybook/preview-api (which is what @storybook/react actually uses)
+
 ## 7.1.0 (2023-04-17)
 
 - [new] Add `--storybook-url` option, which deprecates `--storybook-address`
