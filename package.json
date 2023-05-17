@@ -57,14 +57,14 @@
     "zod": "^3.21.4"
   },
   "peerDependencies": {
-    "@storybook/preview-web": "^6.4.0",
+    "@storybook/preview-api": "^7.0.0",
     "axe-core": "^4.0.0"
   },
   "devDependencies": {
     "@chanzuckerberg/eslint-config-edu-js": "^1.1.0",
     "@chanzuckerberg/eslint-config-edu-ts": "^1.0.9",
     "@chanzuckerberg/prettier-config-edu": "^1.0.5",
-    "@storybook/preview-web": "^7.0.5",
+    "@storybook/preview-api": "^7.0.12",
     "@storybook/types": "^7.0.5",
     "@types/http-server": "^0.12.1",
     "@types/jest": "^29.5.0",
