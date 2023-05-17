@@ -23,7 +23,7 @@ export default class ProcessedStory {
 
   constructor(rawStory: StorybookStory) {
     this.name = rawStory.name;
-    this.componentTitle = rawStory.kind;
+    this.componentTitle = rawStory.title;
     this.id = rawStory.id;
     this.parameters = {
       skip: normalizeSkip(rawStory.parameters?.axe?.skip, rawStory),
@@ -198,7 +198,7 @@ function parseWithFriendlyError<T>(
   } catch (message) {
     if (message instanceof zod.ZodError) {
       throw new TypeError(
-        `Invalid value for parameter "${paramName}" in component "${rawStory.kind}", story "${rawStory.name}"`,
+        `Invalid value for parameter "${paramName}" in component "${rawStory.title}", story "${rawStory.name}"`,
       );
     } else {
       throw message;

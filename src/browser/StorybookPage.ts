@@ -17,7 +17,10 @@ type Story = StoryIdentifier & {
   parameters: Parameters;
 };
 
-export type StorybookStory = Pick<Story, 'id' | 'kind' | 'name' | 'parameters'>;
+export type StorybookStory = Pick<
+  Story,
+  'id' | 'title' | 'name' | 'parameters'
+>;
 
 /**
  * Get the list of stories from a static storybook build.
@@ -83,7 +86,7 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
       return {
         id: story.id,
         name: story.name,
-        kind: story.kind,
+        title: story.title,
         parameters: {
           axe: story.parameters.axe,
         },
