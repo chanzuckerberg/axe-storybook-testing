@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 7.1.1 (2023-05-17)
+
 - [fix] Replace @storybook/preview-web peer dependency with @storybook/preview-api (which is what @storybook/react actually uses)
 
 ## 7.1.0 (2023-04-17)
