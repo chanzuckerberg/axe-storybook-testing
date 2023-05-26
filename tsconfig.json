@@ -9,6 +9,6 @@
     "outDir": "build",
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2015",
+    "target": "es2017",
   }
 }
