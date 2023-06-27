@@ -8,22 +8,26 @@ If there are any violations, information about them will be printed, and the com
 
 ## Table of contents
 
-- [@chanzuckerberg/axe-storybook-testing](#chanzuckerbergaxe-storybook-testing)
-  - [Table of contents](#table-of-contents)
-  - [Minimum requirements](#minimum-requirements)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Options](#options)
-  - [Story parameters](#story-parameters)
-    - [disabledRules](#disabledrules)
-    - [mode](#mode)
-    - [runOptions](#runoptions)
-    - [skip](#skip)
-    - [timeout](#timeout)
-    - [waitForSelector](#waitforselector) (deprecated)
-  - [TypeScript](#typescript)
-  - [Developing](#developing)
-  - [Inspiration](#inspiration)
+- [Code of conduct](#code-of-conduct)
+- [Minimum requirements](#minimum-requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Options](#options)
+- [Story parameters](#story-parameters)
+  - [disabledRules](#disabledrules)
+  - [mode](#mode)
+  - [runOptions](#runoptions)
+  - [skip](#skip)
+  - [timeout](#timeout)
+  - [waitForSelector](#waitforselector) (deprecated)
+- [TypeScript](#typescript)
+- [Developing](#developing)
+- [Security](#security)
+- [Inspiration](#inspiration)
+
+## Code of conduct
+
+This project adheres to the [Contributor Covenant code of conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/). By participating, you are expected to uphold this code. Please report unacceptable behavior to <opensource@chanzuckerberg.com>.
 
 ## Minimum requirements
 
@@ -256,6 +260,10 @@ export const SomeStory: StoryObj<Args> = {
 ## Developing
 
 If you want to work on this project or contribute back to it, see our [wiki entry on Development setup](https://github.com/chanzuckerberg/axe-storybook-testing/wiki/Development-setup).
+
+## Security
+
+To report security issues, see [./SECURITY.md](./SECURITY.md).
 
 ## Inspiration
 
