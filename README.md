@@ -8,23 +8,21 @@ If there are any violations, information about them will be printed, and the com
 
 ## Table of contents
 
-- [@chanzuckerberg/axe-storybook-testing](#chanzuckerbergaxe-storybook-testing)
-  - [Table of contents](#table-of-contents)
-  - [Code of conduct](#code-of-conduct)
-  - [Minimum requirements](#minimum-requirements)
-  - [Installation](#installation)
-  - [Usage](#usage)
-  - [Options](#options)
-  - [Story parameters](#story-parameters)
-    - [disabledRules](#disabledrules)
-    - [mode](#mode)
-    - [runOptions](#runoptions)
-    - [skip](#skip)
-    - [timeout](#timeout)
-    - [waitForSelector](#waitforselector) (deprecated)
-  - [TypeScript](#typescript)
-  - [Developing](#developing)
-  - [Inspiration](#inspiration)
+- [Code of conduct](#code-of-conduct)
+- [Minimum requirements](#minimum-requirements)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Options](#options)
+- [Story parameters](#story-parameters)
+  - [disabledRules](#disabledrules)
+  - [mode](#mode)
+  - [runOptions](#runoptions)
+  - [skip](#skip)
+  - [timeout](#timeout)
+  - [waitForSelector](#waitforselector) (deprecated)
+- [TypeScript](#typescript)
+- [Developing](#developing)
+- [Inspiration](#inspiration)
 
 ## Code of conduct
 
