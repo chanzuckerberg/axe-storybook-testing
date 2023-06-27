@@ -10,6 +10,7 @@ If there are any violations, information about them will be printed, and the com
 
 - [@chanzuckerberg/axe-storybook-testing](#chanzuckerbergaxe-storybook-testing)
   - [Table of contents](#table-of-contents)
+  - [Code of conduct](#code-of-conduct)
   - [Minimum requirements](#minimum-requirements)
   - [Installation](#installation)
   - [Usage](#usage)
@@ -24,6 +25,10 @@ If there are any violations, information about them will be printed, and the com
   - [TypeScript](#typescript)
   - [Developing](#developing)
   - [Inspiration](#inspiration)
+
+## Code of conduct
+
+This project adheres to the [Contributor Covenant code of conduct](https://www.contributor-covenant.org/version/2/1/code_of_conduct/). By participating, you are expected to uphold this code. Please report unacceptable behavior to <opensource@chanzuckerberg.com>.
 
 ## Minimum requirements
 
