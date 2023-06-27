@@ -22,6 +22,7 @@ If there are any violations, information about them will be printed, and the com
   - [waitForSelector](#waitforselector) (deprecated)
 - [TypeScript](#typescript)
 - [Developing](#developing)
+- [Security](#security)
 - [Inspiration](#inspiration)
 
 ## Code of conduct
@@ -259,6 +260,10 @@ export const SomeStory: StoryObj<Args> = {
 ## Developing
 
 If you want to work on this project or contribute back to it, see our [wiki entry on Development setup](https://github.com/chanzuckerberg/axe-storybook-testing/wiki/Development-setup).
+
+## Security
+
+To report security issues, see [./SECURITY.md](./SECURITY.md).
 
 ## Inspiration
 
