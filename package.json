@@ -40,7 +40,6 @@
     "test": "jest src",
     "test:integration": "npm run test:integrationOnly",
     "test:integrationOnly": "jest tests/integration",
-    "test:unit": "jest tests/unit",
     "types": "tsc --noEmit",
     "validate": "npm run lint && npm run types && npm run test"
   },
