@@ -25,7 +25,7 @@ jobs:
         run: npm run lint
 
       - name: Unit Tests
-        run: npm run test:unit
+        run: npm run test
 
       - name: Prepare for Integration Tests
         run: npm run demo:build
