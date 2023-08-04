@@ -1,11 +1,5 @@
 import {exec} from 'child_process';
 
-// Before running these integration tests, the following steps must be completed:
-//
-// 1. `npm run demo:build` - only needs to be ran when initially setting up the repo, or when changing
-//                           the demo app.
-// 2. `npm run build` - automatically ran by the pretest:integration step.
-
 it('outputs accessibility violation information for the demo app', (done) => {
   expect.assertions(2);
 
