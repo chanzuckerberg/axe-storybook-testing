@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- [fix] Update all dependencies
 - [fix] Build for Node 12 / ES2017. Node 12 is the minimum supported version of Node for this project.
 
 ## 7.1.1 (2023-05-17)
