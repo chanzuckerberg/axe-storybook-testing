@@ -1,4 +1,4 @@
-import ProcessedStory from '../../src/ProcessedStory';
+import ProcessedStory from './ProcessedStory';
 
 it('parses a raw Storybook story', () => {
   const rawStory = {

@@ -1,5 +1,5 @@
 import dedent from 'ts-dedent';
-import Result from '../../src/Result';
+import Result from './Result';
 
 describe('isPassing', () => {
   it('returns true when there are no violations', () => {

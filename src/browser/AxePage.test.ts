@@ -1,4 +1,4 @@
-import {getRunOptions} from '../../src/browser/AxePage';
+import {getRunOptions} from './AxePage';
 
 describe('getRunOptions', () => {
   it('overrides any rules from runOptions with those from disabledRules', () => {

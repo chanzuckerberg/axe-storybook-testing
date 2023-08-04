@@ -1,3 +1,4 @@
+/* eslint-disable jest/no-done-callback */
 import {exec} from 'child_process';
 
 it('outputs accessibility violation information for the demo app', (done) => {

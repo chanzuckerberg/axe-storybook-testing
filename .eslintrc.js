@@ -1,8 +1,9 @@
 module.exports = {
   root: true,
+  ignorePatterns: ['storybook-static/', 'build/'],
   env: {
-    node: true,
     es6: true,
+    node: true,
   },
   extends: [
     '@chanzuckerberg/eslint-config-edu-js',
@@ -10,5 +11,14 @@ module.exports = {
     'plugin:prettier/recommended',
     'prettier',
   ],
-  ignorePatterns: ['storybook-static/', 'build/'],
+  overrides: [
+    {
+      files: ['**/*.test.*'],
+      env: {
+        'jest/globals': true,
+      },
+      plugins: ['jest'],
+      extends: ['plugin:jest/recommended'],
+    },
+  ],
 };
