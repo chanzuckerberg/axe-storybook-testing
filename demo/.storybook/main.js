@@ -8,7 +8,7 @@ module.exports = {
     name: "@storybook/react-webpack5",
     options: {}
   },
-  // Provide  basic babel config. react-webpack5 seems to actually provide most of this.
+  // Provide basic babel config. react-webpack5 seems to actually provide most of this.
   babel: (config) => {
     return {
       ...config,
