@@ -1,1 +1,6 @@
-module.exports = require('@chanzuckerberg/prettier-config-edu');
+module.exports = {
+  arrowParens: 'always',
+  bracketSpacing: false,
+  singleQuote: true,
+  trailingComma: 'all',
+};
