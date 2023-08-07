@@ -2,7 +2,10 @@
 
 ## Unreleased
 
-- [fix] Build for Node 12 / ES2017. Node 12 is the minimum supported version of Node for this project.
+# 7.1.2 (2023-08-07)
+
+- [fix] Update most deps [#82](https://github.com/chanzuckerberg/axe-storybook-testing/pull/82)
+- [fix] Build for Node 12 / ES2017. Node 12 is the minimum supported version of Node for this project [#78](https://github.com/chanzuckerberg/axe-storybook-testing/pull/78)
 
 ## 7.1.1 (2023-05-17)
 
