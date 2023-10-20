@@ -68,7 +68,7 @@
     "@types/jest": "^29.5.3",
     "@types/lodash": "^4.14.196",
     "@types/mocha": "^10.0.1",
-    "@types/node": "^18.15.11",
+    "@types/node": "^20.8.7",
     "@types/yargs": "^17.0.24",
     "axe-core": "^4.7.2",
     "eslint": "^8.46.0",
