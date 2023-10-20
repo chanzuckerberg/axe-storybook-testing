@@ -16,10 +16,10 @@
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^7.2.1",
-    "@storybook/addon-essentials": "^7.2.1",
-    "@storybook/react": "^7.2.1",
-    "@storybook/react-webpack5": "^7.2.1",
-    "storybook": "^7.2.1"
+    "@storybook/addon-a11y": "^7.5.1",
+    "@storybook/addon-essentials": "^7.5.1",
+    "@storybook/react": "^7.5.1",
+    "@storybook/react-webpack5": "^7.5.1",
+    "storybook": "^7.5.1"
   }
 }
