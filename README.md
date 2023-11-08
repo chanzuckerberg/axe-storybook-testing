@@ -41,7 +41,7 @@ This project adheres to the [Contributor Covenant code of conduct](https://www.c
 # via npm
 npm install --save-dev @chanzuckerberg/axe-storybook-testing
 
-# or, if using Yarn
+# or with Yarn
 yarn add --dev @chanzuckerberg/axe-storybook-testing
 ```
 
@@ -49,27 +49,23 @@ yarn add --dev @chanzuckerberg/axe-storybook-testing
 
 To use:
 
-1. Create a static Storybook build. Normally you'll do this with the [`storybook build` command](https://storybook.js.org/docs/react/api/cli-options#build).
-2. Run `axe-storybook`, which will analyze the static build.
+1. Add a script that creates a storybook build and then executes the axe-storybook command
+   ```jsonc
+   // In package.json
+   "scripts": {
+     "test:axe": "storybook build && axe-storybook"
+   },
+   ```
 
-To make this as easy as possible to use, we recommend adding a script to your package.json that does this in one step.
+2. Run the tests by calling the script from the previous step
+   ```sh
+   npm run test:axe
+   ```
 
-```jsonc
-// In package.json
-"scripts": {
-  "storybook:axe": "storybook build && axe-storybook"
-},
-```
-
-Then you can run the tests with
-
-```sh
-# If using npm
-npm run storybook:axe
-
-# or, if using Yarn
-yarn storybook:axe
-```
+3. (Optional) Install more browsers. By default Chromium is installed. If you want to also use Firefox and/or Safari, install them with:
+   ```sh
+   npx playwright install
+   ```
 
 ## Options
 

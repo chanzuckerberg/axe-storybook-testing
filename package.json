@@ -44,6 +44,7 @@
     "validate": "npm run lint && npm run types && npm run test"
   },
   "dependencies": {
+    "@playwright/browser-chromium": "^1.39.0",
     "http-server": "^14.1.1",
     "indent-string": "^4.0.0",
     "lodash": "^4.17.21",
