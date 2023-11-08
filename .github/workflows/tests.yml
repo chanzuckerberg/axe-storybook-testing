@@ -30,8 +30,5 @@ jobs:
       - name: Prepare for Integration Tests
         run: npm run demo:build
 
-      - name: Install playwright browsers
-        run: npx playwright install chromium --with-deps
-
       - name: Integration Tests
         run: npm run test:integrationOnly
