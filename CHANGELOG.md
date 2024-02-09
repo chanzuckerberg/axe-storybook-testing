@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+# 7.1.4 (2024-02-09)
+
+- [fix] Update all deps
+
 # 7.1.3 (2023-11-08)
 
 - [fix] Automatically install Chromium and add note about installing other browsers [#85](https://github.com/chanzuckerberg/axe-storybook-testing/pull/85)
