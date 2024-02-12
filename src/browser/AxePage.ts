@@ -35,15 +35,18 @@ function runAxe({
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore This function executes in a browser context.
   return window.axeQueue.add(() => {
+    // Always reset the axe config, so if one story sets its own config it doesn't affect the
+    // others.
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore This function executes in a browser context.
+    window.axe.reset();
+
     if (config) {
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore This function executes in a browser context.
       window.axe.configure(config);
-    } else {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore This function executes in a browser context.
-      window.axe.reset();
     }
+
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore This function executes in a browser context.
     return window.axe.run(document, options);
