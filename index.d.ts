@@ -1,4 +1,4 @@
-import type {RunOptions} from 'axe-core';
+import type {RunOptions, Spec} from 'axe-core';
 
 export declare type AxeParams = {
   /**
@@ -22,10 +22,14 @@ export declare type AxeParams = {
    */
   timeout?: number;
   /**
-   * Allows use of optional axe.run options for a given story
+   * Run options passed to `axe.run`.
    * @see https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter
    */
   runOptions?: RunOptions;
+  /**
+   * Config passed to `axe.configure`.
+   */
+  config?: Spec;
   /**
    * @deprecated
    * Legacy way of waiting for a selector before running Axe.

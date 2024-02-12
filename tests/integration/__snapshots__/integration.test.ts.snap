@@ -8,6 +8,9 @@ exports[`fails only specific impact levels if specified 1`] = `
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
 [chromium] accessibility
+  advanced
+    ✔ Branding
+
   autoTitles
     ✔ No Failures
 
@@ -52,7 +55,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      Element has no title attribute
                      Element's default semantics were not overridden with role="none" or role="presentation"
 
-  7 passing
+  8 passing
   6 pending
   7 failing
 
@@ -178,6 +181,9 @@ exports[`filters the components to run 1`] = `
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
 [chromium] accessibility
+  advanced
+    - Branding
+
   autoTitles
     - No Failures
 
@@ -235,7 +241,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      Element's default semantics were not overridden with role="none" or role="presentation"
 
   3 passing
-  13 pending
+  14 pending
   4 failing
 
   1) simple
@@ -333,22 +339,25 @@ exports[`outputs accessibility violation information for the demo app 1`] = `
 Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
 [chromium] accessibility
+  advanced
+    1) Branding
+
   autoTitles
     ✔ No Failures
 
   delays
     ✔ Short Delay And Pass
-    1) Short Delay And Fail
+    2) Short Delay And Fail
     ✔ Medium Delay And Pass
-    2) Medium Delay And Fail
-    3) Medium Delay And Short Timeout Fail
-    4) Long Delay And Timeout
+    3) Medium Delay And Fail
+    4) Medium Delay And Short Timeout Fail
+    5) Long Delay And Timeout
 
   simple
     ✔ No Failures
-    5) Failure No Discernible Text
-    6) Failure Color Contrast
-    7) Failure No Discernible Text And Invalid Role
+    6) Failure No Discernible Text
+    7) Failure Color Contrast
+    8) Failure No Discernible Text And Invalid Role
     - Failure Color Contrast Skipped
     - No Failures Warn
     - Failure Color Contrast Warn
@@ -356,7 +365,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
     - Failure Color Contrast Off
     - Failure No Discernible Text And Invalid Role Skipped
     ✔ Failure Color Contrast Disabled Rule
-    8) Failure No Discernible Text And Invalid Role Disabled One Rule
+    9) Failure No Discernible Text And Invalid Role Disabled One Rule
     ✔ Failure No Discernible Text And Invalid Role Disabled Rules
 
 2 violations were detected in stories with "mode" set to "warn", so did not fail the test suite:
@@ -391,9 +400,24 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
   6 passing
   6 pending
-  8 failing
+  9 failing
 
-  1) delays
+  1) advanced
+       Branding:
+     Detected the following accessibility violations!
+
+     1. color-contrast (Elements must meet minimum color contrast ratio thresholds)
+
+        For more info, visit https://dequeuniversity.com/rules/axe/4.8/color-contrast?application=my-branding.
+
+        Check these nodes:
+
+        - html: <button style="background-color: red; color: hotpink;">hello world</button>
+          summary: Fix any of the following:
+                     Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
+  
+
+  2) delays
        Short Delay And Fail:
      Detected the following accessibility violations!
 
@@ -408,7 +432,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      Role must be one of the valid ARIA roles: wut-the-wut
   
 
-  2) delays
+  3) delays
        Medium Delay And Fail:
      Detected the following accessibility violations!
 
@@ -423,19 +447,19 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      Role must be one of the valid ARIA roles: wut-the-wut
   
 
-  3) delays
+  4) delays
        Medium Delay And Short Timeout Fail:
      Error: Timeout of 100ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves.
       at listOnTimeout (node:internal/timers)
       at processTimers (node:internal/timers)
 
-  4) delays
+  5) delays
        Long Delay And Timeout:
      Error: Timeout of 2000ms exceeded. For async tests and hooks, ensure "done()" is called; if returning a Promise, ensure it resolves.
       at listOnTimeout (node:internal/timers)
       at processTimers (node:internal/timers)
 
-  5) simple
+  6) simple
        Failure No Discernible Text:
      Detected the following accessibility violations!
 
@@ -454,7 +478,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
-  6) simple
+  7) simple
        Failure Color Contrast:
      Detected the following accessibility violations!
 
@@ -469,7 +493,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      Element has insufficient color contrast of 1.51 (foreground color: #ff69b4, background color: #ff0000, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1
   
 
-  7) simple
+  8) simple
        Failure No Discernible Text And Invalid Role:
      Detected the following accessibility violations!
 
@@ -498,7 +522,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
-  8) simple
+  9) simple
        Failure No Discernible Text And Invalid Role Disabled One Rule:
      Detected the following accessibility violations!
 

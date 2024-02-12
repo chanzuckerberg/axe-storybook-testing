@@ -98,6 +98,8 @@ yarn storybook:axe --headless false --browser firefox
 
 Stories can use parameters to configure how axe-storybook-testing handles them.
 
+You can provide these wherever Storybook accepts [parameters](https://storybook.js.org/docs/writing-stories/parameters) (story, component, or global).
+
 ### disabledRules
 
 Prevent axe-storybook-testing from running specific Axe rules on a story by using the `disabledRules` parameter.
@@ -160,7 +162,25 @@ export const SomeStory = {
         ...
       }
     }
-  };
+  }
+}
+```
+
+### config
+
+Axe configuration, which is passed to [axe.configure](https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axeconfigure).
+
+```jsx
+export const SomeStory = {
+  parameters: {
+    axe: {
+      config: {
+        checks: [...],
+        ...
+      }
+    }
+  }
+}
 ```
 
 ### skip

@@ -206,3 +206,23 @@ describe('runOptions', () => {
     );
   });
 });
+
+describe('config', () => {
+  it('is undefined when the config parameter is missing', () => {
+    const parameters = {axe: {}};
+    const rawStory = {id: 'button--a', title: 'button', name: 'a', parameters};
+    const processedStory = new ProcessedStory(rawStory);
+    expect(processedStory.config).toBeUndefined();
+  });
+
+  it('parses config', () => {
+    const parameters = {
+      axe: {config: {branding: 'hi'}},
+    };
+    const rawStory = {id: 'button--a', title: 'button', name: 'a', parameters};
+    const processedStory = new ProcessedStory(rawStory);
+    expect(processedStory.config).toEqual({
+      branding: 'hi',
+    });
+  });
+});
