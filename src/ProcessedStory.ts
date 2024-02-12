@@ -1,4 +1,4 @@
-import type {RunOptions} from 'axe-core';
+import type {RunOptions, Spec} from 'axe-core';
 import {z as zod} from 'zod';
 import type {StorybookStory} from './browser/StorybookPage';
 
@@ -6,6 +6,7 @@ type Params = {
   disabledRules: string[];
   mode: 'off' | 'warn' | 'error';
   runOptions?: RunOptions;
+  config?: Spec;
   skip: boolean;
   timeout: number;
   /** @deprecated */
@@ -41,6 +42,7 @@ export default class ProcessedStory {
         rawStory.parameters?.axe?.runOptions,
         rawStory,
       ),
+      config: normalizeConfig(rawStory.parameters?.axe?.config, rawStory),
     };
   }
 
@@ -66,11 +68,19 @@ export default class ProcessedStory {
   }
 
   /**
-   * All optional run options used for a given story
+   * All optional run options used for a given story. Passed to `axe.run`.
    * @see https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter
    */
   get runOptions() {
     return this.parameters.runOptions;
+  }
+
+  /**
+   * All optional config used to configure axe-core. Passed to `axe.configure`.
+   * @see https://www.deque.com/axe/core-documentation/api-documentation/#api-name-axeconfigure
+   */
+  get config() {
+    return this.parameters.config;
   }
 
   /**
@@ -128,6 +138,8 @@ const runOptionsSchema = zod.optional(
   }),
 );
 
+const configSchema = zod.object({}).passthrough().optional();
+
 function normalizeSkip(skip: unknown, rawStory: StorybookStory) {
   return parseWithFriendlyError(
     () => skipSchema.parse(skip) || false,
@@ -160,6 +172,14 @@ function normalizeRunOptions(runOptions: unknown, rawStory: StorybookStory) {
     () => runOptionsSchema.parse(runOptions) || {},
     rawStory,
     'runOptions',
+  );
+}
+
+function normalizeConfig(config: unknown, rawStory: StorybookStory) {
+  return parseWithFriendlyError(
+    () => configSchema.parse(config),
+    rawStory,
+    'config',
   );
 }
 

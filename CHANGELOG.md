@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [new] Add `config` parameter, which is passed to `axe.configure`
+
 # 7.1.4 (2024-02-09)
 
 - [fix] Update all deps

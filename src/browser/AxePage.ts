@@ -1,4 +1,4 @@
-import type {AxeResults, RuleObject, RunOptions} from 'axe-core';
+import type {AxeResults, RuleObject, RunOptions, Spec} from 'axe-core';
 import type {Page} from 'playwright';
 
 /**
@@ -17,14 +17,40 @@ export function analyze(
   page: Page,
   disabledRules: string[] = [],
   runOptions: RunOptions = {},
+  config?: Spec,
 ): Promise<AxeResults> {
-  return page.evaluate(runAxe, getRunOptions(runOptions, disabledRules));
+  return page.evaluate(runAxe, {
+    options: getRunOptions(runOptions, disabledRules),
+    config,
+  });
 }
 
-function runAxe(options: RunOptions): Promise<AxeResults> {
+function runAxe({
+  options,
+  config,
+}: {
+  options: RunOptions;
+  config?: Spec;
+}): Promise<AxeResults> {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore This function executes in a browser context.
-  return window.axeQueue.add(() => window.axe.run(document, options));
+  return window.axeQueue.add(() => {
+    // Always reset the axe config, so if one story sets its own config it doesn't affect the
+    // others.
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore This function executes in a browser context.
+    window.axe.reset();
+
+    if (config) {
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+      // @ts-ignore This function executes in a browser context.
+      window.axe.configure(config);
+    }
+
+    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
+    // @ts-ignore This function executes in a browser context.
+    return window.axe.run(document, options);
+  });
 }
 
 export function getRunOptions(
