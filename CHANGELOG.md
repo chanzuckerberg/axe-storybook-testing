@@ -2,7 +2,9 @@
 
 ## Unreleased
 
-- [new] Add `config` parameter, which is passed to `axe.configure`
+# 7.2.0 (2024-02-12)
+
+- [new] Add `config` parameter, which is passed to `axe.configure` [#88](https://github.com/chanzuckerberg/axe-storybook-testing/pull/88)
 
 # 7.1.4 (2024-02-09)
 

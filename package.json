@@ -1,6 +1,6 @@
 {
   "name": "@chanzuckerberg/axe-storybook-testing",
-  "version": "7.1.4",
+  "version": "7.2.0",
   "license": "MIT",
   "homepage": "https://github.com/chanzuckerberg/axe-storybook-testing",
   "engines": {
