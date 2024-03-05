@@ -1,4 +1,4 @@
-import type {PreviewWeb} from '@storybook/preview-api';
+import type {PreviewWeb, StoryStore} from '@storybook/preview-api';
 import type {Renderer, StoryIdentifier, Parameters} from '@storybook/types';
 import pTimeout from 'p-timeout';
 import type {Page} from 'playwright';
@@ -72,9 +72,7 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
     );
   }
 
-  const storyStore = storybookPreview.storyStore;
-
-  return storyStore.cacheAllCSFFiles().then(() => {
+  return storybookPreview.extract().then(() => {
     // Pick only the properties we need from Storybook's representation of a story.
     //
     // This is necessary because Playwright's `page.evaluate` requires return values to be JSON
@@ -95,6 +93,8 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
         },
       };
     }
+
+    const storyStore = storybookPreview.storyStore as StoryStore<Renderer>;
 
     return storyStore
       .raw()

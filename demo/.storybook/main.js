@@ -1,18 +1,24 @@
 module.exports = {
   stories: ["../src"],
-  addons: ["@storybook/addon-essentials", "@storybook/addon-a11y"],
+  addons: [
+    "@storybook/addon-a11y",
+    "@storybook/addon-essentials",
+    "@storybook/addon-webpack5-compiler-swc",
+  ],
   core: {
-    disableTelemetry: true
+    disableTelemetry: true,
   },
   framework: {
     name: "@storybook/react-webpack5",
-    options: {}
+    options: {},
   },
-  // Provide basic babel config. react-webpack5 seems to actually provide most of this.
-  babel: (config) => {
-    return {
-      ...config,
-      sourceType: 'module',
-    }
-  },
+  swc: () => ({
+    jsc: {
+      transform: {
+        react: {
+          runtime: 'automatic',
+        },
+      },
+    },
+  }),
 };
