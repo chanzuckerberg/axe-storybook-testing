@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- [breaking] Support Node >= 18
 - [new] Support Storybook v8
 
 # 7.2.0 (2024-02-12)
