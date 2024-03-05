@@ -4,11 +4,11 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "isolatedModules": true,
-    "lib": ["es2019"],
-    "module": "commonjs",
+    "lib": ["ES2022"],
+    "module": "node16",
     "outDir": "build",
     "skipLibCheck": true,
     "strict": true,
-    "target": "es2017",
+    "target": "ES2022",
   }
 }
