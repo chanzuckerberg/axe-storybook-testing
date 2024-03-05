@@ -2,8 +2,10 @@
 
 ## Unreleased
 
-- [breaking] Support Node >= 18
-- [new] Support Storybook v8
+# 8.0.0 (2024-03-05)
+
+- [breaking] Support Node >= 18 [#91](https://github.com/chanzuckerberg/axe-storybook-testing/pull/91)
+- [new] Support Storybook v8 [#90](https://github.com/chanzuckerberg/axe-storybook-testing/pull/90)
 
 # 7.2.0 (2024-02-12)
 
