@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+# 8.0.1
+
 - [fix] Wait a random amount of time before selecting a port, to try to avoid port conflicts when multiple test runs start at the same time [#92](https://github.com/chanzuckerberg/axe-storybook-testing/pull/92)
 
 # 8.0.0 (2024-03-05)
