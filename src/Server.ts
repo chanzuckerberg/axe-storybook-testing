@@ -43,6 +43,10 @@ async function getServer(options: Options): Promise<Server> {
     };
   }
 
+  // Try to prevent port conflicts when multiple test runs start at the exact same time (such as in
+  // a monorepo).
+  await waitRandomTime(500);
+
   const localPath = getStaticStorybookPath(options);
   const port = await portfinder.getPortPromise();
   const host = '127.0.0.1';
@@ -77,4 +81,9 @@ function getStaticStorybookPath(options: Options): string {
   }
 
   return storybookStaticPath;
+}
+
+function waitRandomTime(maxWaitTime: number) {
+  const waitTime = Math.floor(Math.random() * maxWaitTime);
+  return new Promise((resolve) => setTimeout(resolve, waitTime));
 }
