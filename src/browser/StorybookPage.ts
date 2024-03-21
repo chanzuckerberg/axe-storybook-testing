@@ -52,8 +52,8 @@ export async function getStories(page: Page): Promise<StorybookStory[]> {
 /**
  * Render a story on a Storybook page.
  */
-export async function showStory(page: Page, id: string): Promise<void> {
-  await page.evaluate(emitSetCurrentStory, id);
+export function showStory(page: Page, id: string) {
+  return page.evaluate(emitSetCurrentStory, id);
 }
 
 /**
