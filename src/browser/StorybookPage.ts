@@ -122,18 +122,18 @@ function emitSetCurrentStory(id: string) {
     );
   }
 
-  // @ts-expect-error Access the protected "channel", so we can send stuff through it.
-  const channel = storybookPreview.channel;
-
-  channel.emit('setCurrentStory', {
-    storyId: id,
-    viewMode: 'story',
-    options: {
-      target: 'storybook-preview-iframe',
-    },
-  });
-
   return new Promise((resolve) => {
+    // @ts-expect-error Access the protected "channel", so we can send stuff through it.
+    const channel = storybookPreview.channel;
+
+    channel.emit('setCurrentStory', {
+      storyId: id,
+      viewMode: 'story',
+      options: {
+        target: 'storybook-preview-iframe',
+      },
+    });
+
     channel.once('storyRendered', resolve);
   });
 }
