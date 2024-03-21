@@ -32,3 +32,23 @@ jobs:
 
       - name: Integration Tests
         run: npm run test:integrationOnly
+
+  validate-on-eds:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+
+      - name: Setup node
+        uses: actions/setup-node@v3
+        with:
+          node-version-file: '.node-version'
+
+      - name: Install deps
+        uses: bahmutov/npm-install@v1
+
+      - name: Build
+        run: npm run build
+
+      - name: Run on EDS
+        run: npm run demo:eds

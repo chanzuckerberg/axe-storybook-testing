@@ -52,8 +52,8 @@ export async function getStories(page: Page): Promise<StorybookStory[]> {
 /**
  * Render a story on a Storybook page.
  */
-export async function showStory(page: Page, id: string): Promise<void> {
-  await page.evaluate(emitSetCurrentStory, id);
+export function showStory(page: Page, id: string) {
+  return page.evaluate(emitSetCurrentStory, id);
 }
 
 /**
@@ -122,18 +122,18 @@ function emitSetCurrentStory(id: string) {
     );
   }
 
-  // @ts-expect-error Access the protected "channel", so we can send stuff through it.
-  const channel = storybookPreview.channel;
-
-  channel.emit('setCurrentStory', {
-    storyId: id,
-    viewMode: 'story',
-    options: {
-      target: 'storybook-preview-iframe',
-    },
-  });
-
   return new Promise((resolve) => {
+    // @ts-expect-error Access the protected "channel", so we can send stuff through it.
+    const channel = storybookPreview.channel;
+
+    channel.emit('setCurrentStory', {
+      storyId: id,
+      viewMode: 'story',
+      options: {
+        target: 'storybook-preview-iframe',
+      },
+    });
+
     channel.once('storyRendered', resolve);
   });
 }
