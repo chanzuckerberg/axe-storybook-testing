@@ -72,7 +72,15 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
     );
   }
 
-  return storybookPreview.ready().then(() =>
+  let readyPromise: Promise<void> = Promise.resolve();
+  if (storybookPreview.ready) {
+    readyPromise = storybookPreview.ready();
+  } else {
+    // @ts-expect-error initializationPromise doesn't exist in v8, but it does in v7.
+    readyPromise = storybookPreview.storyStore.initializationPromise;
+  }
+
+  return readyPromise.then(() =>
     storybookPreview.extract().then(() => {
       // Pick only the properties we need from Storybook's representation of a story.
       //
