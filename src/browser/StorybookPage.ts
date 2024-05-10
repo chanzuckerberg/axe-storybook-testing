@@ -72,34 +72,36 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
     );
   }
 
-  return storybookPreview.extract().then(() => {
-    // Pick only the properties we need from Storybook's representation of a story.
-    //
-    // This is necessary because Playwright's `page.evaluate` requires return values to be JSON
-    // serializable, so we need to make sure there are no non-serializable things in this object.
-    // There's no telling what Storybook addons people are using, and whether their parameters are
-    // serializable or not.
-    //
-    // See https://github.com/chanzuckerberg/axe-storybook-testing/issues/44 for a bug caused by this.
-    function pickOnlyNecessaryAndSerializableStoryProperties(
-      story: Story,
-    ): StorybookStory {
-      return {
-        id: story.id,
-        name: story.name,
-        title: story.title,
-        parameters: {
-          axe: story.parameters.axe,
-        },
-      };
-    }
+  return storybookPreview.ready().then(() =>
+    storybookPreview.extract().then(() => {
+      // Pick only the properties we need from Storybook's representation of a story.
+      //
+      // This is necessary because Playwright's `page.evaluate` requires return values to be JSON
+      // serializable, so we need to make sure there are no non-serializable things in this object.
+      // There's no telling what Storybook addons people are using, and whether their parameters are
+      // serializable or not.
+      //
+      // See https://github.com/chanzuckerberg/axe-storybook-testing/issues/44 for a bug caused by this.
+      function pickOnlyNecessaryAndSerializableStoryProperties(
+        story: Story,
+      ): StorybookStory {
+        return {
+          id: story.id,
+          name: story.name,
+          title: story.title,
+          parameters: {
+            axe: story.parameters.axe,
+          },
+        };
+      }
 
-    const storyStore = storybookPreview.storyStore as StoryStore<Renderer>;
+      const storyStore = storybookPreview.storyStore as StoryStore<Renderer>;
 
-    return storyStore
-      .raw()
-      .map(pickOnlyNecessaryAndSerializableStoryProperties);
-  });
+      return storyStore
+        .raw()
+        .map(pickOnlyNecessaryAndSerializableStoryProperties);
+    }),
+  );
 }
 
 /**
