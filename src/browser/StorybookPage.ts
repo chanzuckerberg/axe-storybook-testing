@@ -61,7 +61,7 @@ export function showStory(page: Page, id: string) {
  *
  * Executes in a browser context.
  */
-function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
+async function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
   const storybookPreview = window.__STORYBOOK_PREVIEW__;
 
   if (!storybookPreview) {
@@ -72,44 +72,46 @@ function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
     );
   }
 
-  let readyPromise: Promise<void> = Promise.resolve();
-  if (storybookPreview.ready) {
-    readyPromise = storybookPreview.ready();
-  } else {
-    // @ts-expect-error initializationPromise doesn't exist in v8, but it does in v7.
-    readyPromise = storybookPreview.storyStore.initializationPromise;
+  await ready(storybookPreview);
+  await storybookPreview.extract();
+
+  const storyStore = storybookPreview.storyStore as StoryStore<Renderer>;
+  return storyStore.raw().map(pickOnlyNecessaryAndSerializableStoryProperties);
+
+  // Ensure the storybook preview is "ready", in a way that works in both Storybook 7 and 8.
+  // Alternatively, we could drop Storybook 7 support...
+  function ready(storybookPreview: PreviewWeb<Renderer>) {
+    // Storybook 8
+    if (storybookPreview.ready) {
+      return storybookPreview.ready();
+    }
+    // Storybook 7
+    if (storybookPreview.storyStore.hasOwnProperty('initializationPromise')) {
+      // @ts-expect-error initializationPromise doesn't exist in v8, but it does in v7.
+      return storybookPreview.storyStore.initializationPromise as Promise<void>;
+    }
   }
 
-  return readyPromise.then(() =>
-    storybookPreview.extract().then(() => {
-      // Pick only the properties we need from Storybook's representation of a story.
-      //
-      // This is necessary because Playwright's `page.evaluate` requires return values to be JSON
-      // serializable, so we need to make sure there are no non-serializable things in this object.
-      // There's no telling what Storybook addons people are using, and whether their parameters are
-      // serializable or not.
-      //
-      // See https://github.com/chanzuckerberg/axe-storybook-testing/issues/44 for a bug caused by this.
-      function pickOnlyNecessaryAndSerializableStoryProperties(
-        story: Story,
-      ): StorybookStory {
-        return {
-          id: story.id,
-          name: story.name,
-          title: story.title,
-          parameters: {
-            axe: story.parameters.axe,
-          },
-        };
-      }
-
-      const storyStore = storybookPreview.storyStore as StoryStore<Renderer>;
-
-      return storyStore
-        .raw()
-        .map(pickOnlyNecessaryAndSerializableStoryProperties);
-    }),
-  );
+  // Pick only the properties we need from Storybook's representation of a story.
+  //
+  // This is necessary because Playwright's `page.evaluate` requires return values to be JSON
+  // serializable, so we need to make sure there are no non-serializable things in this object.
+  // There's no telling what Storybook addons people are using, and whether their parameters are
+  // serializable or not.
+  //
+  // See https://github.com/chanzuckerberg/axe-storybook-testing/issues/44 for a bug caused by this.
+  function pickOnlyNecessaryAndSerializableStoryProperties(
+    story: Story,
+  ): StorybookStory {
+    return {
+      id: story.id,
+      name: story.name,
+      title: story.title,
+      parameters: {
+        axe: story.parameters.axe,
+      },
+    };
+  }
 }
 
 /**
