@@ -2,28 +2,28 @@
 
 ## Unreleased
 
-# 8.0.1
+## 8.0.1
 
 - [fix] Wait a random amount of time before selecting a port, to try to avoid port conflicts when multiple test runs start at the same time [#92](https://github.com/chanzuckerberg/axe-storybook-testing/pull/92)
 
-# 8.0.0 (2024-03-05)
+## 8.0.0 (2024-03-05)
 
 - [breaking] Support Node >= 18 [#91](https://github.com/chanzuckerberg/axe-storybook-testing/pull/91)
 - [new] Support Storybook v8 [#90](https://github.com/chanzuckerberg/axe-storybook-testing/pull/90)
 
-# 7.2.0 (2024-02-12)
+## 7.2.0 (2024-02-12)
 
 - [new] Add `config` parameter, which is passed to `axe.configure` [#88](https://github.com/chanzuckerberg/axe-storybook-testing/pull/88)
 
-# 7.1.4 (2024-02-09)
+## 7.1.4 (2024-02-09)
 
 - [fix] Update all deps
 
-# 7.1.3 (2023-11-08)
+## 7.1.3 (2023-11-08)
 
 - [fix] Automatically install Chromium and add note about installing other browsers [#85](https://github.com/chanzuckerberg/axe-storybook-testing/pull/85)
 
-# 7.1.2 (2023-08-07)
+## 7.1.2 (2023-08-07)
 
 - [fix] Update most deps [#82](https://github.com/chanzuckerberg/axe-storybook-testing/pull/82)
 - [fix] Build for Node 12 / ES2017. Node 12 is the minimum supported version of Node for this project [#78](https://github.com/chanzuckerberg/axe-storybook-testing/pull/78)
