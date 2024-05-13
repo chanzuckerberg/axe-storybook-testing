@@ -2,6 +2,10 @@
 
 ## Unreleased
 
+## 8.0.2
+
+- [fix] Ensure Storybook is ready before `extract`-ing stories [#94](https://github.com/chanzuckerberg/axe-storybook-testing/pull/94)
+
 ## 8.0.1
 
 - [fix] Wait a random amount of time before selecting a port, to try to avoid port conflicts when multiple test runs start at the same time [#92](https://github.com/chanzuckerberg/axe-storybook-testing/pull/92)
