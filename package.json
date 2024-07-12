@@ -11,11 +11,17 @@
     "axe-storybook": "./bin/axe-storybook.js"
   },
   "main": "build/index.js",
-  "files": ["bin", "build", "index.d.ts"],
+  "files": [
+    "bin",
+    "build",
+    "index.d.ts"
+  ],
   "publishConfig": {
     "access": "public"
   },
-  "workspaces": ["demo"],
+  "workspaces": [
+    "demo"
+  ],
   "scripts": {
     "build": "tsc --project tsconfig.build.json",
     "clean": "rimraf ./build",
