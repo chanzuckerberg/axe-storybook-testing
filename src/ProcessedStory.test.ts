@@ -1,3 +1,4 @@
+import {describe, it, expect} from 'vitest';
 import ProcessedStory from './ProcessedStory';
 
 it('parses a raw Storybook story', () => {

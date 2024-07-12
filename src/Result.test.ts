@@ -1,4 +1,5 @@
 import dedent from 'ts-dedent';
+import {describe, it, expect} from 'vitest';
 import Result from './Result';
 
 describe('isPassing', () => {

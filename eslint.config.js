@@ -1,9 +1,9 @@
 const globals = require('globals');
-const jestPlugin = require('eslint-plugin-jest');
 const js = require('@eslint/js');
 const prettierRecommended = require('eslint-plugin-prettier/recommended');
 const reactRecommended = require('eslint-plugin-react/configs/recommended');
 const typescriptEslint = require('typescript-eslint');
+const vitest = require('eslint-plugin-vitest');
 
 /** @type {import("eslint").Linter.FlatConfig[]} */
 module.exports = [
@@ -31,7 +31,7 @@ module.exports = [
   },
   {
     files: ['**/*.test.*'],
-    ...jestPlugin.configs['flat/recommended'],
+    ...vitest.configs.recommended,
   },
   {
     files: ['demo/**/*.{js,jsx,ts,tsx}'],
