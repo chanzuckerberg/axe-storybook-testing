@@ -1,5 +1,4 @@
-import type {Browser, Page} from 'playwright';
-import playwright from 'playwright'; // eslint-disable-line import/default
+import playwright, {type Browser, type Page} from 'playwright';
 import type {Options} from '../Options';
 import ProcessedStory from '../ProcessedStory';
 import Result from '../Result';

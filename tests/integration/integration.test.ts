@@ -1,47 +1,50 @@
-/* eslint-disable jest/no-done-callback */
 import {exec} from 'child_process';
+import {it, expect} from 'vitest';
 
-it('outputs accessibility violation information for the demo app', (done) => {
+it('outputs accessibility violation information for the demo app', () => {
   expect.assertions(2);
 
-  exec('cd demo && npm run storybook:axeOnly', function (error, stdout) {
-    const normalizedStdout = normalize(stdout);
-    expect(error!.code).toEqual(1);
-    expect(normalizedStdout).toMatchSnapshot();
-    done();
+  return new Promise<void>((done) => {
+    exec('cd demo && npm run storybook:axeOnly', function (error, stdout) {
+      const normalizedStdout = normalize(stdout);
+      expect(error!.code).toEqual(1);
+      expect(normalizedStdout).toMatchSnapshot();
+      done();
+    });
   });
-  // @ts-expect-error Getting Mocha instead of Jest types...
-}, 120000);
+}, 120_000);
 
-it('filters the components to run', (done) => {
+it('filters the components to run', () => {
   expect.assertions(2);
 
-  exec(
-    'cd demo && npm run storybook:axeOnly -- --pattern simple',
-    function (error, stdout) {
-      const normalizedStdout = normalize(stdout);
-      expect(error!.code).toEqual(1);
-      expect(normalizedStdout).toMatchSnapshot();
-      done();
-    },
-  );
-  // @ts-expect-error Getting Mocha instead of Jest types...
-}, 120000);
+  return new Promise<void>((done) => {
+    exec(
+      'cd demo && npm run storybook:axeOnly -- --pattern simple',
+      function (error, stdout) {
+        const normalizedStdout = normalize(stdout);
+        expect(error!.code).toEqual(1);
+        expect(normalizedStdout).toMatchSnapshot();
+        done();
+      },
+    );
+  });
+}, 120_000);
 
-it('fails only specific impact levels if specified', (done) => {
+it('fails only specific impact levels if specified', () => {
   expect.assertions(2);
 
-  exec(
-    'cd demo && npm run storybook:axeOnly -- --failing-impact critical',
-    function (error, stdout) {
-      const normalizedStdout = normalize(stdout);
-      expect(error!.code).toEqual(1);
-      expect(normalizedStdout).toMatchSnapshot();
-      done();
-    },
-  );
-  // @ts-expect-error Getting Mocha instead of Jest types...
-}, 120000);
+  return new Promise<void>((done) => {
+    exec(
+      'cd demo && npm run storybook:axeOnly -- --failing-impact critical',
+      function (error, stdout) {
+        const normalizedStdout = normalize(stdout);
+        expect(error!.code).toEqual(1);
+        expect(normalizedStdout).toMatchSnapshot();
+        done();
+      },
+    );
+  });
+}, 120_000);
 
 /**
  * Remove items from a string that are specific to a test run or environment, such as timing

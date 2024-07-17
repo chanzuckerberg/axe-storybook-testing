@@ -12,15 +12,15 @@
   },
   "dependencies": {
     "@chanzuckerberg/axe-storybook-testing": "file:..",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^8.0.2",
-    "@storybook/addon-essentials": "^8.0.2",
-    "@storybook/addon-webpack5-compiler-swc": "^1.0.2",
-    "@storybook/react": "^8.0.2",
-    "@storybook/react-webpack5": "^8.0.2",
-    "storybook": "^8.0.2"
+    "@storybook/addon-a11y": "^8.2.2",
+    "@storybook/addon-essentials": "^8.2.2",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.4",
+    "@storybook/react": "^8.2.2",
+    "@storybook/react-webpack5": "^8.2.2",
+    "storybook": "^8.2.2"
   }
 }
