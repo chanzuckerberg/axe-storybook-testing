@@ -2,7 +2,9 @@
 
 ## Unreleased
 
-- [new] Add `--port` option
+## 8.1.0
+
+- [new] Add `--port` option [#97](https://github.com/chanzuckerberg/axe-storybook-testing/pull/97)
 
 ## 8.0.2
 
