@@ -50,6 +50,12 @@ const options = {
     description: 'Filter by a component name regex pattern',
     type: 'string' as const,
   },
+  port: {
+    alias: 'P',
+    description:
+      'Port to run Storybook on while testing. If missing, an empty port will automatically be selected. Ignored if storybook-url is provided',
+    type: 'number' as const,
+  },
   reporter: {
     alias: 'r',
     default: 'spec' as Reporters,
@@ -112,6 +118,7 @@ export function parseOptions() {
     headless: argv.headless,
     failingImpacts: getFailingImpacts(argv['failing-impact']),
     pattern: new RegExp(argv.pattern),
+    port: argv.port,
     reporter: argv.reporter,
     reporterOptions: getReporterOptions(argv['reporter-options']),
     storybookUrl: argv.storybookAddress || argv.storybookUrl,

@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [new] Add `--port` option
+
 ## 8.0.2
 
 - [fix] Ensure Storybook is ready before `extract`-ing stories [#94](https://github.com/chanzuckerberg/axe-storybook-testing/pull/94)

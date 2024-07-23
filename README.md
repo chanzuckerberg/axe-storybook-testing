@@ -78,6 +78,7 @@ The command-line interface has the following options:
 | `--failing-impact` | `all` | all, minor, moderate, serious, critical | The lowest impact level that should be considered a failure |
 | `--headless` | `true` | boolean | Whether to run headlessly or not |
 | `--pattern` | `.*` | regex pattern | Only run tests that match a component name pattern |
+| `--port` |  | number | Port to run Storybook on while testing. If missing, an empty port will automatically be selected. Ignored if storybook-url is provided
 | `--reporter` | `spec` | spec, dot, nyan, tap, landing, list, progress, json, json-stream, min, doc, markdown, xunit | How to display the test run. Can be any [built-in Mocha reporter](https://mochajs.org/#reporters). |
 | `--reporter-options` |  | string | Options to pass to the mocha reporter. Especially useful with the xunit reporter - e.g. `--reporter-options output=./filename.xml` |
 | `--storybook-address`|  | url | **_Deprecated!_** Use `--storybook-url` instead. |

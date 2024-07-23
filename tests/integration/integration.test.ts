@@ -46,6 +46,22 @@ it('fails only specific impact levels if specified', () => {
   });
 }, 120_000);
 
+it('accepts a port to run on', () => {
+  expect.assertions(2);
+
+  return new Promise<void>((done) => {
+    exec(
+      'cd demo && npm run storybook:axeOnly -- --port 8111',
+      function (error, stdout) {
+        const normalizedStdout = normalize(stdout);
+        expect(error!.code).toEqual(1);
+        expect(normalizedStdout).toMatchSnapshot();
+        done();
+      },
+    );
+  });
+}, 120_000);
+
 /**
  * Remove items from a string that are specific to a test run or environment, such as timing
  * information and file-system paths. That way, we can snapshot test effectively.
