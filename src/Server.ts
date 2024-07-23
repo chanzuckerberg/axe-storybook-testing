@@ -48,7 +48,7 @@ async function getServer(options: Options): Promise<Server> {
   await waitRandomTime(500);
 
   const localPath = getStaticStorybookPath(options);
-  const port = options.port || (await portfinder.getPortPromise());
+  const port = await portfinder.getPortPromise({port: options.port});
   const host = '127.0.0.1';
   const server = httpServer.createServer({root: localPath});
   const storybookUrl = `http://${host}:${port}`;
