@@ -154,7 +154,6 @@ export const parameters = {
 Allows use of any of the available [`axe.run`](https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter) options. See the link for more details. When using `runOptions.rules` in combination with `disabledRules`, **`disabledRules` will always take precedent.**
 
 ```jsx
-
 export const SomeStory = {
   parameters: {
     axe: {
