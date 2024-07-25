@@ -17,6 +17,8 @@ If there are any violations, information about them will be printed, and the com
   - [disabledRules](#disabledrules)
   - [mode](#mode)
   - [runOptions](#runoptions)
+  - [context](#context)
+  - [config](#config)
   - [skip](#skip)
   - [timeout](#timeout)
   - [waitForSelector](#waitforselector) (deprecated)
@@ -153,7 +155,6 @@ export const parameters = {
 Allows use of any of the available [`axe.run`](https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter) options. See the link for more details. When using `runOptions.rules` in combination with `disabledRules`, **`disabledRules` will always take precedent.**
 
 ```jsx
-
 export const SomeStory = {
   parameters: {
     axe: {
@@ -162,6 +163,22 @@ export const SomeStory = {
         selectors: true,
         ...
       }
+    }
+  }
+}
+```
+
+### context
+
+[Axe context](https://www.deque.com/axe/core-documentation/api-documentation/#context-parameter), which is passed to `axe.run`. Useful for including or excluding elements from the tests.
+
+```jsx
+export const SomeStory = {
+  parameters: {
+    axe: {
+      context: {
+        exclude: '.foo',
+      },
     }
   }
 }

@@ -1,11 +1,13 @@
 import type {RunOptions, Spec} from 'axe-core';
 import {z as zod} from 'zod';
+import type {Context} from './browser/AxePage';
 import type {StorybookStory} from './browser/StorybookPage';
 
 type Params = {
   disabledRules: string[];
   mode: 'off' | 'warn' | 'error';
   runOptions?: RunOptions;
+  context?: Context;
   config?: Spec;
   skip: boolean;
   timeout: number;
@@ -42,6 +44,9 @@ export default class ProcessedStory {
         rawStory.parameters?.axe?.runOptions,
         rawStory,
       ),
+      context: normalizeContext(rawStory.parameters?.axe?.context, rawStory) as
+        | Context
+        | undefined,
       config: normalizeConfig(rawStory.parameters?.axe?.config, rawStory),
     };
   }
@@ -73,6 +78,14 @@ export default class ProcessedStory {
    */
   get runOptions() {
     return this.parameters.runOptions;
+  }
+
+  /**
+   * Context passed to `axe.run`.
+   * @see https://www.deque.com/axe/core-documentation/api-documentation/#context-parameter
+   */
+  get context() {
+    return this.parameters.context;
   }
 
   /**
@@ -138,6 +151,14 @@ const runOptionsSchema = zod.optional(
   }),
 );
 
+const contextSchema = zod
+  .union([
+    zod.string(),
+    zod.array(zod.string()),
+    zod.record(zod.string(), zod.any()),
+  ])
+  .optional();
+
 const configSchema = zod.object({}).passthrough().optional();
 
 function normalizeSkip(skip: unknown, rawStory: StorybookStory) {
@@ -172,6 +193,14 @@ function normalizeRunOptions(runOptions: unknown, rawStory: StorybookStory) {
     () => runOptionsSchema.parse(runOptions) || {},
     rawStory,
     'runOptions',
+  );
+}
+
+function normalizeContext(config: unknown, rawStory: StorybookStory) {
+  return parseWithFriendlyError(
+    () => contextSchema.parse(config),
+    rawStory,
+    'context',
   );
 }
 

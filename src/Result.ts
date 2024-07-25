@@ -29,6 +29,7 @@ export default class Result {
       page,
       disabledRules,
       story.runOptions,
+      story.context,
       story.config,
     );
     return new Result(axeResults.violations);

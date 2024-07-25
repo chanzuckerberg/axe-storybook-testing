@@ -1,5 +1,17 @@
-import type {AxeResults, RuleObject, RunOptions, Spec} from 'axe-core';
+import type {
+  AxeResults,
+  SerialContextObject,
+  SerialFrameSelector,
+  RuleObject,
+  RunOptions,
+  Spec,
+} from 'axe-core';
 import type {Page} from 'playwright';
+
+export type Context =
+  | SerialFrameSelector
+  | SerialFrameSelector[]
+  | SerialContextObject;
 
 /**
  * Prepare a page for running axe on it.
@@ -17,20 +29,24 @@ export function analyze(
   page: Page,
   disabledRules: string[] = [],
   runOptions: RunOptions = {},
+  context?: Context,
   config?: Spec,
 ): Promise<AxeResults> {
   return page.evaluate(runAxe, {
     options: getRunOptions(runOptions, disabledRules),
     config,
+    context,
   });
 }
 
 function runAxe({
-  options,
   config,
+  context,
+  options,
 }: {
-  options: RunOptions;
   config?: Spec;
+  context?: Context;
+  options: RunOptions;
 }): Promise<AxeResults> {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore This function executes in a browser context.
@@ -49,7 +65,7 @@ function runAxe({
 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore This function executes in a browser context.
-    return window.axe.run(document, options);
+    return window.axe.run(context || document, options);
   });
 }
 
