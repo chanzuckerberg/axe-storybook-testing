@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [new] Add parameter for Axe `context` [#98](https://github.com/chanzuckerberg/axe-storybook-testing/pull/98)
+
 ## 8.1.0
 
 - [new] Add `--port` option [#97](https://github.com/chanzuckerberg/axe-storybook-testing/pull/97)

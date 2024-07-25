@@ -21,3 +21,26 @@ export const branding = {
     },
   },
 };
+
+// Test out passing context to `axe.run`.
+export const multipleParts = {
+  render: () => (
+    <div>
+      <div id="a">
+        <button style={{backgroundColor: 'red', color: 'hotpink'}}>
+          hello A
+        </button>
+      </div>
+      <div id="b">
+        <button style={{backgroundColor: 'red', color: 'hotpink'}}>
+          hello B
+        </button>
+      </div>
+    </div>
+  ),
+  parameters: {
+    axe: {
+      context: '#a',
+    },
+  },
+};

@@ -1,4 +1,9 @@
-import type {RunOptions, Spec} from 'axe-core';
+import type {
+  RunOptions,
+  SerialContextObject,
+  SerialFrameSelector,
+  Spec,
+} from 'axe-core';
 
 export declare type AxeParams = {
   /**
@@ -26,6 +31,11 @@ export declare type AxeParams = {
    * @see https://www.deque.com/axe/core-documentation/api-documentation/#options-parameter
    */
   runOptions?: RunOptions;
+  /**
+   * Context passed to `axe.run`.
+   * @see https://www.deque.com/axe/core-documentation/api-documentation/#context-parameter
+   */
+  context?: SerialFrameSelector | SerialFrameSelector[] | SerialContextObject;
   /**
    * Config passed to `axe.configure`.
    */
