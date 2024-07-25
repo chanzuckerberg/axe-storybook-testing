@@ -17,6 +17,7 @@ If there are any violations, information about them will be printed, and the com
   - [disabledRules](#disabledrules)
   - [mode](#mode)
   - [runOptions](#runoptions)
+  - [config](#config)
   - [skip](#skip)
   - [timeout](#timeout)
   - [waitForSelector](#waitforselector) (deprecated)
