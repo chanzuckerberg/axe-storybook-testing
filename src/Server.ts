@@ -62,9 +62,12 @@ async function getServer(options: Options): Promise<Server> {
     });
   }
 
-  function stop() {
-    server.close();
-    return Promise.resolve();
+  function stop(): Promise<void> {
+    return new Promise((resolve) => {
+      server.close(() => {
+        resolve();
+      });
+    });
   }
 
   return {storybookUrl, start, stop};

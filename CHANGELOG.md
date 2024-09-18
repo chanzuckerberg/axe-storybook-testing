@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [fix] Wait for server to close before ending the test run
+
 ## 8.2.0
 
 - [new] Add parameter for Axe `context` [#98](https://github.com/chanzuckerberg/axe-storybook-testing/pull/98)
