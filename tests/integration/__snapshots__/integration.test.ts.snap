@@ -3,9 +3,9 @@
 exports[`accepts a port to run on 1`] = `
 "
 > storybook-for-react-integration-tests@3.1.0 storybook:axeOnly
-> axe-storybook --port 8111
+> axe-storybook --port 8112
 
-Serving up 🍕 static storybook build at: http://127.0.0.1:8111
+Serving up 🍕 static storybook build at: http://127.0.0.1:8112
 
 [chromium] accessibility
   advanced
@@ -44,7 +44,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8111
 
      1. color-contrast (Elements must meet minimum color contrast ratio thresholds)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/color-contrast?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI.
 
         Check these nodes:
 
@@ -56,7 +56,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -78,7 +78,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. color-contrast (Elements must meet minimum color contrast ratio thresholds)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/color-contrast?application=my-branding.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=my-branding.
 
         Check these nodes:
 
@@ -93,7 +93,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. color-contrast (Elements must meet minimum color contrast ratio thresholds)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/color-contrast?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI.
 
         Check these nodes:
 
@@ -108,7 +108,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/aria-roles?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/aria-roles?application=axeAPI.
 
         Check these nodes:
 
@@ -123,7 +123,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/aria-roles?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/aria-roles?application=axeAPI.
 
         Check these nodes:
 
@@ -150,7 +150,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -169,7 +169,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. color-contrast (Elements must meet minimum color contrast ratio thresholds)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/color-contrast?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI.
 
         Check these nodes:
 
@@ -184,7 +184,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/aria-roles?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/aria-roles?application=axeAPI.
 
         Check these nodes:
 
@@ -194,7 +194,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      2. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -213,7 +213,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -275,7 +275,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
      1. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -297,7 +297,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/aria-roles?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/aria-roles?application=axeAPI.
 
         Check these nodes:
 
@@ -312,7 +312,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/aria-roles?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/aria-roles?application=axeAPI.
 
         Check these nodes:
 
@@ -339,7 +339,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
      1. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -358,7 +358,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/aria-roles?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/aria-roles?application=axeAPI.
 
         Check these nodes:
 
@@ -368,7 +368,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
      2. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -387,7 +387,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
      1. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -449,7 +449,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
      1. color-contrast (Elements must meet minimum color contrast ratio thresholds)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/color-contrast?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI.
 
         Check these nodes:
 
@@ -461,7 +461,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -483,7 +483,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -502,7 +502,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. color-contrast (Elements must meet minimum color contrast ratio thresholds)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/color-contrast?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI.
 
         Check these nodes:
 
@@ -517,7 +517,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/aria-roles?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/aria-roles?application=axeAPI.
 
         Check these nodes:
 
@@ -527,7 +527,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      2. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -546,7 +546,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -608,7 +608,7 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
 
      1. color-contrast (Elements must meet minimum color contrast ratio thresholds)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/color-contrast?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI.
 
         Check these nodes:
 
@@ -620,7 +620,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -642,7 +642,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. color-contrast (Elements must meet minimum color contrast ratio thresholds)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/color-contrast?application=my-branding.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=my-branding.
 
         Check these nodes:
 
@@ -657,7 +657,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. color-contrast (Elements must meet minimum color contrast ratio thresholds)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/color-contrast?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI.
 
         Check these nodes:
 
@@ -672,7 +672,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/aria-roles?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/aria-roles?application=axeAPI.
 
         Check these nodes:
 
@@ -687,7 +687,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/aria-roles?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/aria-roles?application=axeAPI.
 
         Check these nodes:
 
@@ -714,7 +714,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -733,7 +733,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. color-contrast (Elements must meet minimum color contrast ratio thresholds)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/color-contrast?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/color-contrast?application=axeAPI.
 
         Check these nodes:
 
@@ -748,7 +748,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. aria-roles (ARIA roles used must conform to valid values)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/aria-roles?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/aria-roles?application=axeAPI.
 
         Check these nodes:
 
@@ -758,7 +758,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      2. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 
@@ -777,7 +777,7 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
 
      1. button-name (Buttons must have discernible text)
 
-        For more info, visit https://dequeuniversity.com/rules/axe/4.9/button-name?application=axeAPI.
+        For more info, visit https://dequeuniversity.com/rules/axe/4.10/button-name?application=axeAPI.
 
         Check these nodes:
 

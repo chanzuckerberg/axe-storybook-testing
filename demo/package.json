@@ -16,11 +16,11 @@
     "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^8.2.2",
-    "@storybook/addon-essentials": "^8.2.2",
-    "@storybook/addon-webpack5-compiler-swc": "^1.0.4",
-    "@storybook/react": "^8.2.2",
-    "@storybook/react-webpack5": "^8.2.2",
-    "storybook": "^8.2.2"
+    "@storybook/addon-a11y": "^8.3.2",
+    "@storybook/addon-essentials": "^8.3.2",
+    "@storybook/addon-webpack5-compiler-swc": "^1.0.5",
+    "@storybook/react": "^8.3.2",
+    "@storybook/react-webpack5": "^8.3.2",
+    "storybook": "^8.3.2"
   }
 }
