@@ -1,12 +1,12 @@
-const js = require('@eslint/js');
-const vitest = require('@vitest/eslint-plugin');
-const prettierRecommended = require('eslint-plugin-prettier/recommended');
-const react = require('eslint-plugin-react');
-const globals = require('globals');
-const typescriptEslint = require('typescript-eslint');
+import js from '@eslint/js';
+import vitest from '@vitest/eslint-plugin';
+import prettierRecommended from 'eslint-plugin-prettier/recommended';
+import react from 'eslint-plugin-react';
+import globals from 'globals';
+import typescriptEslint from 'typescript-eslint';
 
 /** @type {import("eslint").Linter.Config[]} */
-module.exports = [
+export default [
   {
     ignores: ['**/storybook-static/', '**/build/'],
   },
