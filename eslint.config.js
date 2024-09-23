@@ -1,9 +1,9 @@
-const globals = require('globals');
 const js = require('@eslint/js');
+const vitest = require('@vitest/eslint-plugin');
 const prettierRecommended = require('eslint-plugin-prettier/recommended');
 const react = require('eslint-plugin-react');
+const globals = require('globals');
 const typescriptEslint = require('typescript-eslint');
-const vitest = require('eslint-plugin-vitest');
 
 /** @type {import("eslint").Linter.Config[]} */
 module.exports = [
