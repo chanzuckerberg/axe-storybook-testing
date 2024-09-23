@@ -23,7 +23,7 @@
     "demo"
   ],
   "scripts": {
-    "build": "tsc --project tsconfig.build.json",
+    "build": "npm run clean && tsc --project tsconfig.build.json",
     "clean": "rimraf ./build",
     "demo": "npm run build && npm run --workspace=demo storybook:axe --",
     "demo:axeOnly": "npm run build && npm run --workspace=demo storybook:axeOnly --",
@@ -31,11 +31,9 @@
     "demo:eds": "axe-storybook --storybook-url https://chanzuckerberg.github.io/edu-design-system",
     "demo:storybook": "npm --workspace=demo run storybook",
     "lint": "eslint .",
-    "prebuild": "npm run clean",
     "prepublishOnly": "npm run build",
-    "pretest:integration": "npm run build && npm run demo:build",
     "test": "vitest run --dir src",
-    "test:integration": "npm run test:integrationOnly",
+    "test:integration": "npm run build && npm run demo:build && npm run test:integrationOnly",
     "test:integrationOnly": "vitest run --dir tests/integration --poolOptions.threads.singleThread",
     "types": "tsc --noEmit",
     "validate": "npm run lint && npm run types && npm run test"
