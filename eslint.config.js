@@ -5,7 +5,7 @@ const reactRecommended = require('eslint-plugin-react/configs/recommended');
 const typescriptEslint = require('typescript-eslint');
 const vitest = require('eslint-plugin-vitest');
 
-/** @type {import("eslint").Linter.FlatConfig[]} */
+/** @type {import("eslint").Linter.Config[]} */
 module.exports = [
   {
     ignores: ['**/storybook-static/', '**/build/'],
@@ -26,7 +26,7 @@ module.exports = [
   {
     files: ['**/*.js'],
     rules: {
-      '@typescript-eslint/no-var-requires': 'off',
+      '@typescript-eslint/no-require-imports': 'off',
     },
   },
   {
