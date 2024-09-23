@@ -1,7 +1,7 @@
 const globals = require('globals');
 const js = require('@eslint/js');
 const prettierRecommended = require('eslint-plugin-prettier/recommended');
-const reactRecommended = require('eslint-plugin-react/configs/recommended');
+const react = require('eslint-plugin-react');
 const typescriptEslint = require('typescript-eslint');
 const vitest = require('eslint-plugin-vitest');
 
@@ -35,21 +35,12 @@ module.exports = [
   },
   {
     files: ['demo/**/*.{js,jsx,ts,tsx}'],
-    ...reactRecommended,
-    languageOptions: {
-      ...reactRecommended.languageOptions,
-      globals: {
-        ...globals.browser,
-      },
-    },
+    ...react.configs.flat.recommended,
+    ...react.configs.flat['jsx-runtime'],
     settings: {
       react: {
         version: 'detect',
       },
-    },
-    rules: {
-      ...reactRecommended.rules,
-      'react/prop-types': 0,
     },
   },
 ];
