@@ -3,9 +3,9 @@
 exports[`accepts a port to run on 1`] = `
 "
 > storybook-for-react-integration-tests@3.1.0 storybook:axeOnly
-> axe-storybook --port 8111
+> axe-storybook --port 8112
 
-Serving up 🍕 static storybook build at: http://127.0.0.1:8111
+Serving up 🍕 static storybook build at: http://127.0.0.1:8112
 
 [chromium] accessibility
   advanced

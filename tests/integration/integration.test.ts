@@ -51,7 +51,7 @@ it('accepts a port to run on', () => {
 
   return new Promise<void>((done) => {
     exec(
-      'cd demo && npm run storybook:axeOnly -- --port 8111',
+      'cd demo && npm run storybook:axeOnly -- --port 8112',
       function (error, stdout) {
         const normalizedStdout = normalize(stdout);
         expect(error!.code).toEqual(1);
