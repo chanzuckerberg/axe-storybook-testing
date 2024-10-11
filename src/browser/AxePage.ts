@@ -105,7 +105,7 @@ function addPromiseQueue() {
 
   window.enqueuePromise = function <T>(createPromise: () => Promise<T>) {
     return new Promise<T>((resolve, reject) => {
-      queue = queue.then(createPromise).then(resolve, reject);
+      queue = queue.then(createPromise).then(resolve).catch(reject);
     });
   };
 }
