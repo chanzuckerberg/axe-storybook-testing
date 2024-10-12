@@ -20,6 +20,17 @@ export type Context =
   | SerialContextObject;
 
 /**
+ * These rules aren't useful/helpful in the context of Storybook stories, and we disable them when
+ * running Axe.
+ */
+const defaultDisabledRules = [
+  'bypass',
+  'landmark-one-main',
+  'page-has-heading-one',
+  'region',
+];
+
+/**
  * Prepare a page for running axe on it.
  */
 export async function prepare(page: Page): Promise<void> {
@@ -39,7 +50,10 @@ export function analyze(
   config?: Spec,
 ): Promise<AxeResults> {
   return page.evaluate(runAxe, {
-    options: getRunOptions(runOptions, disabledRules),
+    options: getRunOptions(runOptions, [
+      ...defaultDisabledRules,
+      ...disabledRules,
+    ]),
     config,
     context,
   });
