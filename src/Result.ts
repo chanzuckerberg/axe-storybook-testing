@@ -29,10 +29,10 @@ export default class Result {
 
   toString(): string {
     return dedent`
-    Detected the following accessibility violations!
+      Detected the following accessibility violations!
 
-    ${this.violations.map(formatViolation).join('\n\n')}
-  `;
+      ${this.violations.map(formatViolation).join('\n\n')}
+    `;
   }
 }
 
