@@ -80,7 +80,15 @@ export default class TestBrowser {
       });
     }
 
-    return Result.fromPage(this.page, story);
+    const axeResults = await AxePage.analyze(
+      this.page,
+      story.disabledRules,
+      story.runOptions,
+      story.context,
+      story.config,
+    );
+
+    return new Result(axeResults.violations);
   }
 
   /**

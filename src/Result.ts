@@ -1,28 +1,11 @@
 import type {Result as AxeResult, NodeResult} from 'axe-core';
 import indent from 'indent-string';
-import type {Page} from 'playwright';
 import dedent from 'ts-dedent';
-import type ProcessedStory from './ProcessedStory';
-import {analyze} from './browser/AxePage';
 
 /**
  * Violations reported by Axe for a story.
  */
 export default class Result {
-  /**
-   * Run Axe on a browser page that is displaying a story.
-   */
-  static async fromPage(page: Page, story: ProcessedStory) {
-    const axeResults = await analyze(
-      page,
-      story.disabledRules,
-      story.runOptions,
-      story.context,
-      story.config,
-    );
-    return new Result(axeResults.violations);
-  }
-
   violations: AxeResult[];
 
   constructor(violations: AxeResult[]) {
