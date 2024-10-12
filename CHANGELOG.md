@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [fix] Simplify the promise queue implementation [#102](https://github.com/chanzuckerberg/axe-storybook-testing/pull/102)
+
 ## 8.2.0
 
 - [new] Add parameter for Axe `context` [#98](https://github.com/chanzuckerberg/axe-storybook-testing/pull/98)
