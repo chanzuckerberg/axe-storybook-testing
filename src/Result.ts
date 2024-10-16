@@ -1,40 +1,11 @@
 import type {Result as AxeResult, NodeResult} from 'axe-core';
 import indent from 'indent-string';
-import type {Page} from 'playwright';
 import dedent from 'ts-dedent';
-import type ProcessedStory from './ProcessedStory';
-import {analyze} from './browser/AxePage';
-
-/**
- * These rules aren't useful/helpful in the context of Storybook stories, and we disable them when
- * running Axe.
- */
-const defaultDisabledRules = [
-  'bypass',
-  'landmark-one-main',
-  'page-has-heading-one',
-  'region',
-];
 
 /**
  * Violations reported by Axe for a story.
  */
 export default class Result {
-  /**
-   * Run Axe on a browser page that is displaying a story.
-   */
-  static async fromPage(page: Page, story: ProcessedStory) {
-    const disabledRules = [...defaultDisabledRules, ...story.disabledRules];
-    const axeResults = await analyze(
-      page,
-      disabledRules,
-      story.runOptions,
-      story.context,
-      story.config,
-    );
-    return new Result(axeResults.violations);
-  }
-
   violations: AxeResult[];
 
   constructor(violations: AxeResult[]) {
@@ -58,10 +29,10 @@ export default class Result {
 
   toString(): string {
     return dedent`
-    Detected the following accessibility violations!
+      Detected the following accessibility violations!
 
-    ${this.violations.map(formatViolation).join('\n\n')}
-  `;
+      ${this.violations.map(formatViolation).join('\n\n')}
+    `;
   }
 }
 

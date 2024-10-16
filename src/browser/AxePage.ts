@@ -8,10 +8,27 @@ import type {
 } from 'axe-core';
 import type {Page} from 'playwright';
 
+// Functions we pass to `page.evaluate` execute in a browser environment, and can access window.
+// eslint-disable-next-line no-var
+declare var window: {
+  enqueuePromise: <T>(createPromise: () => Promise<T>) => Promise<T>;
+};
+
 export type Context =
   | SerialFrameSelector
   | SerialFrameSelector[]
   | SerialContextObject;
+
+/**
+ * These rules aren't useful/helpful in the context of Storybook stories, and we disable them when
+ * running Axe.
+ */
+const defaultDisabledRules = [
+  'bypass',
+  'landmark-one-main',
+  'page-has-heading-one',
+  'region',
+];
 
 /**
  * Prepare a page for running axe on it.
@@ -33,7 +50,10 @@ export function analyze(
   config?: Spec,
 ): Promise<AxeResults> {
   return page.evaluate(runAxe, {
-    options: getRunOptions(runOptions, disabledRules),
+    options: getRunOptions(runOptions, [
+      ...defaultDisabledRules,
+      ...disabledRules,
+    ]),
     config,
     context,
   });
@@ -50,7 +70,7 @@ function runAxe({
 }): Promise<AxeResults> {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore This function executes in a browser context.
-  return window.axeQueue.add(() => {
+  return window.enqueuePromise(() => {
     // Always reset the axe config, so if one story sets its own config it doesn't affect the
     // others.
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
@@ -86,82 +106,20 @@ export function getRunOptions(
 }
 
 /**
- * Add a Queue implementation for promises, forcing a single promise to run at a time.
+ * Add a promise queue so we can ensure only one promise runs at a time.
  *
- * This will be used to ensure that we only run one `axe.run` call at a time. We will never
- * intentionally run multiple at a time. However, a component throwing an error during its
- * lifecycle can result in a test finishing and proceeding to the next one, but the previous
- * `axe.run` call still "running" when the next one starts. This results in an error (see
- * https://github.com/dequelabs/axe-core/issues/1041).
+ * Used to prevent concurrent runs of `axe.run`, which breaks (see https://github.com/dequelabs/axe-core/issues/1041).
+ * This should never happen, but in the past errors during rendering at the right/wrong time has
+ * caused the next test to start before the previous has stopped.
  *
- * We avoid that by forcing one `axe.run` call to finish before the next one can start. Got the
- * idea from https://github.com/dequelabs/agnostic-axe/pull/6.
+ * Got the idea from https://github.com/dequelabs/agnostic-axe/pull/6.
  */
 function addPromiseQueue() {
-  type QueuedPromise<T> = {
-    promiseCreator: () => Promise<T>;
-    resolve: (value: T | PromiseLike<T>) => void;
-    reject: (reason?: unknown) => void;
+  let queue = Promise.resolve();
+
+  window.enqueuePromise = function <T>(createPromise: () => Promise<T>) {
+    return new Promise<T>((resolve, reject) => {
+      queue = queue.then(createPromise).then(resolve).catch(reject);
+    });
   };
-
-  /**
-   * Queue of promises, which forces any promises added to it to run one at a time.
-   *
-   * This was originally implemented as an ES6 class. But I ran into a lot of issues with how the
-   * class's properties were compiled not working in different environments and browsers, and even
-   * breaking when Babel was updated.
-   *
-   * To avoid that, I've instead implemented this as a function that maintains some state within a
-   * closure. Since there are no class properties (which can be compiled by Babel in different ways),
-   * there are no more problems.
-   */
-  function PromiseQueue<T>() {
-    const pending: QueuedPromise<T>[] = [];
-    let working = false;
-
-    /**
-     * Add a promise to the queue. Returns a promise that is resolved or rejected when the added
-     * promise eventually resolves or rejects.
-     */
-    function add(promiseCreator: () => Promise<T>): Promise<T> {
-      return new Promise((resolve, reject) => {
-        pending.push({promiseCreator, resolve, reject});
-        dequeue();
-      });
-    }
-
-    /**
-     * Run the next promise in the queue.
-     */
-    function dequeue() {
-      // If we're already working on a promise, do nothing.
-      if (working) {
-        return;
-      }
-
-      const nextPromise = pending.shift();
-
-      // If there are no promises to work on, do nothing.
-      if (!nextPromise) {
-        return;
-      }
-
-      working = true;
-
-      // Execute the promise. When it's done, start working on the next.
-      nextPromise
-        .promiseCreator()
-        .then(nextPromise.resolve, nextPromise.reject)
-        .finally(() => {
-          working = false;
-          dequeue();
-        });
-    }
-
-    return {add};
-  }
-
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore This function executes in a browser context.
-  window.axeQueue = PromiseQueue<AxeResults>();
 }
