@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 8.2.1 (2024-10-21)
+
 - [fix] Simplify the promise queue implementation [#102](https://github.com/chanzuckerberg/axe-storybook-testing/pull/102)
 - [fix] Minor code re-organizations [#102](https://github.com/chanzuckerberg/axe-storybook-testing/pull/102)
 
