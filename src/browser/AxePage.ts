@@ -59,6 +59,10 @@ export function analyze(
   });
 }
 
+/**
+ * (In Browser Context)
+ *
+ */
 function runAxe({
   config,
   context,
@@ -83,6 +87,7 @@ function runAxe({
       window.axe.configure(config);
     }
 
+    // API: https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axerun
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore This function executes in a browser context.
     return window.axe.run(context || document, options);
@@ -106,6 +111,8 @@ export function getRunOptions(
 }
 
 /**
+ * (In Browser Context)
+ *
  * Add a promise queue so we can ensure only one promise runs at a time.
  *
  * Used to prevent concurrent runs of `axe.run`, which breaks (see https://github.com/dequelabs/axe-core/issues/1041).

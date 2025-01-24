@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [fix] Add handling for known axe-core conflicts [#103](https://github.com/chanzuckerberg/axe-storybook-testing/pull/103)
+
 ## 8.2.1 (2024-10-21)
 
 - [fix] Simplify the promise queue implementation [#102](https://github.com/chanzuckerberg/axe-storybook-testing/pull/102)
