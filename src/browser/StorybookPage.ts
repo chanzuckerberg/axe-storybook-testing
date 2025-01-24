@@ -116,7 +116,7 @@ async function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
 
 /**
  * Abuse Storybook's internal APIs to render a story without requiring a page reload (which would
- * be slow).
+ * be slow). Also set up globals for any values needed for the running tests.
  *
  * Doing so is brittle, and updates to Storybook could break this. The trade off is that we don't
  * have to figure out how to process stories with Webpack - Storybook handles that for us.
@@ -134,10 +134,19 @@ function emitSetCurrentStory(id: string) {
     );
   }
 
-  return new Promise((resolve) => {
-    // @ts-expect-error Access the protected "channel", so we can send stuff through it.
-    const channel = storybookPreview.channel;
+  // @ts-expect-error Access the protected "channel", so we can send stuff through it.
+  const channel = storybookPreview.channel;
 
+  // update global to disable known addons containing `axe-core`
+  channel.emit('updateGlobals', {
+    globals: {
+      a11y: {
+        manual: true,
+      },
+    },
+  });
+
+  return new Promise((resolve) => {
     channel.emit('setCurrentStory', {
       storyId: id,
       viewMode: 'story',
