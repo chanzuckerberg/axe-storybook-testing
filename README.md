@@ -69,6 +69,8 @@ To use:
    npx playwright install
    ```
 
+You may also configure your script to run `storybook build --test` instead, and [configure storybook](https://storybook.js.org/docs/api/main-config/main-config-build) to disable irrelevant addons/features for testing.
+
 ## Options
 
 The command-line interface has the following options:
