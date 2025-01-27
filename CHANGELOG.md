@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [fix] update contents of package.json using `npm pkg fix`
+
 ## 8.2.2 (2025-01-26)
 
 - [fix] Add handling for known axe-core conflicts [#104](https://github.com/chanzuckerberg/axe-storybook-testing/pull/104)
