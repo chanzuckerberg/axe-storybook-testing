@@ -5,10 +5,10 @@
   "homepage": "https://github.com/chanzuckerberg/axe-storybook-testing",
   "repository": {
     "type": "git",
-    "url": "https://github.com/chanzuckerberg/axe-storybook-testing.git"
+    "url": "git+https://github.com/chanzuckerberg/axe-storybook-testing.git"
   },
   "bin": {
-    "axe-storybook": "./bin/axe-storybook.js"
+    "axe-storybook": "bin/axe-storybook.js"
   },
   "main": "build/index.js",
   "files": [
