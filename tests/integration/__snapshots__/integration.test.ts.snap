@@ -66,6 +66,8 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
 
   6 passing
@@ -160,6 +162,8 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
@@ -204,6 +208,8 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
@@ -223,6 +229,8 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
@@ -285,6 +293,8 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
 
   9 passing
@@ -349,6 +359,8 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
@@ -378,6 +390,8 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
@@ -397,6 +411,8 @@ Serving up 🍕 static storybook build at: http://127.0.0.1:8000
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
@@ -471,6 +487,8 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
 
   3 passing
@@ -493,6 +511,8 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
@@ -537,6 +557,8 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
@@ -556,6 +578,8 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
@@ -630,6 +654,8 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
 
   6 passing
@@ -724,6 +750,8 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
@@ -768,6 +796,8 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
@@ -787,6 +817,8 @@ Error: simple / Failure No Discernible Text Warn / Detected the following access
                      aria-label attribute does not exist or is empty
                      aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty
                      Element has no title attribute
+                     Element does not have an implicit (wrapped) <label>
+                     Element does not have an explicit <label>
                      Element's default semantics were not overridden with role="none" or role="presentation"
   
 
