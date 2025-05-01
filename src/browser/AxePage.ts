@@ -36,7 +36,6 @@ const defaultDisabledRules = [
 export async function prepare(page: Page): Promise<void> {
   await page.waitForLoadState();
   await page.addScriptTag({path: require.resolve('axe-core')});
-  await page.evaluate(addPromiseQueue);
 }
 
 /**
@@ -72,6 +71,25 @@ function runAxe({
   context?: Context;
   options: RunOptions;
 }): Promise<AxeResults> {
+  if (!window.enqueuePromise) {
+    // Add a promise queue so we can ensure only one promise runs at a time.
+    //
+    // Used to prevent concurrent runs of `axe.run`, which breaks (see https://github.com/dequelabs/axe-core/issues/1041).
+    // This should never happen, but in the past errors during rendering at the right/wrong time has
+    // caused the next test to start before the previous has stopped.
+    //
+    // Got the idea from https://github.com/dequelabs/agnostic-axe/pull/6.
+    //
+    // We create this queue on demand to resolve https://github.com/chanzuckerberg/axe-storybook-testing/issues/107.
+    let queue = Promise.resolve();
+
+    window.enqueuePromise = function <T>(createPromise: () => Promise<T>) {
+      return new Promise<T>((resolve, reject) => {
+        queue = queue.then(createPromise).then(resolve).catch(reject);
+      });
+    };
+  }
+
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-ignore This function executes in a browser context.
   return window.enqueuePromise(() => {
@@ -107,26 +125,5 @@ export function getRunOptions(
   return {
     ...options,
     rules: newRules,
-  };
-}
-
-/**
- * (In Browser Context)
- *
- * Add a promise queue so we can ensure only one promise runs at a time.
- *
- * Used to prevent concurrent runs of `axe.run`, which breaks (see https://github.com/dequelabs/axe-core/issues/1041).
- * This should never happen, but in the past errors during rendering at the right/wrong time has
- * caused the next test to start before the previous has stopped.
- *
- * Got the idea from https://github.com/dequelabs/agnostic-axe/pull/6.
- */
-function addPromiseQueue() {
-  let queue = Promise.resolve();
-
-  window.enqueuePromise = function <T>(createPromise: () => Promise<T>) {
-    return new Promise<T>((resolve, reject) => {
-      queue = queue.then(createPromise).then(resolve).catch(reject);
-    });
   };
 }

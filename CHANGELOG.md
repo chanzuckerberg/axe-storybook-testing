@@ -5,6 +5,7 @@
 - [fix] update contents of package.json using `npm pkg fix`
   [#105](https://github.com/chanzuckerberg/axe-storybook-testing/pull/105)
 - [maintenance] Update all deps [#108](https://github.com/chanzuckerberg/axe-storybook-testing/pull/108)
+- [fix] Resolve an issue where the axe.run queue was not being setup properly, possibly caused by React 19.1.0 + Storybook 8.6.12 [#109](https://github.com/chanzuckerberg/axe-storybook-testing/pull/109)
 
 ## 8.2.2 (2025-01-26)
 
