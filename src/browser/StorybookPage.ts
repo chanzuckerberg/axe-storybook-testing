@@ -1,5 +1,9 @@
-import type {PreviewWeb, StoryStore} from '@storybook/preview-api';
-import type {Renderer, StoryIdentifier, Parameters} from '@storybook/types';
+import type {PreviewWeb} from 'storybook/preview-api';
+import type {
+  Renderer,
+  StoryIdentifier,
+  Parameters,
+} from 'storybook/internal/types';
 import pTimeout from 'p-timeout';
 import type {Page} from 'playwright';
 import dedent from 'ts-dedent';
@@ -72,25 +76,12 @@ async function fetchStoriesFromWindow(): Promise<StorybookStory[]> {
     );
   }
 
-  await ready(storybookPreview);
-  await storybookPreview.extract();
+  await storybookPreview.ready();
 
-  const storyStore = storybookPreview.storyStore as StoryStore<Renderer>;
-  return storyStore.raw().map(pickOnlyNecessaryAndSerializableStoryProperties);
+  const storyIndex = await storybookPreview.extract();
+  const stories = Object.values(storyIndex);
 
-  // Ensure the storybook preview is "ready", in a way that works in both Storybook 7 and 8.
-  // Alternatively, we could drop Storybook 7 support...
-  function ready(storybookPreview: PreviewWeb<Renderer>) {
-    // Storybook 8
-    if (storybookPreview.ready) {
-      return storybookPreview.ready();
-    }
-    // Storybook 7
-    if (storybookPreview.storyStore.hasOwnProperty('initializationPromise')) {
-      // @ts-expect-error initializationPromise doesn't exist in v8, but it does in v7.
-      return storybookPreview.storyStore.initializationPromise as Promise<void>;
-    }
-  }
+  return stories.map(pickOnlyNecessaryAndSerializableStoryProperties);
 
   // Pick only the properties we need from Storybook's representation of a story.
   //
