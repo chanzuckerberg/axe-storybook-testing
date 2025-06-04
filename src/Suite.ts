@@ -1,6 +1,6 @@
 import assert from 'assert';
 import indent from 'indent-string';
-import {each, groupBy} from 'lodash';
+import {each, groupBy} from 'lodash-es';
 import Mocha from 'mocha';
 import type {Options} from './Options.js';
 import Browser from './browser/index.js';
