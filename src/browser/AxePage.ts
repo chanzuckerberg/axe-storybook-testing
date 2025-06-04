@@ -6,7 +6,10 @@ import type {
   RunOptions,
   Spec,
 } from 'axe-core';
+import {createRequire} from 'module';
 import type {Page} from 'playwright';
+
+const require = createRequire(import.meta.url);
 
 // Functions we pass to `page.evaluate` execute in a browser environment, and can access window.
 // eslint-disable-next-line no-var
