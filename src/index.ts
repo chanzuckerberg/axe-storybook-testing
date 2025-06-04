@@ -1,6 +1,6 @@
-import {parseOptions} from './Options';
-import {runWithServer} from './Server';
-import {runSuite} from './Suite';
+import {parseOptions} from './Options.js';
+import {runWithServer} from './Server.js';
+import {runSuite} from './Suite.js';
 
 /**
  * Run the accessibility tests and return a promise that is resolved or rejected based on whether

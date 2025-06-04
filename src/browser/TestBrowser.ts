@@ -1,9 +1,9 @@
 import playwright, {type Browser, type Page} from 'playwright';
-import type {Options} from '../Options';
-import ProcessedStory from '../ProcessedStory';
-import Result from '../Result';
-import * as AxePage from './AxePage';
-import * as StorybookPage from './StorybookPage';
+import type {Options} from '../Options.js';
+import ProcessedStory from '../ProcessedStory.js';
+import Result from '../Result.js';
+import * as AxePage from './AxePage.js';
+import * as StorybookPage from './StorybookPage.js';
 
 export default class TestBrowser {
   private browser: Browser;

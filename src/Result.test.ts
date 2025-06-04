@@ -1,6 +1,6 @@
-import dedent from 'ts-dedent';
+import {dedent} from 'ts-dedent';
 import {describe, it, expect} from 'vitest';
-import Result from './Result';
+import Result from './Result.js';
 
 describe('isPassing', () => {
   it('returns true when there are no violations', () => {

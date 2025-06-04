@@ -1,3 +1,3 @@
-import TestBrowser from './TestBrowser';
+import TestBrowser from './TestBrowser.js';
 
 export default TestBrowser;

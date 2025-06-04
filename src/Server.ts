@@ -2,7 +2,7 @@ import fs from 'fs';
 import path from 'path';
 import httpServer from 'http-server';
 import portfinder from 'portfinder';
-import type {Options} from './Options';
+import type {Options} from './Options.js';
 
 type Server = {
   storybookUrl: string;

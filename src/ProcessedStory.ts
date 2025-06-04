@@ -1,7 +1,7 @@
 import type {RunOptions, Spec} from 'axe-core';
 import {z as zod} from 'zod';
-import type {Context} from './browser/AxePage';
-import type {StorybookStory} from './browser/StorybookPage';
+import type {Context} from './browser/AxePage.js';
+import type {StorybookStory} from './browser/StorybookPage.js';
 
 type Params = {
   disabledRules: string[];
