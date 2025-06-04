@@ -10,6 +10,7 @@
   "bin": {
     "axe-storybook": "bin/axe-storybook.js"
   },
+  "type": "module",
   "main": "build/index.js",
   "files": [
     "bin",
