@@ -1,5 +1,5 @@
 import {describe, it, expect} from 'vitest';
-import ProcessedStory from './ProcessedStory';
+import ProcessedStory from './ProcessedStory.js';
 
 it('parses a raw Storybook story', () => {
   const rawStory = {

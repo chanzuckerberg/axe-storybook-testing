@@ -1,10 +1,9 @@
 import assert from 'assert';
 import indent from 'indent-string';
-import each from 'lodash/each';
-import groupBy from 'lodash/groupBy';
+import {each, groupBy} from 'lodash-es';
 import Mocha from 'mocha';
-import type {Options} from './Options';
-import Browser from './browser';
+import type {Options} from './Options.js';
+import Browser from './browser/index.js';
 
 /**
  * Find Storybook stories and generate a test for each one.

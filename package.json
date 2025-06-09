@@ -10,6 +10,7 @@
   "bin": {
     "axe-storybook": "bin/axe-storybook.js"
   },
+  "type": "module",
   "main": "build/index.js",
   "files": [
     "bin",
@@ -42,7 +43,7 @@
     "@playwright/browser-chromium": "^1.52.0",
     "http-server": "^14.1.1",
     "indent-string": "^4.0.0",
-    "lodash": "^4.17.21",
+    "lodash-es": "^4.17.21",
     "mocha": "^11.1.0",
     "p-timeout": "^4.1.0",
     "playwright": "^1.52.0",
@@ -52,16 +53,14 @@
     "zod": "^3.24.3"
   },
   "peerDependencies": {
-    "@storybook/preview-api": "^7.0.0 || ^8.0.0",
-    "axe-core": "^4.0.0"
+    "axe-core": "^4.0.0",
+    "storybook": "^9.0.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.0",
-    "@storybook/preview-api": "^8.3.2",
-    "@storybook/types": "^8.6.12",
     "@types/eslint": "^9.6.1",
     "@types/http-server": "^0.12.4",
-    "@types/lodash": "^4.17.7",
+    "@types/lodash-es": "^4.17.12",
     "@types/mocha": "^10.0.8",
     "@types/node": "^22.5.5",
     "@types/yargs": "^17.0.33",

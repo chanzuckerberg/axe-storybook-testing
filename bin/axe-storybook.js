@@ -1,7 +1,8 @@
 #!/usr/bin/env node
 
-require('../build/index.js')
-  .run()
+import {run} from '../build/index.js';
+
+run()
   .then(() => {
     process.exit(0);
   })

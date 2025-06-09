@@ -2,6 +2,9 @@
 
 ## Unreleased
 
+- [breaking] Support Storybook 9
+- [breaking] Output ESM instead of CJS (needed to consume Storybook 9 types)
+
 ## 8.2.3 (2025-05-01)
 
 - [fix] update contents of package.json using `npm pkg fix` [#105](https://github.com/chanzuckerberg/axe-storybook-testing/pull/105)

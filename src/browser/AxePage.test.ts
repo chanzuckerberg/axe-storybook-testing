@@ -1,5 +1,5 @@
 import {describe, it, expect} from 'vitest';
-import {getRunOptions} from './AxePage';
+import {getRunOptions} from './AxePage.js';
 
 describe('getRunOptions', () => {
   it('overrides any rules from runOptions with those from disabledRules', () => {

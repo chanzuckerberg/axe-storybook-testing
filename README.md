@@ -34,7 +34,9 @@ This project adheres to the [Contributor Covenant code of conduct](https://www.c
 ## Minimum requirements
 
 - Node 18
-- Storybook 7.0 or 8.0 (for Storybook 6, use axe-storybook-testing v6.3.1)
+- Storybook 9
+  - For Storybook 6, use axe-storybook-testing v6.3.1
+  - For Storybook 7 or 8, use axe-storybook-testing v8.2.3
 - axe-core 4.0
 
 ## Installation

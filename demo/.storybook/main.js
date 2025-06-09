@@ -2,14 +2,11 @@ module.exports = {
   stories: ['../src'],
   addons: [
     '@storybook/addon-a11y',
-    '@storybook/addon-essentials',
+    '@storybook/addon-docs',
     '@storybook/addon-webpack5-compiler-swc',
   ],
   core: {
     disableTelemetry: true,
   },
-  framework: {
-    name: '@storybook/react-webpack5',
-    options: {},
-  },
+  framework: '@storybook/react-webpack5',
 };

@@ -1,6 +1,6 @@
 import type {Result as AxeResult, NodeResult} from 'axe-core';
 import indent from 'indent-string';
-import dedent from 'ts-dedent';
+import {dedent} from 'ts-dedent';
 
 /**
  * Violations reported by Axe for a story.
