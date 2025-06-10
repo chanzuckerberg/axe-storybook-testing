@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 9.0.0 (2025-06-10)
+
 - [breaking] Support Storybook 9
 - [breaking] Output ESM instead of CJS (needed to consume Storybook 9 types)
 
