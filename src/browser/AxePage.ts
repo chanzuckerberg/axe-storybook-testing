@@ -39,6 +39,11 @@ const defaultDisabledRules = [
 export async function prepare(page: Page): Promise<void> {
   await page.waitForLoadState();
   await page.addScriptTag({path: require.resolve('axe-core')});
+
+  // Make sure `window.axe` is available before considering setup complete.
+  await page.waitForFunction(() => typeof window.axe !== 'undefined', {
+    timeout: 5000,
+  });
 }
 
 /**
