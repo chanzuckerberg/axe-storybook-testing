@@ -1,26 +1,19 @@
-import type {
-  AxeResults,
-  SerialContextObject,
-  SerialFrameSelector,
-  RuleObject,
-  RunOptions,
-  Spec,
-} from 'axe-core';
+import type AxeCore from 'axe-core';
 import {createRequire} from 'module';
 import type {Page} from 'playwright';
 
 const require = createRequire(import.meta.url);
 
 // Functions we pass to `page.evaluate` execute in a browser environment, and can access window.
-// eslint-disable-next-line no-var
-declare var window: {
+declare let window: {
+  axe: typeof AxeCore;
   enqueuePromise: <T>(createPromise: () => Promise<T>) => Promise<T>;
 };
 
 export type Context =
-  | SerialFrameSelector
-  | SerialFrameSelector[]
-  | SerialContextObject;
+  | AxeCore.SerialFrameSelector
+  | AxeCore.SerialFrameSelector[]
+  | AxeCore.SerialContextObject;
 
 /**
  * These rules aren't useful/helpful in the context of Storybook stories, and we disable them when
@@ -52,10 +45,10 @@ export async function prepare(page: Page): Promise<void> {
 export function analyze(
   page: Page,
   disabledRules: string[] = [],
-  runOptions: RunOptions = {},
+  runOptions: AxeCore.RunOptions = {},
   context?: Context,
-  config?: Spec,
-): Promise<AxeResults> {
+  config?: AxeCore.Spec,
+): Promise<AxeCore.AxeResults> {
   return page.evaluate(runAxe, {
     options: getRunOptions(runOptions, [
       ...defaultDisabledRules,
@@ -75,10 +68,10 @@ function runAxe({
   context,
   options,
 }: {
-  config?: Spec;
+  config?: AxeCore.Spec;
   context?: Context;
-  options: RunOptions;
-}): Promise<AxeResults> {
+  options: AxeCore.RunOptions;
+}): Promise<AxeCore.AxeResults> {
   if (!window.enqueuePromise) {
     // Add a promise queue so we can ensure only one promise runs at a time.
     //
@@ -98,33 +91,26 @@ function runAxe({
     };
   }
 
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-ignore This function executes in a browser context.
   return window.enqueuePromise(() => {
     // Always reset the axe config, so if one story sets its own config it doesn't affect the
     // others.
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore This function executes in a browser context.
     window.axe.reset();
 
     if (config) {
-      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-      // @ts-ignore This function executes in a browser context.
       window.axe.configure(config);
     }
 
     // API: https://github.com/dequelabs/axe-core/blob/develop/doc/API.md#api-name-axerun
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore This function executes in a browser context.
+    // @ts-expect-error This function executes in a browser context.
     return window.axe.run(context || document, options);
   });
 }
 
 export function getRunOptions(
-  options: RunOptions,
+  options: AxeCore.RunOptions,
   disabledRules: string[] = [],
-): RunOptions {
-  const newRules: RuleObject = options.rules || {};
+): AxeCore.RunOptions {
+  const newRules: AxeCore.RuleObject = options.rules || {};
 
   for (const rule of disabledRules) {
     newRules[rule] = {enabled: false};
