@@ -16,11 +16,11 @@
     "react-dom": "^19.2.0"
   },
   "devDependencies": {
-    "@storybook/addon-a11y": "^10.0.0-rc.1",
-    "@storybook/addon-docs": "^10.0.0-rc.1",
+    "@storybook/addon-a11y": "^10.0.0",
+    "@storybook/addon-docs": "^10.0.0",
     "@storybook/addon-webpack5-compiler-swc": "^4.0.1",
-    "@storybook/react-webpack5": "^10.0.0-rc.1",
-    "storybook": "^10.0.0-rc.1"
+    "@storybook/react-webpack5": "^10.0.0",
+    "storybook": "^10.0.0"
   },
   "overrides": {
     "storybook": "$storybook"
