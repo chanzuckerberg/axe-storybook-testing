@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+## 10.0.0 (2025-11-24)
+
 - [breaking] Support Storybook 10
 
 ## 9.0.0 (2025-06-10)
