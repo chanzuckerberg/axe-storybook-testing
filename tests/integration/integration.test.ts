@@ -1,65 +1,53 @@
 import {exec} from 'child_process';
 import {it, expect} from 'vitest';
+import {promisify} from 'util';
 
-it('outputs accessibility violation information for the demo app', () => {
+const execAsync = promisify(exec);
+
+it('outputs accessibility violation information for the demo app', async () => {
   expect.assertions(2);
 
-  return new Promise<void>((done) => {
-    exec('cd demo && npm run storybook:axeOnly', function (error, stdout) {
-      const normalizedStdout = normalize(stdout);
-      expect(error!.code).toEqual(1);
+  await execAsync('cd demo && npm run storybook:axeOnly').catch((error) => {
+    const normalizedStdout = normalize(error.stdout);
+    expect(error.code).toEqual(1);
+    expect(normalizedStdout).toMatchSnapshot();
+  });
+}, 120_000);
+
+it('filters the components to run', async () => {
+  expect.assertions(2);
+
+  await execAsync(
+    'cd demo && npm run storybook:axeOnly -- --pattern simple',
+  ).catch((error) => {
+    const normalizedStdout = normalize(error.stdout);
+    expect(error.code).toEqual(1);
+    expect(normalizedStdout).toMatchSnapshot();
+  });
+}, 120_000);
+
+it('fails only specific impact levels if specified', async () => {
+  expect.assertions(2);
+
+  await execAsync(
+    'cd demo && npm run storybook:axeOnly -- --failing-impact critical',
+  ).catch((error) => {
+    const normalizedStdout = normalize(error.stdout);
+    expect(error.code).toEqual(1);
+    expect(normalizedStdout).toMatchSnapshot();
+  });
+}, 120_000);
+
+it('accepts a port to run on', async () => {
+  expect.assertions(2);
+
+  await execAsync('cd demo && npm run storybook:axeOnly -- --port 8112').catch(
+    (error) => {
+      const normalizedStdout = normalize(error.stdout);
+      expect(error.code).toEqual(1);
       expect(normalizedStdout).toMatchSnapshot();
-      done();
-    });
-  });
-}, 120_000);
-
-it('filters the components to run', () => {
-  expect.assertions(2);
-
-  return new Promise<void>((done) => {
-    exec(
-      'cd demo && npm run storybook:axeOnly -- --pattern simple',
-      function (error, stdout) {
-        const normalizedStdout = normalize(stdout);
-        expect(error!.code).toEqual(1);
-        expect(normalizedStdout).toMatchSnapshot();
-        done();
-      },
-    );
-  });
-}, 120_000);
-
-it('fails only specific impact levels if specified', () => {
-  expect.assertions(2);
-
-  return new Promise<void>((done) => {
-    exec(
-      'cd demo && npm run storybook:axeOnly -- --failing-impact critical',
-      function (error, stdout) {
-        const normalizedStdout = normalize(stdout);
-        expect(error!.code).toEqual(1);
-        expect(normalizedStdout).toMatchSnapshot();
-        done();
-      },
-    );
-  });
-}, 120_000);
-
-it('accepts a port to run on', () => {
-  expect.assertions(2);
-
-  return new Promise<void>((done) => {
-    exec(
-      'cd demo && npm run storybook:axeOnly -- --port 8112',
-      function (error, stdout) {
-        const normalizedStdout = normalize(stdout);
-        expect(error!.code).toEqual(1);
-        expect(normalizedStdout).toMatchSnapshot();
-        done();
-      },
-    );
-  });
+    },
+  );
 }, 120_000);
 
 /**

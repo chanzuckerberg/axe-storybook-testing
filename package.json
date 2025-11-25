@@ -54,7 +54,7 @@
   },
   "peerDependencies": {
     "axe-core": "^4.0.0",
-    "storybook": "^9.0.0"
+    "storybook": "^10.0.1"
   },
   "devDependencies": {
     "@eslint/js": "^9.11.0",
@@ -65,14 +65,14 @@
     "@types/node": "^22.5.5",
     "@types/yargs": "^17.0.33",
     "@vitest/eslint-plugin": "^1.1.4",
-    "axe-core": "^4.10.0",
+    "axe-core": "^4.11.0",
     "eslint": "^9.11.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-prettier": "^5.2.1",
     "eslint-plugin-react": "^7.36.1",
     "prettier": "^3.3.3",
-    "react": "^19.1.0",
-    "react-dom": "^19.1.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
     "rimraf": "^5.0.5",
     "typescript": "^5.6.2",
     "typescript-eslint": "^8.6.0",
