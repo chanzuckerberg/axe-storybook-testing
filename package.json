@@ -46,7 +46,7 @@
     "lodash-es": "^4.17.21",
     "mocha": "^11.1.0",
     "p-timeout": "^4.1.0",
-    "playwright": "^1.52.0",
+    "playwright": "^1.55.1",
     "portfinder": "^1.0.36",
     "ts-dedent": "^2.2.0",
     "yargs": "^17.7.2",
