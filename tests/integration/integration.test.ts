@@ -1,3 +1,5 @@
+/* eslint-disable vitest/no-conditional-expect */
+// Disabling for this file, since exceptions are intentional
 import {exec} from 'child_process';
 import {it, expect} from 'vitest';
 import {promisify} from 'util';
