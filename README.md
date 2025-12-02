@@ -1,5 +1,11 @@
 # @chanzuckerberg/axe-storybook-testing
 
+> [!WARNING]
+> `axe-storybook-testing` will be archived on **January 5, 2026**. The recommended replacement is to use the built-in storybook accessibility testing
+> tools. More information on migrating away from `axe-storybook-testing` can be found [in the wiki](https://github.com/chanzuckerberg/axe-storybook-testing/wiki/Migrating-away-from-axe%E2%80%90storybook%E2%80%90testing).
+
+----
+
 [![Package Status](https://img.shields.io/npm/v/@chanzuckerberg/axe-storybook-testing.svg)](https://www.npmjs.com/package/@chanzuckerberg/axe-storybook-testing) ![Tests](https://github.com/chanzuckerberg/axe-storybook-testing/workflows/Tests/badge.svg) [![Release](https://github.com/chanzuckerberg/axe-storybook-testing/actions/workflows/release.yml/badge.svg)](https://github.com/chanzuckerberg/axe-storybook-testing/actions/workflows/release.yml)
 
 Command line interface for running [axe-core](https://github.com/dequelabs/axe-core) accessibility tests on your [Storybook stories](https://storybook.js.org/docs/react/api/csf).

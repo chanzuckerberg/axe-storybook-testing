@@ -2,6 +2,8 @@
 
 ## Unreleased
 
+- [chore] Add in deprecation messaging to README
+
 ## 10.0.0 (2025-11-24)
 
 - [breaking] Support Storybook 10
