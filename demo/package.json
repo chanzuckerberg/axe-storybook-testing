@@ -20,7 +20,7 @@
     "@storybook/addon-docs": "^10.0.8",
     "@storybook/addon-webpack5-compiler-swc": "^4.0.1",
     "@storybook/react-webpack5": "^10.0.8",
-    "storybook": "^10.0.8"
+    "storybook": "^10.1.10"
   },
   "overrides": {
     "storybook": "$storybook"
